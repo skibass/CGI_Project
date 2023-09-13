@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CGI_Project",
+    "\\CGI_Project\\CGI_Project"
   ],
-  "SelectedNode": "\\Test",
+  "SelectedNode": "\\CGI_Project\\CGI_Project.sln",
   "PreviewInSolutionExplorer": false
 }
