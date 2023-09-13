@@ -15,6 +15,7 @@ namespace CGI_Project.Controllers
 
         public IActionResult Index()
         {
+            string jjj = "jrfjrnf";
             return View();
         }
 
