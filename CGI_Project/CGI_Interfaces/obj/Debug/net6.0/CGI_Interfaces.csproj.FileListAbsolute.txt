@@ -10,3 +10,15 @@ E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Interfaces\obj\D
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\refint\CGI_Interfaces.dll
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.pdb
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\ref\CGI_Interfaces.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\bin\Debug\net6.0\CGI_Interfaces.deps.json
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\bin\Debug\net6.0\CGI_Interfaces.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\bin\Debug\net6.0\CGI_Interfaces.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.csproj.AssemblyReference.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.AssemblyInfoInputs.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.AssemblyInfo.cs
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\refint\CGI_Interfaces.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\ref\CGI_Interfaces.dll

@@ -1,18 +1,45 @@
-html {
-  font-size: 14px;
+:root {
+    --text: #020302;
+    --background: #f9fbf9;
+    --primary: #e11937;
+    --secondary: #5136ab;
+    --accent: #200a57;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.logo {
+    color: var(--primary);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
 }
 
-body {
-  margin-bottom: 60px;
+    .logo:hover {
+        color: var(--primary);
+    }
+
+.navbar-nav {
+    padding: .15rem;
+    margin-left: 2rem;
+}
+
+
+.nav-link {
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    margin: .5rem 0 0 .5rem;
+}
+
+.lang-control button{
+    border: none;
+    outline: none;
+    
 }

@@ -10,3 +10,15 @@ E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.deps.json
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.csproj.AssemblyReference.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfoInputs.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfo.cs
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.csproj.CoreCompileInputs.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll

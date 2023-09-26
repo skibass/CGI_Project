@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CGI_BLL\CGI_BLL.csproj" />
     <ProjectReference Include="..\CGI_Interfaces\CGI_Interfaces.csproj" />
     <ProjectReference Include="..\CGI_Models\CGI_Models.csproj" />

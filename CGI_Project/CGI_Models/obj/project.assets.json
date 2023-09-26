@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Thijn\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Huijb\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+      "projectUniqueName": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
       "projectName": "CGI_Models",
-      "projectPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
-      "packagesPath": "C:\\Users\\Thijn\\.nuget\\packages\\",
-      "outputPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\obj\\",
+      "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+      "packagesPath": "C:\\Users\\Huijb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Models\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Thijn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Huijb\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

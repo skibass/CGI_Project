@@ -15,3 +15,20 @@ E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\ne
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\refint\CGI_DAL.dll
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.pdb
 E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\ref\CGI_DAL.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_DAL.deps.json
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_DAL.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_DAL.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_Interfaces.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_Models.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_Interfaces.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_Models.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.csproj.AssemblyReference.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.AssemblyInfoInputs.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.AssemblyInfo.cs
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.csproj.CoreCompileInputs.cache
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.csproj.CopyComplete
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\refint\CGI_DAL.dll
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.pdb
+C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\ref\CGI_DAL.dll
