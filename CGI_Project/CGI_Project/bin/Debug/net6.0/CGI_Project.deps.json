@@ -1,0 +1,77 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CGI_Project/1.0.0": {
+        "dependencies": {
+          "CGI_BLL": "1.0.0",
+          "CGI_Interfaces": "1.0.0",
+          "CGI_Models": "1.0.0"
+        },
+        "runtime": {
+          "CGI_Project.dll": {}
+        }
+      },
+      "CGI_BLL/1.0.0": {
+        "dependencies": {
+          "CGI_DAL": "1.0.0",
+          "CGI_Interfaces": "1.0.0",
+          "CGI_Models": "1.0.0"
+        },
+        "runtime": {
+          "CGI_BLL.dll": {}
+        }
+      },
+      "CGI_DAL/1.0.0": {
+        "dependencies": {
+          "CGI_Interfaces": "1.0.0",
+          "CGI_Models": "1.0.0"
+        },
+        "runtime": {
+          "CGI_DAL.dll": {}
+        }
+      },
+      "CGI_Interfaces/1.0.0": {
+        "runtime": {
+          "CGI_Interfaces.dll": {}
+        }
+      },
+      "CGI_Models/1.0.0": {
+        "runtime": {
+          "CGI_Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CGI_Project/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CGI_BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CGI_DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CGI_Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CGI_Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

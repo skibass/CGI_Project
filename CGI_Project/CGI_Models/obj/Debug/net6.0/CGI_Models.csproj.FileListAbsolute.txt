@@ -1,0 +1,12 @@
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.deps.json
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.dll
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.pdb
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.csproj.AssemblyReference.cache
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.GeneratedMSBuildEditorConfig.editorconfig
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfoInputs.cache
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfo.cs
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.csproj.CoreCompileInputs.cache
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.dll
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll

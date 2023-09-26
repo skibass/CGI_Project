@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {}
+    "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {
+    "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
+        "projectUniqueName": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
         "projectName": "CGI_DAL",
-        "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
-        "packagesPath": "C:\\Users\\Huijb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_DAL\\obj\\",
+        "projectPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
+        "packagesPath": "C:\\Users\\Thijn\\.nuget\\packages\\",
+        "outputPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Huijb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Thijn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,17 +26,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
-                "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
+              "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
+                "projectPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
               },
-              "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
-                "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
+              "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+                "projectPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
               }
             }
           }
@@ -66,17 +71,21 @@
         }
       }
     },
-    "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
+    "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
+        "projectUniqueName": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
         "projectName": "CGI_Interfaces",
-        "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
-        "packagesPath": "C:\\Users\\Huijb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Interfaces\\obj\\",
+        "projectPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
+        "packagesPath": "C:\\Users\\Thijn\\.nuget\\packages\\",
+        "outputPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Huijb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Thijn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,6 +93,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,17 +131,21 @@
         }
       }
     },
-    "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+    "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+        "projectUniqueName": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
         "projectName": "CGI_Models",
-        "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
-        "packagesPath": "C:\\Users\\Huijb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\Project\\Project\\CGI_Project\\CGI_Models\\obj\\",
+        "projectPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+        "packagesPath": "C:\\Users\\Thijn\\.nuget\\packages\\",
+        "outputPath": "E:\\Fontys_S2\\Projecten\\GroupProject\\CGI_Project\\CGI_Project\\CGI_Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Huijb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Thijn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -139,6 +153,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

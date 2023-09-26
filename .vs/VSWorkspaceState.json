@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\CGI_Project",
-    "\\CGI_Project\\CGI_Project"
+    "\\CGI_Project\\CGI_BLL"
   ],
-  "SelectedNode": "\\CGI_Project\\CGI_Project.sln",
+  "SelectedNode": "\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj",
   "PreviewInSolutionExplorer": false
 }
