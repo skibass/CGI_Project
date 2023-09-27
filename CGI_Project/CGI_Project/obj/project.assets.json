@@ -1857,19 +1857,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sam\\.nuget\\packages\\": {}
+    "C:\\Users\\Huijb\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Project\\CGI_Project.csproj",
+      "projectUniqueName": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\CGI_Project.csproj",
       "projectName": "CGI_Project",
-      "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Project\\CGI_Project.csproj",
-      "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-      "outputPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Project\\obj\\",
+      "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\CGI_Project.csproj",
+      "packagesPath": "C:\\Users\\Huijb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Huijb\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1883,14 +1883,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj": {
-              "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj"
+            "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj": {
+              "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj"
             },
-            "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
-              "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
+            "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
+              "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
             },
-            "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
-              "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
+            "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+              "projectPath": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
             }
           }
         }
@@ -1929,7 +1929,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
