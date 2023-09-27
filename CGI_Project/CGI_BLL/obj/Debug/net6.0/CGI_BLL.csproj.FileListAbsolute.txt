@@ -36,3 +36,22 @@ C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Proj
 C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\refint\CGI_BLL.dll
 C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.pdb
 C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\ref\CGI_BLL.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_BLL.deps.json
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_BLL.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_BLL.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_DAL.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_Interfaces.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_Models.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_DAL.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_Interfaces.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\bin\Debug\net6.0\CGI_Models.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.csproj.AssemblyReference.cache
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.AssemblyInfoInputs.cache
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.AssemblyInfo.cs
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.csproj.CoreCompileInputs.cache
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.csproj.CopyComplete
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\refint\CGI_BLL.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\CGI_BLL.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_BLL\obj\Debug\net6.0\ref\CGI_BLL.dll

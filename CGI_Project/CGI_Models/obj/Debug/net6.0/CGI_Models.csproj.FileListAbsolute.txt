@@ -22,3 +22,14 @@ C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Proj
 C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
 C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
 C:\Users\Huijb\OneDrive\Bureaublad\Fontys\Semester 2 deel 2\TALPA\TALPA\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.deps.json
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfoInputs.cache
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfo.cs
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.csproj.CoreCompileInputs.cache
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
+D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll
