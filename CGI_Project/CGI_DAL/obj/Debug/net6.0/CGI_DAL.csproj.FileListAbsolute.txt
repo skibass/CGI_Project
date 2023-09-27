@@ -68,3 +68,5 @@ C:\Projects\CGI\CGI_Project\CGI_DAL\obj\Debug\net6.0\refint\CGI_DAL.dll
 C:\Projects\CGI\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.pdb
 C:\Projects\CGI\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.genruntimeconfig.cache
 C:\Projects\CGI\CGI_Project\CGI_DAL\obj\Debug\net6.0\ref\CGI_DAL.dll
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_DAL\bin\Debug\net6.0\CGI_DAL.runtimeconfig.json
+E:\Fontys_S2\Projecten\GroupProject\CGI_Project\CGI_Project\CGI_DAL\obj\Debug\net6.0\CGI_DAL.genruntimeconfig.cache

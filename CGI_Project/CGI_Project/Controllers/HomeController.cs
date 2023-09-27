@@ -1,4 +1,5 @@
-﻿using CGI_Project.Models;
+﻿using CGI_BLL;
+using CGI_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
@@ -7,6 +8,8 @@ namespace CGI_Project.Controllers
 {
     public class HomeController : Controller
     {
+        Class1 test = new();
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -34,6 +37,7 @@ namespace CGI_Project.Controllers
 
         public string GetDB()
         {
+
             string connectionString = "Server=studmysql01.fhict.local;Uid=dbi511119;Database=dbi511119;Pwd=TeamKever;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -41,7 +45,8 @@ namespace CGI_Project.Controllers
                 try
                 {
                     connection.Open();
-                    return "Connected to the database!";
+                    
+                    return test.Test();
                 }
                 catch (Exception ex)
                 {
