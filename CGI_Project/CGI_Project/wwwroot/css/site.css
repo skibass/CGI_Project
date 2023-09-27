@@ -12,6 +12,8 @@
     box-sizing: border-box;
 }
 
+/*Nabvar*/
+
 .logo {
     color: var(--primary);
     font-size: 2rem;
@@ -42,4 +44,16 @@
     border: none;
     outline: none;
     
+}
+
+/*Hero*/
+
+.hero{
+    border: 1px solid red;
+    width: 100%;
+}
+
+.hero-title{
+    color: var(--accent);
+    font-weight: 400;
 }
