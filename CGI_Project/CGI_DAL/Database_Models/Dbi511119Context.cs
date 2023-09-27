@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using CGI_Models;
 
 namespace CGI_DAL.Database_Models;
 

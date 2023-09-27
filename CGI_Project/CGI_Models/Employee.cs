@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CGI_DAL.Database_Models;
+namespace CGI_Models;
 
 public partial class Employee
 {
@@ -23,7 +23,7 @@ public partial class Employee
 
     public virtual Company? Company { get; set; }
 
-    public virtual ICollection<Poll> Polls { get; set; } = new List<Poll>();
+    public virtual ICollection<Poll> Polls { get; set; } = new List<Poll>(); //Creators(mangers)only
 
     public virtual Role? Role { get; set; }
 

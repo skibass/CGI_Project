@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CGI_DAL.Database_Models;
+namespace CGI_Models;
 
 public partial class Period
 {
