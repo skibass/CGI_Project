@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj": {}
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj": {}
   },
   "projects": {
-    "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj": {
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj",
+        "projectUniqueName": "C:\\Projects\\CGI\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj",
         "projectName": "CGI_BLL",
-        "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj",
-        "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_BLL\\obj\\",
+        "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_BLL\\CGI_BLL.csproj",
+        "packagesPath": "C:\\Users\\bzweg\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bzweg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,14 +32,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {
-                "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj"
+              "C:\\Projects\\CGI\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {
+                "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj"
               },
-              "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
-                "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
+              "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
+                "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
               },
-              "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
-                "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
+              "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+                "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
               }
             }
           }
@@ -65,21 +69,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
+        "projectUniqueName": "C:\\Projects\\CGI\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
         "projectName": "CGI_DAL",
-        "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
-        "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_DAL\\obj\\",
+        "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_DAL\\CGI_DAL.csproj",
+        "packagesPath": "C:\\Users\\bzweg\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bzweg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,11 +101,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
-                "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
+              "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
+                "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj"
               },
-              "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
-                "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
+              "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+                "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj"
               }
             }
           }
@@ -111,6 +119,28 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -127,21 +157,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
+        "projectUniqueName": "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
         "projectName": "CGI_Interfaces",
-        "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
-        "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Interfaces\\obj\\",
+        "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
+        "packagesPath": "C:\\Users\\bzweg\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bzweg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -182,21 +216,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+        "projectUniqueName": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
         "projectName": "CGI_Models",
-        "projectPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
-        "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester 2\\CGIGroepsproject\\CGI_Project\\CGI_Project\\CGI_Models\\obj\\",
+        "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+        "packagesPath": "C:\\Users\\bzweg\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bzweg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -237,7 +275,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

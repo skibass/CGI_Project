@@ -33,3 +33,14 @@ D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Interfaces\obj
 D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\refint\CGI_Interfaces.dll
 D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.pdb
 D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\ref\CGI_Interfaces.dll
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\bin\Debug\net6.0\CGI_Interfaces.deps.json
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\bin\Debug\net6.0\CGI_Interfaces.dll
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\bin\Debug\net6.0\CGI_Interfaces.pdb
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.AssemblyInfoInputs.cache
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.AssemblyInfo.cs
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.csproj.CoreCompileInputs.cache
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.dll
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\refint\CGI_Interfaces.dll
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\CGI_Interfaces.pdb
+C:\Projects\CGI\CGI_Project\CGI_Interfaces\obj\Debug\net6.0\ref\CGI_Interfaces.dll

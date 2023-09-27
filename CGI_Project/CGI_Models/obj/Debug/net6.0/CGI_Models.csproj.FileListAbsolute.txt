@@ -33,3 +33,14 @@ D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Deb
 D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
 D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
 D:\Fontys\Semester 2\CGIGroepsproject\CGI_Project\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll
+C:\Projects\CGI\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.deps.json
+C:\Projects\CGI\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.dll
+C:\Projects\CGI\CGI_Project\CGI_Models\bin\Debug\net6.0\CGI_Models.pdb
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfoInputs.cache
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.AssemblyInfo.cs
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.csproj.CoreCompileInputs.cache
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.dll
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\refint\CGI_Models.dll
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\CGI_Models.pdb
+C:\Projects\CGI\CGI_Project\CGI_Models\obj\Debug\net6.0\ref\CGI_Models.dll
