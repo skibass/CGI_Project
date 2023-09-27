@@ -53,6 +53,10 @@
     width: 100%;
 }
 
+.hero-content{
+    width: 90%;
+}
+
 .hero-title{
     color: var(--accent);
     font-weight: 400;
