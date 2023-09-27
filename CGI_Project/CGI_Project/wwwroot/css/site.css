@@ -57,3 +57,30 @@
     color: var(--accent);
     font-weight: 400;
 }
+
+.hero-img-container{
+    height: 30rem;
+    width: 20rem;
+    position: relative;
+}
+.hero-block-blue{
+    background-color: var(--secondary);
+    height: 50%;
+}
+.hero-block-red {
+    background-color: var(--primary);
+    height: 50%;
+}
+
+.hero-img{
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: .5rem;
+    height: 100%;
+}
+
+.hero-button {
+    background: conic-gradient(from 180deg at 50.26% 49.28%, #E11A39 120.00000357627869deg, #5E33A1 324.3750071525574deg);
+}

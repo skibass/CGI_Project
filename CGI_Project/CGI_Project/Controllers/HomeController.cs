@@ -16,8 +16,6 @@ namespace CGI_Project.Controllers
 
         public IActionResult Index()
         {
-            string connectionResult = GetDB();
-            ViewBag.ConnectionResult = connectionResult;
             return View();
         }
 
@@ -32,23 +30,6 @@ namespace CGI_Project.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public string GetDB()
-        {
-            string connectionString = "Server=studmysql01.fhict.local;Uid=dbi511119;Database=dbi511119;Pwd=TeamKever;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    return "Connected to the database!";
-                }
-                catch (Exception ex)
-                {
-                    return $"Error: {ex.Message}";
-                }
-            }
-        }
 
     }
 }

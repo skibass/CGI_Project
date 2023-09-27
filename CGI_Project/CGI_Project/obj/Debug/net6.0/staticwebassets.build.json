@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gjPQjYdYDyX2AYeVwi47xGUuZvOV0LA9nPUvrvtv/tc=",
+  "Hash": "aRfUXXGRtaQOkY3IRdaPk/8Sq/xLk6Elo2sKUK+5NOo=",
   "Source": "CGI_Project",
   "BasePath": "_content/CGI_Project",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CGI_Project.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\assets\\hero-img.png",
+      "SourceId": "CGI_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\",
+      "BasePath": "_content/CGI_Project",
+      "RelativePath": "assets/hero-img.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\hero-img.png"
     },
     {
       "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\css\\site.css",
