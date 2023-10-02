@@ -8,5 +8,6 @@ namespace CGI_DAL.repositories
 {
     internal class CompanyRepository
     {
+
     }
 }

@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CGI_DAL.Database_Models;
 using CGI_Models;
+using Google.Protobuf.WellKnownTypes;
+using Microsoft.Identity.Client;
+using Org.BouncyCastle.Utilities;
 
 namespace CGI_DAL.repositories
 {
@@ -44,6 +47,105 @@ namespace CGI_DAL.repositories
             catch (Exception)
             {
                 return false;   
+            }
+        }
+        public bool TryRemovePoll(Poll poll)
+        {
+            return TryRemovePoll(poll.Id);
+        }
+
+        public bool TryRemovePoll(int pollId)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            try
+            {
+                Poll? poll = DBContext.Polls.Where(poll => poll.Id == pollId).FirstOrDefault();
+                if(poll != null)
+                {
+                    DBContext.Polls.Remove(poll);
+                    DBContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool TryGetPollVotes(out List<Vote> votes, Poll poll)
+        {
+            TryGetPollVotes(out votes, poll.Id);
+
+            return true;
+        }
+        public bool TryGetPollVotes(out List<Vote> votes, int pollId)
+        {
+
+            votes = new List<Vote>();
+
+            Dbi511119Context DBContext = new Dbi511119Context();
+            try
+            {
+                Poll? poll = DBContext.Polls.Where(p => p.Id == pollId).FirstOrDefault();
+
+                if (poll == null)
+                {
+                    return false;
+                }
+                List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
+                votes = new List<Vote>();
+                foreach (PollSuggestion suggestion in Suggestions) {
+                    votes.AddRange(suggestion.Suggestion.Votes);
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
+        {
+            MaxCount = -1;
+            Draw = false;
+            Dbi511119Context DBContext = new Dbi511119Context();
+            try
+            {
+                Poll? poll = DBContext.Polls.Where(p => p.Id == pollId).FirstOrDefault();
+
+                if (poll == null)
+                {
+                    return false;
+                }
+                List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();
+                if (Suggestions == null)
+                {
+                    return false;
+                } 
+                foreach (PollSuggestion suggestion in Suggestions)
+                {
+                    if(MaxCount < suggestion.Suggestion.Votes.Count())
+                    {
+                        MaxCount = suggestion.Suggestion.Votes.Count();
+                        Draw = false;
+                    }else if(MaxCount == suggestion.Suggestion.Votes.Count())
+                    {
+                        Draw = true;
+                    }
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

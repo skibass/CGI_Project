@@ -36,16 +36,34 @@ namespace CGI_DAL.repositories
                 return false;
             }
         }
-        public bool TryChangeEmployeeRoll(Role roll, Employee employee)
+        public bool TryChangeEmployeeRoll(Role role, Employee employee)
         {
-            return TryChangeEmployeeRoll(roll.Id);
+            return TryChangeEmployeeRoll(role.Id, employee.Id);
         }
-        public bool TryChangeEmployeeRoll(int rollID, int employeeId)
+        public bool TryChangeEmployeeRoll(int roleId, int employeeId)
         {
             Dbi511119Context context = new Dbi511119Context();
 
-            context.Employees.Where(emp => emp.Id == employeeId).FirstOrDefault();
+            Employee? employee = context.Employees.Where(emp => emp.Id == employeeId).FirstOrDefault();
+            Role? role = context.Roles.Where(role => role.Id == roleId).FirstOrDefault();
+
+            if (employee != null && role != null)
+            {
+                employee.Role = role;
+                context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            
+
         }
+
+        
+        //moeten wij de werknemers kunnen maken of gaat dit via de 3de party tool?
         
     }
 }
