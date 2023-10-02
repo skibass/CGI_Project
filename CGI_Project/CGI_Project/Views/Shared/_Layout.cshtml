@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        @Html.Partial("_Navbar");
+        @Html.Partial("_Navbar")
     </header>
     <div class="container-fluid p-0 m-0">
         <main role="main">
@@ -18,11 +18,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CGI_Project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
+       @Html.Partial("_Footer")
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
