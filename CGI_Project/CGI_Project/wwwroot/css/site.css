@@ -40,16 +40,33 @@
     margin: .5rem 0 0 .75rem;
 }
 
+.lang-control{
+    margin-right: 5rem;
+}
+
 .lang-control button{
     border: none;
     outline: none;
+    background:none;
     
+}
+
+.lang-dropdown{
+    max-width: 1rem !important;
+    width: 1rem !important;
+}
+
+.dropdown-item{
+    width: 10px;
+}
+
+.flag-icon{
+    width:1.5rem;
 }
 
 /*Hero*/
 
 .hero{
-    border: 1px solid red;
     width: 100%;
 }
 

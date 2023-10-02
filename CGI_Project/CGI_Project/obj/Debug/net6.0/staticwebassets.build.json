@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aRfUXXGRtaQOkY3IRdaPk/8Sq/xLk6Elo2sKUK+5NOo=",
+  "Hash": "h6jexGeWx/7wvOJ9PtAzSpTFmtaCzWt728LywgaoXMc=",
   "Source": "CGI_Project",
   "BasePath": "_content/CGI_Project",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CGI_Project.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\assets\\flags\\netherlands.png",
+      "SourceId": "CGI_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\",
+      "BasePath": "_content/CGI_Project",
+      "RelativePath": "assets/flags/netherlands.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\flags\\netherlands.png"
+    },
+    {
+      "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\assets\\flags\\united-kingdom.png",
+      "SourceId": "CGI_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\",
+      "BasePath": "_content/CGI_Project",
+      "RelativePath": "assets/flags/united-kingdom.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\flags\\united-kingdom.png"
     },
     {
       "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\assets\\hero-img.png",
@@ -100,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\js\\navigation.js",
+      "SourceId": "CGI_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\",
+      "BasePath": "_content/CGI_Project",
+      "RelativePath": "js/navigation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\navigation.js"
     },
     {
       "Identity": "C:\\Users\\Huijb\\OneDrive\\Bureaublad\\Fontys\\Semester 2 deel 2\\TALPA\\TALPA\\CGI_Project\\CGI_Project\\CGI_Project\\wwwroot\\js\\site.js",
