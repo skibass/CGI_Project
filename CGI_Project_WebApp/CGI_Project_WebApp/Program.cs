@@ -1,4 +1,23 @@
+using Auth0.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services
+    .AddAuth0WebAppAuthentication(options => {
+        options.Domain = builder.Configuration["Auth0:Domain"];
+        options.ClientId = builder.Configuration["Auth0:ClientId"];
+        options.Scope = "openid profile email";
+    });
+
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizePage("/Account/Logout");
+
+    options.Conventions.AuthorizePage("/Account/Profile");
+
+    options.Conventions.AuthorizePage("/Catalog");
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -18,6 +37,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
