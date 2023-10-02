@@ -31,5 +31,20 @@ namespace CGI_DAL.repositories
             result = DBContext.Polls.Where(poll => DateTime.Now < poll.StartTime).ToList();
             return result;
         }
+
+        public bool TryAddPoll(Poll poll)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            try
+            {
+                DBContext.Polls.Add(poll);
+                DBContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;   
+            }
+        }
     }
 }

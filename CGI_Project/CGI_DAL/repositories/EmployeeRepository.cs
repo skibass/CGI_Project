@@ -36,6 +36,16 @@ namespace CGI_DAL.repositories
                 return false;
             }
         }
+        public bool TryChangeEmployeeRoll(Role roll, Employee employee)
+        {
+            return TryChangeEmployeeRoll(roll.Id);
+        }
+        public bool TryChangeEmployeeRoll(int rollID, int employeeId)
+        {
+            Dbi511119Context context = new Dbi511119Context();
+
+            context.Employees.Where(emp => emp.Id == employeeId).FirstOrDefault();
+        }
         
     }
 }
