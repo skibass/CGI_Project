@@ -3,60 +3,27 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CGI Planning</title>
+    <title>@ViewData["Title"] - CGI_Project</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Auth0TestApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CGI_Project.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark display-6" asp-area=""
-                       asp-page="/Catalog">Catalog</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark display-6"
-                       asp-page="/Account/Profile">Hello @User.Identity.Name!</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark display-6" asp-area=""
-                       asp-page="/Account/Logout">Logout</a>
-                    </li>
-                </ul>
-            }
-            else
-            {
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark display-6" asp-area=""
-                       asp-page="/Account/Login">Login</a>
-                    </li>
-                </ul>
-            }
-        </div>
+        @Html.Partial("_Navbar")
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container-fluid p-0 m-0">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CGI Planning - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+
+    @Html.Partial("_Footer")
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
