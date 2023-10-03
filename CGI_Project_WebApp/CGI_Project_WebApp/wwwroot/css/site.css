@@ -1,5 +1,6 @@
 :root {
     --text: #020302;
+    --text-light: #f4f4f4;
     --background: #f9fbf9;
     --primary: #e11937;
     --secondary: #5136ab;
@@ -103,6 +104,16 @@
 
 .hero-button {
     background: conic-gradient(from 180deg at 50.26% 49.28%, #E11A39 120.00000357627869deg, #5E33A1 324.3750071525574deg);
+}
+
+/*Recent Excursions*/
+
+.recent{
+    background-color: var(--secondary)
+}
+
+.recent-title{
+    color: var(--text-light);
 }
 
 /*Footer*/
