@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CGI_DAL.Database_Models;
 using CGI_Models;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using Org.BouncyCastle.Utilities;
 
@@ -46,7 +47,7 @@ namespace CGI_DAL.repositories
             }
             catch (Exception)
             {
-                return false;   
+                return false;
             }
         }
         public bool TryRemovePoll(Poll poll)
@@ -60,7 +61,7 @@ namespace CGI_DAL.repositories
             try
             {
                 Poll? poll = DBContext.Polls.Where(poll => poll.Id == pollId).FirstOrDefault();
-                if(poll != null)
+                if (poll != null)
                 {
                     DBContext.Polls.Remove(poll);
                     DBContext.SaveChanges();
@@ -80,9 +81,9 @@ namespace CGI_DAL.repositories
 
         public bool TryGetPollVotes(out List<Vote> votes, Poll poll)
         {
-            TryGetPollVotes(out votes, poll.Id);
+            return TryGetPollVotes(out votes, poll.Id);
 
-            return true;
+             
         }
         public bool TryGetPollVotes(out List<Vote> votes, int pollId)
         {
@@ -111,6 +112,20 @@ namespace CGI_DAL.repositories
                 return false;
             }
         }
+        public bool TryGetPoll(out Poll? poll, int pollId)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            poll = DBContext.Polls.Where(p => p.Id == pollId).FirstOrDefault();
+
+            if (poll == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
         {
             MaxCount = -1;
@@ -118,35 +133,36 @@ namespace CGI_DAL.repositories
             Dbi511119Context DBContext = new Dbi511119Context();
             try
             {
-                Poll? poll = DBContext.Polls.Where(p => p.Id == pollId).FirstOrDefault();
+                if (TryGetPoll(out Poll poll, pollId)) {
 
-                if (poll == null)
-                {
-                    return false;
-                }
-                List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();
-                if (Suggestions == null)
-                {
-                    return false;
-                } 
-                foreach (PollSuggestion suggestion in Suggestions)
-                {
-                    if(MaxCount < suggestion.Suggestion.Votes.Count())
+                    List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();
+                    if (Suggestions == null)
                     {
-                        MaxCount = suggestion.Suggestion.Votes.Count();
-                        Draw = false;
-                    }else if(MaxCount == suggestion.Suggestion.Votes.Count())
-                    {
-                        Draw = true;
+                        return false;
                     }
+                    foreach (PollSuggestion suggestion in Suggestions)
+                    {
+                        if (MaxCount < suggestion.Suggestion.Votes.Count())
+                        {
+                            MaxCount = suggestion.Suggestion.Votes.Count();
+                            Draw = false;
+                        } else if (MaxCount == suggestion.Suggestion.Votes.Count())
+                        {
+                            Draw = true;
+                        }
+                    }
+                    return true;
                 }
-                return true;
+                else
+                {
+                    return false;
+                }
 
             }
             catch (Exception)
             {
                 return false;
             }
-        }
+        }   
     }
 }
