@@ -116,6 +116,10 @@
     color: var(--text-light);
 }
 
+.blur {
+    backdrop-filter: blur(3px) saturate(90%);
+    
+}
 /*Footer*/
 
 .footer-lightgray {
