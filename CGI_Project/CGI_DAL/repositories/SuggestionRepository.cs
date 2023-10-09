@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGI_DAL.repositories
 {
-    internal class SuggestionRepository
+    public class SuggestionRepository
     {
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7cDPRtIeiRkOAhmXy5fFKXI5GQsZ8O599LBI6GJ+9e95HMG3dBfxTdSFI5Madk2fJAX7kOwjUoIwOXQmG1CD5Q==",
+  "dgSpecHash": "QJH2UfzktxCs9FaJ7fEl1YEKwXmqA9MdFb+noFcpgAil8OCkAEgk5kNiL8OkZI9+QAI//u9Ygs3l0+R0dms2Aw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bas\\source\\repos\\CGI_Project\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
+  "projectFilePath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Interfaces\\CGI_Interfaces.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

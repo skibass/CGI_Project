@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using CGI_Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CGI_DAL.Database_Models;
 
@@ -38,7 +38,7 @@ public partial class Dbi511119Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=studmysql01.fhict.local;UID=dbi511119;Pwd=TeamKever;Database=dbi511119;");
+        => optionsBuilder.UseMySQL("Server=studmysql01.fhict.local;User ID=dbi511119;Password=TeamKever;Database=dbi511119;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -246,7 +246,7 @@ public partial class Dbi511119Context : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("suggestion");
+            entity.ToTable("suggestions");
 
             entity.HasIndex(e => e.EmployeeId, "FK_Suggestion-Employee_idx");
 
@@ -265,6 +265,9 @@ public partial class Dbi511119Context : DbContext
             entity.Property(e => e.Location)
                 .HasMaxLength(45)
                 .HasColumnName("location");
+            entity.Property(e => e.)
+                .HasMaxLength(50)
+                .HasColumnName("name");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.Suggestions)
                 .HasForeignKey(d => d.EmployeeId)

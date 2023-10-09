@@ -12,7 +12,7 @@ using Org.BouncyCastle.Utilities;
 
 namespace CGI_DAL.repositories
 {
-    internal class PollRepository
+    public class PollRepository
     {
         public List<Poll> GetOpenRepositories()
         {

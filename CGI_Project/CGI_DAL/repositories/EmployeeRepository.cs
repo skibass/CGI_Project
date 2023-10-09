@@ -8,18 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using CGI_Models;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
 
 namespace CGI_DAL.repositories
 {
-    internal class EmployeeRepository
+    public class EmployeeRepository
     {
         public List<Employee> GetEmployees(int companyId)
         {
 
             Dbi511119Context context= new Dbi511119Context();
 
-            List<Employee> employees= context.Companies.Where(c => c.Id == companyId).FirstOrDefault().Employees.ToList();
-            if(employees == null)
+            //Company company = context.Companies.Include(c => c.Employees).Where(c => c.Id == companyId).FirstOrDefault();
+
+
+
+            List<Employee> employees = context.Employees.Include(e=>e.Company).Include(e=>e.Role).Where(e => e.CompanyId == companyId).ToList();//
+            if (employees == null)
             {
                 employees= new List<Employee>();
             }

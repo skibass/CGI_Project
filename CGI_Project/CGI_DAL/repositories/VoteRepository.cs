@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CGI_DAL.repositories
 {
-    internal class VoteRepository
+    public class VoteRepository
     {
         public bool TryAddVote(Vote vote)
         {

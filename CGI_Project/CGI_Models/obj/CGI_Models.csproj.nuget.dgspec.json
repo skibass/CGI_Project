@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bas\\source\\repos\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {}
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bas\\source\\repos\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
+    "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bas\\source\\repos\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+        "projectUniqueName": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
         "projectName": "CGI_Models",
-        "projectPath": "C:\\Users\\Bas\\source\\repos\\CGI_Project\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
-        "packagesPath": "C:\\Users\\Bas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bas\\source\\repos\\CGI_Project\\CGI_Project\\CGI_Models\\obj\\",
+        "projectPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\CGI_Models.csproj",
+        "packagesPath": "C:\\Users\\bzweg\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CGI\\CGI_Project\\CGI_Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Bas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bzweg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
