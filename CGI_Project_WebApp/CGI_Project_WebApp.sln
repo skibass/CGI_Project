@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32825.248
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGI_Project_WebApp", "CGI_Project_WebApp\CGI_Project_WebApp.csproj", "{951601BA-0E35-4C0D-B002-25A6AF11054D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGI_Project_WebApp_Core", "CGI_Project_WebApp_Core\CGI_Project_WebApp_Core.csproj", "{16E1649E-CFED-42EC-B21C-FBC5814BAEE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGI_Project_WebApp_Core", "CGI_Project_WebApp_Core\CGI_Project_WebApp_Core.csproj", "{16E1649E-CFED-42EC-B21C-FBC5814BAEE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGI_Project_WebApp_DAL", "CGI_Project_WebApp_DAL\CGI_Project_WebApp_DAL.csproj", "{1B4416F3-2538-4ECE-9758-55173A4DEBB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGI_Project_WebApp_DAL", "CGI_Project_WebApp_DAL\CGI_Project_WebApp_DAL.csproj", "{1B4416F3-2538-4ECE-9758-55173A4DEBB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGI_Project_WebApp_Models", "CGI_Project_WebApp_Models\CGI_Project_WebApp_Models.csproj", "{85F4B5D0-B4E1-4BD7-BCDF-7EC9A09E703D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGI_Project_WebApp_Models", "CGI_Project_WebApp_Models\CGI_Project_WebApp_Models.csproj", "{85F4B5D0-B4E1-4BD7-BCDF-7EC9A09E703D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

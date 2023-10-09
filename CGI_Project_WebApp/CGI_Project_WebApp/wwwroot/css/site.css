@@ -143,3 +143,57 @@
         font-size: 1.5rem;
     }
 }
+
+.subtitle {
+    color: #666;
+    font-weight: 300
+}
+
+input, textarea {
+    width: 30rem;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+    border-color: black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 15px 25px;
+    font-weight: 400;
+    margin: 15px
+}
+
+.addfieldbtn {
+    background-color: #C3FFB4;
+    border-radius: 5px;
+    padding: 0 9px 3px;
+    border: none;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+.removefieldbtn {
+    background-color: #9C9C9C;
+    border-radius: 5px;
+    padding: 0 13px 3px;
+    border: none;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+
+.backgroundbar {
+    position: fixed;
+    top: 0;
+    left: 68.5rem;
+    height: 100vh;
+    width: 5rem;
+    background: linear-gradient(to bottom, #E11937, #5236AB);
+    opacity: 0.4;
+    z-index: -1
+}
+
+@media (max-width: 40rem) {
+    input, textarea {
+        width: 90%;
+    }
+}
