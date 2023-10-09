@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CGI_Models;
+namespace CGI_Project_WebApp_Models;
 
 public partial class Company
 {

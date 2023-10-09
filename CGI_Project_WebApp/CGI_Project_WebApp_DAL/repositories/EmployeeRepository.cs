@@ -1,4 +1,4 @@
-﻿using CGI_DAL.Database_Models;
+﻿using CGI_Project_WebApp_DAL.Database_Models;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-using CGI_Models;
+using CGI_Project_WebApp_Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 
-namespace CGI_DAL.repositories
+namespace CGI_Project_WebApp_DAL.repositories
 {
     public class EmployeeRepository
     {
@@ -74,7 +74,7 @@ namespace CGI_DAL.repositories
             Dbi511119Context context = new Dbi511119Context();
 
             polls = new List<Poll>();
-            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.SuggestionId).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
+            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
 
             foreach (PollSuggestion suggestion in pollSuggestion)
             {

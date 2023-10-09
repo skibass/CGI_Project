@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CGI_Models;
+namespace CGI_Project_WebApp_Models;
 
 public partial class Role
 {

@@ -1,12 +1,13 @@
-﻿using CGI_DAL.Database_Models;
-using CGI_Models;
+﻿using CGI_Project_WebApp_DAL.Database_Models;
+using CGI_Project_WebApp_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CGI_Project_WebApp_DAL.Database_Models;
 
-namespace CGI_DAL.repositories
+namespace CGI_Project_WebApp_DAL.repositories
 {
     public class VoteRepository
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CGI_Models;
+using CGI_Project_WebApp_Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CGI_DAL.Database_Models;
+namespace CGI_Project_WebApp_DAL.Database_Models;
 
 public partial class Dbi511119Context : DbContext
 {

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CGI_DAL.Database_Models;
-using CGI_Models;
+using CGI_Project_WebApp_DAL.Database_Models;
+using CGI_Project_WebApp_Models;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using Org.BouncyCastle.Utilities;
 
-namespace CGI_DAL.repositories
+namespace CGI_Project_WebApp_DAL.repositories
 {
     public class PollRepository
     {
