@@ -18,14 +18,14 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
-            result = DBContext.Polls.Include(e => e.Manager).Include(e=>e.PollSuggestions).ThenInclude(e=>e.Suggestion).Where(poll => poll.StartTime > DateTime.Now && DateTime.Now < poll.EndTime).ToList();
+            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Where(poll => poll.StartTime > DateTime.Now && DateTime.Now < poll.EndTime).ToList();
             return result;
         }
         public List<Poll> GetPastRepositories()
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
-            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s=>s.Votes).Where(poll => DateTime.Now > poll.EndTime).ToList();
+            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(poll => DateTime.Now > poll.EndTime).ToList();
             return result;
         }
         public List<Poll> GetFutureRepositories()
@@ -83,7 +83,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             return TryGetPollVotes(out votes, poll.Id);
 
-             
+
         }
         public bool TryGetPollVotes(out List<Vote> votes, int pollId)
         {
@@ -93,7 +93,7 @@ namespace CGI_Project_WebApp_DAL.repositories
             Dbi511119Context DBContext = new Dbi511119Context();
             try
             {
-                Poll? poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s=>s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
+                Poll? poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
 
                 if (poll == null)
                 {
@@ -101,7 +101,8 @@ namespace CGI_Project_WebApp_DAL.repositories
                 }
                 List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
                 votes = new List<Vote>();
-                foreach (PollSuggestion suggestion in Suggestions) {
+                foreach (PollSuggestion suggestion in Suggestions)
+                {
                     votes.AddRange(suggestion.Suggestion.Votes);
                 }
                 return true;
@@ -115,7 +116,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         public bool TryGetPoll(out Poll? poll, int pollId)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
-            poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s=>s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
+            poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
 
             if (poll == null)
             {
@@ -134,7 +135,8 @@ namespace CGI_Project_WebApp_DAL.repositories
             Dbi511119Context DBContext = new Dbi511119Context();
             try
             {
-                if (TryGetPoll(out Poll poll, pollId)) {
+                if (TryGetPoll(out Poll poll, pollId))
+                {
 
                     List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();
                     if (Suggestions == null)
@@ -147,7 +149,8 @@ namespace CGI_Project_WebApp_DAL.repositories
                         {
                             MaxCount = suggestion.Suggestion.Votes.Count();
                             Draw = false;
-                        } else if (MaxCount == suggestion.Suggestion.Votes.Count())
+                        }
+                        else if (MaxCount == suggestion.Suggestion.Votes.Count())
                         {
                             Draw = true;
                         }
@@ -164,6 +167,6 @@ namespace CGI_Project_WebApp_DAL.repositories
             {
                 return false;
             }
-        }   
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace CGI_Project_WebApp_DAL.repositories
 {
     public class SuggestionRepository
     {
-        public bool TryGetLatestWinners(out List<SuggestionList> WinningSuggestionsList ,int max)
+        public bool TryGetLatestWinners(out List<SuggestionList> WinningSuggestionsList, int max)
         {
             WinningSuggestionsList = new List<SuggestionList>();
 
@@ -26,7 +26,7 @@ namespace CGI_Project_WebApp_DAL.repositories
 
                 foreach (var poll in polls)
                 {
-                   if(!TryGetWinningSuggestionOutOfPoll(poll, out SuggestionList sl))
+                    if (!TryGetWinningSuggestionOutOfPoll(poll, out SuggestionList sl))
                     {
                         return false;
                     }
@@ -38,10 +38,10 @@ namespace CGI_Project_WebApp_DAL.repositories
             catch (Exception)
             {
                 return false;
-                
+
             }
 
-            
+
         }
 
         public bool TryGetWinningSuggestionOutOfPoll(Poll poll, out SuggestionList Winningsuggestions)
@@ -51,12 +51,12 @@ namespace CGI_Project_WebApp_DAL.repositories
             try
             {
                 PollRepository pollRepository = new PollRepository();
-                
+
                 foreach (PollSuggestion item in poll.PollSuggestions)
                 {
                     pollRepository.TryGetMaxVoteCount(out int MaxCount, out bool draw, poll.Id);
-    
-                if (item.Suggestion.Votes.Count == MaxCount)
+
+                    if (item.Suggestion.Votes.Count == MaxCount)
                     {
                         Winningsuggestions.suggestions.Add(item.Suggestion);
                     }

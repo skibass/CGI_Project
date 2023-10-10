@@ -1,0 +1,58 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="logo mx-5" asp-area="" asp-controller="Home" asp-action="Index">Talpa</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Suggest">Suggest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Vote">Vote</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Leaderboard">Leaderboard</a>
+                </li>
+            </ul>
+
+            <div class="mx-5 align-middle">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p class="nav-item align-middle">
+                        Hello @User.Identity.Name!
+                    </p>
+                     <p class="nav-item">
+                        <a class="nav-link text-dark display-6" asp-area=""
+                       asp-page="/Account/Logout">Logout</a>
+                    </p>
+                }
+                else
+                {
+                    <p class="align-middle">
+                        <a class="nav-link text-dark display-6" asp-area=""
+                       asp-page="/Account/Login">Login</a>
+                    </p>
+                    
+                }
+            </div>
+
+            <div class="btn-group lang-control">
+                <img src="~/assets/flags/united-kingdom.png" class="flag-icon mx-2" id="current-language" />
+                <button type="button" class="lang-control-button">EN</button>
+                <button type="button" class="dropdown-toggle dropdown-toggle-split lang-control-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu lang-dropdown">
+                    <li class="d-flex mx-2"><img src="~/assets/flags/united-kingdom.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">EN</a></li>
+                    <li class="d-flex mx-2"><img src="~/assets/flags/netherlands.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">NL</a></li>
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</nav>

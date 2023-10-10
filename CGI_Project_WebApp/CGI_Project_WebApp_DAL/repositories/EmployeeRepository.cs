@@ -14,25 +14,19 @@ namespace CGI_Project_WebApp_DAL.repositories
 {
     public class EmployeeRepository
     {
-
-        //-1 for all companies [DEBUG ONLY]
-        public List<Employee> TryGetEmployees(int companyId = 1)
+        public List<Employee> GetEmployees(int companyId)
         {
-            Dbi511119Context context= new Dbi511119Context();
+
+            Dbi511119Context context = new Dbi511119Context();
 
             //Company company = context.Companies.Include(c => c.Employees).Where(c => c.Id == companyId).FirstOrDefault();
-            List<Employee> employees = new List<Employee>();
 
-            if (companyId != -1) {
-                employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e=>e.Votes).Include(e=>e.Suggestions).Where(e => e.CompanyId == companyId).ToList();//
-            }
-            else
-            {
-                employees = context.Employees.ToList();//
-            }
+
+
+            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Where(e => e.CompanyId == companyId).ToList();//
             if (employees == null)
             {
-                employees= new List<Employee>();
+                employees = new List<Employee>();
             }
             return employees;
         }
@@ -71,7 +65,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return false;
             }
 
-            
+
 
         }
 
@@ -80,16 +74,17 @@ namespace CGI_Project_WebApp_DAL.repositories
             Dbi511119Context context = new Dbi511119Context();
 
             polls = new List<Poll>();
-            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s=>s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
+            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s => s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
 
             foreach (PollSuggestion suggestion in pollSuggestion)
             {
-                if(suggestion.Poll != null)
+                if (suggestion.Poll != null)
                 {
-                polls.Add(suggestion.Poll);
+                    polls.Add(suggestion.Poll);
                 }
             }
-            if (polls.IsNullOrEmpty()) {
+            if (polls.IsNullOrEmpty())
+            {
                 return false;
             }
             else
@@ -97,7 +92,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return true;
             }
         }
-        
+
         public bool TryGetWinningPolls(out List<Poll> winningPolls, Employee employee)
         {
             PollRepository pollRepository = new PollRepository();
@@ -111,12 +106,12 @@ namespace CGI_Project_WebApp_DAL.repositories
                     {
                         int count;
                         bool draw;
-                   
-                        if(pollRepository.TryGetMaxVoteCount(out count,out draw, poll.Id))
+
+                        if (pollRepository.TryGetMaxVoteCount(out count, out draw, poll.Id))
                         {
                             if (poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).FirstOrDefault().Suggestion.Votes.Count == count)
                             {
-                            
+
                                 winningPolls.Add(poll);
                                 return true;
                             }
@@ -134,38 +129,12 @@ namespace CGI_Project_WebApp_DAL.repositories
 
         }
 
-        public bool TryAddEmployee(string Email)
-        {
-            try
-            {
-                Dbi511119Context context = new Dbi511119Context();
-
-                Employee emp = new Employee();
-
-                emp.Email = Email;
-                emp.CompanyId = 1;
-
-                context.Employees.Add(emp);
-
-                context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                throw;
-                return false;
-            }
-
-            
-            
-        }
-
     }
 
 
 
-        
-        //moeten wij de werknemers kunnen maken of gaat dit via de 3de party tool?
-        
-    }
+
+    //moeten wij de werknemers kunnen maken of gaat dit via de 3de party tool?
+
+}
 
