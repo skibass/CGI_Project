@@ -21,6 +21,39 @@
                     <i class="glyphicon glyphicon-envelope"></i> @Model.UserEmailAddress
                 </p>
             </div>
+            @foreach (var item in Model.employeeRepository.GetEmployees(1))
+            {
+                if (item.FirstName == User.Identity.Name)
+                {
+                    <div class="col-md-4">
+                        <h3>Uw team: @item.Company.Name</h3>
+                    </div>
+                   
+                    @foreach (var vote in item.Votes)
+                    {
+                        if (item.Id == vote.EmployeeId)
+                        {
+                            <div class="col-md-4">
+                                <h3>
+                                    Uw gekozen stemdatum: @vote.Date
+                                </h3>
+                               
+                                <h3>
+                                    Uw suggestie:<br>
+
+                                    Naam: @vote.Suggestion.Name<br>
+                                    Locatie: @vote.Suggestion.Location<br>
+                                    Beschrijving: @vote.Suggestion.Description<br><br>
+
+                                    (optioneel) Exceptie: @vote.Suggestion.Exception
+                                </h3>
+                            </div>
+
+                        }                        
+                    }
+                }
+            }
+           
         </div>
     </div>
 </div>
