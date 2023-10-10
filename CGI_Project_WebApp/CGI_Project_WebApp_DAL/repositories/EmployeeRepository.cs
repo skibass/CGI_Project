@@ -21,8 +21,6 @@ namespace CGI_Project_WebApp_DAL.repositories
 
             //Company company = context.Companies.Include(c => c.Employees).Where(c => c.Id == companyId).FirstOrDefault();
 
-
-
             List<Employee> employees = context.Employees.Include(e=>e.Company).Include(e=>e.Role).Where(e => e.CompanyId == companyId).ToList();//
             if (employees == null)
             {
@@ -129,11 +127,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         }
 
     }
-
-
-
+    //moeten wij de werknemers kunnen maken of gaat dit via de 3de party tool?
         
-        //moeten wij de werknemers kunnen maken of gaat dit via de 3de party tool?
-        
-    }
+}
 
