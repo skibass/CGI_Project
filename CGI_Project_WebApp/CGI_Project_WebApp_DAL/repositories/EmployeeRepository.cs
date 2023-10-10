@@ -23,7 +23,7 @@ namespace CGI_Project_WebApp_DAL.repositories
 
 
 
-            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Where(e => e.CompanyId == companyId).ToList();//
+            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).Where(e => e.CompanyId == companyId).ToList();//
             if (employees == null)
             {
                 employees = new List<Employee>();

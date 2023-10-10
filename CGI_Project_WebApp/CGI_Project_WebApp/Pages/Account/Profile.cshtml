@@ -23,12 +23,15 @@
             </div>
             @foreach (var item in Model.employeeRepository.GetEmployees(1))
             {
-                if (item.FirstName == User.Identity.Name)
+                if (item.Email == Model.UserEmailAddress)
                 {
                     <div class="col-md-4">
                         <h3>Uw team: @item.Company.Name</h3>
                     </div>
-                   
+
+                    <div class="col-md-4">
+                        <h3>Uw stemmen:</h3>
+                    </div>
                     @foreach (var vote in item.Votes)
                     {
                         if (item.Id == vote.EmployeeId)
