@@ -1,4 +1,13 @@
-﻿.vote-progress-bar{
+﻿:root {
+    --text: #020302;
+    --text-light: #f4f4f4;
+    --background: #f9fbf9;
+    --primary: #e11937;
+    --secondary: #5136ab;
+    --accent: #200a57;
+}
+
+.vote-progress-bar{
     background-color: var(--primary);
 }
 
@@ -8,7 +17,9 @@
 
 }
 
-
+.vote-badge{
+    background-color: var(--secondary);
+}
 
 @media (min-width: 576px) {
     #vote-wrapper{
