@@ -14,7 +14,7 @@ namespace CGI_Project_WebApp_DAL.repositories
 {
     public class EmployeeRepository
     {
-        public List<Employee> GetEmployees(int companyId)
+        public List<Employee> GetEmployees(int companyId = 1)
         {
 
             Dbi511119Context context = new Dbi511119Context();
@@ -90,6 +90,27 @@ namespace CGI_Project_WebApp_DAL.repositories
             else
             {
                 return true;
+            }
+        }
+
+        public bool TryAddEmployee(string Email)
+        {
+            try
+            {
+                Employee emp = new Employee();
+                emp.Email = Email;
+                emp.Id = 1;
+
+                Dbi511119Context DB = new Dbi511119Context();
+                DB.Employees.Add(emp);
+                DB.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
             }
         }
 
