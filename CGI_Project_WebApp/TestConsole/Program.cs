@@ -22,7 +22,7 @@ repository.TryChangeEmployeeRoll(2, 1);
 Employee emp;
 repository.TryGetEmployeeByID(2, out emp);
 
-repository.TryGetWinningPolls(out polls, employees[0]);
+repository.TryGetWinningPolls(out polls, employees[1]);
 
 
 
