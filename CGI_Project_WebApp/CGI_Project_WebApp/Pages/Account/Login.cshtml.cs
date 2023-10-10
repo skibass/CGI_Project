@@ -17,7 +17,7 @@ namespace acme.Pages
 
             EmployeeRepository emp = new EmployeeRepository();
 
-            emp.TryAddEmployee(User.Identity.Name);
+            //emp.TryAddEmployee(User.Identity.Name);
         }
 
     }
