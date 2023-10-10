@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
@@ -6,6 +5,7 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
+    //public TestClass testClass = new TestClass();
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
     public string UserProfileImage { get; set; }
