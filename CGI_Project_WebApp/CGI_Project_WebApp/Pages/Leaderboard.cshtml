@@ -1,11 +1,11 @@
 ﻿@page
-@model CGI_Project_WebApp.Models.LeaderboardModel
+@model CGI_Project_WebApp.Pages.LeaderboardModel
 @{
     // Set the title of the page
     ViewData["Title"] = "Leaderboard";
 
     // Calculate the maximum score from the top three entries
-    var maxScore = Model.TopThree.Max(e => e.Score);
+    var maxScore = Model.MaxScore;
 
     // Define the maximum height for the bar charts
     var maxHeight = 300;
@@ -44,7 +44,7 @@
                         var entry = new { i = index, value = Model.TopThree.ElementAt(index) };
                         
                         // Calculate the height of the current bar
-                        var barHeight = (entry.value.Score * maxHeight) / maxScore;
+                        var barHeight = maxScore == 0 ? 0 : (entry.value.Score * maxHeight) / maxScore;
 
                         // Define the minimum height to display score inside the bar
                         var thresholdHeight = 13;

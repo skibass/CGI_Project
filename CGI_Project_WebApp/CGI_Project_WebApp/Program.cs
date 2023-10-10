@@ -1,4 +1,6 @@
 using Auth0.AspNetCore.Authentication;
+using CGI_Project_WebApp_Core;
+using CGI_Project_WebApp_DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,8 @@ builder.Services.AddRazorPages(options =>
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<LeaderboardService>();
+builder.Services.AddScoped<IPollRepository, MockPollRepo>();
 
 var app = builder.Build();
 
