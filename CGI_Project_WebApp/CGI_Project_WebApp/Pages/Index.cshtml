@@ -1,5 +1,9 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
 @model IndexModel
+@inject IStringLocalizer<IndexModel> stringLocalizer;
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer;
 @{
     ViewData["Title"] = "Home page";
 }
@@ -8,10 +12,10 @@
     <div class="container w-100 m-0 mx-auto">
         <div class="row align-items-center py-5 hero-content">
             <div class="w-50 text-center text-lg-start mx-auto mb-5">
-                <h1 class="display-6 lh-1 mb-3 hero-title">Unlock Team Adventures: Building Bonds, One Excursion at a Time. Discover, Bond, and Thrive with Every Corporate Expedition!</h1>
-                <p class="col-lg-10 fs-5 text-black-50 mt-5">See what's new at your company</p>
+                <h1 class="display-6 lh-1 mb-3 hero-title">@stringLocalizer["HeroTitle"]</h1>
+                <p class="col-lg-10 fs-5 text-black-50 mt-5">@stringLocalizer["HeroSubtitle"]</p>
                 <div class="d-grid gap-2  col-md-3">
-                    <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button" type="button">Discover</button>
+                    <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button" type="button">@stringLocalizer["HeroButton"]</button>
                 </div>
             </div>
             <div class="col-md-5 mx-auto col-lg-5 hero-img-container p-0">
@@ -24,7 +28,7 @@
 </div>
 
 <div class=" m-0 p-5 recent">
-        <h2 class=" p-3 mx-5 text-center text-lg-start recent-title">Recent Excursions</h2>
+    <h2 class=" p-3 mx-5 text-center text-lg-start recent-title">@stringLocalizer["RecentTitle"]</h2>
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch mx-5 g-4 py-5">
         @for (int i = 0; i < 3; i++)
         {
@@ -49,6 +53,6 @@
 </div>
 
 
-<script src="/js/navigationjs.js">
+<script src="/js/navigation.js">
 
 </script>
