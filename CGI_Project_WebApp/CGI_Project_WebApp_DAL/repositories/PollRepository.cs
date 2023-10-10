@@ -129,7 +129,41 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return true;
             }
         }
+        public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
+        {
+            VotablePolls = new List<Poll>();
+            try
+            {
+                PollRepository pollRepository = new PollRepository();
 
+                List<Poll> polls = new List<Poll>();
+                polls = pollRepository.GetOpenPolls();
+
+                if (polls != null)
+                {
+                    foreach (Poll poll in polls)
+                    {
+                        bool validToVote = true;
+
+                        foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
+                        {
+                            if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
+                            {
+                                validToVote = false;
+                            }
+                        }
+                        if (validToVote) { VotablePolls.Add(poll); }
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+        }
         public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
         {
             MaxCount = -1;
