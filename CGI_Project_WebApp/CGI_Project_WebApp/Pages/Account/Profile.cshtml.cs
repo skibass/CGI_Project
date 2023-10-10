@@ -1,7 +1,4 @@
-using CGI_Project_WebApp_Core;
-using CGI_Project_WebApp_DAL.Database_Models;
 using CGI_Project_WebApp_DAL.repositories;
-using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
