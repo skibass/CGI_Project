@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Runtime.InteropServices;
 
 namespace CGI_Project_WebApp.Pages
 {
@@ -14,13 +15,21 @@ namespace CGI_Project_WebApp.Pages
 
         public void OnGet()
         {
-
+            
         }
 
-        public IActionResult OnPostLanguage(string lang)
+        public IActionResult OnGetTest()
+        {
+            return new JsonResult("test response");
+        }
+
+        public async Task<IActionResult> OnGetSetLanguage(string lang)
         {
             Response.Cookies.Append(".AspNetCore.Culture", $"c={lang}|uic={lang}", new CookieOptions { Expires = DateTime.Now.AddDays(1) });
-            return RedirectToPage("/");
+
+            return new JsonResult("successfully changed language");
         }
+
+       
     }
 }

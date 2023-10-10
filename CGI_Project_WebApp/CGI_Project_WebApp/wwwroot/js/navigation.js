@@ -1,6 +1,18 @@
 ﻿
 function changeLanguage(langCode, flagImageSrc) {
 
+    $.ajax({
+        type: "GET", // or "GET" depending on your method
+        url: '/Index?handler=SetLanguage', // Update the URL accordingly
+        data: { lang: langCode },
+        success: function (data) {
+            location.reload();
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+
     document.querySelector('.lang-control-button').textContent = langCode;
     document.querySelector('#current-language').src = flagImageSrc;
 }
