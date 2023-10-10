@@ -1,4 +1,4 @@
-
+using CGI_Project_WebApp_DAL.repositories;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
@@ -6,6 +6,8 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
+    public EmployeeRepository employeeRepository = new EmployeeRepository();
+
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
     public string UserProfileImage { get; set; }
@@ -13,6 +15,6 @@ public class ProfileModel : PageModel
     {
         UserName = User.Identity.Name;
         UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-        UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
+        UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;       
     }
 }

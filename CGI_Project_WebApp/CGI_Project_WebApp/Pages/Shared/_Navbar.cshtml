@@ -25,7 +25,8 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <p class="nav-item align-middle">
-                        Hello @User.Identity.Name!
+                        <a class="nav-link text-dark display-6" asp-area=""
+                           asp-page="/Account/Profile">Hello @User.Identity.Name!</a>                      
                     </p>
                      <p class="nav-item">
                         <a class="nav-link text-dark display-6" asp-area=""
