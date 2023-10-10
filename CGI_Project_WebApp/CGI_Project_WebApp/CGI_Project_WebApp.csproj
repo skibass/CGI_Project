@@ -10,4 +10,28 @@
     <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\Pages.IndexModel.nl.Designer.cs">
+      <DependentUpon>Pages.IndexModel.nl.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Pages.IndexModel.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Pages.IndexModel.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Pages.IndexModel.nl.resx">
+      <LastGenOutput>Pages.IndexModel.nl.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Pages.IndexModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pages.IndexModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

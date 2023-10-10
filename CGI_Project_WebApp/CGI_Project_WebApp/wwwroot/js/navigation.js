@@ -1,5 +1,6 @@
 ﻿
 function changeLanguage(langCode, flagImageSrc) {
+
     document.querySelector('.lang-control-button').textContent = langCode;
     document.querySelector('#current-language').src = flagImageSrc;
 }

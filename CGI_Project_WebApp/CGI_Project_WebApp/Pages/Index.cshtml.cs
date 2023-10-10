@@ -16,5 +16,11 @@ namespace CGI_Project_WebApp.Pages
         {
 
         }
+
+        public IActionResult OnPostLanguage(string lang)
+        {
+            Response.Cookies.Append(".AspNetCore.Culture", $"c={lang}|uic={lang}", new CookieOptions { Expires = DateTime.Now.AddDays(1) });
+            return RedirectToPage("/");
+        }
     }
 }
