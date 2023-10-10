@@ -8,5 +8,6 @@ namespace CGI_Project_WebApp_DAL.repositories
 {
     public class SuggestionRepository
     {
+
     }
 }

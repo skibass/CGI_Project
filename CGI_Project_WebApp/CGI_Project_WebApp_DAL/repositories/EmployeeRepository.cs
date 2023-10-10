@@ -74,7 +74,7 @@ namespace CGI_Project_WebApp_DAL.repositories
             Dbi511119Context context = new Dbi511119Context();
 
             polls = new List<Poll>();
-            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
+            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s=>s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
 
             foreach (PollSuggestion suggestion in pollSuggestion)
             {
