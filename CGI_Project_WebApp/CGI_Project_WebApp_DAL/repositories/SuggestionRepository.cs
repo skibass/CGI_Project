@@ -22,7 +22,7 @@ namespace CGI_Project_WebApp_DAL.repositories
 
                 List<Poll> polls = new List<Poll>();
 
-                polls = pollRepository.GetPastRepositories().OrderByDescending(x => x.EndTime).Take(max).ToList();
+                polls = pollRepository.GetPastPolls().OrderByDescending(x => x.EndTime).Take(max).ToList();
 
                 foreach (var poll in polls)
                 {

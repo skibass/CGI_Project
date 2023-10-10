@@ -1,4 +1,4 @@
-Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,7 +9,6 @@ Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\CGI_Project_WebApp_DAL\CGI_Project_WebApp_DAL.csproj" />
-    <ProjectReference Include="..\CGI_Project_WebApp_Models\CGI_Project_WebApp_Models.csproj" />
   </ItemGroup>
 
 </Project>

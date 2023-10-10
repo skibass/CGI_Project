@@ -14,21 +14,23 @@ namespace CGI_Project_WebApp_DAL.repositories
 {
     public class PollRepository
     {
-        public List<Poll> GetOpenRepositories()
+
+        //this had recently been renamed
+        public List<Poll> GetOpenPolls()
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
-            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Where(poll => poll.StartTime > DateTime.Now && DateTime.Now < poll.EndTime).ToList();
+            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).ThenInclude(v=>v.Employee).Where(poll => poll.StartTime < DateTime.Now && DateTime.Now < poll.EndTime).ToList();
             return result;
         }
-        public List<Poll> GetPastRepositories()
+        public List<Poll> GetPastPolls()
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
             result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(poll => DateTime.Now > poll.EndTime).ToList();
             return result;
         }
-        public List<Poll> GetFutureRepositories()
+        public List<Poll> GetFuturePolls()
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
