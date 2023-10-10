@@ -1,0 +1,107 @@
+﻿@page
+@model CGI_Project_WebApp.Models.LeaderboardModel
+@{
+    // Set the title of the page
+    ViewData["Title"] = "Leaderboard";
+
+    // Calculate the maximum score from the top three entries
+    var maxScore = Model.TopThree.Max(e => e.Score);
+
+    // Define the maximum height for the bar charts
+    var maxHeight = 300;
+
+    // Define colors for the top three bars
+    string[] barColors = new string[] { "bar-two", "bar-one", "bar-three" };
+
+    // Adjusted order for the bar display
+    int[] order = new int[] { 1, 0, 2 };
+
+    // Positional texts for top three
+    string[] positions = new string[] { "1st", "2nd", "3rd" };
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+</head>
+<body>
+
+    <!-- Container for the leaderboard content -->
+    <div class="container mt-5 mb-5">
+
+        <!-- Center the leaderboard content on the page -->
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <!-- Display the page title -->
+                <h3 class="hero-title ml-3">Leaderboard</h3>
+
+                <!-- Create bar charts for the top three entries -->
+                <div class="row mt-4">
+                    @foreach (var index in order)
+                    {
+                        var entry = new { i = index, value = Model.TopThree.ElementAt(index) };
+                        
+                        // Calculate the height of the current bar
+                        var barHeight = (entry.value.Score * maxHeight) / maxScore;
+
+                        // Define the minimum height to display score inside the bar
+                        var thresholdHeight = 13;
+
+                        <div class="col-md-4 mb-2">
+
+                            <!-- Display the name of the current entry -->
+                            <div class="text-center chart-name">@entry.value.Name</div>
+
+                            <!-- Container for the bar chart -->
+                            <div class="bar-container d-flex flex-column-reverse position-relative" style="height: @(maxHeight)px;">
+                                <div class="progress @barColors[entry.i]" style="height: @(barHeight)px !important; width: 100%;">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+
+                                <!-- Decide where to display the score based on the bar height -->
+                                @if (barHeight <= thresholdHeight)
+                                {
+                                    <!-- Display score above the bar if it's too short -->
+                                    <div class="score-above-bar">@entry.value.Score<br>@positions[entry.i]</div>
+                                }
+                                else
+                                {
+                                    <!-- Display score inside the bar if it's tall enough -->
+                                    <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
+                                        @entry.value.Score<br>@positions[entry.i]
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Display scores for positions 4-10 in a table -->
+                <table class="table mt-4">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var entry in Model.PlacesFourToTen)
+                        {
+                            <tr>
+                                <!-- Display the position, name, and score for each entry -->
+                                <td>@entry.Position</td>
+                                <td>@entry.Name</td>
+                                <td>@entry.Score</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

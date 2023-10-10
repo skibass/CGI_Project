@@ -11,6 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
 }
 
 /*Nabvar*/
@@ -140,10 +141,136 @@
 }
 
 @media (max-width: 768px) {
+    /* Adjust the column width for smaller screens */
+    .col-md-4 {
+        flex: 0 0 33.33333%; /* Each column takes up 1/3 of the container */
+        max-width: 33.33333%;
+    }
+
+    /* Adjust the margin and padding to give charts some breathing room */
+    .bar-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    /* Optionally, adjust the height of the charts for smaller screens if needed */
+    .bar-container {
+        height: 200px; /* Example value, adjust as necessary */
+    }
 }
 
 @media (max-width: 576px) {
     .hero-title {
         font-size: 1.5rem;
+    }
+}
+
+
+.bar-one .progress-bar {
+    background-color: var(--primary) !important;
+}
+
+.bar-two .progress-bar {
+    background-color: var(--secondary) !important;
+}
+
+.bar-three .progress-bar {
+    background-color: var(--accent) !important;
+}
+
+/* Row colors */
+table tbody tr:nth-child(odd) {
+    background-color: rgba(225,25,55,0.5);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(81,54,171,0.5);
+}
+
+/* Styling for the name of the chart bars */
+.chart-name {
+    font-weight: bold; /* Making the text bold */
+    margin-bottom: 10px; /* Spacing between the name and the bar */
+}
+
+/* Style for the bar container */
+.bar-container {
+    position: relative;
+}
+
+/* Basic styling for the bar charts */
+.progress {
+    background-color: #f5f5f5; /* Light gray background */
+}
+
+/* Style for the score within the bar chart */
+.progress-bar {
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+}
+
+/* Overlay styling for the score within the bar chart */
+.score-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    pointer-events: none; /* Ensures it doesn't interfere with click events */
+}
+
+
+.subtitle {
+    color: #666;
+    font-weight: 300
+}
+
+input, textarea {
+    width: 30rem;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+    border-color: black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 15px 25px;
+    font-weight: 400;
+    margin: 15px
+}
+
+.addfieldbtn {
+    background-color: #C3FFB4;
+    border-radius: 5px;
+    padding: 0 9px 3px;
+    border: none;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+.removefieldbtn {
+    background-color: #9C9C9C;
+    border-radius: 5px;
+    padding: 0 13px 3px;
+    border: none;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+
+.backgroundbar {
+    position: fixed;
+    top: 0;
+    left: 68.5rem;
+    height: 100vh;
+    width: 5rem;
+    background: linear-gradient(to bottom, #E11937, #5236AB);
+    opacity: 0.4;
+    z-index: -1
+}
+
+@media (max-width: 40rem) {
+    input, textarea {
+        width: 90%;
     }
 }

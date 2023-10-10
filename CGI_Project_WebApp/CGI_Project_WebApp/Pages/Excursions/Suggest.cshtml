@@ -1,0 +1,27 @@
+﻿@page
+@model CGI_Project_WebApp.Pages.Excursions.SuggestModel
+@{
+	ViewData["Title"] = "Suggest";
+}
+
+<div class="backgroundbar"></div>
+
+<div class="hero container">
+	<div class="container">
+		<h3 class="hero-title mt-5">Suggest an excursion</h3>
+		<h5 class="subtitle">Fill out the form below</h5>
+	</div>
+</div>
+
+<div class="container mb-5">
+	<form method="post">
+		<input type="text" id="ename" placeholder="Excursion name..."/><br/>
+		<textarea id="edescription" placeholder="Excursion description..." rows="3"></textarea><br />
+		<input type="text" id="elocation" placeholder="Excursion location..."/><br/>
+		<input type="text" id="eimportantinfo" placeholder="Important info (e.g bring sunglasses)..."/>
+		@*<button class="addfieldbtn text-white" onclick="addField()">+</button>
+		<button class="removefieldbtn text-white" onclick="removeField()">-</button>*@<br/>
+
+		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">Submit</button>
+	</form>
+</div>
