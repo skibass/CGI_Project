@@ -1,4 +1,9 @@
-﻿
+﻿document.addEventListener("DOMContentLoaded", (e) => {
+    
+});
+
+
+
 function changeLanguage(langCode, flagImageSrc) {
 
     $.ajax({
