@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CGI_Project_WebApp_Core.Services;
+using CGI_Project_WebApp_Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Runtime.InteropServices;
+
 
 namespace CGI_Project_WebApp.Pages
 {
@@ -8,8 +11,12 @@ namespace CGI_Project_WebApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        private readonly PollService _pollService = new();
+
         public string CurrentLanguage { get; private set; }
         public string CountryCode { get; private set; }
+
+        public List<Suggestion> RecentExcursions { get; private set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -18,22 +25,26 @@ namespace CGI_Project_WebApp.Pages
 
         public void OnGet()
         {
-             CurrentLanguage = Request.Cookies[".AspNetCore.Culture"] ?? "EN";
+           UseCurrentLanguage();
+            RecentExcursions = _pollService.GetRecentExcursions();
+            
+    
+        }
+
+        public void UseCurrentLanguage()
+        {
+            CurrentLanguage = Request.Cookies[".AspNetCore.Culture"] ?? "EN";
             var parts = CurrentLanguage.Split('|');
             if (parts.Length >= 2)
             {
-                CountryCode = parts[0].Substring(2); 
+                CountryCode = parts[0].Substring(2);
             }
 
             ViewData["CurrentLanguage"] = CurrentLanguage;
             ViewData["CountryCode"] = CountryCode;
-
         }
 
-        public IActionResult OnGetTest()
-        {
-            return new JsonResult("test response");
-        }
+       
 
         public async Task<IActionResult> OnGetSetLanguage(string lang)
         {
