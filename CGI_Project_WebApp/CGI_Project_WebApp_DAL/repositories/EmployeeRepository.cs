@@ -16,13 +16,7 @@ namespace CGI_Project_WebApp_DAL.repositories
     {
         public List<Employee> GetEmployees(int companyId = 1)
         {
-
             Dbi511119Context context = new Dbi511119Context();
-
-            //Company company = context.Companies.Include(c => c.Employees).Where(c => c.Id == companyId).FirstOrDefault();
-
-
-
             List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).Where(e => e.CompanyId == companyId).ToList();//
             if (employees == null)
             {
@@ -45,66 +39,13 @@ namespace CGI_Project_WebApp_DAL.repositories
         }
         public bool TryChangeEmployeeRoll(Role role, Employee employee)
         {
-            return TryChangeEmployeeRoll(role.Id, employee.Id);
-        }
-        public bool TryChangeEmployeeRoll(int roleId, int employeeId)
-        {
             Dbi511119Context context = new Dbi511119Context();
-
-            Employee? employee = context.Employees.Include(e => e.Role).Where(emp => emp.Id == employeeId).FirstOrDefault();
-            Role? role = context.Roles.Where(role => role.Id == roleId).FirstOrDefault();
-
-            if (employee != null && role != null)
-            {
-                employee.Role = role;
-                context.SaveChanges();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
-
-        }
-
-        public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
-        {
-            Dbi511119Context context = new Dbi511119Context();
-
-            polls = new List<Poll>();
-            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s => s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
-
-            foreach (PollSuggestion suggestion in pollSuggestion)
-            {
-                if (suggestion.Poll != null)
-                {
-                    polls.Add(suggestion.Poll);
-                }
-            }
-            if (polls.IsNullOrEmpty())
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        public bool TryAddEmployee(string Email)
-        {
             try
             {
-                Employee emp = new Employee();
-                emp.Email = Email;
-                emp.Id = 1;
-
-                Dbi511119Context DB = new Dbi511119Context();
-                DB.Employees.Add(emp);
-                DB.SaveChanges();
-
+                context.Attach(employee);
+                context.Attach(role);
+                employee.Role = role;
+                context.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -114,44 +55,27 @@ namespace CGI_Project_WebApp_DAL.repositories
             }
         }
 
-        
-
-        public bool TryGetWinningPolls(out List<Poll> winningPolls, Employee employee)
+        public List<PollSuggestion> GetPollSuggestionsByEmployeeId(Employee employee)
         {
-            PollRepository pollRepository = new PollRepository();
-            winningPolls = new List<Poll>();
-
+            Dbi511119Context context = new Dbi511119Context();
+            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s => s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
+            return pollSuggestion;
+        }   
+        public bool TryAddEmployee(Employee emp)
+        {
             try
             {
-                if (TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> allPolls, employee))
-                {
-                    foreach (Poll poll in allPolls)
-                    {
-                        int count;
-                        bool draw;
-
-                        if (pollRepository.TryGetMaxVoteCount(out count, out draw, poll.Id))
-                        {
-                            if (poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).FirstOrDefault().Suggestion.Votes.Count == count)
-                            {
-
-                                winningPolls.Add(poll);
-                                return true;
-                            }
-                        }
-
-                    }
-                }
-
+                Dbi511119Context DB = new Dbi511119Context();
+                DB.Employees.Add(emp);
+                DB.SaveChanges();
+                return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
+                throw;
             }
-            return false;
-
         }
-
     }
 
 

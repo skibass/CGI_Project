@@ -80,41 +80,19 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return false;
             }
         }
-
-        public bool TryGetPollVotes(out List<Vote> votes, Poll poll)
+        public bool TryGetPollByPollID(out Poll? poll, int pollId)
         {
-            return TryGetPollVotes(out votes, poll.Id);
-
-
-        }
-        public bool TryGetPollVotes(out List<Vote> votes, int pollId)
-        {
-
-            votes = new List<Vote>();
-
             Dbi511119Context DBContext = new Dbi511119Context();
-            try
-            {
-                Poll? poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
+            poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
 
-                if (poll == null)
-                {
-                    return false;
-                }
-                List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
-                votes = new List<Vote>();
-                foreach (PollSuggestion suggestion in Suggestions)
-                {
-                    votes.AddRange(suggestion.Suggestion.Votes);
-                }
-                return true;
-
-            }
-            catch (Exception)
+            if (poll == null)
             {
                 return false;
             }
+
+            return true;
         }
+
         public bool TryGetPoll(out Poll? poll, int pollId)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
@@ -129,80 +107,6 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return true;
             }
         }
-        public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
-        {
-            VotablePolls = new List<Poll>();
-            try
-            {
-                PollRepository pollRepository = new PollRepository();
-
-                List<Poll> polls = new List<Poll>();
-                polls = pollRepository.GetOpenPolls();
-
-                if (polls != null)
-                {
-                    foreach (Poll poll in polls)
-                    {
-                        bool validToVote = true;
-
-                        foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
-                        {
-                            if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
-                            {
-                                validToVote = false;
-                            }
-                        }
-                        if (validToVote) { VotablePolls.Add(poll); }
-                    }
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
-
-        }
-        public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
-        {
-            MaxCount = -1;
-            Draw = false;
-            Dbi511119Context DBContext = new Dbi511119Context();
-            try
-            {
-                if (TryGetPoll(out Poll poll, pollId))
-                {
-
-                    List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();
-                    if (Suggestions == null)
-                    {
-                        return false;
-                    }
-                    foreach (PollSuggestion suggestion in Suggestions)
-                    {
-                        if (MaxCount < suggestion.Suggestion.Votes.Count())
-                        {
-                            MaxCount = suggestion.Suggestion.Votes.Count();
-                            Draw = false;
-                        }
-                        else if (MaxCount == suggestion.Suggestion.Votes.Count())
-                        {
-                            Draw = true;
-                        }
-                    }
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+        
     }
 }
