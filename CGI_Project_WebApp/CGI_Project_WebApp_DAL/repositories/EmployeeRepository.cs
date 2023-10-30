@@ -37,6 +37,20 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return false;
             }
         }
+
+        public bool TryGetEmployeeByEmailAndFirstName(string Email, string FirstName, out Employee employee)
+        {
+            Dbi511119Context context = new Dbi511119Context();
+            employee = context.Employees.Include(e => e.Company).Include(e => e.Role).Where(e => e.FirstName== FirstName && e.Email == Email).FirstOrDefault();
+            if (employee != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool TryChangeEmployeeRoll(Role role, Employee employee)
         {
             Dbi511119Context context = new Dbi511119Context();

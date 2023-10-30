@@ -65,6 +65,22 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
             }
         }
+        public bool TryAddEmployee(string Email, string FirstName)
+        {
+            Employee emp = new Employee();
+            emp.Email = Email;
+            emp.FirstName = FirstName;
+            emp.CompanyId = 1;
+
+            if (employeeRepository.TryAddEmployee(emp))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool TryGetWinningPolls(out List<Poll> winningPolls, Employee employee)
         {
             PollService pollService = new PollService();
@@ -108,5 +124,11 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return employeeRepository.TryGetEmployeeByID(id, out employee);
         }
+
+        public bool TryGetEmployeeByEmailAndFirstName(string Email, string FirstName, out Employee employee)
+        {
+            return employeeRepository.TryGetEmployeeByEmailAndFirstName(Email, FirstName, out employee);
+        }
+        
     }
 }
