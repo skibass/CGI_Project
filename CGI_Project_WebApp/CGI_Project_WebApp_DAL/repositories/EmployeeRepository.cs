@@ -10,6 +10,7 @@ using CGI_Project_WebApp_Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.Design;
+using System.Security.Claims;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
@@ -27,6 +28,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         }
         public List<Employee> GetEmployees()
         {
+            
             Dbi511119Context context = new Dbi511119Context();
             List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).ToList();//
             if (employees == null)
@@ -34,6 +36,16 @@ namespace CGI_Project_WebApp_DAL.repositories
                 employees = new List<Employee>();
             }
             return employees;
+        }
+        public Employee GetEmployeeIdByEmail(string email)
+        {
+            Dbi511119Context context = new Dbi511119Context();
+            Employee employee = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).Where(e => e.Email == email).FirstOrDefault();//
+            if (employee == null)
+            {
+                employee = new Employee();
+            }
+            return employee;
         }
         public bool TryGetEmployeeByID(int id, out Employee employee)
         {
