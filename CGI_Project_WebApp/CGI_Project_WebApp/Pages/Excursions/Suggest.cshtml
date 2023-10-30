@@ -15,22 +15,6 @@
 </div>
 
 <div class="container mb-5">
-    @if (TempData["success"] != null)
-    {
-        <div class="alert alert-success mb-3 w-25 " role="alert">
-            @TempData["success"]
-            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    }
-    @if (TempData["fail"] != null)
-    {
-        <div class="mb-3 alert alert-danger" role="alert">
-            <p>@TempData["fail"]</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
     <form method="post">
         <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="Excursion name..."/><br/>
         <textarea asp-for="Suggestion.Description" id="edescription" placeholder="Excursion description..." rows="3"></textarea><br/>

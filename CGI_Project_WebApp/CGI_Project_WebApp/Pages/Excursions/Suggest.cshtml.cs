@@ -18,20 +18,21 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public void OnPost()
         {
+            //TODO: Finish Error
 	        if (!ModelState.IsValid)
 	        {
-		        TempData["fail"] = "Could not add suggestion";
+		        
 	        }
 
             if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
                     Suggestion.Exception, EmployeeId))
             {
-                TempData["success"] = "Suggestion has been added";
+                
                 RedirectToPage();
             }
             else
             {
-                TempData["fail"] = "Could not add suggestion";
+                
             }
         }
     }
