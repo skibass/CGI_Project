@@ -7,7 +7,8 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
-    public EmployeeRepository employeeRepository = new EmployeeRepository();
+    EmployeeRepository employeeRepository = new EmployeeRepository();
+    public Employee employee = new();
 
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
@@ -17,5 +18,7 @@ public class ProfileModel : PageModel
         UserName = User.Identity.Name;
         UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
         UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
+
+        employee = employeeRepository.GetEmployeeByEmail(UserEmailAddress);
     }
 }

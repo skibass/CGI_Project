@@ -21,34 +21,33 @@
                     <i class="glyphicon glyphicon-envelope"></i> @Model.UserEmailAddress
                 </p>
             </div>
-            @foreach (var item in Model.employeeRepository.GetEmployees(1))
-            {
-                if (item.Email == Model.UserEmailAddress)
+           
+                @if (Model.employee.Email == Model.UserEmailAddress)
                 {
                     <div class="col-md-4">
-                        <h3>Uw team: @item.Company.Name</h3>
+                    @*<h3>Uw team: @Model.employee.Company.Name</h3>*@
                     </div>
 
                     <div class="col-md-4">
                         <h3>Uw stemmen:</h3>
                     </div>
-                    @foreach (var vote in item.Votes)
+                @foreach (var suggestion in Model.employee.Suggestions)
                     {
-                        if (item.Id == vote.EmployeeId)
+                    if (Model.employee.Id == suggestion.EmployeeId)
                         {
                             <div class="col-md-4">
                                 <h3>
-                                    Uw gekozen stemdatum: @vote.Date
+                                    Uw suggesties:
                                 </h3>
                                
                                 <h3>
                                     Uw suggestie:<br>
 
-                                    Naam: @vote.Suggestion.Name<br>
-                                    Locatie: @vote.Suggestion.Location<br>
-                                    Beschrijving: @vote.Suggestion.Description<br><br>
+                                    Naam: @suggestion.Name<br>
+                                    Locatie: @suggestion.Location<br>
+                                    Beschrijving: @suggestion.Description<br><br>
 
-                                    (optioneel) Exceptie: @vote.Suggestion.Exception
+                                    (optioneel) Exceptie: @suggestion.Exception
                                 </h3>
                             </div>
 

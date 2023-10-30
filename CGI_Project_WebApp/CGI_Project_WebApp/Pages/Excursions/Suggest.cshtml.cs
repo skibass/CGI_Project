@@ -32,9 +32,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
 	        }
 
             if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
-                    Suggestion.Exception, EmployeeRepository.GetEmployeeIdByEmail(EmployeeEmail)))
-            {
-                
+                    Suggestion.Exception, EmployeeRepository.GetEmployeeByEmail(EmployeeEmail)))
+            {               
                 RedirectToPage();
             }
             else
