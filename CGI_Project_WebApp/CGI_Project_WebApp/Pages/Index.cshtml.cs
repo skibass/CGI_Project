@@ -27,11 +27,9 @@ namespace CGI_Project_WebApp.Pages
         {
            UseCurrentLanguage();
             RecentExcursions = _pollService.GetRecentExcursions();
-            
-    
-        }
+		}
 
-        public void UseCurrentLanguage()
+		public void UseCurrentLanguage()
         {
             CurrentLanguage = Request.Cookies[".AspNetCore.Culture"] ?? "EN";
             var parts = CurrentLanguage.Split('|');
