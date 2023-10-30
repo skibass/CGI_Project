@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_Core.classes
 {
-    internal class EmployeeService
+    public class EmployeeService
     {
         EmployeeRepository employeeRepository = new EmployeeRepository();
         public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
@@ -34,7 +34,6 @@ namespace CGI_Project_WebApp_Core.classes
                 return true;
             }
         }
-
         public bool getEmployeeSuggestions(out List<Suggestion> suggestions, Employee employee)
         {
             try

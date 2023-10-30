@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_Core.classes
 {
-    internal class SuggestionService
+    public class SuggestionService
     {
         SuggestionRepository suggestionRepository = new SuggestionRepository();
         public bool TryGetLatestWinners(out List<SuggestionList> WinningSuggestionsList, int max)
