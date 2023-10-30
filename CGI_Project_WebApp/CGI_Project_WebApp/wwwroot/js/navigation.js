@@ -1,14 +1,9 @@
-﻿document.addEventListener("DOMContentLoaded", (e) => {
-    
-});
-
-
-
+﻿
 function changeLanguage(langCode, flagImageSrc) {
 
     $.ajax({
-        type: "GET", // or "GET" depending on your method
-        url: '/Index?handler=SetLanguage', // Update the URL accordingly
+        type: "GET", 
+        url: '/Index?handler=SetLanguage', 
         data: { lang: langCode },
         success: function (data) {
             location.reload();

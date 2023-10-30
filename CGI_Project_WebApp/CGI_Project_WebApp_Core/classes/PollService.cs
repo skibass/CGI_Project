@@ -45,6 +45,42 @@ namespace CGI_Project_WebApp_Core.classes
             }
 
         }
+        
+        //zo kan de mederwerker nogsteeds de huidige stand van de polls zien zelfs als die all heeft gevote
+        public bool TryGetValidButNonVoteablePolls(out List<Poll> nonVotablePolls, int employeeId)
+        {
+            nonVotablePolls = new List<Poll>();
+            try
+            {
+                List<Poll> polls = new List<Poll>();
+
+                polls = pollsRepository.GetOpenPolls();
+
+                if (polls != null)
+                {
+                    foreach (Poll poll in polls)
+                    {
+                        bool validToVote = true;
+
+                        foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
+                        {
+                            if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
+                            {
+                                validToVote = false;
+                            }
+                        }
+                        if (!validToVote) { nonVotablePolls.Add(poll); }
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+        }
 
         public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
         {
