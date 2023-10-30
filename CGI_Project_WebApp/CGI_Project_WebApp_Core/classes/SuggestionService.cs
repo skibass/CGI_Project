@@ -82,7 +82,7 @@ namespace CGI_Project_WebApp_Core.classes
                 suggestion.Location = location;
                 suggestion.Description = description;
                 suggestion.Exception = information;
-                suggestion.Employee = Emp;
+                suggestion.EmployeeId = employeeID;
 
                 if (suggestionRepository.TryAddSuggestionToDB(suggestion))
                 {

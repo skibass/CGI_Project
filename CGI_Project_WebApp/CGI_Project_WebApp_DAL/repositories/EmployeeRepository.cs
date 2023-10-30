@@ -97,12 +97,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                 throw;
             }
         }
+    
     }
-
-
-
-
-    //moeten wij de werknemers kunnen maken of gaat dit via de 3de party tool?
-
 }
 
