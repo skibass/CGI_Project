@@ -70,7 +70,7 @@ namespace CGI_Project_WebApp_Core.classes
 
         }
 
-        public bool TryAddSuggestion(string name, string description, string location, string information, int employeeID)
+        public bool TryAddSuggestion(string name, string description, string location, string exception, int employeeID)
         {
             EmployeeRepository employeeRepository = new EmployeeRepository();
 
@@ -81,8 +81,8 @@ namespace CGI_Project_WebApp_Core.classes
                 suggestion.Name = name;
                 suggestion.Location = location;
                 suggestion.Description = description;
-                suggestion.Exception = information;
-                suggestion.Employee = Emp;
+                suggestion.Exception = exception;
+                suggestion.EmployeeId = Emp.Id;
 
                 if (suggestionRepository.TryAddSuggestionToDB(suggestion))
                 {
@@ -94,10 +94,10 @@ namespace CGI_Project_WebApp_Core.classes
 
 
         }
-        public bool TryAddSuggestion(string name, string description, string location, string information, Employee employee)
+        public bool TryAddSuggestion(string name, string description, string location, string exception, Employee employee)
         {
 
-            return TryAddSuggestion(name, description, location, information, employee.Id);
+            return TryAddSuggestion(name, description, location, exception, employee.Id);
         }
 
 
