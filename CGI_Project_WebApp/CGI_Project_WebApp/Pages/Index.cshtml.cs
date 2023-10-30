@@ -1,8 +1,10 @@
 ﻿using CGI_Project_WebApp_Core.Services;
+using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Runtime.InteropServices;
+using System.Security.Claims;
 
 
 namespace CGI_Project_WebApp.Pages
@@ -27,8 +29,8 @@ namespace CGI_Project_WebApp.Pages
         {
            UseCurrentLanguage();
             RecentExcursions = _pollService.GetRecentExcursions();
-            
-    
+
+            AddUserToDbIfExist();
         }
 
         public void UseCurrentLanguage()
@@ -53,6 +55,18 @@ namespace CGI_Project_WebApp.Pages
             return new JsonResult("successfully changed language");
         }
 
-       
+        private void AddUserToDbIfExist()
+        {
+            if (User.Identity.Name != null)
+            {
+                EmployeeRepository emp = new EmployeeRepository();
+
+                Employee employee = new();
+                employee.FirstName = User.Identity.Name;
+                employee.Email = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+
+                emp.TryAddEmployee(employee);
+            }
+        }
     }
 }

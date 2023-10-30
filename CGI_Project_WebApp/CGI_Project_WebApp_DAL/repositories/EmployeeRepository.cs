@@ -9,15 +9,26 @@ using System.Threading.Tasks;
 using CGI_Project_WebApp_Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
     public class EmployeeRepository
     {
-        public List<Employee> GetEmployees(int companyId = 1)
+        public List<Employee> GetEmployees(int companyId)
         {
             Dbi511119Context context = new Dbi511119Context();
             List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).Where(e => e.CompanyId == companyId).ToList();//
+            if (employees == null)
+            {
+                employees = new List<Employee>();
+            }
+            return employees;
+        }
+        public List<Employee> GetEmployees()
+        {
+            Dbi511119Context context = new Dbi511119Context();
+            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).ToList();//
             if (employees == null)
             {
                 employees = new List<Employee>();
@@ -84,18 +95,23 @@ namespace CGI_Project_WebApp_DAL.repositories
         }
         public bool TryAddEmployee(Employee emp)
         {
-            try
+            bool canAdd = true;
+            foreach (Employee item in GetEmployees())
+            {
+                if (emp.Email == item.Email)
+                {
+                    canAdd = false;                   
+                }
+            }    
+
+            if (canAdd == true) 
             {
                 Dbi511119Context DB = new Dbi511119Context();
                 DB.Employees.Add(emp);
                 DB.SaveChanges();
-                return true;
+                canAdd = true;
             }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
+            return canAdd;
         }
     }
 

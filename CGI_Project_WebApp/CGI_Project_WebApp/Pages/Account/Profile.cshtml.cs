@@ -1,4 +1,5 @@
 using CGI_Project_WebApp_DAL.repositories;
+using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
@@ -15,6 +16,6 @@ public class ProfileModel : PageModel
     {
         UserName = User.Identity.Name;
         UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-        UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;       
+        UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
     }
 }
