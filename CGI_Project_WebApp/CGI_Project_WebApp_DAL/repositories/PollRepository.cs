@@ -37,7 +37,6 @@ namespace CGI_Project_WebApp_DAL.repositories
             result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Where(poll => DateTime.Now < poll.StartTime).ToList();
             return result;
         }
-
         public bool TryAddPoll(Poll poll)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
@@ -56,7 +55,6 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             return TryRemovePoll(poll.Id);
         }
-
         public bool TryRemovePoll(int pollId)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
@@ -92,7 +90,6 @@ namespace CGI_Project_WebApp_DAL.repositories
 
             return true;
         }
-
         public bool TryGetPoll(out Poll? poll, int pollId)
         {
             Dbi511119Context DBContext = new Dbi511119Context();

@@ -10,6 +10,7 @@ namespace CGI_Project_WebApp_Core.classes
 {
     internal class SuggestionService
     {
+        SuggestionRepository suggestionRepository = new SuggestionRepository();
         public bool TryGetLatestWinners(out List<SuggestionList> WinningSuggestionsList, int max)
         {
             WinningSuggestionsList = new List<SuggestionList>();
@@ -68,5 +69,37 @@ namespace CGI_Project_WebApp_Core.classes
             }
 
         }
+
+        public bool TryAddSuggestion(string name, string description, string location, string information, int employeeID)
+        {
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+
+            if (employeeRepository.TryGetEmployeeByID(employeeID, out Employee Emp))
+            {
+
+                Suggestion suggestion = new Suggestion();
+                suggestion.Name = name;
+                suggestion.Location = location;
+                suggestion.Description = description;
+                suggestion.Exception = information;
+                suggestion.Employee = Emp;
+
+                if (suggestionRepository.TryAddSuggestionToDB(suggestion))
+                {
+                    return true;
+                }
+            }
+            return false;
+
+
+
+        }
+        public bool TryAddSuggestion(string name, string description, string location, string information, Employee employee)
+        {
+
+            return TryAddSuggestion(name, description, location, information, employee.Id);
+        }
+
+
     }
 }

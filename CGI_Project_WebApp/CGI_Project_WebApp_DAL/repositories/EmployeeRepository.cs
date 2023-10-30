@@ -54,13 +54,20 @@ namespace CGI_Project_WebApp_DAL.repositories
                 throw;
             }
         }
+         public List<PollSuggestion> GetPollSuggestionsByEmployeeId(Employee employee)
+        {
+            return GetPollSuggestionsByEmployeeId(employee.Id);
 
-        public List<PollSuggestion> GetPollSuggestionsByEmployeeId(Employee employee)
+            
+        }
+        public List<PollSuggestion> GetPollSuggestionsByEmployeeId(int employeeId)
         {
             Dbi511119Context context = new Dbi511119Context();
-            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s => s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employee.Id).ToList();
+            List<PollSuggestion> pollSuggestion = context.PollSuggestions.Include(e => e.Poll).Include(e => e.Suggestion).ThenInclude(s => s.Votes).Where(suggestion => suggestion.Suggestion.EmployeeId == employeeId).ToList();
             return pollSuggestion;
-        }   
+
+
+        }
         public bool TryAddEmployee(Employee emp)
         {
             try

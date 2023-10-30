@@ -91,6 +91,10 @@ namespace CGI_Project_WebApp_Core.classes
             return pollsRepository.TryRemovePoll(pollId);
         }
 
+        public bool TryAddPoll(Poll poll)
+        {
+            return pollsRepository.TryAddPoll(poll);
+        }
         public bool TryGetPollVotes(out List<Vote> votes, int pollId)
         {
 

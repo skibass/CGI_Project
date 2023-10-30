@@ -34,6 +34,23 @@ namespace CGI_Project_WebApp_Core.classes
                 return true;
             }
         }
+
+        public bool getEmployeeSuggestions(out List<Suggestion> suggestions, Employee employee)
+        {
+            try
+            {
+                List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee.Id);
+
+                suggestions = pollSuggestion.Select(suggestion => suggestion.Suggestion).ToList();
+                return true;
+            }
+            catch (Exception)
+            {
+                suggestions = null;
+                return false;
+            }
+
+        }
         public bool TryAddEmployee(string Email)
         {
             Employee emp = new Employee();
