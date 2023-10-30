@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Diagnostics.Eventing.Reader
 @model CGI_Project_WebApp.Pages.Excursions.SuggestModel
 @{
 	ViewData["Title"] = "Suggest";
@@ -14,14 +15,32 @@
 </div>
 
 <div class="container mb-5">
-	<form method="post">
-		<input type="text" id="ename" placeholder="Excursion name..."/><br/>
-		<textarea id="edescription" placeholder="Excursion description..." rows="3"></textarea><br />
-		<input type="text" id="elocation" placeholder="Excursion location..."/><br/>
-		<input type="text" id="eimportantinfo" placeholder="Important info (e.g bring sunglasses)..."/>
-		@*<button class="addfieldbtn text-white" onclick="addField()">+</button>
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success mb-3 w-25 " role="alert">
+            @TempData["success"]
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["fail"] != null)
+    {
+        <div class="mb-3 alert alert-danger" role="alert">
+            <p>@TempData["fail"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <form method="post">
+        <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="Excursion name..."/><br/>
+        <textarea asp-for="Suggestion.Description" id="edescription" placeholder="Excursion description..." rows="3"></textarea><br/>
+        <input asp-for="Suggestion.Location" type="text" id="elocation" placeholder="Excursion location..."/><br/>
+        <input asp-for="Suggestion.Exception" type="text" id="eimportantinfo" placeholder="Important info (e.g bring sunglasses)..."/>
+        <input asp-for="EmployeeId" type="hidden" value="2"/>
+
+        @*<button class="addfieldbtn text-white" onclick="addField()">+</button>
 		<button class="removefieldbtn text-white" onclick="removeField()">-</button>*@<br/>
 
-		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">Submit</button>
-	</form>
+        <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">Submit</button>
+    </form>
 </div>
