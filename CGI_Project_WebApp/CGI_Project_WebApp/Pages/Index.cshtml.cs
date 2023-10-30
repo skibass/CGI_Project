@@ -33,7 +33,7 @@ namespace CGI_Project_WebApp.Pages
             AddUserToDbIfExist();
         }
 
-        public void UseCurrentLanguage()
+		public void UseCurrentLanguage()
         {
             CurrentLanguage = Request.Cookies[".AspNetCore.Culture"] ?? "EN";
             var parts = CurrentLanguage.Split('|');

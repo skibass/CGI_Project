@@ -118,15 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HeroButton" xml:space="preserve">
-    <value>Discover</value>
+    <value>Get started</value>
   </data>
   <data name="HeroSubtitle" xml:space="preserve">
-    <value>See what's new at your company</value>
+    <value>Make a suggestion</value>
   </data>
   <data name="HeroTitle" xml:space="preserve">
     <value>Unlock Team Adventures: Building Bonds, One Excursion at a Time. Discover, Bond, and Thrive with Every Corporate Expedition!</value>
   </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recent Excursions</value>
+  </data>
+  <data name="SuggestSubtitle" xml:space="preserve">
+    <value>Fill out the form below</value>
+  </data>
+  <data name="SuggestTitle" xml:space="preserve">
+    <value>Suggest an excursion</value>
+  </data>
+  <data name="VoteSubtitle" xml:space="preserve">
+    <value>You can vote for one excursion in each period</value>
+  </data>
+  <data name="VoteTitle" xml:space="preserve">
+    <value>Vote for an excursion</value>
   </data>
 </root>
