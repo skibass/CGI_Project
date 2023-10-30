@@ -29,7 +29,7 @@
 
 <div class=" m-0 p-5 recent">
     <h2 class=" p-3 mx-5 text-center text-lg-start recent-title">@stringLocalizer["RecentTitle"]</h2>
-        @if (Model?.RecentExcursions != null)
+        @if (Model?.RecentExcursions.Count() > 0)
         {
         <div class="row row-cols-1 row-cols-lg-@(Math.Min((byte)Model?.RecentExcursions?.Count, (byte)3)) align-items-stretch mx-5 g-4 py-5">
             @for (int i = 0; i < Model?.RecentExcursions.Count; i++)
