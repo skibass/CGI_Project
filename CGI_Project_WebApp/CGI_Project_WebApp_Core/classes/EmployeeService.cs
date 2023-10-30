@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_Core.classes
 {
-    internal class EmployeeService
+    public class EmployeeService
     {
         EmployeeRepository employeeRepository = new EmployeeRepository();
         public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
@@ -34,7 +34,6 @@ namespace CGI_Project_WebApp_Core.classes
                 return true;
             }
         }
-
         public bool getEmployeeSuggestions(out List<Suggestion> suggestions, Employee employee)
         {
             try
@@ -55,6 +54,22 @@ namespace CGI_Project_WebApp_Core.classes
         {
             Employee emp = new Employee();
             emp.Email = Email;
+            emp.CompanyId = 1;
+
+            if (employeeRepository.TryAddEmployee(emp))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool TryAddEmployee(string Email, string FirstName)
+        {
+            Employee emp = new Employee();
+            emp.Email = Email;
+            emp.FirstName = FirstName;
             emp.CompanyId = 1;
 
             if (employeeRepository.TryAddEmployee(emp))
@@ -109,5 +124,11 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return employeeRepository.TryGetEmployeeByID(id, out employee);
         }
+
+        public bool TryGetEmployeeByEmailAndFirstName(string Email, string FirstName, out Employee employee)
+        {
+            return employeeRepository.TryGetEmployeeByEmailAndFirstName(Email, FirstName, out employee);
+        }
+        
     }
 }

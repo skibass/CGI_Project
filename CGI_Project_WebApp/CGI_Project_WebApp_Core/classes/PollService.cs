@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_Core.classes
 {
-    internal class PollService
+    public class PollService
     {
         PollRepository pollsRepository = new PollRepository();
         public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
