@@ -137,6 +137,22 @@ namespace CGI_Project_WebApp_Core.classes
             return employeeRepository.TryGetEmployeeByEmailAndFirstName(Email, FirstName, out employee);
         }
 
+        public bool TryGetEmployeeByEmail(string Email, out Employee employee)
+        {
+            employee = null;
+            try
+            {
+                if (DoesEmailExist(Email))
+                {
+                    return employeeRepository.TryGetEmployeeByEmail(Email, out employee);
+                }
+            }catch (Exception e)
+            {
+                
+            }
+            return false;
+        }
+
         public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 6)
         {
             EmpWincounts = new List<EmployeeWinCount>();
@@ -165,5 +181,10 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return employeeRepository.GetEmployees().Select(e => e.Email).Contains(Email);
         }        
+        public Employee TryGetEmployeeByEmail(string email)
+        {
+            return employeeRepository.GetEmployeeByEmail(email);
+
+        }
     }
 }
