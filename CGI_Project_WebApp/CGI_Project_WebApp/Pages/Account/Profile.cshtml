@@ -62,6 +62,7 @@
             }
 </style>
 
+
 <div class="container">
     <h3 class="hero-title ml-3 text-center">@ViewData["Title"]</h3>
     <div class="row profile-header top-section">
@@ -75,30 +76,40 @@
             </div>
         </div>
         <div class="col-md-6 text-center profile-details">
-            @foreach (var item in Model.employeeRepository.GetEmployees(1))
+            @if (Model.employeeRepository.GetEmployees(1).Any(item => item.Email == Model.UserEmailAddress))
             {
-                if (item.Email == Model.UserEmailAddress)
+                foreach (var item in Model.employeeRepository.GetEmployees(1))
                 {
-                    <div class="profile-info">
-                        <h3 class="hero-title ml-3">Team</h3>
-                        <p>@item.Company.Name</p>
-                    </div>
+                    if (item.Email == Model.UserEmailAddress)
+                    {
+                        <div class="profile-info">
+                            <h3 class="hero-title ml-3">Team</h3>
+                            <p>@item.Company.Name</p>
+                        </div>
+                    }
                 }
+            }
+            else
+            {
+                <div class="profile-info">
+                    <h3 class="hero-title ml-3">Team</h3>
+                    <p>No Team Information Available</p>
+                </div>
             }
         </div>
     </div>
-    <div class="profile-backgroundbar"></div> <!-- Positioned as separator -->
+    <div class="profile-backgroundbar"></div>
     <div class="row">
         <div class="col-md-12">
             <h3 class="hero-title ml-3 text-center">Uw stemmen:</h3>
             <div id="votesContainer">
-                @foreach (var item in Model.employeeRepository.GetEmployees(1))
+                @if (Model.employeeRepository.GetEmployees(1).Any(item => item.Email == Model.UserEmailAddress && item.Votes.Any()))
                 {
-                    if (item.Email == Model.UserEmailAddress)
+                    foreach (var item in Model.employeeRepository.GetEmployees(1))
                     {
-                        @foreach (var vote in item.Votes)
+                        if (item.Email == Model.UserEmailAddress)
                         {
-                            if (item.Id == vote.EmployeeId)
+                            foreach (var vote in item.Votes)
                             {
                                 <div class="vote-info">
                                     <h3 class="hero-title ml-3">Uw gekozen stemdatum: @vote.Date</h3>
@@ -113,6 +124,12 @@
                             }
                         }
                     }
+                }
+                else
+                {
+                    <div class="vote-info">
+                        <p class="subtitle">No Voting Data Available</p>
+                    </div>
                 }
             </div>
             <div class="pagination">
