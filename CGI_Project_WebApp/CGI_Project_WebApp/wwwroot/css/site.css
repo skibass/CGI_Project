@@ -107,6 +107,13 @@
     background: conic-gradient(from 180deg at 50.26% 49.28%, #E11A39 120.00000357627869deg, #5E33A1 324.3750071525574deg);
 }
 
+#hero-tag{
+    text-decoration: none;
+    list-style: none;
+    color: var(--text-light);
+}
+
+    
 /*Recent Excursions*/
 
 .recent{
