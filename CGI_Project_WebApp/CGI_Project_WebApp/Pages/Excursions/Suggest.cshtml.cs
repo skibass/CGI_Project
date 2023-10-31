@@ -13,7 +13,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
         [BindProperty]
         public required Suggestion Suggestion { get; set; }
 
-        public EmployeeRepository EmployeeRepository = new();
+        public EmployeeService EmployeeService = new EmployeeService();
+
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
@@ -31,14 +32,20 @@ namespace CGI_Project_WebApp.Pages.Excursions
 		        
 	        }
 
-            if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
-                    Suggestion.Exception, EmployeeRepository.GetEmployeeByEmail(EmployeeEmail)))
-            {               
-                RedirectToPage();
+            if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp)) {
+                if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
+                        Suggestion.Exception, emp))
+                {
+                    RedirectToPage();
+                }
+                else
+                {
+                    //something went wrong with adding suggestion and/or server error
+                }
             }
             else
             {
-                
+                //mail doesn't exist and/or server error
             }
         }
     }
