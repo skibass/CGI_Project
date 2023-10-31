@@ -20,6 +20,16 @@ public class ProfileModel : PageModel
         UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
         UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
 
-        employee = employeeService.TryGetEmployeeByEmail(UserEmailAddress);
+        if (UserEmailAddress != null)
+        {
+            if (!employeeService.TryGetEmployeeByEmail(UserEmailAddress, out employee))
+            {
+                //mail doesn't exist and/or server error
+            }
+        }
+        else
+        {
+            //er is geen email/ kan de email niet ophalen
+        }
     }
 }

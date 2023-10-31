@@ -181,10 +181,5 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return employeeRepository.GetEmployees().Select(e => e.Email).Contains(Email);
         }        
-        public Employee TryGetEmployeeByEmail(string email)
-        {
-            return employeeRepository.GetEmployeeByEmail(email);
-
-        }
     }
 }
