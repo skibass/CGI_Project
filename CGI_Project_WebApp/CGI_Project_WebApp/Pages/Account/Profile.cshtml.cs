@@ -1,3 +1,4 @@
+using CGI_Project_WebApp_Core.classes;
 using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,7 +8,7 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
-    EmployeeRepository employeeRepository = new EmployeeRepository();
+    EmployeeService employeeService = new EmployeeService();
     public Employee employee = new();
 
     public string UserName { get; set; }
@@ -19,6 +20,16 @@ public class ProfileModel : PageModel
         UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
         UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
 
-        employee = employeeRepository.GetEmployeeByEmail(UserEmailAddress);
+        if (UserEmailAddress != null)
+        {
+            if (!employeeService.TryGetEmployeeByEmail(UserEmailAddress, out employee))
+            {
+                //mail doesn't exist and/or server error
+            }
+        }
+        else
+        {
+            //er is geen email/ kan de email niet ophalen
+        }
     }
 }
