@@ -56,6 +56,10 @@ namespace CGI_Project_WebApp_Core.classes
             emp.Email = Email;
             emp.CompanyId = 1;
 
+            if (DoesEmailExist(Email))
+            {
+                return false;
+            }
             if (employeeRepository.TryAddEmployee(emp))
             {
                 return true;
@@ -72,6 +76,10 @@ namespace CGI_Project_WebApp_Core.classes
             emp.FirstName = FirstName;
             emp.CompanyId = 1;
 
+            if (DoesEmailExist(Email))
+            {
+                return false;
+            }
             if (employeeRepository.TryAddEmployee(emp))
             {
                 return true;
@@ -124,11 +132,54 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return employeeRepository.TryGetEmployeeByID(id, out employee);
         }
-
         public bool TryGetEmployeeByEmailAndFirstName(string Email, string FirstName, out Employee employee)
         {
             return employeeRepository.TryGetEmployeeByEmailAndFirstName(Email, FirstName, out employee);
         }
-        
+
+        public bool TryGetEmployeeByEmail(string Email, out Employee employee)
+        {
+            employee = null;
+            try
+            {
+                if (DoesEmailExist(Email))
+                {
+                    return employeeRepository.TryGetEmployeeByEmail(Email, out employee);
+                }
+            }catch (Exception e)
+            {
+                
+            }
+            return false;
+        }
+
+        public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 6)
+        {
+            EmpWincounts = new List<EmployeeWinCount>();
+            try
+            {
+                foreach (Employee employee in employeeRepository.GetEmployees())
+                {
+                    if(TryGetWinningPolls(out List<Poll> winningPolls, employee))
+                    {
+                        EmployeeWinCount employeesWinCount = new EmployeeWinCount();
+                        employeesWinCount.Employee = employee;
+                        employeesWinCount.Count = winningPolls.Count;
+                        EmpWincounts.Add(employeesWinCount);
+                    }
+                }
+                EmpWincounts = EmpWincounts.OrderByDescending(e => e.Count).Take(max).ToList();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                
+            }
+        }
+        public bool DoesEmailExist(string Email)
+        {
+            return employeeRepository.GetEmployees().Select(e => e.Email).Contains(Email);
+        }        
     }
 }

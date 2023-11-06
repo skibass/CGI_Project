@@ -44,14 +44,14 @@
             </div>
 
             <div class="btn-group lang-control">
-                <img src="~/assets/flags/@(ViewData["CountryCode"]).png" class="flag-icon mx-2" id="current-language" />
+                <img src="~/assets/flags/@((string)ViewData["CountryCode"] != "" ? ViewData["Countrycode"] : "EN").png" class="flag-icon mx-2" id="current-language" />
                 <button type="button" class="lang-control-button">@ViewData["CountryCode"]</button>
                 <button type="button" class="dropdown-toggle dropdown-toggle-split lang-control-split" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu lang-dropdown">
-                    <li class="d-flex mx-2"><img src="~/assets/flags/united-kingdom.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">EN</a></li>
-                    <li class="d-flex mx-2"><img src="~/assets/flags/netherlands.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">NL</a></li>
+                    <li class="d-flex mx-2"><img src="~/assets/flags/EN.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">EN</a></li>
+                    <li class="d-flex mx-2"><img src="~/assets/flags/NL.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">NL</a></li>
 
                 </ul>
             </div>

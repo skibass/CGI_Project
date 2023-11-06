@@ -61,7 +61,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discover.
+        ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string HeroButton {
             get {
@@ -70,7 +70,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to See what&apos;s new at your company.
+        ///   Looks up a localized string similar to Make a suggestion.
         /// </summary>
         public static string HeroSubtitle {
             get {
@@ -93,6 +93,42 @@ namespace CGI_Project_WebApp.Resources {
         public static string RecentTitle {
             get {
                 return ResourceManager.GetString("RecentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill out the form below.
+        /// </summary>
+        public static string SuggestSubtitle {
+            get {
+                return ResourceManager.GetString("SuggestSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggest an excursion.
+        /// </summary>
+        public static string SuggestTitle {
+            get {
+                return ResourceManager.GetString("SuggestTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can vote for one excursion in each period.
+        /// </summary>
+        public static string VoteSubtitle {
+            get {
+                return ResourceManager.GetString("VoteSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vote for an excursion.
+        /// </summary>
+        public static string VoteTitle {
+            get {
+                return ResourceManager.GetString("VoteTitle", resourceCulture);
             }
         }
     }

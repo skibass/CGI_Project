@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication;
 using Auth0.AspNetCore.Authentication;
 using CGI_Project_WebApp_DAL.repositories;
+using System.Security.Claims;
+using CGI_Project_WebApp_Models;
 
 namespace acme.Pages
 {
@@ -14,10 +16,6 @@ namespace acme.Pages
                         .Build();
 
             await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
-
-            EmployeeRepository emp = new EmployeeRepository();
-
-            //emp.TryAddEmployee(User.Identity.Name);
         }
 
     }
