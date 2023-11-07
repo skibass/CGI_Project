@@ -30,7 +30,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             
             Dbi511119Context context = new Dbi511119Context();
-            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).ToList();//
+            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).ToList();
             if (employees == null)
             {
                 employees = new List<Employee>();
