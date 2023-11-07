@@ -17,19 +17,18 @@ namespace CGI_Project_WebApp_Core.classes
             Vote vote = new Vote();
             vote.EmployeeId = employeeID;
             vote.SuggestionId = suggestionID;
-            /*vote.PreferredDates
-            foreach (DateTime date in preferredDates)
-            {
-                dateService.DoesDateExistIfNotAddDate(date);
-
-            }
-
+            //vote.PreferredDates
             if (repository.TryAddVote(vote))
             {
-
-            }*/
+                if (dateService.TryAddDatesOrGetDates(preferredDates, out List<int> dateIds))
+                {
+                    foreach (int dateId in dateIds)
+                    {
+                        repository.TryAddDateToVote(vote.Id, dateId);
+                    }
+                }
+            }
             return false;
-
         }
     }
 }
