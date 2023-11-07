@@ -9,15 +9,27 @@ using System.Threading.Tasks;
 namespace CGI_Project_WebApp_Core.classes
 {
     public class VoteService { 
-        VoteRepository repository;
-        public bool TryCreateVote(int employeeID,int suggestionID, DateTime preferredDate)
+        VoteRepository repository= new VoteRepository();
+        DateRepository dateRepository= new DateRepository();
+        DateService dateService= new DateService();
+        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates)
         {
             Vote vote = new Vote();
             vote.EmployeeId = employeeID;
             vote.SuggestionId = suggestionID;
-            vote.Date = preferredDate;
+            /*vote.PreferredDates
+            foreach (DateTime date in preferredDates)
+            {
+                dateService.DoesDateExistIfNotAddDate(date);
 
-            return repository.TryAddVote(vote);
+            }
+
+            if (repository.TryAddVote(vote))
+            {
+
+            }*/
+            return false;
+
         }
     }
 }

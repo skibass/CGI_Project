@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using CGI_Project_WebApp_Models;
 using Microsoft.EntityFrameworkCore;
+using CGI_Project_WebApp_Models;
 
 namespace CGI_Project_WebApp_DAL.Database_Models;
 
@@ -18,6 +18,8 @@ public partial class Dbi511119Context : DbContext
 
     public virtual DbSet<Company> Companies { get; set; }
 
+    public virtual DbSet<Date> Dates { get; set; }
+
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<Period> Periods { get; set; }
@@ -25,6 +27,8 @@ public partial class Dbi511119Context : DbContext
     public virtual DbSet<Poll> Polls { get; set; }
 
     public virtual DbSet<PollSuggestion> PollSuggestions { get; set; }
+
+    public virtual DbSet<PreferredDate> PreferredDates { get; set; }
 
     public virtual DbSet<Right> Rights { get; set; }
 
@@ -38,7 +42,7 @@ public partial class Dbi511119Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=studmysql01.fhict.local;User ID=dbi511119;Password=TeamKever;Database=dbi511119;");
+        => optionsBuilder.UseMySQL("Server=studmysql01.fhict.local;Uid=dbi511119;Pwd=TeamKever;Database=dbi511119;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -56,6 +60,20 @@ public partial class Dbi511119Context : DbContext
                 .HasColumnName("name");
         });
 
+        modelBuilder.Entity<Date>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("date");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Date1)
+                .HasColumnType("date")
+                .HasColumnName("date");
+        });
+
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -65,6 +83,8 @@ public partial class Dbi511119Context : DbContext
             entity.HasIndex(e => e.CompanyId, "FK_Employee-Company_idx");
 
             entity.HasIndex(e => e.RoleId, "FK_Employee-Role_idx");
+
+            entity.HasIndex(e => e.Email, "email").IsUnique();
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
@@ -88,6 +108,7 @@ public partial class Dbi511119Context : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("profileImage");
             entity.Property(e => e.RoleId)
+                .HasDefaultValueSql("'1'")
                 .HasColumnType("int(11)")
                 .HasColumnName("roleId");
 
@@ -179,6 +200,37 @@ public partial class Dbi511119Context : DbContext
             entity.HasOne(d => d.Suggestion).WithMany(p => p.PollSuggestions)
                 .HasForeignKey(d => d.SuggestionId)
                 .HasConstraintName("FK_PollSuggestion-Suggestion");
+        });
+
+        modelBuilder.Entity<PreferredDate>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("preferred_date");
+
+            entity.HasIndex(e => e.DateId, "preferred_date_date_id");
+
+            entity.HasIndex(e => e.VoteId, "preferred_date_vote_id");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.DateId)
+                .HasColumnType("int(11)")
+                .HasColumnName("date_id");
+            entity.Property(e => e.VoteId)
+                .HasColumnType("int(11)")
+                .HasColumnName("vote_id");
+
+            entity.HasOne(d => d.Date).WithMany(p => p.PreferredDates)
+                .HasForeignKey(d => d.DateId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("preferred_date_date_id");
+
+            entity.HasOne(d => d.Vote).WithMany(p => p.PreferredDates)
+                .HasForeignKey(d => d.VoteId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("preferred_date_vote_id");
         });
 
         modelBuilder.Entity<Right>(entity =>
@@ -287,9 +339,6 @@ public partial class Dbi511119Context : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.Date)
-                .HasColumnType("datetime")
-                .HasColumnName("date");
             entity.Property(e => e.EmployeeId)
                 .HasColumnType("int(11)")
                 .HasColumnName("employeeId");

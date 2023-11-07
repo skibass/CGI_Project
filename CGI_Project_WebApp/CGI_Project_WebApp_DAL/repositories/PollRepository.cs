@@ -27,7 +27,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
-            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(poll => DateTime.Now > poll.EndTime).ToList();
+            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).ThenInclude(p=>p.PreferredDates).ThenInclude(d=>d.Date).Where(poll => DateTime.Now > poll.EndTime).ToList();
             return result;
         }
         public List<Poll> GetFuturePolls()

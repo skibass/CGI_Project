@@ -23,7 +23,7 @@ public partial class Employee
 
     public virtual Company? Company { get; set; }
 
-    public virtual ICollection<Poll> Polls { get; set; } = new List<Poll>(); //Creators(mangers)only
+    public virtual ICollection<Poll> Polls { get; set; } = new List<Poll>();
 
     public virtual Role? Role { get; set; }
 

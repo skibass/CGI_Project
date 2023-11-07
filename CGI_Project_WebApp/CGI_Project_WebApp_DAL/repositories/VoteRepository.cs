@@ -26,6 +26,27 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return false;
             }
         }
+        public bool TryAddDateToVote(int voteId, int dateId)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            try
+            {
+                PreferredDate preferredDate = new PreferredDate();
+
+                preferredDate.DateId = dateId;
+                preferredDate.VoteId = voteId;
+
+                DBContext.Add(preferredDate);
+                DBContext.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
         
     }
 }
