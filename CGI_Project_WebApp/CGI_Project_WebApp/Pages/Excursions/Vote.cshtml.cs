@@ -12,14 +12,14 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int Progress { get; set; }
         public void OnGet()
         {
-            if (VoteService.TryGetVotedSuggestions(out Vote vote))
-            {
-                Progress = vote.Progress;
-            }
-            else
-            {
-                Progress = 0;
-            }
+            //if (VoteService.TryGetVotedSuggestions(out Vote vote))
+            //{
+            //    Progress = vote.Progress;
+            //}
+            //else
+            //{
+            //    Progress = 0;
+            //}
         }
     }
 }
