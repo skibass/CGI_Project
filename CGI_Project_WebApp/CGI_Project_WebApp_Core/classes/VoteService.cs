@@ -30,5 +30,10 @@ namespace CGI_Project_WebApp_Core.classes
             }
             return false;
         }
+
+        public bool TryGetVotedSuggestions(out Vote vote)
+        {
+            return repository.TryGetVotedSuggestions(out vote);
+        }
     }
 }

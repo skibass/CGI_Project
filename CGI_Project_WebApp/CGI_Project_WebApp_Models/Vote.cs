@@ -14,6 +14,9 @@ public partial class Vote
     public virtual Employee? Employee { get; set; }
 
     public virtual ICollection<PreferredDate> PreferredDates { get; set; } = new List<PreferredDate>();
+    public int Progress { get; set; }
+
+    public virtual Employee? Employee { get; set; }
 
     public virtual Suggestion? Suggestion { get; set; }
 }

@@ -2,11 +2,12 @@
 @{
     ViewData["Title"] = "Vote";
 }
+@model CGI_Project_WebApp_Models.Vote
 <head>
     <link rel="stylesheet" href="~/css/vote.css"/>
 </head>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div id="vote-wrapper" class="container mt-4 mb-5">
     <div class="vote-header">
@@ -100,7 +101,7 @@
     </p>
 
     <p class="vote-date">
-         <div data-bs-toggle="collapse" href="#collapse1" aria-controls="collapse" class="vote-item d-flex mb-2 rounded-2 justify-content-between align-items-center" onclick="changeChevron(event)">
+        <div data-bs-toggle="collapse" href="#collapse1" aria-controls="collapse" class="vote-item d-flex mb-2 rounded-2 justify-content-between align-items-center" onclick="changeChevron(event)">
             <a class="text-decoration-none hero-title d-flex lh-1 fs-6 text-white p-2">10-08-2023</a>
             <div class="chevron down mx-3 align-self-center"></div>
         </div>
@@ -185,13 +186,24 @@
 
     
 </div>
+<div id="progress-bar" style="width: 0%; background-color: lightblue;">@Model.Progress%</div>
 
 <script>
+
+    function updateProgressBar() {
+        $.get("/Progress", function (data) {
+            var progress = data;
+            $("#progress-bar").width(progress + "%").text(progress + "%");
+        });
+    }
+
+    setInterval(updateProgressBar, 1000); // Update every 1 second
 
     var changeChevron = function (event) {
         var container = $(event.target).closest('.vote-item');
         var chevron = container.find('.chevron.down');
         chevron.toggleClass('up');
     }
+
 
 </script>
