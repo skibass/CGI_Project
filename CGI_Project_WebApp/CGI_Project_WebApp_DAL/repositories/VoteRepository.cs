@@ -61,7 +61,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                     .Include(v => v.SuggestionId)
                     .Include(v => v.Date)
                     .FirstOrDefault();
-
+                dbContext.SaveChanges();
                 if (vote == null)
                 {
                     return false;
