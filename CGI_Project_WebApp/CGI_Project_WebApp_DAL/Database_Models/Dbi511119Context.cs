@@ -165,8 +165,8 @@ public partial class Dbi511119Context : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("startTime");
             entity.Property(e => e.Poll_name)
-            .HasColumnType("varchar(75)")
-            .HasColumnName("poll_name");
+                 .HasMaxLength(75)
+                .HasColumnName("poll_name");
 
             entity.HasOne(d => d.Manager).WithMany(p => p.Polls)
                 .HasForeignKey(d => d.ManagerId)
