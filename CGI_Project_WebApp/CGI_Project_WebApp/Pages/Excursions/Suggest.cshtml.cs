@@ -20,6 +20,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public void OnGet()
         {
+
         }
 
         public void OnPost()

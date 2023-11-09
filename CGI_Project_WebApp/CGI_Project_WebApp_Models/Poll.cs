@@ -14,10 +14,10 @@ public partial class Poll
     public DateTime? EndTime { get; set; }
 
     public int? PeriodId { get; set; }
-
+    public string? Poll_name { get; set; }
     public virtual Employee? Manager { get; set; }
 
     public virtual Period? Period { get; set; }
 
-    public virtual ICollection<PollSuggestion> PollSuggestions { get; set; } = new List<PollSuggestion>();
+    public virtual ICollection<PollSuggestion>? PollSuggestions { get; set; } = new List<PollSuggestion>();
 }
