@@ -31,6 +31,21 @@
 
 
 
+
+@if (TempData["ShowToast"] != null && (bool)TempData["ShowToast"])
+{   
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+   <div id="liveToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body text-light">
+        Succesfully added suggestion
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
+
+  </div>
+}
+
+
 <div class="container mb-5">
     <form method="post">
         <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="Excursion name..."/><br/>
@@ -44,3 +59,5 @@
         <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">Submit</button>
     </form>
 </div>
+
+<script src="suggest.js"></script>
