@@ -44,8 +44,7 @@ namespace CGI_Project_WebApp_Core.classes
                 throw;
             }
 
-        }
-        
+        }    
         //zo kan de mederwerker nogsteeds de huidige stand van de polls zien zelfs als die all heeft gevote
         public bool TryGetValidButNonVoteablePolls(out List<Poll> nonVotablePolls, int employeeId)
         {
@@ -81,7 +80,6 @@ namespace CGI_Project_WebApp_Core.classes
             }
 
         }
-
         public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
         {
             MaxCount = -1;
@@ -121,22 +119,21 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
             }
         }
-
         public bool TryRemovePoll(int pollId)
         {
             return pollsRepository.TryRemovePoll(pollId);
         }
-
         public bool TryAddPoll(Poll poll)
         {
+            if (poll.PollSuggestions.Count != 3 && poll.PollSuggestions.Count != 2)
+            {
+                return false;
+            }
             return pollsRepository.TryAddPoll(poll);
         }
         public bool TryGetPollVotes(out List<Vote> votes, int pollId)
         {
-
             votes = new List<Vote>();
-
-
             try
             {
                 if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
@@ -160,5 +157,7 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
             }
         }
+
+        //public bool 
     }
 }

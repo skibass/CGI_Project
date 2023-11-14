@@ -43,6 +43,7 @@ namespace CGI_Project_WebApp_DAL.repositories
             Dbi511119Context DBContext = new Dbi511119Context();
             try
             {
+
                 DBContext.Polls.Add(poll);
                 DBContext.SaveChanges();
                 return true;
