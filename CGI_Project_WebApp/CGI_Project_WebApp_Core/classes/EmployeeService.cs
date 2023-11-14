@@ -22,7 +22,11 @@ namespace CGI_Project_WebApp_Core.classes
             {
                 if (suggestion.Poll != null)
                 {
-                    polls.Add(suggestion.Poll);
+                    if (!polls.Select(p=>p.Id).Contains((int)suggestion.PollId))
+                    {
+                        polls.Add(suggestion.Poll);
+                    }
+                    
                 }
             }
             if (polls.IsNullOrEmpty())
@@ -100,22 +104,24 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     foreach (Poll poll in allPolls)
                     {
+
+
                         int count;
                         bool draw;
 
-                        if (pollService.TryGetMaxVoteCount(out count, out draw, poll.Id))
+                        if (pollService.TryGetMaxVoteCount(out count, out draw, poll.Id) && poll.EndTime < DateTime.Now)
                         {
-                            if (poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).FirstOrDefault().Suggestion.Votes.Count == count)
+                            
+                            if(!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(s=>s.Suggestion.Votes.Count).Contains(count) && count > 0)
                             {
-
                                 winningPolls.Add(poll);
-                                return true;
+                                
                             }
                         }
 
                     }
                 }
-
+                return true;
             }
             catch (Exception e)
             {
