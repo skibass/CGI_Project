@@ -21,16 +21,16 @@ namespace CGI_Project_WebApp.Models
             // Dummy data
             TopThree = new List<LeaderboardEntry>
         {
-            new LeaderboardEntry { Position = 1, Name = "Denzel", Score = 100, Percentage = 100 },
-            new LeaderboardEntry { Position = 2, Name = "Sam", Score = 77, Percentage = 77 },
-            new LeaderboardEntry { Position = 3, Name = "Thijn", Score = 54, Percentage = 54},
+            new LeaderboardEntry { Position = 1, Name = "test1", Score = 100, Percentage = 100 },
+            new LeaderboardEntry { Position = 2, Name = "test2", Score = 77, Percentage = 77 },
+            new LeaderboardEntry { Position = 3, Name = "test3", Score = 54, Percentage = 54},
         };
 
             PlacesFourToTen = new List<LeaderboardEntry>
         {
-            new LeaderboardEntry { Position = 4, Name = "Bas", Score = 50 },
-            new LeaderboardEntry { Position = 5, Name = "Daud", Score = 47 },
-            new LeaderboardEntry { Position = 6, Name = "Pim", Score = 45 },
+            new LeaderboardEntry { Position = 4, Name = "test4", Score = 50 },
+            new LeaderboardEntry { Position = 5, Name = "test5", Score = 47 },
+            new LeaderboardEntry { Position = 6, Name = "test6", Score = 45 },
 
         };
         }

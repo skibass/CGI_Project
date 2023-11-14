@@ -155,6 +155,15 @@ namespace CGI_Project_WebApp_Core.classes
 
         public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 6)
         {
+            //test data
+            //EmpWincounts = new List<EmployeeWinCount>{
+            //    new EmployeeWinCount { Employee = new Employee { FirstName = "test1" }, Count = 5 },
+            //    new EmployeeWinCount { Employee = new Employee { FirstName = "test2" }, Count = 3 },
+            //    new EmployeeWinCount { Employee = new Employee { FirstName = "test3" }, Count = 2 },
+            //    new EmployeeWinCount { Employee = new Employee { FirstName = "test4" }, Count = 1 },
+            //    new EmployeeWinCount { Employee = new Employee { FirstName = "test5" }, Count = 7 }
+            //};
+
             EmpWincounts = new List<EmployeeWinCount>();
             try
             {
