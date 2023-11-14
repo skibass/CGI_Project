@@ -24,21 +24,12 @@
             <div class="mx-5 align-middle">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @if (Model.employee.Role == "manager")
-                    {
-                        <p class="nav-item align-middle">
-                            <a class="nav-link text-dark display-6" asp-area=""
-                               asp-page="/Account/Profile">Hello manager @User.Identity.Name!</a>
-                        </p>
-                    }
-                    else
-                    {
                         <p class="nav-item align-middle">
                             <a class="nav-link text-dark display-6" asp-area=""
                                asp-page="/Account/Profile">Hello @User.Identity.Name!</a>
                         </p>
-                    }
-                   
+                    
+    
                      <p class="nav-item">
                         <a class="nav-link text-dark display-6" asp-area=""
                        asp-page="/Account/Logout">Logout</a>
