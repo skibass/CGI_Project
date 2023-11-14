@@ -50,27 +50,24 @@ namespace CGI_Project_WebApp_DAL.repositories
         }
         
 
-        public bool TryGetVotedSuggestions(out Vote vote)
+        public bool TryGetVotedSuggestions(out List<Vote> votes)
         {
             using Dbi511119Context dbContext = new();
 
             try
             {
-                vote = dbContext.Votes.AsNoTracking()
-                    .Include(v => v.EmployeeId)
-                    .Include(v => v.SuggestionId)
-                    .Include(v => v.Date)
-                    .FirstOrDefault();
-                dbContext.SaveChanges();
-                if (vote == null)
-                {
-                    return false;
-                }
+                votes = dbContext.Votes
+                    .AsNoTracking()
+                    .Include(v => v.Employee)
+                    .Include(v => v.Suggestion)
+                    .ToList();
+                
                 return true;
+                
             }
             catch (Exception e)
             {
-                vote = null;
+                votes = new List<Vote>();
                 return false;
             }
         }

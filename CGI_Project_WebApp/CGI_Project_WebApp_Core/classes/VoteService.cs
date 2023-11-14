@@ -9,9 +9,13 @@ using System.Threading.Tasks;
 namespace CGI_Project_WebApp_Core.classes
 {
     public class VoteService { 
-        VoteRepository repository= new VoteRepository();
-        DateRepository dateRepository= new DateRepository();
-        DateService dateService= new DateService();
+        VoteRepository repository= new();
+        DateRepository dateRepository= new();
+        DateService dateService= new();
+        EmployeeRepository employeeRepository= new();
+
+        private List<Vote> _votes = new();
+
         public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates)
         {
             Vote vote = new Vote();
@@ -31,9 +35,19 @@ namespace CGI_Project_WebApp_Core.classes
             return false;
         }
 
-        public bool TryGetVotedSuggestions(out Vote vote)
+        public bool TryGetVotedSuggestions(int employee, out List<Vote> votes)
         {
-            return repository.TryGetVotedSuggestions(out vote);
+            VoteRepository votesRepository = new();
+
+            if (employeeRepository.TryGetEmployeeByID(employee, out Employee emp))
+            {
+                if (votesRepository.TryGetVotedSuggestions(out votes))
+                {
+                    return true;
+                }
+            }
+            votes = null;
+            return false;
         }
     }
 }
