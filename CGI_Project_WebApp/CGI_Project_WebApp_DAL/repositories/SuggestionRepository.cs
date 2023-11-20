@@ -26,5 +26,22 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return false;
             }
         }
+
+        public bool TryGetUnusedSuggestions(out SuggestionList suggestionList)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            suggestionList = new SuggestionList();
+
+            try
+            {
+                suggestionList.suggestions = DBContext.Suggestions.Where(s => DBContext.PollSuggestions.Select(ps => ps.SuggestionId).Contains(s.Id) == false).ToList();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }

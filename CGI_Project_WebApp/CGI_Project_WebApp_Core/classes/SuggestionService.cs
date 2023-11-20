@@ -95,6 +95,10 @@ namespace CGI_Project_WebApp_Core.classes
 
         }
 
+        public bool TryGetSuggestions(out SuggestionList suggestions)
+        {
+            return suggestionRepository.TryGetUnusedSuggestions(out suggestions);
+        }
 
     }
 }

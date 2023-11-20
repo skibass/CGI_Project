@@ -106,6 +106,29 @@ namespace CGI_Project_WebApp_DAL.repositories
                 return true;
             }
         }
-        
+
+        public bool TryAddSuggestionToPoll(int pollId, int SuggestionId)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            try
+            {
+                Poll poll = DBContext.Polls.Where(p => p.Id == pollId).First();
+                Suggestion suggestion = DBContext.Suggestions.Where(s => s.Id == SuggestionId).First();
+                if(poll != null && suggestion != null)
+                {
+                    PollSuggestion pollSuggestion = new PollSuggestion();
+                    pollSuggestion.PollId = poll.Id;
+                    pollSuggestion.SuggestionId = suggestion.Id;
+                    DBContext.Add(pollSuggestion);
+                    DBContext.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

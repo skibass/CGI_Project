@@ -158,6 +158,14 @@ namespace CGI_Project_WebApp_Core.classes
             }
         }
 
+        public bool TryAddSuggestionToPoll(Poll poll, Suggestion suggestion)
+        {
+            return TryAddSuggestionToPoll(poll.Id, suggestion.Id);
+        }
+        public bool TryAddSuggestionToPoll(int pollId, int suggestionId)
+        {
+            return pollsRepository.TryAddSuggestionToPoll(pollId, suggestionId);
+        }
         //public bool 
     }
 }
