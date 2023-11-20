@@ -29,16 +29,15 @@
     <div class="profile-backgroundbar"></div>
     <div class="row">
         <div class="col-md-12">
-            <h3 class="hero-title ml-3 text-center">Uw stemmen:</h3>
+            <h3 class="hero-title ml-3 text-center">Uw suggesties:</h3>
             <div id="votesContainer">
                 @foreach (var suggestion in Model.employee.Suggestions)
                 {
                     if (Model.employee.Id == suggestion.EmployeeId)
                     {
                         <div class="vote-info">
-                            <h3 class="hero-title ml-3">Uw suggestie:</h3>
+                            <h3 class="hero-title ml-3">@suggestion.Name</h3>
                             <p class="subtitle">
-                                Naam: @suggestion.Name<br>
                                 Locatie: @suggestion.Location<br>
                                 Beschrijving: @suggestion.Description<br><br>
                                 (optioneel) Exceptie: @suggestion.Exception
