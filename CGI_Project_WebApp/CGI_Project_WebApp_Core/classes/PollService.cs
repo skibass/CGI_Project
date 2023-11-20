@@ -96,12 +96,12 @@ namespace CGI_Project_WebApp_Core.classes
                     }
                     foreach (PollSuggestion suggestion in Suggestions)
                     {
-                        if (MaxCount < suggestion.Suggestion.Votes.Count())
+                        if (MaxCount < suggestion.Suggestion.Votes.Count)
                         {
-                            MaxCount = suggestion.Suggestion.Votes.Count();
+                            MaxCount = suggestion.Suggestion.Votes.Count;
                             Draw = false;
                         }
-                        else if (MaxCount == suggestion.Suggestion.Votes.Count())
+                        else if (MaxCount == suggestion.Suggestion.Votes.Count)
                         {
                             Draw = true;
                         }
@@ -123,13 +123,26 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return pollsRepository.TryRemovePoll(pollId);
         }
-        public bool TryAddPoll(Poll poll)
+        public bool TryAddPoll(NewPollDto newpoll)
         {
-            if (poll.PollSuggestions.Count != 3 && poll.PollSuggestions.Count != 2)
+            try
+            {
+                pollsRepository.TryAddPoll(newpoll, out Poll poll);
+                //add suggestions
+                foreach (Suggestion item in newpoll.suggestions)
+                {
+                   if(!TryAddSuggestionToPoll(poll, item))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
             }
-            return pollsRepository.TryAddPoll(poll);
+
         }
         public bool TryGetPollVotes(out List<Vote> votes, int pollId)
         {

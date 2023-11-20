@@ -100,10 +100,7 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     foreach (Poll poll in allPolls)
                     {
-                        int count;
-                        bool draw;
-
-                        if (pollService.TryGetMaxVoteCount(out count, out draw, poll.Id))
+                        if (pollService.TryGetMaxVoteCount(out int count, out bool draw, poll.Id))
                         {
                             if (poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).FirstOrDefault().Suggestion.Votes.Count == count)
                             {
@@ -162,9 +159,11 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     if(TryGetWinningPolls(out List<Poll> winningPolls, employee))
                     {
-                        EmployeeWinCount employeesWinCount = new EmployeeWinCount();
-                        employeesWinCount.Employee = employee;
-                        employeesWinCount.Count = winningPolls.Count;
+                        EmployeeWinCount employeesWinCount = new EmployeeWinCount
+                        {
+                            Employee = employee,
+                            Count = winningPolls.Count
+                        };
                         EmpWincounts.Add(employeesWinCount);
                     }
                 }

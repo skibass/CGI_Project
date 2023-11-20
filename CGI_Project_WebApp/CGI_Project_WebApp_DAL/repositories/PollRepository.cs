@@ -38,14 +38,22 @@ namespace CGI_Project_WebApp_DAL.repositories
             result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Where(poll => DateTime.Now < poll.StartTime).ToList();
             return result;
         }
-        public bool TryAddPoll(Poll poll)
+        public bool TryAddPoll(NewPollDto NewPoll, out Poll poll)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
+            poll = new Poll();
             try
             {
 
+                poll.Poll_name = NewPoll.Poll_name;
+                poll.StartTime = NewPoll.StartTime;
+                poll.EndTime = NewPoll.EndTime;
+                poll.ManagerId = NewPoll.ManagerId;
+                poll.PeriodId = NewPoll.PeriodId;
+
                 DBContext.Polls.Add(poll);
                 DBContext.SaveChanges();
+
                 return true;
             }
             catch (Exception)
@@ -116,9 +124,11 @@ namespace CGI_Project_WebApp_DAL.repositories
                 Suggestion suggestion = DBContext.Suggestions.Where(s => s.Id == SuggestionId).First();
                 if(poll != null && suggestion != null)
                 {
-                    PollSuggestion pollSuggestion = new PollSuggestion();
-                    pollSuggestion.PollId = poll.Id;
-                    pollSuggestion.SuggestionId = suggestion.Id;
+                    PollSuggestion pollSuggestion = new PollSuggestion
+                    {
+                        PollId = poll.Id,
+                        SuggestionId = suggestion.Id
+                    };
                     DBContext.Add(pollSuggestion);
                     DBContext.SaveChanges();
                     return true;
