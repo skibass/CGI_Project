@@ -28,6 +28,8 @@ namespace CGI_Project_WebApp_Core.classes
 
                         foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
                         {
+                            List<int> tmp = suggestion.Votes.Select(vote => vote.Employee.Id).ToList();
+
                             if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
                             {
                                 validToVote = false;
