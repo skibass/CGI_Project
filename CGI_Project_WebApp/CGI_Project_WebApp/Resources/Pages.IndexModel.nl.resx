@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EnterSuggestDescription" xml:space="preserve">
+    <value>Excursie beschrijving</value>
+  </data>
+  <data name="EnterSuggestInfo" xml:space="preserve">
+    <value>Belangrijke informatie (b.v. neem een zonnebril mee)</value>
+  </data>
+  <data name="EnterSuggestLocation" xml:space="preserve">
+    <value>Excursie locatie</value>
+  </data>
+  <data name="EnterSuggestName" xml:space="preserve">
+    <value>Excursie naam</value>
+  </data>
   <data name="HeroButton" xml:space="preserve">
     <value>Begin</value>
   </data>
@@ -126,8 +138,14 @@
   <data name="HeroTitle" xml:space="preserve">
     <value>Ontgrendel teamavonturen: bouw banden op, één excursie tegelijk. Ontdek, bind en bloei met elke bedrijfsexpeditie!</value>
   </data>
+  <data name="PollTitle" xml:space="preserve">
+    <value>Maak een poll aan</value>
+  </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recente excursies</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Bevestig</value>
   </data>
   <data name="SuggestSubtitle" xml:space="preserve">
     <value>Vul het onderstaande formulier in</value>

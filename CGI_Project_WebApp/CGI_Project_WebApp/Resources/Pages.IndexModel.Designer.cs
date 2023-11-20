@@ -61,6 +61,42 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excursion discription.
+        /// </summary>
+        public static string EnterSuggestDescription {
+            get {
+                return ResourceManager.GetString("EnterSuggestDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Important info (e.g. bring sunglasses).
+        /// </summary>
+        public static string EnterSuggestInfo {
+            get {
+                return ResourceManager.GetString("EnterSuggestInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excursion location.
+        /// </summary>
+        public static string EnterSuggestLocation {
+            get {
+                return ResourceManager.GetString("EnterSuggestLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excursion name.
+        /// </summary>
+        public static string EnterSuggestName {
+            get {
+                return ResourceManager.GetString("EnterSuggestName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string HeroButton {
@@ -88,11 +124,29 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a poll.
+        /// </summary>
+        public static string PollTitle {
+            get {
+                return ResourceManager.GetString("PollTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recent Excursions.
         /// </summary>
         public static string RecentTitle {
             get {
                 return ResourceManager.GetString("RecentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string SubmitButton {
+            get {
+                return ResourceManager.GetString("SubmitButton", resourceCulture);
             }
         }
         

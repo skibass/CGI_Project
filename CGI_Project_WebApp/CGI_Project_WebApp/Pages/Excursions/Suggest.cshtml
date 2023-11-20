@@ -33,14 +33,14 @@
 
 <div class="container mb-5">
     <form method="post">
-        <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="Excursion name..."/><br/>
-        <textarea asp-for="Suggestion.Description" id="edescription" placeholder="Excursion description..." rows="3"></textarea><br/>
-        <input asp-for="Suggestion.Location" type="text" id="elocation" placeholder="Excursion location..."/><br/>
-        <input asp-for="Suggestion.Exception" type="text" id="eimportantinfo" placeholder="Important info (e.g bring sunglasses)..."/>
+        <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="@stringLocalizer["EnterSuggestName"]..."/><br/>
+        <textarea asp-for="Suggestion.Description" id="edescription" placeholder="@stringLocalizer["EnterSuggestDescription"]..." rows="3"></textarea><br/>
+        <input asp-for="Suggestion.Location" type="text" id="elocation" placeholder="@stringLocalizer["EnterSuggestLocation"]..."/><br/>
+        <input asp-for="Suggestion.Exception" type="text" id="eimportantinfo" placeholder="@stringLocalizer["EnterSuggestInfo"]..."/>
 
         @*<button class="addfieldbtn text-white" onclick="addField()">+</button>
 		<button class="removefieldbtn text-white" onclick="removeField()">-</button>*@<br/>
 
-        <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">Submit</button>
+        <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SubmitButton"]</button>
     </form>
 </div>

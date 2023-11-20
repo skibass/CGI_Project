@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EnterSuggestDescription" xml:space="preserve">
+    <value>Excursion discription</value>
+  </data>
+  <data name="EnterSuggestInfo" xml:space="preserve">
+    <value>Important info (e.g. bring sunglasses)</value>
+  </data>
+  <data name="EnterSuggestLocation" xml:space="preserve">
+    <value>Excursion location</value>
+  </data>
+  <data name="EnterSuggestName" xml:space="preserve">
+    <value>Excursion name</value>
+  </data>
   <data name="HeroButton" xml:space="preserve">
     <value>Get started</value>
   </data>
@@ -126,8 +138,14 @@
   <data name="HeroTitle" xml:space="preserve">
     <value>Unlock Team Adventures: Building Bonds, One Excursion at a Time. Discover, Bond, and Thrive with Every Corporate Expedition!</value>
   </data>
+  <data name="PollTitle" xml:space="preserve">
+    <value>Create a poll</value>
+  </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recent Excursions</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="SuggestSubtitle" xml:space="preserve">
     <value>Fill out the form below</value>

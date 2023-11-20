@@ -10,6 +10,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
     public class SuggestModel : PageModel
     {
         public SuggestionService SuggestionService = new();
+        
         [BindProperty]
         public required Suggestion Suggestion { get; set; }
 
