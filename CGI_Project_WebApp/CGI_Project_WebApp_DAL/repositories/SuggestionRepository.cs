@@ -17,15 +17,21 @@ namespace CGI_Project_WebApp_DAL.repositories
             Dbi511119Context DBContext = new Dbi511119Context();
             try
             {
-                DBContext.Suggestions.Add(newSuggestion);
-                DBContext.SaveChanges();
-                return true;
+                if (!DBContext.Suggestions.Any(s =>
+                        string.Equals(s.Name.Trim(), newSuggestion.Name.Trim(), StringComparison.OrdinalIgnoreCase)))
+                {
+                    DBContext.Suggestions.Add(newSuggestion);
+                    DBContext.SaveChanges();
+                    return true;
+                }
+
+                return false;
             }
             catch (Exception)
             {
                 return false;
             }
-        }
+       }
 
         public bool TryGetUnusedSuggestions(out SuggestionList suggestionList)
         {
