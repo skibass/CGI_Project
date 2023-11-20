@@ -27,7 +27,8 @@
 <html>
 <head>
     <title>Leaderboard</title>
-    <!-- Add any additional head content here -->
+    <link rel="stylesheet" href="~/css/leaderboard.css" />
+
 </head>
 <body>
 
@@ -51,7 +52,7 @@
 
                         <div class="col-md-4 mb-2">
                             <!-- Display the name of the current entry -->
-                            <div class="text-center chart-name">@entry.Name</div>
+                            <div class="displayUserName text-center chart-name">@entry.Name</div>
 
                             <!-- Container for the bar chart -->
                             <div class="bar-container d-flex flex-column-reverse position-relative" style="height: @(maxHeight)px;">
@@ -92,7 +93,11 @@
                             <tr>
                                 <!-- Display the position, name, and score for each entry -->
                                 <td>@entry.Position</td>
-                                <td>@entry.Name</td>
+                                <td>
+                                    <div class="displayUserName">
+                                        @entry.Name
+                                    </div>
+                                </td>
                                 <td>@entry.Score</td>
                             </tr>
                         }
