@@ -22,17 +22,10 @@ public class ProfileModel : PageModel
             return string.Empty;
         }
 
-        var parts = name.Split(' ');
-        for (int i = 0; i < parts.Length; i++)
-        {
-            if (parts[i].Length > 0)
-            {
-                parts[i] = parts[i].Substring(0, 1).ToUpper() + parts[i].Substring(1).ToLower();
-            }
-        }
-
-        return string.Join(" ", parts);
+        // Capitalize the first letter of the username and make the rest lowercase
+        return name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
     }
+
 
     public void OnGet()
     {
