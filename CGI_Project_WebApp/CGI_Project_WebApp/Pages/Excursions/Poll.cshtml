@@ -22,17 +22,17 @@
 		<input asp-for="Poll.Poll_name" type="text" id="pname" placeholder="Poll name..."/><br/>
 		<input asp-for="Poll.Period" type="date" id="pdate" placeholder="Select date range..." rows="3"></input><br/>
 		
-		@if (Model.Poll. != null)
+		@if (Model.UnusedSuggestionsList.suggestions != null)
 		{
 			<select asp-for="Poll.PollSuggestions" id="psuggestions" placeholder="Select suggestions..." multiple>
-				@foreach (var suggestion in Model.Poll.)
+				@foreach (var suggestion in Model.UnusedSuggestionsList.suggestions)
 				{
 					<option value="@suggestion">@suggestion</option>
 				}
 			</select>
 			<br/>
 		}
-		else
+		@else
 		{
 			<span class="">No suggestions have been done, ask your employees to make suggestions</span>
 		}
