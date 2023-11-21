@@ -65,7 +65,7 @@ namespace CGI_Project_WebApp.Pages
                 employee.FirstName = User.Identity.Name;
                 employee.Email = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
-                emp.TryAddEmployee(employee);
+                emp.AddEmployee(employee);
             }
         }
     }

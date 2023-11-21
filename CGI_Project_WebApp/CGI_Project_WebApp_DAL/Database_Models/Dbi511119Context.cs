@@ -41,6 +41,7 @@ public partial class Dbi511119Context : DbContext
 
     public virtual DbSet<Vote> Votes { get; set; }
 
+    public virtual DbSet<Error> Errors { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySQL("Server=studmysql01.fhict.local;Uid=dbi511119;Pwd=TeamKever;Database=dbi511119;");
@@ -73,6 +74,23 @@ public partial class Dbi511119Context : DbContext
             entity.Property(e => e.Date1)
                 .HasColumnType("date")
                 .HasColumnName("date");
+        });
+
+        modelBuilder.Entity<Error>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PRIMARY");
+
+            entity.ToTable("errormessage");
+
+            entity.Property(e => e.id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.message)
+                .HasMaxLength(255)
+                .HasColumnName("message");
+            entity.Property(e => e.error_date)
+                .HasColumnType("datetime")
+                .HasColumnName("error_date");
         });
 
         modelBuilder.Entity<Employee>(entity =>

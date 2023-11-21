@@ -2,6 +2,7 @@
 using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.IdentityModel.Tokens;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace CGI_Project_WebApp_Core.classes
             {
                 return false;
             }
-            if (employeeRepository.TryAddEmployee(emp))
+            if (employeeRepository.AddEmployee(emp))
             {
                 return true;
             }
@@ -80,7 +81,7 @@ namespace CGI_Project_WebApp_Core.classes
             {
                 return false;
             }
-            if (employeeRepository.TryAddEmployee(emp))
+            if (employeeRepository.AddEmployee(emp))
             {
                 return true;
             }
@@ -123,7 +124,7 @@ namespace CGI_Project_WebApp_Core.classes
         }
         public bool TryChangeEmployeeRoll(Role role, Employee employee)
         {
-            return employeeRepository.TryChangeEmployeeRoll(role, employee);
+            return employeeRepository.ChangeEmployeeRoll(role, employee);
         }
         public bool TryGetEmployeeByID(int id, out Employee employee)
         {
@@ -134,25 +135,31 @@ namespace CGI_Project_WebApp_Core.classes
             return employeeRepository.TryGetEmployeeByEmailAndFirstName(Email, FirstName, out employee);
         }
 
-        public bool TryGetEmployeeByEmail(string Email, out Employee employee)
+        public Result<Employee> GetEmployeeByEmail(string Email)
         {
-            employee = null;
+            ErrorMessages errorMessages= new ErrorMessages();
+            Employee employee;
+
             try
             {
                 if (DoesEmailExist(Email))
                 {
                     return employeeRepository.TryGetEmployeeByEmail(Email, out employee);
                 }
+                else
+                {
+                    return new Result<Employee> ("Deze email bestaat niet", "email not found");
+                }
             }catch (Exception e)
             {
-                
+                return new Result<Employee> ("bij het ophalen van de gebruiker met email is iets fout gegaan", "er is iets fout gegaan", "something went wrong");
             }
-            return false;
+
         }
 
-        public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 6)
+        public Result<List<EmployeeWinCount>> TryGetEmployeesWithMostWinningVotes(int max = 6)
         {
-            EmpWincounts = new List<EmployeeWinCount>();
+            List<EmployeeWinCount> EmpWincounts = new List<EmployeeWinCount>();
             try
             {
                 foreach (Employee employee in employeeRepository.GetEmployees())
@@ -168,11 +175,11 @@ namespace CGI_Project_WebApp_Core.classes
                     }
                 }
                 EmpWincounts = EmpWincounts.OrderByDescending(e => e.Count).Take(max).ToList();
-                return true;
+                return new Result<List<EmployeeWinCount>> { Data = EmpWincounts };
             }
             catch (Exception)
             {
-                return false;
+                return new Result<List<EmployeeWinCount>> { ErrorMessage = "er is iets fouts gegaan met het ophalen van de win counts van de employees", ErrorMessageUserDisplay="er is iets fout gegaan"}
                 
             }
         }
