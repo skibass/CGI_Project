@@ -1,0 +1,7 @@
+﻿.displayUserName {
+    display: block; /* Or inline-block, depending on your layout needs */
+}
+
+.displayUserName::first-letter {
+    text-transform: uppercase; /* Capitalizes the first letter */
+}

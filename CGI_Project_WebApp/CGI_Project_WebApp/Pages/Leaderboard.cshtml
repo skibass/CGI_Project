@@ -1,11 +1,8 @@
 ﻿@page
-@model CGI_Project_WebApp.Models.LeaderboardModel
+@model CGI_Project_WebApp.Pages.LeaderboardModel
 @{
     // Set the title of the page
     ViewData["Title"] = "Leaderboard";
-
-    // Calculate the maximum score from the top three entries
-    var maxScore = Model.TopThree.Max(e => e.Score);
 
     // Define the maximum height for the bar charts
     var maxHeight = 300;
@@ -18,12 +15,20 @@
 
     // Positional texts for top three
     string[] positions = new string[] { "1st", "2nd", "3rd" };
+
+    // Handle case where there are fewer than 3 top entries
+    while (Model.TopThree.Count < 3)
+    {
+        Model.TopThree.Add((Name: "", Score: 0));
+    }
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Leaderboard</title>
+    <link rel="stylesheet" href="~/css/leaderboard.css" />
+
 </head>
 <body>
 
@@ -41,22 +46,17 @@
                 <div class="row mt-4">
                     @foreach (var index in order)
                     {
-                        var entry = new { i = index, value = Model.TopThree.ElementAt(index) };
-                        
-                        // Calculate the height of the current bar
-                        var barHeight = (entry.value.Score * maxHeight) / maxScore;
-
-                        // Define the minimum height to display score inside the bar
-                        var thresholdHeight = 13;
+                        var entry = Model.TopThree.ElementAtOrDefault(index);
+                        var barHeight = Model.MaxScore > 0 ? (entry.Score * maxHeight) / Model.MaxScore : 0;
+                        var thresholdHeight = 13; // Minimum height to display score inside the bar
 
                         <div class="col-md-4 mb-2">
-
                             <!-- Display the name of the current entry -->
-                            <div class="text-center chart-name">@entry.value.Name</div>
+                            <div class="displayUserName text-center chart-name">@entry.Name</div>
 
                             <!-- Container for the bar chart -->
                             <div class="bar-container d-flex flex-column-reverse position-relative" style="height: @(maxHeight)px;">
-                                <div class="progress @barColors[entry.i]" style="height: @(barHeight)px !important; width: 100%;">
+                                <div class="progress @barColors[index]" style="height: @(barHeight)px; width: 100%;">
                                     <div class="progress-bar" style="width: 100%"></div>
                                 </div>
 
@@ -64,13 +64,13 @@
                                 @if (barHeight <= thresholdHeight)
                                 {
                                     <!-- Display score above the bar if it's too short -->
-                                    <div class="score-above-bar">@entry.value.Score<br>@positions[entry.i]</div>
+                                    <div class="score-above-bar">@entry.Score<br>@positions[index]</div>
                                 }
                                 else
                                 {
                                     <!-- Display score inside the bar if it's tall enough -->
                                     <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
-                                        @entry.value.Score<br>@positions[entry.i]
+                                        @entry.Score<br>@positions[index]
                                     </div>
                                 }
                             </div>
@@ -93,7 +93,11 @@
                             <tr>
                                 <!-- Display the position, name, and score for each entry -->
                                 <td>@entry.Position</td>
-                                <td>@entry.Name</td>
+                                <td>
+                                    <div class="displayUserName">
+                                        @entry.Name
+                                    </div>
+                                </td>
                                 <td>@entry.Score</td>
                             </tr>
                         }
@@ -103,5 +107,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
