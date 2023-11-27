@@ -1,4 +1,4 @@
-﻿using CGI_Project_WebApp_DAL.repositories;
+﻿using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,11 @@ namespace CGI_Project_WebApp_Core.classes
 {
     public class PollService
     {
-        PollRepository pollsRepository = new PollRepository();
+        IPollRepository pollsRepository;
+        public PollService(IPollRepository pollsRepository)
+        {
+            this.pollsRepository = pollsRepository;
+        }
         public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
         {
             VotablePolls = new List<Poll>();
@@ -28,7 +32,7 @@ namespace CGI_Project_WebApp_Core.classes
 
                         foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
                         {
-                            if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
+                            if (suggestion.Votes.Select(vote => vote.EmployeeId).ToList().Contains(employeeId))
                             {
                                 validToVote = false;
                             }
@@ -63,7 +67,7 @@ namespace CGI_Project_WebApp_Core.classes
 
                         foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
                         {
-                            if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
+                            if (suggestion.Votes.Select(vote => vote.EmployeeId).ToList().Contains(employeeId))
                             {
                                 validToVote = false;
                             }
@@ -86,7 +90,7 @@ namespace CGI_Project_WebApp_Core.classes
             Draw = false;
             try
             {
-                if (pollsRepository.TryGetPoll(out Poll poll, pollId))
+                if (pollsRepository.TryGetPoll(out Poll? poll, pollId))
                 {
 
                     List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();

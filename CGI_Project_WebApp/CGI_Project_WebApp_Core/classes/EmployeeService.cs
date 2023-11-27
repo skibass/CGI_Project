@@ -1,7 +1,5 @@
-﻿using CGI_Project_WebApp_DAL.Database_Models;
-using CGI_Project_WebApp_DAL.repositories;
+﻿using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +10,15 @@ namespace CGI_Project_WebApp_Core.classes
 {
     public class EmployeeService
     {
-        EmployeeRepository employeeRepository = new EmployeeRepository();
+        IEmployeeRepository employeeRepository;
+        IPollRepository pollRepository;
+
+        public EmployeeService(IEmployeeRepository employeeRepository, IPollRepository pollRepository)
+        {
+            this.employeeRepository = employeeRepository;
+            this.pollRepository = pollRepository;
+        }
+
         public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
         {
             
@@ -25,7 +31,7 @@ namespace CGI_Project_WebApp_Core.classes
                     polls.Add(suggestion.Poll);
                 }
             }
-            if (polls.IsNullOrEmpty())
+            if (polls.Count==0)
             {
                 return false;
             }
@@ -91,7 +97,7 @@ namespace CGI_Project_WebApp_Core.classes
         }
         public bool TryGetWinningPolls(out List<Poll> winningPolls, Employee employee)
         {
-            PollService pollService = new PollService();
+            PollService pollService = new PollService(pollRepository);
             winningPolls = new List<Poll>();
 
             try

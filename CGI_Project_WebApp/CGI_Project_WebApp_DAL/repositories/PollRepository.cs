@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_DAL.Database_Models;
 using CGI_Project_WebApp_Models;
 using Google.Protobuf.WellKnownTypes;
@@ -12,7 +13,7 @@ using Org.BouncyCastle.Utilities;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
-    public class PollRepository
+    public class PollRepository : IPollRepository
     {
 
         //this had recently been renamed

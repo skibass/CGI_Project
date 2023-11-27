@@ -1,4 +1,5 @@
-﻿using CGI_Project_WebApp_DAL.Database_Models;
+﻿using CGI_Project_WebApp_Core.Interfaces;
+using CGI_Project_WebApp_DAL.Database_Models;
 using CGI_Project_WebApp_Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
-    public class SuggestionRepository
+    public class SuggestionRepository : ISuggestionRepository
     {
        public bool TryAddSuggestionToDB(Suggestion newSuggestion)
        {
