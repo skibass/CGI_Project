@@ -39,8 +39,9 @@
                             <h3 class="hero-title ml-3">@suggestion.Name</h3>
                             <p class="subtitle">
                                 Locatie: @suggestion.Location<br>
-                                Beschrijving: @suggestion.Description<br><br>
-                                (optioneel) Exceptie: @suggestion.Exception
+                                Beschrijving: @suggestion.Description<br>
+                                (optioneel) Exceptie: @suggestion.Exception<br>
+                                Stemmen: @suggestion.Votes.Count()
                             </p>
                         </div>
                     }
