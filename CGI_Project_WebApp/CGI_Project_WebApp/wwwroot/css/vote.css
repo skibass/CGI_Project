@@ -11,6 +11,10 @@
     background-color: var(--primary);
 }
 
+.vote-progress-bar{
+line-height: baseline;
+}
+
 .vote-item{
     background-color: var(--secondary);
 
