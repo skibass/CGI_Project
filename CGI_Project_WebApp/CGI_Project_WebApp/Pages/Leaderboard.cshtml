@@ -1,7 +1,6 @@
 ﻿@page
 @model CGI_Project_WebApp.Pages.LeaderboardModel
 @{
-    // Set the title of the page
     ViewData["Title"] = "Leaderboard";
 
     // Define the maximum height for the bar charts
@@ -13,14 +12,68 @@
     // Adjusted order for the bar display
     int[] order = new int[] { 1, 0, 2 };
 
-    // Positional texts for top three
-    string[] positions = new string[] { "1st", "2nd", "3rd" };
 
     // Handle case where there are fewer than 3 top entries
     while (Model.TopThree.Count < 3)
     {
         Model.TopThree.Add((Name: "", Score: 0));
     }
+}
+@functions {
+    private Dictionary<int, int> GetDenseRank(List<(string Name, int Score)> scores)
+    {
+        var ranks = new Dictionary<int, int>();
+        int rank = 1;
+        int prevScore = int.MinValue;
+        foreach (var score in scores.OrderByDescending(s => s.Score))
+        {
+            if (score.Score != prevScore)
+            {
+                prevScore = score.Score;
+                if (!ranks.ContainsKey(score.Score))
+                {
+                    ranks.Add(score.Score, rank);
+                }
+                rank++; 
+            }
+            else if (!ranks.ContainsKey(score.Score))
+            {
+                ranks.Add(score.Score, rank); 
+            }
+        }
+        return ranks;
+    }
+
+    private string GetOrdinal(int number)
+    {
+        if (number <= 0) return number.ToString();
+
+        switch (number % 100)
+        {
+            case 11:
+            case 12:
+            case 13:
+                return number + "th";
+        }
+
+        switch (number % 10)
+        {
+            case 1:
+                return number + "st";
+            case 2:
+                return number + "nd";
+            case 3:
+                return number + "rd";
+            default:
+                return number + "th";
+        }
+    }
+}
+
+@{
+    // Calculate the dense rankings for all scores
+    var allScores = Model.TopThree.Concat(Model.PlacesFourToTen.Select(x => (x.Name, x.Score))).ToList();
+    var denseRanks = GetDenseRank(allScores);
 }
 
 <!DOCTYPE html>
@@ -44,10 +97,12 @@
 
                 <!-- Create bar charts for the top three entries -->
                 <div class="row mt-4">
+                    
                     @foreach (var index in order)
                     {
                         var entry = Model.TopThree.ElementAtOrDefault(index);
-                        var barHeight = Model.MaxScore > 0 ? (entry.Score * maxHeight) / Model.MaxScore : 0;
+                        var scorePercentage = Model.MaxScore > 0 ? Math.Round(((double)entry.Score / Model.MaxScore) * 100) : 0;
+                        var barHeight = scorePercentage * (maxHeight / 100); // maxHeight is the maximum pixel height for the bar
                         var thresholdHeight = 13; // Minimum height to display score inside the bar
 
                         <div class="col-md-4 mb-2">
@@ -64,18 +119,20 @@
                                 @if (barHeight <= thresholdHeight)
                                 {
                                     <!-- Display score above the bar if it's too short -->
-                                    <div class="score-above-bar">@entry.Score<br>@positions[index]</div>
+                                    <div class="score-above-bar">@entry.Score <br>@GetOrdinal(denseRanks[entry.Score])</div>
                                 }
                                 else
                                 {
                                     <!-- Display score inside the bar if it's tall enough -->
                                     <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
-                                        @entry.Score<br>@positions[index]
+                                        @entry.Score <br>@GetOrdinal(denseRanks[entry.Score])
                                     </div>
                                 }
                             </div>
                         </div>
                     }
+
+
                 </div>
 
                 <!-- Display scores for positions 4-10 in a table -->
@@ -91,8 +148,8 @@
                         @foreach (var entry in Model.PlacesFourToTen)
                         {
                             <tr>
-                                <!-- Display the position, name, and score for each entry -->
-                                <td>@entry.Position</td>
+                                <!-- Use the denseRanks dictionary to display the position -->
+                                <td>@GetOrdinal(denseRanks[entry.Score])</td>
                                 <td>
                                     <div class="displayUserName">
                                         @entry.Name

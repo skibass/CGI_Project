@@ -155,7 +155,7 @@ namespace CGI_Project_WebApp_Core.classes
             return false;
         }
 
-        public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 6)
+        public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 10)
         {
             EmpWincounts = new List<EmployeeWinCount>();
             try
@@ -172,7 +172,9 @@ namespace CGI_Project_WebApp_Core.classes
                         EmpWincounts.Add(employeesWinCount);
                     }
                 }
+
                 EmpWincounts = EmpWincounts.OrderByDescending(e => e.Count).Take(max).ToList();
+                
                 return true;
             }
             catch (Exception)

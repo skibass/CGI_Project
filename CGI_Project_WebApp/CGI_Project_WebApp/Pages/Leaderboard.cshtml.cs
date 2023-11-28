@@ -21,8 +21,10 @@ namespace CGI_Project_WebApp.Pages
             if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts))
             {
                 LeaderboardData = empWinCounts
-                    .Select(e => (e.Employee.FirstName, e.Count)) // Assuming FirstName is what you want to display
+                    .Select(e => (e.Employee.FirstName, e.Count)) 
                     .ToList();
+
+                
                 MaxScore = LeaderboardData.Any() ? LeaderboardData.Max(e => e.Score) : 0;
             }
             else
@@ -32,7 +34,6 @@ namespace CGI_Project_WebApp.Pages
                 MaxScore = 0;
             }
 
-            // Assuming you want to show the top 10 employees
             // Top three for the chart
             TopThree = LeaderboardData.Take(3).ToList();
 
