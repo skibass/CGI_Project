@@ -28,14 +28,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public void OnGet()
         {
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-            //if (VoteService.TryGetVotedSuggestions(out Vote vote))
-            //{
-            //    Progress = vote.Progress;
-            //}
-            //else
-            //{
-            //    Progress = 0;
-            //}
+
             if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
                 if (pollService.TryGetValidAndVoteablePolls(out List<Poll> polls, emp.Id))
