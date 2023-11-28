@@ -49,5 +49,21 @@ namespace CGI_Project_WebApp_DAL.repositories
             }
 
         }
+
+        public bool TryGetSuggestionWithId(out Suggestion suggestion, int id)
+        {
+            Dbi511119Context DBContext = new Dbi511119Context();
+            suggestion = new Suggestion();
+
+            try
+            {
+                suggestion = DBContext.Suggestions.Include(s => s.Votes).Include(ps=>ps.PollSuggestions).ThenInclude(p=>p.Poll).Where(p => p.Id == id).FirstOrDefault();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
