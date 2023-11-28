@@ -10,10 +10,16 @@ public class ProfileModel : PageModel
 {
     EmployeeService employeeService = new EmployeeService();
     public Employee employee = new();
-
+    SuggestionService suggestionService = new SuggestionService();
+    public List<SuggestionWithVoteCount> SuggestionsWithVoteCount { get; set; } = new List<SuggestionWithVoteCount>();
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
     public string UserProfileImage { get; set; }
+    public class SuggestionWithVoteCount
+    {
+        public Suggestion Suggestion { get; set; }
+        public int VoteCount { get; set; }
+    }
 
     private string FormatName(string name)
     {
@@ -45,6 +51,17 @@ public class ProfileModel : PageModel
         else
         {
             //er is geen email/ kan de email niet ophalen
+        }
+        foreach (var empSuggestion in employee.Suggestions)
+        {
+            if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id))
+            {
+                SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                {
+                    Suggestion = suggestion,
+                    VoteCount = suggestion.Votes.Count
+                });
+            }
         }
     }
 }

@@ -31,22 +31,20 @@
         <div class="col-md-12">
             <h3 class="hero-title ml-3 text-center">Uw suggesties:</h3>
             <div id="votesContainer">
-                @foreach (var suggestion in Model.employee.Suggestions)
+                @foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
                 {
-                    if (Model.employee.Id == suggestion.EmployeeId)
-                    {
-                        <div class="vote-info">
-                            <h3 class="hero-title ml-3">@suggestion.Name</h3>
-                            <p class="subtitle">
-                                Locatie: @suggestion.Location<br>
-                                Beschrijving: @suggestion.Description<br>
-                                (optioneel) Exceptie: @suggestion.Exception<br>
-                                Stemmen: @suggestion.Votes.Count()
-                            </p>
-                        </div>
-                    }
+                    <div class="vote-info">
+                        <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion.Name</h3>
+                        <p class="subtitle">
+                            Locatie: @suggestionWithCount.Suggestion.Location<br>
+                            Beschrijving: @suggestionWithCount.Suggestion.Description<br>
+                            (optioneel) Exceptie: @suggestionWithCount.Suggestion.Exception<br>
+                            Stemmen: @suggestionWithCount.VoteCount
+                        </p>
+                    </div>
                 }
             </div>
+
             <div class="pagination">
                 <!-- Pagination controls will be dynamically inserted here -->
             </div>
