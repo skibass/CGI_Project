@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
                                 <div class="card-body text-center">
-                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="TestAjax()">Vote</button>
+                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="SubmitVote(this)">Vote</button>
                                 </div>
                             </div>
                         </div>
@@ -127,14 +127,13 @@
         progressBar.style.width = percentage + "%";
         progressBar.innerHTML = percentage.toFixed(2) + "%";
     });
-
-        function TestAjax(){
-               $.ajax({
+    function TestAjax() {
+        $.ajax({
             type: 'POST',
             url: '/Excursions/Vote?handler=TestAjax',
             contentType: 'application/json',
             dataType: 'json',
-             data: JSON.stringify({ testval: 25}),
+            data: JSON.stringify({ testval: 25 }),
             success: function (response) {
                 console.log(response);
                 // Handle success
@@ -143,24 +142,30 @@
                 console.error(error.responseText);
                 // Handle error
             }
-        }
+        });
+    }
 
-        function SubmitVote(target){
+    function SubmitVote(target){
 
-            let suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
-            
-            $.ajax({
+        var suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
+        
+        console.log(suggestionId);
+        
+        $.ajax({
             type: 'POST',
             url: '/Excursions/Vote?handler=SubmitVote',
             contentType: 'application/json',
             dataType: 'json',
-             data: JSON.stringify({ suggestionId: suggestionId}),
+            data: JSON.stringify({ suggestionId: suggestionId}),
+            headers: {
+                RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
             success: function (response) {
                 console.log(response);
                 // Handle success
             },
             error: function (error) {
-                console.error(error.responseText);
+                console.log(error.responseText);
                 // Handle error
             }
         });
