@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Vote";
 }
+@Html.AntiForgeryToken()
 @using CGI_Project_WebApp_Models
 @model CGI_Project_WebApp.Pages.Excursions.VoteModel
 <head>
@@ -25,24 +26,50 @@
         </div>
 
         <div id="collapse@(poll.Id)" class="vote-collection collapse">
-            @foreach (var suggestion in poll.PollSuggestions)
+            @{var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Suggestion.Votes.Count);}
+            @foreach (var suggestion in sortedSuggestions){
+                 <div class="vote-card mb-3" data-id=@suggestion.SuggestionId>
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h5 class="card-title">@suggestion.Suggestion.Name</h5>
+                                    <p class="card-text">@suggestion.Suggestion.Description</p>
+                                    <a href="#" class="text-decoration-none">Read More &rarr;</a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
+                                <div class="card-body text-center">
+                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="TestAjax()">Vote</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            @foreach (var suggestion in sortedSuggestions)
             {
                 var optionName = suggestion.Suggestion.Name;
                 var suggestionId = (int)suggestion.SuggestionId;
                 var percentage = Model.VotePercentages.GetValueOrDefault(suggestionId, 0);
                 var voteCount = Model.VoteCounts.GetValueOrDefault(suggestionId, 0);
 
+                
+
+
                 <div class="container my-4 mt-4">
                     <div class="row">
                         <div class="col-md-12 p-0 m-0">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="col-2">
+                                <div class="col-3">
                                     <span>@optionName</span>
                                 </div>
-                                <div class="col-9">
-                                    <div class="progress mx-2 vote-progress-bar-container" data-percentage="@(percentage.ToString("0.##"))">
-                                        <div class="progress-bar" role="progressbar">
-                                            <p>@percentage.ToString("0.##")</p>
+                                <div class="col-8">
+                                    <div class="progress mx-2 vote-progress-bar-container"  data-percentage="@(percentage.ToString("0.##"))">
+                                        <div class="progress-bar vote-progress-bar" role="progressbar">
+                                            <p class="vote-progess-percentage m-0">@percentage.ToString("0.#")%</p>
+                                            
                                             <script>
                                                 var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
                                                 console.log("Vote Percentages:", votePercentages);
@@ -100,4 +127,42 @@
         progressBar.style.width = percentage + "%";
         progressBar.innerHTML = percentage.toFixed(2) + "%";
     });
+
+        function TestAjax(){
+               $.ajax({
+            type: 'POST',
+            url: '/Excursions/Vote?handler=TestAjax',
+            contentType: 'application/json',
+            dataType: 'json',
+             data: JSON.stringify({ testval: 25}),
+            success: function (response) {
+                console.log(response);
+                // Handle success
+            },
+            error: function (error) {
+                console.error(error.responseText);
+                // Handle error
+            }
+        }
+
+        function SubmitVote(target){
+
+            let suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
+            
+            $.ajax({
+            type: 'POST',
+            url: '/Excursions/Vote?handler=SubmitVote',
+            contentType: 'application/json',
+            dataType: 'json',
+             data: JSON.stringify({ suggestionId: suggestionId}),
+            success: function (response) {
+                console.log(response);
+                // Handle success
+            },
+            error: function (error) {
+                console.error(error.responseText);
+                // Handle error
+            }
+        });
+    }
 </script>
