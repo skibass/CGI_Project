@@ -1,7 +1,6 @@
 ﻿@page
 @model CGI_Project_WebApp.Pages.LeaderboardModel
 @{
-    // Set the title of the page
     ViewData["Title"] = "Leaderboard";
 
     // Define the maximum height for the bar charts
@@ -98,10 +97,12 @@
 
                 <!-- Create bar charts for the top three entries -->
                 <div class="row mt-4">
+                    
                     @foreach (var index in order)
                     {
                         var entry = Model.TopThree.ElementAtOrDefault(index);
-                        var barHeight = Model.MaxScore > 0 ? (entry.Score * maxHeight) / Model.MaxScore : 0;
+                        var scorePercentage = Model.MaxScore > 0 ? ((double)entry.Score / Model.MaxScore) * 100 : 0;
+                        var barHeight = scorePercentage * (maxHeight / 100); // maxHeight is the maximum pixel height for the bar
                         var thresholdHeight = 13; // Minimum height to display score inside the bar
 
                         <div class="col-md-4 mb-2">
@@ -118,18 +119,20 @@
                                 @if (barHeight <= thresholdHeight)
                                 {
                                     <!-- Display score above the bar if it's too short -->
-                                    <div class="score-above-bar">@entry.Score<br>@GetOrdinal(denseRanks[entry.Score])</div>
+                                    <div class="score-above-bar">@entry.Score <br>@GetOrdinal(denseRanks[entry.Score])</div>
                                 }
                                 else
                                 {
                                     <!-- Display score inside the bar if it's tall enough -->
                                     <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
-                                        @entry.Score<br>@GetOrdinal(denseRanks[entry.Score])
+                                        @entry.Score <br>@GetOrdinal(denseRanks[entry.Score])
                                     </div>
                                 }
                             </div>
                         </div>
                     }
+
+
                 </div>
 
                 <!-- Display scores for positions 4-10 in a table -->
