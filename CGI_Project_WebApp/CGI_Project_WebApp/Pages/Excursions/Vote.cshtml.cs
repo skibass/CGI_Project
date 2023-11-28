@@ -64,14 +64,15 @@ namespace CGI_Project_WebApp.Pages.Excursions
             }
         }
 
-        
-        public IActionResult OnPostSubmitVote([FromBody]int suggestionId){
+        public IActionResult OnPostSubmitVote([FromBody]int suggestionId)
+        {
             Console.WriteLine("Arrived at function");
-            return Content("success," + suggestionId); 
+            return Content("success, " + suggestionId);
         }
 
         [HttpPost]
-         public void TestAjax([FromBody]int testval){
+         public void TestAjax([FromBody]int testval)
+         {
             Console.WriteLine("Arrived at function, received:" + testval);
         }
 
