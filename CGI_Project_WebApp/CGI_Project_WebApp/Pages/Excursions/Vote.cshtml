@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Vote";
 }
+@Html.AntiForgeryToken()
 @using CGI_Project_WebApp_Models
 @model CGI_Project_WebApp.Pages.Excursions.VoteModel
 <head>
@@ -39,7 +40,7 @@
                             </div>
                             <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
                                 <div class="card-body text-center">
-                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="SubmitVote(this)">Vote</button>
+                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="TestAjax()">Vote</button>
                                 </div>
                             </div>
                         </div>
@@ -127,23 +128,41 @@
         progressBar.innerHTML = percentage.toFixed(2) + "%";
     });
 
-    function SubmitVote(target){
-
-        let suggestionId = $(target).parents(".vote-card").attr("data-id");
-          
-        $.ajax({
-        type: 'POST',
-        url: '/Excursions/SubmitVote',
-        contentType: 'application/json',
-        data: "vote",
-        success: function (response) {
-            console.log(response);
-            // Handle success
-        },
-        error: function (error) {
-            console.error(error);
-            // Handle error
+        function TestAjax(){
+               $.ajax({
+            type: 'POST',
+            url: '/Excursions/Vote?handler=TestAjax',
+            contentType: 'application/json',
+            dataType: 'json',
+             data: JSON.stringify({ testval: 25}),
+            success: function (response) {
+                console.log(response);
+                // Handle success
+            },
+            error: function (error) {
+                console.error(error.responseText);
+                // Handle error
+            }
         }
-    });
+
+        function SubmitVote(target){
+
+            let suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
+            
+            $.ajax({
+            type: 'POST',
+            url: '/Excursions/Vote?handler=SubmitVote',
+            contentType: 'application/json',
+            dataType: 'json',
+             data: JSON.stringify({ suggestionId: suggestionId}),
+            success: function (response) {
+                console.log(response);
+                // Handle success
+            },
+            error: function (error) {
+                console.error(error.responseText);
+                // Handle error
+            }
+        });
     }
 </script>

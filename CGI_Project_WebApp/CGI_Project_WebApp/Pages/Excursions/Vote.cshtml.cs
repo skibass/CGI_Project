@@ -5,6 +5,7 @@ using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CGI_Project_WebApp.Pages.Excursions
 {
@@ -61,7 +62,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
                             double percentage = totalVotes == 0 ? 0 : (double)VoteCounts[suggestionId] / totalVotes * 100;
                             VotePercentages[suggestionId] = percentage;
 
-                            Console.WriteLine($"Suggestion ID: {suggestionId}, Percentage: {percentage}, Vote Count: {VoteCounts[suggestionId]}");
+                            //Console.WriteLine($"Suggestion ID: {suggestionId}, Percentage: {percentage}, Vote Count: {VoteCounts[suggestionId]}");
                         }
 
                         RedirectToPage();
@@ -69,5 +70,17 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 }
             }
         }
+
+        
+        public IActionResult OnPostSubmitVote([FromBody]int suggestionId){
+            Console.WriteLine("Arrived at function");
+            return Content("success," + suggestionId); 
+        }
+
+        [HttpPost]
+         public void TestAjax([FromBody]int testval){
+            Console.WriteLine("Arrived at function, received:" + testval);
+        }
+
     }
 }
