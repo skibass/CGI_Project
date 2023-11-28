@@ -153,7 +153,7 @@ namespace CGI_Project_WebApp_Core.classes
             votes = new List<Vote>();
             try
             {
-                if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
+                if (pollsRepository.TryGetPoll(out Poll poll, pollId))
                 {
                     List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
                     votes = new List<Vote>();

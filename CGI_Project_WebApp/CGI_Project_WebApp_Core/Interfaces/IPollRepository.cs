@@ -15,7 +15,6 @@ namespace CGI_Project_WebApp_Core.Interfaces
         public bool TryAddPoll(NewPollDto NewPoll, out Poll poll);
         public bool TryRemovePoll(Poll poll);
         public bool TryRemovePoll(int pollId);
-        public bool TryGetPollByPollID(out Poll? poll, int pollId);
         public bool TryGetPoll(out Poll? poll, int pollId);
         public bool TryAddSuggestionToPoll(int pollId, int SuggestionId);
 

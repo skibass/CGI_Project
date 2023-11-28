@@ -19,11 +19,15 @@ namespace CGI_Project_WebApp_Core.classes
             this.pollRepository = pollRepository;
         }
 
-        public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
+        public bool TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, Employee employee)
         {
-            
-            List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
             polls = new List<Poll>();
+            try
+            {
+
+
+            List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
+
             foreach (PollSuggestion suggestion in pollSuggestion)
             {
                 if (suggestion.Poll != null)
@@ -31,13 +35,12 @@ namespace CGI_Project_WebApp_Core.classes
                     polls.Add(suggestion.Poll);
                 }
             }
-            if (polls.Count==0)
+
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
-            }
-            else
-            {
-                return true;
             }
         }
         public bool getEmployeeSuggestions(out List<Suggestion> suggestions, Employee employee)
@@ -102,7 +105,7 @@ namespace CGI_Project_WebApp_Core.classes
 
             try
             {
-                if (TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> allPolls, employee))
+                if (TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> allPolls, employee))
                 {
                     foreach (Poll poll in allPolls)
                     {

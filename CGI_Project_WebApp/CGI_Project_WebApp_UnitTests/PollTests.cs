@@ -2,13 +2,17 @@
 using CGI_Project_WebApp_Core.classes;
 using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
+using CGI_Project_WebApp_UnitTests.Factory;
 using FakeItEasy;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using System.Reflection.PortableExecutable;
 
 namespace CGI_Project_WebApp_UnitTests
 {
     public class PollTests
     {
+        private PollFactory pollFactory = new PollFactory();
+
         private PollService pollService;
         private readonly IPollRepository pollRepository;
         //private
@@ -21,255 +25,15 @@ namespace CGI_Project_WebApp_UnitTests
         }
 
         [Fact]
-        public void GetVotablePollsTest_3OpenPollsTwoVotable()
+        public void GetVotablePollsTest_3_Open_polls_two_votable()
         {
 
             A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
                 new List<Poll>
                 {
-                    new Poll
-                    {
-                        Poll_name = "TestPoll1",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    },
-                    new Poll
-                    {
-                        Poll_name = "TestPoll2",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    },
-                    new Poll
-                    {
-                        Poll_name = "TestPoll3",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 8,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    }
+                    pollFactory.BasicPoll(23),
+                    pollFactory.BasicPoll(24),
+                    pollFactory.BasicPoll(1),
                 }
                 );
 
@@ -279,255 +43,15 @@ namespace CGI_Project_WebApp_UnitTests
         }
 
         [Fact]
-        public void GetVotablePollsTest_3OpenPollsZeroVotable()
+        public void GetVotablePollsTest_3_Open_polls_zero_votable()
         {
 
             A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
                 new List<Poll>
                 {
-                    new Poll
-                    {
-                        Poll_name = "TestPoll1",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    },
-                    new Poll
-                    {
-                        Poll_name = "TestPoll2",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    },
-                    new Poll
-                    {
-                        Poll_name = "TestPoll3",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 8,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    }
+                    pollFactory.BasicPoll(1),
+                    pollFactory.BasicPoll(1),
+                    pollFactory.BasicPoll(1)
                 }
                 );
 
@@ -537,257 +61,17 @@ namespace CGI_Project_WebApp_UnitTests
         }
 
         [Fact]
-        public void GetNonVotablePollsTest_3OpenPolls1NonVotable()
+        public void GetNonVotablePollsTest_3_Open_polls_1_non_votable()
         {
 
             A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
                 new List<Poll>
                 {
-                    new Poll
-                    {
-                        Poll_name = "TestPoll1",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    },
-                    new Poll
-                    {
-                        Poll_name = "TestPoll2",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    },
-                    new Poll
-                    {
-                        Poll_name = "TestPoll3",
-                        Id = 1,
-                        ManagerId = 1,
-                        StartTime = DateTime.Now.AddDays(-1),
-                        EndTime = DateTime.Now.AddDays(1),
-                        PeriodId= 1,
-                        PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 8,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 1,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                    }
+                    pollFactory.BasicPoll(1),
+                    pollFactory.BasicPoll(988),
+                    pollFactory.BasicPoll(987)
                 }
-                );
+                ) ;
 
             pollService.TryGetValidButNonVoteablePolls(out List<Poll> NonVotablePolls, 1);
 
@@ -795,98 +79,12 @@ namespace CGI_Project_WebApp_UnitTests
         }
 
         [Fact]
-        public void TryGetMaxVoteCount_3VotesNoDraw()
+        public void TryGetMaxVoteCount_3_Votes_no_draw()
         {
             Poll poll;
             A.CallTo(() => pollRepository.TryGetPoll(out poll, 1)).Returns(true).AssignsOutAndRefParameters(
-                new Poll
-                {
-                    Poll_name = "TestPoll1",
-                    Id = 1,
-                    ManagerId = 1,
-                    StartTime = DateTime.Now.AddDays(-1),
-                    EndTime = DateTime.Now.AddDays(1),
-                    PeriodId = 1,
-                    PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                                                                    new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                }
-                  );
+                pollFactory.BasicPoll(1)
+                  ) ;
 
             pollService.TryGetMaxVoteCount(out int MaxCount, out bool Draw, 1);
 
@@ -894,109 +92,43 @@ namespace CGI_Project_WebApp_UnitTests
             Assert.False(Draw);
         }
         [Fact]
-        public void TryGetMaxVoteCount_3VotesAndDraw()
+        public void TryGetMaxVoteCount_3_Votes_and_draw()
         {
             Poll poll;
             A.CallTo(() => pollRepository.TryGetPoll(out poll, 1)).Returns(true).AssignsOutAndRefParameters(
-                new Poll
-                {
-                    Poll_name = "TestPoll1",
-                    Id = 1,
-                    ManagerId = 1,
-                    StartTime = DateTime.Now.AddDays(-1),
-                    EndTime = DateTime.Now.AddDays(1),
-                    PeriodId = 1,
-                    PollSuggestions = new List<PollSuggestion>
-                        {
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                                                                    new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 3,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 3,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            },
-                            new PollSuggestion
-                            {
-                                Suggestion = new Suggestion
-                                {
-                                      Name="Efteling",
-                                      Id = 1,
-                                      Votes = new List<Vote>
-                                      {
-                                          new Vote
-                                          {
-                                              Id = 1,
-                                              EmployeeId = 18,
-                                               SuggestionId= 1,
-                                          },
-                                          new Vote
-                                          {
-                                              Id = 2,
-                                              EmployeeId = 81,
-                                               SuggestionId= 1,
-                                          }
-                                      }
-                                }
-                            }
-                        }
-                }
+                pollFactory.BasicDrawPoll()
                   );
 
             pollService.TryGetMaxVoteCount(out int MaxCount, out bool Draw, 1);
 
             Assert.Equal(3, MaxCount);
             Assert.True(Draw);
+        }
+
+        [Fact]
+        public void TryGetPollVotes_8_Votes()
+        {
+
+            Poll poll;
+            A.CallTo(() => pollRepository.TryGetPoll(out poll, 1)).Returns(true).AssignsOutAndRefParameters(
+               pollFactory.BasicDrawPoll()
+                  );
+
+            pollService.TryGetPollVotes(out List<Vote> votes, 1);
+
+            Assert.Equal(8, votes.Count);
+        }
+        [Fact]
+        public void TryGetPollVotes_0_Votes()
+        {
+            Poll poll;
+            A.CallTo(() => pollRepository.TryGetPoll(out poll, 1)).Returns(true).AssignsOutAndRefParameters(
+                pollFactory.NoVotePoll()
+                  );
+
+            pollService.TryGetPollVotes(out List<Vote> votes, 1);
+
+            Assert.Empty(votes);
         }
 
 
