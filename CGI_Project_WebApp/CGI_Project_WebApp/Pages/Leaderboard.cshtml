@@ -101,7 +101,7 @@
                     @foreach (var index in order)
                     {
                         var entry = Model.TopThree.ElementAtOrDefault(index);
-                        var scorePercentage = Model.MaxScore > 0 ? ((double)entry.Score / Model.MaxScore) * 100 : 0;
+                        var scorePercentage = Model.MaxScore > 0 ? Math.Round(((double)entry.Score / Model.MaxScore) * 100) : 0;
                         var barHeight = scorePercentage * (maxHeight / 100); // maxHeight is the maximum pixel height for the bar
                         var thresholdHeight = 13; // Minimum height to display score inside the bar
 
