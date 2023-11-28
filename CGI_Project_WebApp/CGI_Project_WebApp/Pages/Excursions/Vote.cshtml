@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
                                 <div class="card-body text-center">
-                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="TestAjax()">Vote</button>
+                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="SubmitVote(this)">Vote</button>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                             
                                             <script>
                                                 var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
-                                                console.log("Vote Percentages:", votePercentages);
+                                                //console.log("Vote Percentages:", votePercentages);
                                             </script>
                                         </div>
                                     </div>
@@ -98,13 +98,8 @@
 </div>
 
 <script>
-    var changeChevron = function (event) {
-        var container = $(event.target).closest('.vote-item');
-        var chevron = container.find('.chevron.down');
-        chevron.toggleClass('up');
-    }
 
-    $(document).ready(function () {
+     $(document).ready(function () {
         $('[data-bs-toggle="collapse"]').collapse();
 
         $(".vote-progress-bar-container").each(function () {
@@ -118,6 +113,12 @@
         });
     });
 
+    var changeChevron = function (event) {
+        var container = $(event.target).closest('.vote-item');
+        var chevron = container.find('.chevron.down');
+        chevron.toggleClass('up');
+    }
+
     var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
 
     // Update progress bars based on the calculated percentages
@@ -128,41 +129,29 @@
         progressBar.innerHTML = percentage.toFixed(2) + "%";
     });
 
-        function TestAjax(){
-               $.ajax({
-            type: 'POST',
-            url: '/Excursions/Vote?handler=TestAjax',
-            contentType: 'application/json',
-            dataType: 'json',
-             data: JSON.stringify({ testval: 25}),
-            success: function (response) {
-                console.log(response);
-                // Handle success
-            },
-            error: function (error) {
-                console.error(error.responseText);
-                // Handle error
-            }
-        }
+   
 
-        function SubmitVote(target){
+        
 
-            let suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
-            
-            $.ajax({
+
+    function SubmitVote(target){
+
+        let suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
+        
+        $.ajax({
             type: 'POST',
             url: '/Excursions/Vote?handler=SubmitVote',
             contentType: 'application/json',
             dataType: 'json',
-             data: JSON.stringify({ suggestionId: suggestionId}),
-            success: function (response) {
-                console.log(response);
-                // Handle success
-            },
-            error: function (error) {
-                console.error(error.responseText);
-                // Handle error
-            }
-        });
-    }
+            data: JSON.stringify({ suggestionId: suggestionId}),
+        success: function (response) {
+            console.log(response);
+            // Handle success
+        },
+        error: function (error) {
+            console.error(error.responseText);
+            // Handle error
+        }
+    });
+    
 </script>
