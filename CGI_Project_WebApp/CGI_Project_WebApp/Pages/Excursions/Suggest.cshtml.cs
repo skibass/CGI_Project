@@ -33,6 +33,11 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public async void OnPost()
         {
+
+            TempData["ShowToast"] = true;
+
+
+
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             //TODO: Finish Error
