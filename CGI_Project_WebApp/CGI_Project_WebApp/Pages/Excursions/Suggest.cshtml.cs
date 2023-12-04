@@ -18,25 +18,21 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
+        public bool MessageBool { get; set; }
+
         [TempData]
         public string SuccessMessage { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
 
-
         public void OnGet()
         {
-
+            MessageBool = false;
         }
 
-        public void OnPost()
+        public async void OnPost()
         {
-
-            TempData["ShowToast"] = true;
-
-
-
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             //TODO: Finish Error
@@ -50,19 +46,23 @@ namespace CGI_Project_WebApp.Pages.Excursions
                         Suggestion.Exception, emp))
                 {
                     SuccessMessage = "Suggestion added successfully";
-                    RedirectToPage();
                 }
                 else
                 {
                     ErrorMessage = "Failed to add suggestion. Suggestion might exist already";
-                    //something went wrong with adding suggestion and/or server error
                 }
             }
             else
             {
                 //mail doesn't exist and/or server error
             }
-            RedirectToPage();
+
+            MessageBool = true;
+
+            await Task.Delay(500);
+            MessageBool = false;
+            SuccessMessage = "";
+            ErrorMessage = "";
         }
     }
 }
