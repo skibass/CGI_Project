@@ -18,6 +18,9 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
+       
+    
+
         public void OnGet()
         {
 
@@ -25,6 +28,11 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public void OnPost()
         {
+
+            TempData["ShowToast"] = true;
+
+
+
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             //TODO: Finish Error
@@ -37,6 +45,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
                         Suggestion.Exception, emp))
                 {
+                      
+                    
                     RedirectToPage();
                 }
                 else
@@ -49,6 +59,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                 //mail doesn't exist and/or server error
             }
+            RedirectToPage();
         }
     }
 }
