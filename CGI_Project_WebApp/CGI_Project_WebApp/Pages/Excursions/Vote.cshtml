@@ -132,4 +132,39 @@
         progressBar.innerHTML = percentage.toFixed(2) + "%";
     });     
 
+<<<<<<< HEAD
+=======
+   
+
+        
+
+
+    function SubmitVote(target){
+
+        var suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
+        console.log("data-id attribute:", $(target).parents(".vote-card").attr("data-id"));
+        console.log("Parsed suggestionId:", suggestionId);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Excursions/Vote?handler=SubmitVote',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({ suggestionId: suggestionId }),
+            headers: {
+                RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (response) {
+                console.log(response);
+                // Handle success
+            },
+            error: function (error) {
+                console.log(error.responseText);
+                // Handle error
+            }
+        });
+        
+        console.log("Original suggestionId:", suggestionId);
+    }
+>>>>>>> 2a77830e904b346c345e8cf7f73d087b25ecf414
 </script>
