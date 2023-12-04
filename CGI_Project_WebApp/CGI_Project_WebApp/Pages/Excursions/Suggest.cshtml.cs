@@ -18,8 +18,12 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
-       
-    
+        [TempData]
+        public string SuccessMessage { get; set; }
+
+        [TempData]
+        public string ErrorMessage { get; set; }
+
 
         public void OnGet()
         {
@@ -45,13 +49,12 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
                         Suggestion.Exception, emp))
                 {
-                      
-                    
+                    SuccessMessage = "Suggestion added successfully";
                     RedirectToPage();
                 }
                 else
                 {
-                    Console.WriteLine($"Not able to add" + Suggestion.Name);
+                    ErrorMessage = "Failed to add suggestion. Suggestion might exist already";
                     //something went wrong with adding suggestion and/or server error
                 }
             }
