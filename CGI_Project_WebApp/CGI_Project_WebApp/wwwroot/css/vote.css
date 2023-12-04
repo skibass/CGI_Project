@@ -21,6 +21,14 @@ line-height: baseline;
 
 }
 
+.vote-item.v{
+    background-color: limegreen;
+}
+
+.vote-item.n{
+    background-color: #e11937;
+}
+
 .vote-badge{
     background-color: var(--secondary);
 }

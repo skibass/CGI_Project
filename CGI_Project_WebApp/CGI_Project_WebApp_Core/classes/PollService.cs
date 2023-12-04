@@ -47,6 +47,47 @@ namespace CGI_Project_WebApp_Core.classes
             }
 
         }
+
+      public bool PollContainsUserVote(int pollId, int employeeId)
+        {
+            List<Vote> votes = new List<Vote>();
+
+            if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
+            {
+                List<PollSuggestion> suggestions = poll.PollSuggestions.ToList();
+                votes = suggestions
+                    .SelectMany(suggestion => suggestion.Suggestion.Votes)
+                    .Where(vote => vote.EmployeeId == employeeId)
+                    .ToList();
+            }
+
+            return votes.Any(); 
+        }
+
+
+
+        public bool TryGetAllPolls(out List<Poll> allPolls)
+        {
+            allPolls = new List<Poll>();
+            try
+            {
+                List<Poll> polls = pollsRepository.GetOpenPolls();
+
+                if (polls != null)
+                {
+                    allPolls.AddRange(polls);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+
+
         
         //zo kan de mederwerker nogsteeds de huidige stand van de polls zien zelfs als die all heeft gevote
         public bool TryGetValidButNonVoteablePolls(out List<Poll> nonVotablePolls, int employeeId)

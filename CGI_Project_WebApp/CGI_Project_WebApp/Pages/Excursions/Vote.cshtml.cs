@@ -31,7 +31,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
             if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
-                if (pollService.TryGetValidAndVoteablePolls(out List<Poll> polls, emp.Id))
+                if (pollService.TryGetAllPolls(out List<Poll> polls))
                 {
                     if (VoteService.TryGetVotedSuggestions(emp.Id, out List<Vote> votes))
                     {
@@ -84,6 +84,19 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
             
             return RedirectToPage();
+        }
+
+        public bool PollContainsUserVote(int pollId){
+           
+
+            if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
+            {
+              if(pollService.PollContainsUserVote(pollId, emp.Id)){
+
+                return true;
+              }
+            }
+            return false;
         }
 
     }
