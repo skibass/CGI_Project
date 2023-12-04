@@ -16,7 +16,7 @@ namespace CGI_Project_WebApp_Core.classes
 
         private List<Vote> _votes = new();
 
-        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates)
+        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates = null)
         {
             Vote vote = new Vote();
             vote.EmployeeId = employeeID;
@@ -24,16 +24,27 @@ namespace CGI_Project_WebApp_Core.classes
             //vote.PreferredDates
             if (repository.TryAddVote(vote))
             {
-                if (dateService.TryAddDatesOrGetDates(preferredDates, out List<int> dateIds))
-                {
-                    foreach (int dateId in dateIds)
-                    {
-                        repository.TryAddDateToVote(vote.Id, dateId);
-                    }
+                if (preferredDates != null){
+                    ProcessPreferredDates(vote, preferredDates);
+                    return true;
                 }
+                return true;
             }
             return false;
         }
+
+        private void ProcessPreferredDates(Vote vote, List<DateTime> preferredDates)
+        {
+            if (dateService.TryAddDatesOrGetDates(preferredDates, out List<int> dateIds))
+            {
+                foreach (int dateId in dateIds)
+                {
+                    repository.TryAddDateToVote(vote.Id, dateId);
+                }
+            }
+        }
+
+        
 
         public bool TryGetVotedSuggestions(int employee, out List<Vote> votes)
         {

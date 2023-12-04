@@ -27,24 +27,27 @@
 
         <div id="collapse@(poll.Id)" class="vote-collection collapse">
             @{var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Suggestion.Votes.Count);}
-            @foreach (var suggestion in sortedSuggestions){
-                 <div class="vote-card mb-3" data-id=@suggestion.SuggestionId>
-                    <div class="card">
-                        <div class="row g-0">
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title">@suggestion.Suggestion.Name</h5>
-                                    <p class="card-text">@suggestion.Suggestion.Description</p>
-                                    <a href="#" class="text-decoration-none">Read More &rarr;</a>
+          @foreach (var suggestion in sortedSuggestions)
+            {
+                <div class="vote-card mb-3" data-id="@suggestion.SuggestionId">
+                    <form method="post" asp-page-handler="Vote" asp-route-suggestionId="@suggestion.SuggestionId">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@suggestion.Suggestion.Name</h5>
+                                        <p class="card-text">@suggestion.Suggestion.Description</p>
+                                        <a href="#" class="text-decoration-none">Read More &rarr;</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
-                                <div class="card-body text-center">
-                                    <button class="btn hero-button text-white rounded-1 border-0 btn-lg" onclick="SubmitVote(this)">Vote</button>
+                                <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
+                                    <div class="card-body text-center">
+                                        <button type="submit" class="btn hero-button text-white rounded-1 border-0 btn-lg">Vote</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             }
             
@@ -72,7 +75,7 @@
                                             
                                             <script>
                                                 var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
-                                                console.log("Vote Percentages:", votePercentages);
+                                                //console.log("Vote Percentages:", votePercentages);
                                             </script>
                                         </div>
                                     </div>
@@ -127,31 +130,6 @@
         var progressBar = document.getElementById("progress-bar-" + suggestionId);
         progressBar.style.width = percentage + "%";
         progressBar.innerHTML = percentage.toFixed(2) + "%";
-    });
+    });     
 
-   
-
-        
-
-
-    function SubmitVote(target){
-
-        let suggestionId = parseInt($(target).parents(".vote-card").attr("data-id"));
-        
-        $.ajax({
-            type: 'POST',
-            url: '/Excursions/Vote?handler=SubmitVote',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify({ suggestionId: suggestionId}),
-        success: function (response) {
-            console.log(response);
-            // Handle success
-        },
-        error: function (error) {
-            console.error(error.responseText);
-            // Handle error
-        }
-    });
-    
 </script>

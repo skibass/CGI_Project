@@ -64,15 +64,26 @@ namespace CGI_Project_WebApp.Pages.Excursions
             }
         }
 
-        
-        public IActionResult OnPostSubmitVote([FromBody]int suggestionId){
-            Console.WriteLine("Arrived at function");
-            return Content("success," + suggestionId); 
-        }
+        public IActionResult OnPostVote(int suggestionId)
+        {
+            Console.WriteLine("Arrived at vote function");
+            EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
-        [HttpPost]
-         public void TestAjax([FromBody]int testval){
-            Console.WriteLine("Arrived at function, received:" + testval);
+            if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
+            {
+                Console.WriteLine("Found employee: " + emp.FirstName);
+
+                if(VoteService.TryCreateVote(emp.Id, suggestionId)){
+                    Console.WriteLine("Successfully created vote: " + suggestionId + " Submitted by " + emp.FirstName);
+                    return RedirectToPage();
+                }
+                Console.WriteLine("Could not add vote");
+
+            }
+                        Console.WriteLine("Idk bro");
+
+            
+            return RedirectToPage();
         }
 
     }
