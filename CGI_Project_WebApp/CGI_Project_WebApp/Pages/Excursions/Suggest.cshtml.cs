@@ -13,17 +13,18 @@ namespace CGI_Project_WebApp.Pages.Excursions
         [BindProperty]
         public required Suggestion Suggestion { get; set; }
 
-        public EmployeeService EmployeeService = new EmployeeService();
+        public EmployeeService EmployeeService = new();
 
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
-       
-    
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if (User.Identity.IsAuthenticated == false)
+            {
+               return RedirectToPage("../Index");
+            }
+            return null;
         }
 
         public void OnPost()

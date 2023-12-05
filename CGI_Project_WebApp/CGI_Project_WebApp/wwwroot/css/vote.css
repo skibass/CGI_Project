@@ -11,11 +11,33 @@
     background-color: var(--primary);
 }
 
+.vote-progress-bar{
+line-height: baseline;
+}
+
 .vote-item{
     background-color: var(--secondary);
 
 
 }
+
+.vote-item.v{
+    background-color: limegreen;
+}
+
+.vote-item.n{
+    background-color: #e11937;
+}
+
+.voted-div{
+    background-color: red;
+    color: green;
+}
+
+.voted-button{
+    
+}
+
 
 .vote-badge{
     background-color: var(--secondary);
