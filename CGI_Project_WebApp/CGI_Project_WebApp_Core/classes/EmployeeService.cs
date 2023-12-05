@@ -109,19 +109,21 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     foreach (Poll poll in allPolls)
                     {
+                        bool winner = false;
                         if (pollService.TryGetMaxVoteCount(out int count, out bool draw, poll.Id))
                         {
                             if (poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).FirstOrDefault().Suggestion.Votes.Count == count)
                             {
 
-                                winningPolls.Add(poll);
-                                return true;
+                                winner = true;
+                                
                             }
+                            if(winner) winningPolls.Add(poll);
                         }
 
                     }
                 }
-
+                return true;
             }
             catch (Exception e)
             {

@@ -24,7 +24,6 @@ namespace CGI_Project_WebApp_Core.classes
         public bool TryGetLatestWinners(out List<SuggestionList> WinningSuggestionsList, int max)
         {
             WinningSuggestionsList = new List<SuggestionList>();
-
             try
             {
 
@@ -50,8 +49,6 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
 
             }
-
-
         }
         public bool TryGetWinningSuggestionOutOfPoll(Poll poll, out SuggestionList Winningsuggestions)
         {
@@ -60,12 +57,12 @@ namespace CGI_Project_WebApp_Core.classes
             try
             {
                 PollService pollService = new PollService(pollRepository);
+                pollService.TryGetMaxVoteCount(out int MaxCount, out bool draw, poll.Id);
 
                 foreach (PollSuggestion item in poll.PollSuggestions)
                 {
-                    pollService.TryGetMaxVoteCount(out int MaxCount, out bool draw, poll.Id);
 
-                    if (item.Suggestion.Votes.Count == MaxCount)
+                    if (item.Suggestion.Votes.Count == MaxCount && !draw)
                     {
                         Winningsuggestions.suggestions.Add(item.Suggestion);
                     }

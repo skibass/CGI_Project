@@ -25,5 +25,18 @@ namespace CGI_Project_WebApp_UnitTests.Factory
             };
 
         }
+        public PollSuggestion basic(int VariableUserId, string name, Poll poll)
+        {
+            index++;
+            return new PollSuggestion
+            {
+                Id = 0,
+                SuggestionId = 1,
+                Suggestion = suggestionFactory.Basic(VariableUserId, index, name),
+                Poll = poll
+
+            };
+
+        }
     }
 }
