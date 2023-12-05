@@ -18,41 +18,50 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
+        public Error ErrorHandeling = new();
+        
         public IActionResult OnGet()
         {
             if (User.Identity.IsAuthenticated == false)
             {
                return RedirectToPage("../Index");
             }
+            ErrorHandeling.ResetErrorHandling();
             return null;
         }
 
-        public void OnPost()
+        public async void OnPost()
         {
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
-            //TODO: Finish Error
             if (!ModelState.IsValid)
-	        {
-		        Console.WriteLine("Error");
-	        }
+            {
+                //Model state not valid
+                ErrorHandeling.HandleError("Model state not correct");
+                Console.WriteLine("Error");
+                return;
+            }
 
             if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp)) {
                 if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
                         Suggestion.Exception, emp))
                 {
-                    RedirectToPage();
+                    //Suggestion added successfully
+                    ErrorHandeling.HandleSuccess("Suggestion added successfully");
+                    return;
                 }
-                else
-                {
-                    Console.WriteLine($"Not able to add" + Suggestion.Name);
-                    //something went wrong with adding suggestion and/or server error
-                }
+                //Suggestion not successfully added
+                ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
+                return;
             }
-            else
-            {
-                //mail doesn't exist and/or server error
-            }
+            //E-mail doesn't exist and/or server error
+            ErrorHandeling.HandleError("E-mail does not exist and/or server error");
+
+            //Wait for half a second before resetting properties
+            await Task.Delay(500);
+            
+            //Reset all properties
+            ErrorHandeling.ResetErrorHandling();
         }
     }
 }

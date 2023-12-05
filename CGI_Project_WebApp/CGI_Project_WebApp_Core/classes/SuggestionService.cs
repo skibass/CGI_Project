@@ -96,9 +96,6 @@ namespace CGI_Project_WebApp_Core.classes
                 }
             }
             return false;
-
-
-
         }
 
         public bool TryGetSuggestions(out SuggestionList suggestions)
