@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
                                     <div class="card-body text-center">
-                                        <button type="submit" class='@(userVotedForSuggestion ? "voted-button" : "") btn hero-button text-white rounded-1 border-0 btn-lg'>@(userVotedForSuggestion ? "X" : "Vote")</button>
+                                        <button type="submit" @(userVotedForSuggestion ? "disabled" : "")  class='@(userVotedForSuggestion ? "voted-button" : "") btn hero-button text-white rounded-1 border-0 btn-lg'>Vote</button>
                                     </div>
                                 </div>
                             </div>

@@ -64,7 +64,7 @@ namespace CGI_Project_WebApp_Core.classes
 
             if (votes.Any())
             {
-                vote = votes.First(); // Assuming you want to return the first vote
+                vote = votes.First();
                 return true;
             }
 
