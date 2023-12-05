@@ -27,9 +27,6 @@
             <div class="mx-5 align-middle">
                 @if (User.Identity.IsAuthenticated)
                 {
-
-                    @* @if (Model.employee.Role == "manager")
-
                     @if (@Context.Session.GetString("rName") == "manager")
 
                     {
@@ -41,17 +38,15 @@
                             <a class="nav-link text-dark display-6" asp-area=""
                                asp-page="/Excursions/Poll">Poll</a>
                         </p>
-                    } *@
-                    @* else
-                    { *@
+                    }
+                    else
+                    {
                         <p class="nav-item align-middle">
                             <a class="nav-link text-dark display-6" asp-area=""
                                asp-page="/Account/Profile">Welkom @User.Identity.Name!</a>
                         </p>
 
-                    @* } *@
-
-                      
+                    }                    
 
                    
                      <p class="nav-item">
