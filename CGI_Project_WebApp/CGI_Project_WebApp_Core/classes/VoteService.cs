@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 namespace CGI_Project_WebApp_Core.classes
 {
     public class VoteService { 
-        VoteRepository repository= new VoteRepository();
-        DateRepository dateRepository= new DateRepository();
-        DateService dateService= new DateService();
-        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates)
+        VoteRepository repository= new();
+        DateRepository dateRepository= new();
+        DateService dateService= new();
+        EmployeeRepository employeeRepository= new();
+
+        private List<Vote> _votes = new();
+
+        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates = null)
         {
             Vote vote = new Vote();
             vote.EmployeeId = employeeID;
@@ -20,14 +24,40 @@ namespace CGI_Project_WebApp_Core.classes
             //vote.PreferredDates
             if (repository.TryAddVote(vote))
             {
-                if (dateService.TryAddDatesOrGetDates(preferredDates, out List<int> dateIds))
+                if (preferredDates != null){
+                    ProcessPreferredDates(vote, preferredDates);
+                    return true;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private void ProcessPreferredDates(Vote vote, List<DateTime> preferredDates)
+        {
+            if (dateService.TryAddDatesOrGetDates(preferredDates, out List<int> dateIds))
+            {
+                foreach (int dateId in dateIds)
                 {
-                    foreach (int dateId in dateIds)
-                    {
-                        repository.TryAddDateToVote(vote.Id, dateId);
-                    }
+                    repository.TryAddDateToVote(vote.Id, dateId);
                 }
             }
+        }
+
+        
+
+        public bool TryGetVotedSuggestions(int employee, out List<Vote> votes)
+        {
+            VoteRepository votesRepository = new();
+
+            if (employeeRepository.TryGetEmployeeByID(employee, out Employee emp))
+            {
+                if (votesRepository.TryGetVotedSuggestions(out votes))
+                {
+                    return true;
+                }
+            }
+            votes = null;
             return false;
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CGI_Project_WebApp_DAL.Database_Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
@@ -48,5 +49,27 @@ namespace CGI_Project_WebApp_DAL.repositories
             }
         }
         
+
+        public bool TryGetVotedSuggestions(out List<Vote> votes)
+        {
+            using Dbi511119Context dbContext = new();
+
+            try
+            {
+                votes = dbContext.Votes
+                    .AsNoTracking()
+                    .Include(v => v.Employee)
+                    .Include(v => v.Suggestion)
+                    .ToList();
+                
+                return true;
+                
+            }
+            catch (Exception e)
+            {
+                votes = new List<Vote>();
+                return false;
+            }
+        }
     }
 }

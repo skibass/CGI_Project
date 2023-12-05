@@ -28,6 +28,8 @@ namespace CGI_Project_WebApp_Core.classes
 
                         foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
                         {
+                            List<int> tmp = suggestion.Votes.Select(vote => vote.Employee.Id).ToList();
+
                             if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
                             {
                                 validToVote = false;
@@ -44,7 +46,61 @@ namespace CGI_Project_WebApp_Core.classes
                 throw;
             }
 
+
+        }
+
+        public bool PollContainsUserVote(int pollId, int employeeId, out Vote vote)
+        {
+            List<Vote> votes = new List<Vote>();
+            vote = null;
+
+            if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
+            {
+                List<PollSuggestion> suggestions = poll.PollSuggestions.ToList();
+                votes = suggestions
+                    .SelectMany(suggestion => suggestion.Suggestion.Votes)
+                    .Where(v => v.EmployeeId == employeeId)
+                    .ToList();
+            }
+
+            if (votes.Any())
+            {
+                vote = votes.First();
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+
+        public bool TryGetAllPolls(out List<Poll> allPolls)
+        {
+            allPolls = new List<Poll>();
+            try
+            {
+                List<Poll> polls = pollsRepository.GetOpenPolls();
+
+                if (polls != null)
+                {
+                    allPolls.AddRange(polls);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+
+
+        
+
         }    
+
         //zo kan de mederwerker nogsteeds de huidige stand van de polls zien zelfs als die all heeft gevote
         public bool TryGetValidButNonVoteablePolls(out List<Poll> nonVotablePolls, int employeeId)
         {
