@@ -16,5 +16,24 @@ namespace CGI_Project_WebApp_Models
         public string ErrorMessage { get; set; }
 
         public bool MessageBool { get; set; }
+
+        public void HandleError(string errorMessage)
+        {
+            MessageBool = true;
+            ErrorMessage = errorMessage;
+        }
+
+        public void HandleSuccess(string successMessage)
+        {
+            MessageBool = true;
+            SuccessMessage = successMessage;
+        }
+
+        public void ResetErrorHandling()
+        {
+            MessageBool = false;
+            SuccessMessage = "";
+            ErrorMessage = "";
+        }
     }
 }

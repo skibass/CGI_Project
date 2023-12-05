@@ -29,35 +29,34 @@ namespace CGI_Project_WebApp.Pages.Excursions
         {
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
-            //TODO: Finish Error
             if (!ModelState.IsValid)
             {
-                ErrorHandeling.ErrorMessage = "Model state not correct";
-		        Console.WriteLine("Error");
-	        }
+                //Model state not valid
+                ErrorHandeling.HandleError("Model state not correct");
+                Console.WriteLine("Error");
+                return;
+            }
 
             if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp)) {
                 if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
                         Suggestion.Exception, emp))
                 {
-                    ErrorHandeling.SuccessMessage = "Suggestion added successfully";
+                    //Suggestion added successfully
+                    ErrorHandeling.HandleSuccess("Suggestion added successfully");
+                    return;
                 }
-                else
-                {
-                    ErrorHandeling.ErrorMessage = "Failed to add suggestion. Suggestion might exist already";
-                }
+                //Suggestion not successfully added
+                ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
+                return;
             }
-            else
-            {
-                //mail doesn't exist and/or server error
-            }
+            //E-mail doesn't exist and/or server error
+            ErrorHandeling.HandleError("E-mail does not exist and/or server error");
 
-            ErrorHandeling.MessageBool = true;
-
+            //Wait for half a second before resetting properties
             await Task.Delay(500);
-            ErrorHandeling.MessageBool = false;
-            ErrorHandeling.SuccessMessage = "";
-            ErrorHandeling.ErrorMessage = "";
+            
+            //Reset all properties
+            ErrorHandeling.ResetErrorHandling();
         }
     }
 }
