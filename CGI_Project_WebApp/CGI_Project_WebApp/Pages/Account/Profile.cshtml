@@ -1,67 +1,94 @@
-﻿@* Pages/Account/Profile.cshtml *@
-
-@page
+﻿@page
 @model acme.Pages.ProfileModel
 @{
     ViewData["Title"] = "User Profile";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="~/css/profile.css" />
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="row">
-            <h2>@ViewData["Title"].</h2>
-
-            <div class="col-md-2">
-                <img src="@Model.UserProfileImage"
-                     alt="" class="img-rounded img-responsive" />
-            </div>
-            <div class="col-md-4">
-                <h3>@Model.UserName</h3>
-                <p>
-                    <i class="glyphicon glyphicon-envelope"></i> @Model.UserEmailAddress
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h3>@Model.employee.Role.Name</h3>
-                <p>
-                    <i class="glyphicon glyphicon-envelope"></i> @Model.UserEmailAddress
-                </p>
-            </div>
-           
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <h3 class="hero-title ml-3 text-center">@ViewData["Title"]</h3>
+        <div class="top-section">
+            <img src="@Model.UserProfileImage" alt="Profile Image" class="profile-image">
+            <div class="profile-details">
+                <h3 class="hero-title">@Model.UserName</h3>
+                <p><i class="fas fa-envelope"></i> @Model.UserEmailAddress</p>
                 @if (Model.employee.Email == Model.UserEmailAddress)
                 {
-                    <div class="col-md-4">
-                    @*<h3>Uw team: @Model.employee.Company.Name</h3>*@
-                    </div>
-
-                    <div class="col-md-4">
-                        <h3>Uw stemmen:</h3>
-                    </div>
-                @foreach (var suggestion in Model.employee.Suggestions)
-                    {
-                    if (Model.employee.Id == suggestion.EmployeeId)
-                        {
-                            <div class="col-md-4">
-                                <h3>
-                                    Uw suggesties:
-                                </h3>
-                               
-                                <h3>
-                                    Uw suggestie:<br>
-
-                                    Naam: @suggestion.Name<br>
-                                    Locatie: @suggestion.Location<br>
-                                    Beschrijving: @suggestion.Description<br><br>
-
-                                    (optioneel) Exceptie: @suggestion.Exception
-                                </h3>
-                            </div>
-
-                        }                        
-                    }
+                    <h4>Team: @Model.employee.Company?.Name</h4>
                 }
-            }
-           
+                else
+                {
+                    <h4>Team</h4>
+                    <p>No Team Information Available</p>
+                }
+            </div>
+        </div>
+        <div class="profile-backgroundbar"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="hero-title ml-3 text-center">Uw suggesties:</h3>
+                <div id="votesContainer">
+                    @foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
+                    {
+                        <div class="vote-info">
+                            <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion.Name</h3>
+                            <p class="subtitle">
+                                Locatie: @suggestionWithCount.Suggestion.Location<br>
+                                Beschrijving: @suggestionWithCount.Suggestion.Description<br>
+                                (optioneel) Exceptie: @suggestionWithCount.Suggestion.Exception<br>
+                                Stemmen: @suggestionWithCount.VoteCount
+                            </p>
+                        </div>
+                    }
+                </div>
+
+                <div class="pagination">
+                    <!-- Pagination controls will be dynamically inserted here -->
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var currentPage = 1;
+            var itemsPerPage = 5;
+
+            function showPage(pageNumber) {
+                var items = document.querySelectorAll("#votesContainer > .vote-info");
+                var totalPages = Math.ceil(items.length / itemsPerPage);
+
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = "none";
+                }
+
+                for (var i = (pageNumber - 1) * itemsPerPage; i < pageNumber * itemsPerPage && i < items.length; i++) {
+                    items[i].style.display = "block";
+                }
+
+                var pagination = document.querySelector(".pagination");
+                pagination.innerHTML = "";
+
+                for (var i = 1; i <= totalPages; i++) {
+                    var pageLink = document.createElement("a");
+                    pageLink.innerHTML = i;
+                    pageLink.href = "#";
+                    pageLink.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        showPage(parseInt(this.innerHTML));
+                    });
+
+                    pagination.appendChild(pageLink);
+                }
+            }
+
+            showPage(currentPage);
+        });
+    </script>
+}
+
+
+

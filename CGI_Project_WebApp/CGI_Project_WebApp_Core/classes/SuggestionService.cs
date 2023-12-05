@@ -95,6 +95,14 @@ namespace CGI_Project_WebApp_Core.classes
 
         }
 
+        public bool TryGetSuggestions(out SuggestionList suggestions)
+        {
+            return suggestionRepository.TryGetUnusedSuggestions(out suggestions);
+        }
+        public bool TryGetSuggestionById(out Suggestion suggestion, int id)
+        {
+            return suggestionRepository.TryGetSuggestionWithId(out suggestion, id);
+        }
 
     }
 }

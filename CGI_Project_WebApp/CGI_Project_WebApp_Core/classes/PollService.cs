@@ -46,6 +46,7 @@ namespace CGI_Project_WebApp_Core.classes
                 throw;
             }
 
+
         }
 
         public bool PollContainsUserVote(int pollId, int employeeId, out Vote vote)
@@ -97,6 +98,9 @@ namespace CGI_Project_WebApp_Core.classes
 
 
         
+
+        }    
+
         //zo kan de mederwerker nogsteeds de huidige stand van de polls zien zelfs als die all heeft gevote
         public bool TryGetValidButNonVoteablePolls(out List<Poll> nonVotablePolls, int employeeId)
         {
@@ -132,7 +136,6 @@ namespace CGI_Project_WebApp_Core.classes
             }
 
         }
-
         public bool TryGetMaxVoteCount(out int MaxCount, out bool Draw, int pollId)
         {
             MaxCount = -1;
@@ -149,12 +152,12 @@ namespace CGI_Project_WebApp_Core.classes
                     }
                     foreach (PollSuggestion suggestion in Suggestions)
                     {
-                        if (MaxCount < suggestion.Suggestion.Votes.Count())
+                        if (MaxCount < suggestion.Suggestion.Votes.Count)
                         {
-                            MaxCount = suggestion.Suggestion.Votes.Count();
+                            MaxCount = suggestion.Suggestion.Votes.Count;
                             Draw = false;
                         }
-                        else if (MaxCount == suggestion.Suggestion.Votes.Count())
+                        else if (MaxCount == suggestion.Suggestion.Votes.Count)
                         {
                             Draw = true;
                         }
@@ -172,22 +175,34 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
             }
         }
-
         public bool TryRemovePoll(int pollId)
         {
             return pollsRepository.TryRemovePoll(pollId);
         }
-
-        public bool TryAddPoll(Poll poll)
+        public bool TryAddPoll(NewPollDto newpoll)
         {
-            return pollsRepository.TryAddPoll(poll);
+            try
+            {
+                pollsRepository.TryAddPoll(newpoll, out Poll poll);
+                //add suggestions
+                foreach (Suggestion item in newpoll.suggestions)
+                {
+                   if(!TryAddSuggestionToPoll(poll, item))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
         public bool TryGetPollVotes(out List<Vote> votes, int pollId)
         {
-
             votes = new List<Vote>();
-
-
             try
             {
                 if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
@@ -211,5 +226,15 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
             }
         }
+
+        public bool TryAddSuggestionToPoll(Poll poll, Suggestion suggestion)
+        {
+            return TryAddSuggestionToPoll(poll.Id, suggestion.Id);
+        }
+        public bool TryAddSuggestionToPoll(int pollId, int suggestionId)
+        {
+            return pollsRepository.TryAddSuggestionToPoll(pollId, suggestionId);
+        }
+        //public bool 
     }
 }

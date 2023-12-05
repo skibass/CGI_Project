@@ -15,14 +15,18 @@ namespace CGI_Project_WebApp_Core.classes
         EmployeeRepository employeeRepository = new EmployeeRepository();
         public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
         {
-            
+
             List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
             polls = new List<Poll>();
             foreach (PollSuggestion suggestion in pollSuggestion)
             {
                 if (suggestion.Poll != null)
                 {
-                    polls.Add(suggestion.Poll);
+                    if (!polls.Select(p => p.Id).Contains((int)suggestion.PollId))
+                    {
+                        polls.Add(suggestion.Poll);
+                    }
+
                 }
             }
             if (polls.IsNullOrEmpty())
@@ -100,22 +104,19 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     foreach (Poll poll in allPolls)
                     {
-                        int count;
-                        bool draw;
-
-                        if (pollService.TryGetMaxVoteCount(out count, out draw, poll.Id))
+                        if (pollService.TryGetMaxVoteCount(out int count, out bool draw, poll.Id))
                         {
-                            if (poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).FirstOrDefault().Suggestion.Votes.Count == count)
-                            {
 
+                            if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(s => s.Suggestion.Votes.Count).Contains(count) && count > 0)
+                            {
                                 winningPolls.Add(poll);
-                                return true;
+
                             }
                         }
 
                     }
                 }
-
+                return true;
             }
             catch (Exception e)
             {
@@ -146,40 +147,45 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     return employeeRepository.TryGetEmployeeByEmail(Email, out employee);
                 }
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
-                
+
             }
             return false;
         }
 
-        public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 6)
+        public bool TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> EmpWincounts, int max = 10)
         {
             EmpWincounts = new List<EmployeeWinCount>();
             try
             {
                 foreach (Employee employee in employeeRepository.GetEmployees())
                 {
-                    if(TryGetWinningPolls(out List<Poll> winningPolls, employee))
+                    if (TryGetWinningPolls(out List<Poll> winningPolls, employee))
                     {
-                        EmployeeWinCount employeesWinCount = new EmployeeWinCount();
-                        employeesWinCount.Employee = employee;
-                        employeesWinCount.Count = winningPolls.Count;
+                        EmployeeWinCount employeesWinCount = new EmployeeWinCount
+                        {
+                            Employee = employee,
+                            Count = winningPolls.Count
+                        };
                         EmpWincounts.Add(employeesWinCount);
                     }
                 }
+
                 EmpWincounts = EmpWincounts.OrderByDescending(e => e.Count).Take(max).ToList();
+                
                 return true;
             }
             catch (Exception)
             {
                 return false;
-                
+
             }
         }
         public bool DoesEmailExist(string Email)
         {
             return employeeRepository.GetEmployees().Select(e => e.Email).Contains(Email);
-        }        
+        }
     }
 }

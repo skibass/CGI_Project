@@ -18,9 +18,13 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if (User.Identity.IsAuthenticated == false)
+            {
+               return RedirectToPage("../Index");
+            }
+            return null;
         }
 
         public void OnPost()
@@ -30,7 +34,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             //TODO: Finish Error
             if (!ModelState.IsValid)
 	        {
-		        
+		        Console.WriteLine("Error");
 	        }
 
             if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp)) {
@@ -41,6 +45,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 }
                 else
                 {
+                    Console.WriteLine($"Not able to add" + Suggestion.Name);
                     //something went wrong with adding suggestion and/or server error
                 }
             }

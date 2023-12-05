@@ -10,6 +10,15 @@ builder.Services
         options.Scope = "openid profile email";
     });
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".AdventureWorks.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizePage("/Account/Logout");
@@ -49,6 +58,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 

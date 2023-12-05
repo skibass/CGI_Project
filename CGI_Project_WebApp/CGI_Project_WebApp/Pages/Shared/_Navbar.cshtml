@@ -9,6 +9,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+             @if (User.Identity.IsAuthenticated)
+             {
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
                     <a class="nav-link text-black" asp-area=""  asp-page="/Excursions/Suggest">Suggest</a>
@@ -20,24 +22,37 @@
                     <a class="nav-link text-black" asp-area="" asp-page="/Leaderboard">Leaderboard</a>
                 </li>
             </ul>
+            }
 
             <div class="mx-5 align-middle">
                 @if (User.Identity.IsAuthenticated)
                 {
+
                     @* @if (Model.employee.Role == "manager")
+
+                    @if (@Context.Session.GetString("rName") == "manager")
+
                     {
                         <p class="nav-item align-middle">
                             <a class="nav-link text-dark display-6" asp-area=""
-                               asp-page="/Account/Profile">Hello manager @User.Identity.Name!</a>
+                               asp-page="/Account/Profile">Welkom manager @User.Identity.Name!</a>
+                        </p>
+                        <p class="nav-item align-middle">
+                            <a class="nav-link text-dark display-6" asp-area=""
+                               asp-page="/Excursions/Poll">Poll</a>
                         </p>
                     } *@
                     @* else
                     { *@
                         <p class="nav-item align-middle">
                             <a class="nav-link text-dark display-6" asp-area=""
-                               asp-page="/Account/Profile">Hello @User.Identity.Name!</a>
+                               asp-page="/Account/Profile">Welkom @User.Identity.Name!</a>
                         </p>
+
                     @* } *@
+
+                      
+
                    
                      <p class="nav-item">
                         <a class="nav-link text-dark display-6" asp-area=""

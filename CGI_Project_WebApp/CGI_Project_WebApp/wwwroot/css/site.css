@@ -164,6 +164,30 @@
     .bar-container {
         height: 200px; /* Example value, adjust as necessary */
     }
+
+    .top-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-image {
+        display:none;
+    }
+
+    .profile-details {
+        align-items: center; /* Center the details for mobile view */
+        text-align: center;
+    }
+
+    .profile-details h3, .profile-details p, .profile-details h4 {
+         /* Adjust font size and margins if necessary for a more compact layout */
+         font-size: 0.9em;
+         margin: 4px 0;
+    }
+
+    .pagination {
+        flex-wrap: wrap; /* Allow pagination items to wrap in small screens */
+    }
 }
 
 @media (max-width: 576px) {

@@ -11,6 +11,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 {
     public class VoteModel : PageModel
     {
+
         public VoteService VoteService = new();
         private PollService pollService = new();
         private EmployeeService employeeService = new();
@@ -27,6 +28,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int Progress { get; set; }
         public void OnGet()
         {
+        
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
@@ -96,7 +98,16 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 }
             }
             return (false, null); 
-        }
+
+        //         public IActionResult OnGet()
+        //         {
+        //             if (User.Identity.IsAuthenticated == false)
+        //             {
+        //                 return RedirectToPage("../Index");
+        //             }
+        //             return null;
+
+        //         }
 
        
 
