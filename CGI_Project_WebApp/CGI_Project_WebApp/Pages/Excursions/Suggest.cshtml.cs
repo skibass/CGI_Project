@@ -18,31 +18,21 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public int EmployeeId { get; set; }
         public string EmployeeEmail { get; set; }
 
-        public bool MessageBool { get; set; }
-
-        [TempData]
-        public string SuccessMessage { get; set; }
-
-        [TempData]
-        public string ErrorMessage { get; set; }
+        public Error ErrorHandeling = new();
 
         public void OnGet()
         {
-            MessageBool = false;
+            ErrorHandeling.MessageBool = false;
         }
 
         public async void OnPost()
         {
-
-            TempData["ShowToast"] = true;
-
-
-
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             //TODO: Finish Error
             if (!ModelState.IsValid)
-	        {
+            {
+                ErrorHandeling.ErrorMessage = "Model state not correct";
 		        Console.WriteLine("Error");
 	        }
 
@@ -50,11 +40,11 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
                         Suggestion.Exception, emp))
                 {
-                    SuccessMessage = "Suggestion added successfully";
+                    ErrorHandeling.SuccessMessage = "Suggestion added successfully";
                 }
                 else
                 {
-                    ErrorMessage = "Failed to add suggestion. Suggestion might exist already";
+                    ErrorHandeling.ErrorMessage = "Failed to add suggestion. Suggestion might exist already";
                 }
             }
             else
@@ -62,12 +52,12 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 //mail doesn't exist and/or server error
             }
 
-            MessageBool = true;
+            ErrorHandeling.MessageBool = true;
 
             await Task.Delay(500);
-            MessageBool = false;
-            SuccessMessage = "";
-            ErrorMessage = "";
+            ErrorHandeling.MessageBool = false;
+            ErrorHandeling.SuccessMessage = "";
+            ErrorHandeling.ErrorMessage = "";
         }
     }
 }
