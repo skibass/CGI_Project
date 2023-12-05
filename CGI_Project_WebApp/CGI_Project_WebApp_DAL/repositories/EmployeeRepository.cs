@@ -11,10 +11,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.Design;
 using System.Security.Claims;
+using CGI_Project_WebApp_Core.Interfaces;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
-    public class EmployeeRepository
+    public class EmployeeRepository: IEmployeeRepository
     {
         public List<Employee> GetEmployees(int companyId)
         {

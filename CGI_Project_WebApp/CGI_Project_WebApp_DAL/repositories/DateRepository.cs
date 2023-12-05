@@ -1,4 +1,5 @@
-﻿using CGI_Project_WebApp_DAL.Database_Models;
+﻿using CGI_Project_WebApp_Core.Interfaces;
+using CGI_Project_WebApp_DAL.Database_Models;
 using CGI_Project_WebApp_Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
-    public class DateRepository
+    public class DateRepository : IDateRepository
     {
         Dbi511119Context DbContext= new Dbi511119Context();
 

@@ -9,7 +9,7 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
-    EmployeeService employeeService = new EmployeeService();
+    EmployeeService employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
     public Employee employee = new();
     SuggestionService suggestionService = new SuggestionService();
     public List<SuggestionWithVoteCount> SuggestionsWithVoteCount { get; set; } = new List<SuggestionWithVoteCount>();

@@ -1,4 +1,5 @@
-﻿using CGI_Project_WebApp_DAL.repositories;
+﻿
+using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,21 @@ namespace CGI_Project_WebApp_Core.classes
 {
     public class SuggestionService
     {
-        SuggestionRepository suggestionRepository = new SuggestionRepository();
+        ISuggestionRepository suggestionRepository;
+        IPollRepository pollRepository;
+        IEmployeeRepository employeeRepository;
+        public SuggestionService(ISuggestionRepository suggestionRepository, IPollRepository pollRepository, IEmployeeRepository employeeRepository)
+        {
+            this.suggestionRepository = suggestionRepository;
+            this.pollRepository = pollRepository;
+            this.employeeRepository = employeeRepository;
+        }
+
         public bool TryGetLatestWinners(out List<SuggestionList> WinningSuggestionsList, int max)
         {
             WinningSuggestionsList = new List<SuggestionList>();
-
             try
             {
-                PollRepository pollRepository = new PollRepository();
 
                 WinningSuggestionsList = new List<SuggestionList>();
 
@@ -41,8 +49,6 @@ namespace CGI_Project_WebApp_Core.classes
                 return false;
 
             }
-
-
         }
         public bool TryGetWinningSuggestionOutOfPoll(Poll poll, out SuggestionList Winningsuggestions)
         {
@@ -50,13 +56,13 @@ namespace CGI_Project_WebApp_Core.classes
 
             try
             {
-                PollService pollRepository = new PollService();
+                PollService pollService = new PollService(pollRepository);
+                pollService.TryGetMaxVoteCount(out int MaxCount, out bool draw, poll.Id);
 
                 foreach (PollSuggestion item in poll.PollSuggestions)
                 {
-                    pollRepository.TryGetMaxVoteCount(out int MaxCount, out bool draw, poll.Id);
 
-                    if (item.Suggestion.Votes.Count == MaxCount)
+                    if (item.Suggestion.Votes.Count == MaxCount && !draw)
                     {
                         Winningsuggestions.suggestions.Add(item.Suggestion);
                     }
@@ -72,8 +78,7 @@ namespace CGI_Project_WebApp_Core.classes
 
         public bool TryAddSuggestion(string name, string description, string location, string exception, Employee employee)
         {
-            EmployeeRepository employeeRepository = new EmployeeRepository();
-
+            
             if (employeeRepository.TryGetEmployeeByID(employee.Id, out Employee Emp))
             {
 

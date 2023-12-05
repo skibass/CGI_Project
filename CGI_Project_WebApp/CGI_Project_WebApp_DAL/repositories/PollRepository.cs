@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_DAL.Database_Models;
 using CGI_Project_WebApp_Models;
 using Google.Protobuf.WellKnownTypes;
@@ -12,7 +13,7 @@ using Org.BouncyCastle.Utilities;
 
 namespace CGI_Project_WebApp_DAL.repositories
 {
-    public class PollRepository
+    public class PollRepository : IPollRepository
     {
 
         //this had recently been renamed
@@ -87,18 +88,6 @@ namespace CGI_Project_WebApp_DAL.repositories
             {
                 return false;
             }
-        }
-        public bool TryGetPollByPollID(out Poll? poll, int pollId)
-        {
-            Dbi511119Context DBContext = new Dbi511119Context();
-            poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
-
-            if (poll == null)
-            {
-                return false;
-            }
-
-            return true;
         }
         public bool TryGetPoll(out Poll? poll, int pollId)
         {
