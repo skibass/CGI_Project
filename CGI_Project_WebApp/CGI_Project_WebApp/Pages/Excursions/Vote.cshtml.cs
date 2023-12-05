@@ -110,7 +110,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
         //         }
 
        
-
+        }
 
     }
 }
