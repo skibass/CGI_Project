@@ -30,17 +30,17 @@
     <div class="profile-backgroundbar"></div>
     <div class="row">
         <div class="col-md-12">
-            <h3 class="hero-title ml-3 text-center">Uw suggesties:</h3>
+            <h3 class="hero-title ml-3 text-center">Your suggestions:</h3>
             <div id="votesContainer">
                 @foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
                 {
                     <div class="vote-info">
                         <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion.Name</h3>
                         <p class="subtitle">
-                            Locatie: @suggestionWithCount.Suggestion.Location<br>
-                            Beschrijving: @suggestionWithCount.Suggestion.Description<br>
-                            (optioneel) Exceptie: @suggestionWithCount.Suggestion.Exception<br>
-                            Stemmen: @suggestionWithCount.VoteCount
+                            Location: @suggestionWithCount.Suggestion.Location<br>
+                            Description: @suggestionWithCount.Suggestion.Description<br>
+                            (optional) Exception: @suggestionWithCount.Suggestion.Exception<br>
+                            Votes: @suggestionWithCount.VoteCount
                         </p>
                     </div>
                 }
