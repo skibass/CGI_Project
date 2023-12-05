@@ -27,11 +27,9 @@ namespace CGI_Project_WebApp_Core.classes
             try
             {
 
-                WinningSuggestionsList = new List<SuggestionList>();
-
                 List<Poll> polls = new List<Poll>();
 
-                polls = pollRepository.GetPastPolls().OrderByDescending(x => x.EndTime).Take(max).ToList();
+                polls = pollRepository.GetPastPolls().OrderByDescending(x => x.EndTime).ToList();
 
                 foreach (var poll in polls)
                 {
@@ -39,9 +37,12 @@ namespace CGI_Project_WebApp_Core.classes
                     {
                         return false;
                     }
-
-                    WinningSuggestionsList.Add(sl);
+                    if (sl.suggestions.Count > 0)
+                    {
+                        WinningSuggestionsList.Add(sl);
+                    }
                 }
+                WinningSuggestionsList = WinningSuggestionsList.Take(max).ToList();
                 return true;
             }
             catch (Exception)

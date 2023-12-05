@@ -11,7 +11,7 @@ public class ProfileModel : PageModel
 {
     EmployeeService employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
     public Employee employee = new();
-    SuggestionService suggestionService = new SuggestionService();
+    SuggestionService suggestionService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
     public List<SuggestionWithVoteCount> SuggestionsWithVoteCount { get; set; } = new List<SuggestionWithVoteCount>();
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }

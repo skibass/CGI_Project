@@ -37,7 +37,7 @@ namespace CGI_Project_WebApp_UnitTests
                 }
                 );
 
-            pollService.TryGetValidAndVoteablePolls(out List<Poll> votablePolls, 1);
+            Assert.True(pollService.TryGetValidAndVoteablePolls(out List<Poll> votablePolls, 1));
 
             Assert.Equal(2, votablePolls.Count);
         }

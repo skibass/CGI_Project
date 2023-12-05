@@ -15,25 +15,27 @@ namespace CGI_Project_WebApp_Core.classes
 
         public EmployeeService(IEmployeeRepository employeeRepository, IPollRepository pollRepository)
         {
-            
+            this.employeeRepository = employeeRepository;
+            this.pollRepository = pollRepository;
+        }
+
+        public bool TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, Employee employee)
+        {
             List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
             polls = new List<Poll>();
             try
             {
 
-
-            List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
-
-            foreach (PollSuggestion suggestion in pollSuggestion)
-            {
-                if (suggestion.Poll != null)
+                foreach (PollSuggestion suggestion in pollSuggestion)
                 {
-                    if (!polls.Select(p => p.Id).Contains((int)suggestion.PollId))
+                    if (suggestion.Poll != null)
                     {
                         polls.Add(suggestion.Poll);
-                    }
 
+                    }
                 }
+
+                return true;
             }
             catch (Exception)
             {
@@ -110,10 +112,10 @@ namespace CGI_Project_WebApp_Core.classes
                         if (pollService.TryGetMaxVoteCount(out int count, out bool draw, poll.Id))
                         {
 
+
                             if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(s => s.Suggestion.Votes.Count).Contains(count) && count > 0)
                             {
-                                winningPolls.Add(poll);
-
+                                winner = true; 
                             }
                             if(winner) winningPolls.Add(poll);
                         }

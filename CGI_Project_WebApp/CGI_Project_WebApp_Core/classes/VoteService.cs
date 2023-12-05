@@ -12,12 +12,14 @@ namespace CGI_Project_WebApp_Core.classes
     public class VoteService {
         IVoteRepository repository;
         IDateRepository dateRepository;
+        IEmployeeRepository employeeRepository;
         DateService dateService;
 
-        public VoteService(IVoteRepository repository, IDateRepository dateRepository)
+        public VoteService(IVoteRepository repository, IDateRepository dateRepository, IEmployeeRepository employeeRepository)
         {
             this.repository = repository;
             this.dateRepository = dateRepository;
+            this.employeeRepository = employeeRepository;
             this.dateService = new DateService(this.dateRepository);
         }
         public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates)
@@ -47,16 +49,12 @@ namespace CGI_Project_WebApp_Core.classes
                 }
             }
         }
-
-        
-
+       
         public bool TryGetVotedSuggestions(int employee, out List<Vote> votes)
         {
-            VoteRepository votesRepository = new();
-
             if (employeeRepository.TryGetEmployeeByID(employee, out Employee emp))
             {
-                if (votesRepository.TryGetVotedSuggestions(out votes))
+                if (repository.TryGetVotedSuggestions(out votes))
                 {
                     return true;
                 }

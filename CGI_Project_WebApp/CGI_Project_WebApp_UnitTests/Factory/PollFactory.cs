@@ -9,12 +9,21 @@ namespace CGI_Project_WebApp_UnitTests.Factory
 {
     internal class PollFactory
     {
+        int indexVal = 0;
+
+        int index()
+        {
+            indexVal++;
+            return indexVal;
+
+        }
+
         public Poll NoVotePoll()
         {
             return new Poll
             {
                 Poll_name = "TestPoll1",
-                Id = 1,
+                Id = index(),
                 ManagerId = 1,
                 StartTime = DateTime.Now.AddDays(-1),
                 EndTime = DateTime.Now.AddDays(1),
@@ -64,7 +73,7 @@ namespace CGI_Project_WebApp_UnitTests.Factory
             return new Poll
             {
                 Poll_name = "TestPoll1",
-                Id = 1,
+                Id = index(),
                 ManagerId = 1,
                 StartTime = DateTime.Now.AddDays(-1),
                 EndTime = DateTime.Now.AddDays(1),
@@ -160,7 +169,7 @@ namespace CGI_Project_WebApp_UnitTests.Factory
             return new Poll
             {
                 Poll_name = "TestPoll1",
-                Id = 1,
+                Id = index(),
                 ManagerId = 1,
                 StartTime = DateTime.Now.AddDays(-1),
                 EndTime = DateTime.Now.AddDays(1),
@@ -254,7 +263,7 @@ namespace CGI_Project_WebApp_UnitTests.Factory
             return new Poll
             {
                 Poll_name = "TestPoll1",
-                Id = 1,
+                Id = index(),
                 ManagerId = 1,
                 StartTime = DateTime.Now.AddDays(-1),
                 EndTime = DateTime.Now.AddDays(1),

@@ -1,4 +1,5 @@
 using CGI_Project_WebApp_Core.classes;
+using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace CGI_Project_WebApp.Pages
 {
     public class LeaderboardModel : PageModel
     {
-        public EmployeeService _employeeService = new EmployeeService();
+        public EmployeeService _employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
 
         public List<(string Name, int Score)> LeaderboardData { get; private set; }
         public int MaxScore { get; private set; }

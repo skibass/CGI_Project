@@ -11,5 +11,7 @@ namespace CGI_Project_WebApp_Core.Interfaces
     {
         public bool TryAddSuggestionToDB(Suggestion newSuggestion);
         public bool TryGetUnusedSuggestions(out SuggestionList suggestionList);
+
+        public bool TryGetSuggestionWithId(out Suggestion suggestion, int id);
     }
 }

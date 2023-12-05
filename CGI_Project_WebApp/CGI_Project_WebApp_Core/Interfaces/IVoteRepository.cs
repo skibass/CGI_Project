@@ -11,5 +11,7 @@ namespace CGI_Project_WebApp_Core.Interfaces
     {
         public bool TryAddVote(Vote vote);
         public bool TryAddDateToVote(int voteId, int dateId);
+
+        public bool TryGetVotedSuggestions(out List<Vote> votes);
     }
 }

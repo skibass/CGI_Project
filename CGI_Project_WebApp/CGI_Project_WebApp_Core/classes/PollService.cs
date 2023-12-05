@@ -32,7 +32,7 @@ namespace CGI_Project_WebApp_Core.classes
 
                         foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
                         {
-                            if (suggestion.Votes.Select(vote => vote.Employee.Id).ToList().Contains(employeeId))
+                            if (suggestion.Votes.Select(vote => vote.EmployeeId).ToList().Contains(employeeId))
                             {
                                 validToVote = false;
                             }
@@ -56,7 +56,7 @@ namespace CGI_Project_WebApp_Core.classes
             List<Vote> votes = new List<Vote>();
             vote = null;
 
-            if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
+            if (pollsRepository.TryGetPoll(out Poll poll, pollId))
             {
                 List<PollSuggestion> suggestions = poll.PollSuggestions.ToList();
                 votes = suggestions
