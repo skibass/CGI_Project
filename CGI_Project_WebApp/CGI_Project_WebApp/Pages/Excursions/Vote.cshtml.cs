@@ -5,8 +5,13 @@ namespace CGI_Project_WebApp.Pages.Excursions
 {
     public class VoteModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToPage("../Index");
+            }
+            return null;
         }
     }
 }

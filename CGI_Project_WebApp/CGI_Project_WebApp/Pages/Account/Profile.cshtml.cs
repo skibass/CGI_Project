@@ -1,6 +1,7 @@
 using CGI_Project_WebApp_Core.classes;
 using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
@@ -33,35 +34,43 @@ public class ProfileModel : PageModel
     }
 
 
-    public void OnGet()
+    public IActionResult OnGet()
     {
-        UserName = User.Identity.Name;
-        UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-        UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
-
-        UserName=FormatName(UserName);
-
-        if (UserEmailAddress != null)
+        if (User.Identity.IsAuthenticated == false)
         {
-            if (!employeeService.TryGetEmployeeByEmail(UserEmailAddress, out employee))
-            {
-                //mail doesn't exist and/or server error
-            }
+            return RedirectToPage("../Index");
         }
         else
         {
-            //er is geen email/ kan de email niet ophalen
-        }
-        foreach (var empSuggestion in employee.Suggestions)
-        {
-            if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id))
+            UserName = User.Identity.Name;
+            UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+            UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
+
+            UserName = FormatName(UserName);
+
+            if (UserEmailAddress != null)
             {
-                SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                if (!employeeService.TryGetEmployeeByEmail(UserEmailAddress, out employee))
                 {
-                    Suggestion = suggestion,
-                    VoteCount = suggestion.Votes.Count
-                });
+                    //mail doesn't exist and/or server error
+                }
+            }
+            else
+            {
+                //er is geen email/ kan de email niet ophalen
+            }
+            foreach (var empSuggestion in employee.Suggestions)
+            {
+                if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id))
+                {
+                    SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                    {
+                        Suggestion = suggestion,
+                        VoteCount = suggestion.Votes.Count
+                    });
+                }
             }
         }
+        return null;
     }
 }

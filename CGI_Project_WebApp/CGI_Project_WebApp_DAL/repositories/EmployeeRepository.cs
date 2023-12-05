@@ -30,7 +30,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             
             Dbi511119Context context = new Dbi511119Context();
-            List<Employee> employees = context.Employees.Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).ToList();
+            List<Employee> employees = context.Employees.Include(e => e.Role).Include(e => e.Company).Include(e => e.Role).Include(e => e.Suggestions).Include(e => e.Votes).ToList();
             if (employees == null)
             {
                 employees = new List<Employee>();
@@ -119,10 +119,13 @@ namespace CGI_Project_WebApp_DAL.repositories
         public bool TryAddEmployee(Employee emp)
         {
             bool canAdd = true;
+            Role role = new();
             foreach (Employee item in GetEmployees())
             {
                 if (emp.Email == item.Email)
                 {
+                    role.Name = item.Role.Name;
+                    emp.Role = role;
                     canAdd = false;                   
                 }
             }    
@@ -135,8 +138,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                 canAdd = true;
             }
             return canAdd;
-        }
-    
+        }    
     }
 }
 
