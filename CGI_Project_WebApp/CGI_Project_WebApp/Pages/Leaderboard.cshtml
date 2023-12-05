@@ -20,6 +20,7 @@
     }
 }
 @functions {
+
     private Dictionary<int, int> GetDenseRank(List<(string Name, int Score)> scores)
     {
         var ranks = new Dictionary<int, int>();
@@ -34,46 +35,21 @@
                 {
                     ranks.Add(score.Score, rank);
                 }
-                rank++; 
+                rank++;
             }
             else if (!ranks.ContainsKey(score.Score))
             {
-                ranks.Add(score.Score, rank); 
+                ranks.Add(score.Score, rank);
             }
         }
         return ranks;
-    }
-
-    private string GetOrdinal(int number)
-    {
-        if (number <= 0) return number.ToString();
-
-        switch (number % 100)
-        {
-            case 11:
-            case 12:
-            case 13:
-                return number + "th";
-        }
-
-        switch (number % 10)
-        {
-            case 1:
-                return number + "st";
-            case 2:
-                return number + "nd";
-            case 3:
-                return number + "rd";
-            default:
-                return number + "th";
-        }
     }
 }
 
 @{
     // Calculate the dense rankings for all scores
-    var allScores = Model.TopThree.Concat(Model.PlacesFourToTen.Select(x => (x.Name, x.Score))).ToList();
-    var denseRanks = GetDenseRank(allScores);
+    List<(string Name, int Score)> allScores = Model.TopThree.Concat(Model.PlacesFourToTen.Select(x => (x.Name, x.Score))).ToList();
+    Dictionary<int, int> denseRanks = GetDenseRank(allScores);
 }
 
 <!DOCTYPE html>
@@ -119,13 +95,13 @@
                                 @if (barHeight <= thresholdHeight)
                                 {
                                     <!-- Display score above the bar if it's too short -->
-                                    <div class="score-above-bar">@entry.Score <br>@GetOrdinal(denseRanks[entry.Score])</div>
+                                    <div class="score-above-bar">#@denseRanks[entry.Score] <br>@entry.Score</div>
                                 }
                                 else
                                 {
                                     <!-- Display score inside the bar if it's tall enough -->
                                     <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
-                                        @entry.Score <br>@GetOrdinal(denseRanks[entry.Score])
+                                        #@denseRanks[entry.Score] <br>@entry.Score
                                     </div>
                                 }
                             </div>
@@ -149,7 +125,7 @@
                         {
                             <tr>
                                 <!-- Use the denseRanks dictionary to display the position -->
-                                <td>@GetOrdinal(denseRanks[entry.Score])</td>
+                                <td>#@denseRanks[entry.Score]</td>
                                 <td>
                                     <div class="displayUserName">
                                         @entry.Name

@@ -13,7 +13,7 @@ namespace CGI_Project_WebApp.Pages
         public List<(string Name, int Score)> LeaderboardData { get; private set; }
         public int MaxScore { get; private set; }
         public List<(string Name, int Score)> TopThree { get; private set; }
-        public List<(string Name, int Score, int Position)> PlacesFourToTen { get; private set; }
+        public List<(string Name, int Score)> PlacesFourToTen { get; private set; }
 
         public void OnGet()
         {
@@ -39,7 +39,7 @@ namespace CGI_Project_WebApp.Pages
 
             // Remaining for the table
             PlacesFourToTen = LeaderboardData.Skip(3).Take(7)
-                .Select((x, index) => (x.Name, x.Score, Position: index + 4)).ToList();
+                .Select((x, index) => (x.Name, x.Score)).ToList();
         }
     }
 }
