@@ -29,6 +29,16 @@ line-height: baseline;
     background-color: #e11937;
 }
 
+.voted-div{
+    background-color: red;
+    color: green;
+}
+
+.voted-button{
+    
+}
+
+
 .vote-badge{
     background-color: var(--secondary);
 }

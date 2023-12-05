@@ -48,21 +48,29 @@ namespace CGI_Project_WebApp_Core.classes
 
         }
 
-      public bool PollContainsUserVote(int pollId, int employeeId)
+        public bool PollContainsUserVote(int pollId, int employeeId, out Vote vote)
         {
             List<Vote> votes = new List<Vote>();
+            vote = null;
 
             if (pollsRepository.TryGetPollByPollID(out Poll poll, pollId))
             {
                 List<PollSuggestion> suggestions = poll.PollSuggestions.ToList();
                 votes = suggestions
                     .SelectMany(suggestion => suggestion.Suggestion.Votes)
-                    .Where(vote => vote.EmployeeId == employeeId)
+                    .Where(v => v.EmployeeId == employeeId)
                     .ToList();
             }
 
-            return votes.Any(); 
+            if (votes.Any())
+            {
+                vote = votes.First(); // Assuming you want to return the first vote
+                return true;
+            }
+
+            return false;
         }
+
 
 
 

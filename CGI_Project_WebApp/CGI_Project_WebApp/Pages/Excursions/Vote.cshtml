@@ -20,7 +20,7 @@
 
     @foreach (var poll in Model.Polls)
     {
-        var hasVoted = Model.PollContainsUserVote(poll.Id);
+        var (hasVoted, vote) = Model.PollContainsUserVote(poll.Id);
 
         <div data-bs-toggle="collapse" href="#collapse@(poll.Id)" aria-controls="collapse@(poll.Id)" class="vote-item d-flex mb-2 rounded-2 justify-content-between align-items-center @((hasVoted) ? 'v' : 'n')" onclick="changeChevron(event)">
             <a class="text-decoration-none hero-title d-flex lh-1 fs-6 text-white p-2">@poll.Poll_name</a>
@@ -28,10 +28,14 @@
         </div>
 
         <div id="collapse@(poll.Id)" class="vote-collection collapse">
-            @{var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Suggestion.Votes.Count);}
+            @{
+            var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Suggestion.Votes.Count);
+            }
           @foreach (var suggestion in sortedSuggestions)
             {
-                <div class="vote-card mb-3" data-id="@suggestion.SuggestionId">
+                            var userVotedForSuggestion = hasVoted && vote.SuggestionId == suggestion.SuggestionId;
+
+                <div class='vote-card mb-3 @(userVotedForSuggestion ? "voted-div" : "")' data-id="@suggestion.SuggestionId">
                     <form method="post" asp-page-handler="Vote" asp-route-suggestionId="@suggestion.SuggestionId">
                         <div class="card">
                             <div class="row g-0">
@@ -44,7 +48,7 @@
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
                                     <div class="card-body text-center">
-                                        <button type="submit" class="btn hero-button text-white rounded-1 border-0 btn-lg">Vote</button>
+                                        <button type="submit" class='@(userVotedForSuggestion ? "voted-button" : "") btn hero-button text-white rounded-1 border-0 btn-lg'>@(userVotedForSuggestion ? "X" : "Vote")</button>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +64,7 @@
                 var percentage = Model.VotePercentages.GetValueOrDefault(suggestionId, 0);
                 var voteCount = Model.VoteCounts.GetValueOrDefault(suggestionId, 0);
 
-                
+
 
 
                 <div class="container my-4 mt-4">

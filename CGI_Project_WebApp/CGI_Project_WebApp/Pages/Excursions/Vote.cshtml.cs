@@ -80,24 +80,26 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 Console.WriteLine("Could not add vote");
 
             }
-                        Console.WriteLine("Idk bro");
+                Console.WriteLine("Idk bro");
 
             
             return RedirectToPage();
         }
 
-        public bool PollContainsUserVote(int pollId){
-           
-
+        public (bool, Vote) PollContainsUserVote(int pollId)
+        {
             if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
-              if(pollService.PollContainsUserVote(pollId, emp.Id)){
-
-                return true;
-              }
+                if (pollService.PollContainsUserVote(pollId, emp.Id, out Vote vote))
+                {
+                    return (true, vote);
+                }
             }
-            return false;
+            return (false, null); 
         }
+
+       
+
 
     }
 }
