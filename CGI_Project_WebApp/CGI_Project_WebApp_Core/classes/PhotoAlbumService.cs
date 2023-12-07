@@ -17,27 +17,27 @@ namespace CGI_Project_WebApp_Core.classes
         {
             this._photoAlbumRepository = photoAlbumRepository;
         }
-        public void TryAddPhoto(Photos photo, string file, IFormFile Upload)
+        public async Task TryAddPhoto(Photos photo, string file, IFormFile Upload)
         {
             if (File.Exists(file))
             {
                 // If the file exists only update database and dont add imge to folder
                 photo.FileName = Upload.FileName;
-                AddPhoto(photo);
+                await AddPhoto(photo);
             }
             else
             {
                 // If tthe file doesnt exist, add to both the database and folder
                 using (var fileStream = new FileStream(file, FileMode.Create))
                 {
-                    Upload.CopyToAsync(fileStream);
+                    await Upload.CopyToAsync(fileStream);
                 }
                 photo.FileName = Upload.FileName;
-                AddPhoto(photo);
+                await AddPhoto(photo);
             }
 
         }
-        private void AddPhoto(Photos photo)
+        private async Task AddPhoto(Photos photo)
         {
             _photoAlbumRepository.AddPhoto(photo);
         }

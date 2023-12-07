@@ -29,13 +29,13 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
             return null;
         }
 
-        public IActionResult OnPostTryAddPhoto()
+        public async Task OnPostTryAddPhoto()
         {
             var file = Path.Combine(env.WebRootPath, "PhotoAlbum", Upload.FileName);
 
-            photoAlbumService.TryAddPhoto(photo, file, Upload);
-            
-            return RedirectToPage();
+            await photoAlbumService.TryAddPhoto(photo, file, Upload);
+
+            RedirectToPage();
         }
     }
 }
