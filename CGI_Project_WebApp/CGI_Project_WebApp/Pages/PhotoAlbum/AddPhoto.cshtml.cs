@@ -20,8 +20,13 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
         {
             env = web;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToPage("../Index");
+            }
+            return null;
         }
 
         public IActionResult OnPostTryAddPhoto()

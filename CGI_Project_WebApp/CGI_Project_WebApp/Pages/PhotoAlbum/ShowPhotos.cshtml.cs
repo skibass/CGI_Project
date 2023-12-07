@@ -9,8 +9,13 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
     {
         public PhotoAlbumService photoAlbumService = new(new PhotoAlbumRepository());
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToPage("../Index");
+            }
+            return null;
         }
     }
 }
