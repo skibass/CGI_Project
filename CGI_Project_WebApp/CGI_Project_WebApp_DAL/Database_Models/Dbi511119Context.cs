@@ -18,6 +18,7 @@ public partial class Dbi511119Context : DbContext
     }
 
     public virtual DbSet<Company> Companies { get; set; }
+    public virtual DbSet<Photos> Photos { get; set; }
 
     public virtual DbSet<Date> Dates { get; set; }
 
@@ -357,6 +358,23 @@ public partial class Dbi511119Context : DbContext
             entity.HasOne(d => d.Suggestion).WithMany(p => p.Votes)
                 .HasForeignKey(d => d.SuggestionId)
                 .HasConstraintName("FK_Vote-Suggestion");
+        });
+
+        modelBuilder.Entity<Photos>(entity =>
+        {
+            entity.HasKey(e => e.PhotoId).HasName("PRIMARY");
+
+            entity.ToTable("photos");
+
+            entity.Property(e => e.PhotoId)
+                .HasColumnType("int(11)")
+                .HasColumnName("photoid");
+            entity.Property(e => e.FileName)
+                .HasMaxLength(255)
+                .HasColumnName("photo_filename");
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .HasColumnName("description");
         });
 
         OnModelCreatingPartial(modelBuilder);
