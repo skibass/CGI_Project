@@ -19,12 +19,23 @@ namespace CGI_Project_WebApp_Core.classes
         }
         public void TryAddPhoto(Photos photo, string file, IFormFile Upload)
         {
-            using (var fileStream = new FileStream(file, FileMode.Create))
+            if (File.Exists(file))
             {
-                Upload.CopyToAsync(fileStream);
+                // If the file exists only update database and dont add imge to folder
+                photo.FileName = Upload.FileName;
+                AddPhoto(photo);
             }
-            photo.FileName = Upload.FileName;
-            AddPhoto(photo);
+            else
+            {
+                // If tthe file doesnt exist, add to both the database and folder
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    Upload.CopyToAsync(fileStream);
+                }
+                photo.FileName = Upload.FileName;
+                AddPhoto(photo);
+            }
+
         }
         private void AddPhoto(Photos photo)
         {
