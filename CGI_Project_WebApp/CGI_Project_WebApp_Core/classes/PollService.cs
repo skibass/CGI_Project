@@ -98,11 +98,6 @@ namespace CGI_Project_WebApp_Core.classes
         }
 
 
-
-        
-
-           
-
         //zo kan de mederwerker nogsteeds de huidige stand van de polls zien zelfs als die all heeft gevote
         public bool TryGetValidButNonVoteablePolls(out List<Poll> nonVotablePolls, int employeeId)
         {

@@ -22,20 +22,24 @@ line-height: baseline;
 }
 
 .vote-item.v{
-    background-color: limegreen;
+   
 }
 
 .vote-item.n{
-    background-color: #e11937;
+   
 }
 
-.voted-div{
-    background-color: red;
-    color: green;
+.voted-div  .card{
+    box-shadow: rgb(78, 133, 78) 0px 0px 3px 2px;
+    
 }
 
 .voted-button{
     
+}
+
+.hidden{
+    display: none;
 }
 
 

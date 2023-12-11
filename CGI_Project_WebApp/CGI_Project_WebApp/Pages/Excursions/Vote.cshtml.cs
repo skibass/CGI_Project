@@ -105,6 +105,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
                     return (true, vote);
                 }
             }
+
             return (false, null);
 
 
