@@ -1,5 +1,9 @@
 ﻿@page
 @model CGI_Project_WebApp.Pages.LeaderboardModel
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<IndexModel> stringLocalizer;
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer;
 @{
     ViewData["Title"] = "Leaderboard";
 
@@ -69,7 +73,7 @@
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <h3 class="hero-title ml-3">Leaderboard</h3>
+                <h3 class="hero-title ml-3">@stringLocalizer["LeaderboardTitle"]</h3>
 
                 @if (isDataAvailable)
                 {
@@ -108,9 +112,9 @@
                     <table class="table mt-4">
                         <thead>
                             <tr>
-                                <th>Position</th>
-                                <th>Name</th>
-                                <th>Score</th>
+                                <th>@stringLocalizer["LeaderboardPosition"]</th>
+                                <th>@stringLocalizer["LeaderboardName"]</th>
+                                <th>@stringLocalizer["LeaderboardScore"]</th>
                             </tr>
                         </thead>
                         <tbody>

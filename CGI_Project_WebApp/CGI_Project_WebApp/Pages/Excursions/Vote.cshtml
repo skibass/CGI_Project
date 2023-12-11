@@ -5,6 +5,10 @@
 @Html.AntiForgeryToken()
 @using CGI_Project_WebApp_Models
 @model CGI_Project_WebApp.Pages.Excursions.VoteModel
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<IndexModel> stringLocalizer;
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer;
 <head>
     <link rel="stylesheet" href="~/css/vote.css"/>
 </head>
@@ -16,8 +20,8 @@
 
     <div id="vote-wrapper" class="container mt-4 mb-5">
         <div class="vote-header">
-            <h3 class="hero-title">Vote for an excursion</h3>
-            <h5 class="subtitle">You can vote for one excursion in each period</h5>
+            <h3 class="hero-title">@stringLocalizer["VoteTitle"]</h3>
+            <h5 class="subtitle">@stringLocalizer["VoteSubtitle"]</h5>
         </div>
 
         @foreach (var poll in Model.Polls)
