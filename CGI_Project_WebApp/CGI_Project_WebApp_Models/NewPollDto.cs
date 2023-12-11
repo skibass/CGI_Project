@@ -20,6 +20,6 @@ namespace CGI_Project_WebApp_Models
 
         public virtual Period? Period { get; set; }
 
-        public List<Suggestion> suggestions { get; set; }
+        public List<Suggestion>? Suggestions { get; set; }
     }
 }

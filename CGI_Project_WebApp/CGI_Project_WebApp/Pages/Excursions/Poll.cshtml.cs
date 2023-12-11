@@ -15,7 +15,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 		[BindProperty]
 		public required NewPollDto Poll { get; set; }
 
-		private SuggestionList unusedSuggestionsList;
+		public SuggestionList unusedSuggestionsList;
 
 		public SuggestionList UnusedSuggestionsList
 		{
@@ -34,32 +34,31 @@ namespace CGI_Project_WebApp.Pages.Excursions
 			SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
 		}
 
-		public void OnPost()
+		public IActionResult OnPost()
 		{
 			EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
 			//TODO: Finish Error
 			if (!ModelState.IsValid)
 			{
-
+				return Page();
 			}
 
 			if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
 			{
-				if (PollService.TryAddPoll(Poll.Poll_name, Poll.ManagerId, Poll.StartTime, Poll.EndTime, Poll.Period, emp))
+				if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, Poll.Suggestions))
 				{
-					RedirectToPage();
+					return RedirectToPage("/Index");
 				}
 				else
 				{
 					//something went wrong with adding poll and/or server error
+					return Page();
 				}
 			}
-			
-			//pollToSave.ManagerId
-			//pollToSave.StartTime > moet gesplitst worden uit dateRange picker
-			//pollToSave.EndTime > moet gesplitst worden uit dateRange picker
-			//pollToSave.Period ?
+
+			return RedirectToPage("/Index");
+		
 		}
 	}
 }

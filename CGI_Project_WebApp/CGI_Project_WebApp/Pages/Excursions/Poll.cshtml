@@ -23,14 +23,15 @@
 <div class="container mb-5">
 	<form method="post">
 		<input asp-for="Poll.Poll_name" type="text" id="pname" placeholder="Poll name..."/><br/>
-		<input type="text" id="dateRange" placeholder="Select possible dates for the excursion" data-mode="range" data-input><br />
+		<input type="text" id="dateRange" placeholder="Select the period in which employees can vote" data-mode="range" data-input><br />
 		
 		<input asp-for="Poll.StartTime" type="hidden" id="startDate" />
 		<input asp-for="Poll.EndTime" type="hidden" id="endDate" />
 
-		@if (Model.UnusedSuggestionsList.suggestions != null)
+		@if (Model?.UnusedSuggestionsList?.suggestions != null)
 		{
-			<select asp-for="Poll.suggestions" id="psuggestions" placeholder="Select suggestions..." multiple>
+			<select asp-for="Poll.
+Suggestions" id="psuggestions" placeholder="Select suggestions..." asp-items="@(new SelectList(Model.UnusedSuggestionsList, nameof(suggestions.Name)))" multiple>
 				@foreach (var suggestion in Model.UnusedSuggestionsList.suggestions)
 				{
 					<option value="@suggestion">@suggestion.Name</option>
@@ -41,6 +42,7 @@
 		else
 		{
 			<span class="">No suggestions have been done, ask your employees to make suggestions</span>
+			<br/>
 		}
 
 		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SubmitButton"]</button>
@@ -62,5 +64,6 @@
 				document.getElementById("startDate").value = startDate;
 				document.getElementById("endDate").value = endDate;
 			}
+		}
 	});
 </script>
