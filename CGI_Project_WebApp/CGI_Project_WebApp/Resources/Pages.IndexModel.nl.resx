@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExcursionDescription" xml:space="preserve">
+    <value>Excursie omschrijving</value>
+  </data>
+  <data name="ExcursionInfo" xml:space="preserve">
+    <value>Belangrijke info (e.g. breng zonnebril)</value>
+  </data>
+  <data name="ExcursionLocation" xml:space="preserve">
+    <value>Excursie locatie</value>
+  </data>
+  <data name="ExcursionName" xml:space="preserve">
+    <value>Excursie naam</value>
+  </data>
   <data name="HeroButton" xml:space="preserve">
     <value>Begin</value>
   </data>
@@ -126,8 +138,53 @@
   <data name="HeroTitle" xml:space="preserve">
     <value>Ontgrendel teamavonturen: bouw banden op, één excursie tegelijk. Ontdek, bind en bloei met elke bedrijfsexpeditie!</value>
   </data>
+  <data name="LeaderboardName" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="LeaderboardPosition" xml:space="preserve">
+    <value>Positie</value>
+  </data>
+  <data name="LeaderboardScore" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="LeaderboardTitle" xml:space="preserve">
+    <value>Ranglijst</value>
+  </data>
+  <data name="ProfileDescription" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="ProfileException" xml:space="preserve">
+    <value>Exceptie</value>
+  </data>
+  <data name="ProfileLocation" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="ProfileNoSuggestions" xml:space="preserve">
+    <value>Geen suggesties beschikbaar</value>
+  </data>
+  <data name="ProfileNoTeam" xml:space="preserve">
+    <value>Geen team informatie beschikbaar</value>
+  </data>
+  <data name="ProfileTeam" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="ProfileTitle" xml:space="preserve">
+    <value>Gebruikersprofiel</value>
+  </data>
+  <data name="ProfileVotes" xml:space="preserve">
+    <value>Stemmen</value>
+  </data>
+  <data name="ProfileYourSuggestions" xml:space="preserve">
+    <value>Uw Suggesties</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Lees meer</value>
+  </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recente excursies</value>
+  </data>
+  <data name="SuggestSubmit" xml:space="preserve">
+    <value>Indienen</value>
   </data>
   <data name="SuggestSubtitle" xml:space="preserve">
     <value>Vul het onderstaande formulier in</value>

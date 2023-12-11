@@ -61,6 +61,42 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excursion description.
+        /// </summary>
+        public static string ExcursionDescription {
+            get {
+                return ResourceManager.GetString("ExcursionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Important info (e.g. bring sunglasses).
+        /// </summary>
+        public static string ExcursionInfo {
+            get {
+                return ResourceManager.GetString("ExcursionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excursion location.
+        /// </summary>
+        public static string ExcursionLocation {
+            get {
+                return ResourceManager.GetString("ExcursionLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excursion name.
+        /// </summary>
+        public static string ExcursionName {
+            get {
+                return ResourceManager.GetString("ExcursionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string HeroButton {
@@ -88,11 +124,155 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string LeaderboardName {
+            get {
+                return ResourceManager.GetString("LeaderboardName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        public static string LeaderboardPosition {
+            get {
+                return ResourceManager.GetString("LeaderboardPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        public static string LeaderboardScore {
+            get {
+                return ResourceManager.GetString("LeaderboardScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leaderboard.
+        /// </summary>
+        public static string LeaderboardTitle {
+            get {
+                return ResourceManager.GetString("LeaderboardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string ProfileDescription {
+            get {
+                return ResourceManager.GetString("ProfileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        public static string ProfileException {
+            get {
+                return ResourceManager.GetString("ProfileException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string ProfileLocation {
+            get {
+                return ResourceManager.GetString("ProfileLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No suggestions available.
+        /// </summary>
+        public static string ProfileNoSuggestions {
+            get {
+                return ResourceManager.GetString("ProfileNoSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No team information available.
+        /// </summary>
+        public static string ProfileNoTeam {
+            get {
+                return ResourceManager.GetString("ProfileNoTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team.
+        /// </summary>
+        public static string ProfileTeam {
+            get {
+                return ResourceManager.GetString("ProfileTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Profile.
+        /// </summary>
+        public static string ProfileTitle {
+            get {
+                return ResourceManager.GetString("ProfileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Votes.
+        /// </summary>
+        public static string ProfileVotes {
+            get {
+                return ResourceManager.GetString("ProfileVotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Suggestions.
+        /// </summary>
+        public static string ProfileYourSuggestions {
+            get {
+                return ResourceManager.GetString("ProfileYourSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more.
+        /// </summary>
+        public static string ReadMore {
+            get {
+                return ResourceManager.GetString("ReadMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recent Excursions.
         /// </summary>
         public static string RecentTitle {
             get {
                 return ResourceManager.GetString("RecentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string SuggestSubmit {
+            get {
+                return ResourceManager.GetString("SuggestSubmit", resourceCulture);
             }
         }
         
