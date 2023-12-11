@@ -115,6 +115,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        public static string FooterMore {
+            get {
+                return ResourceManager.GetString("FooterMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string HeroButton {
