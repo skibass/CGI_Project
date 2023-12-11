@@ -14,6 +14,30 @@
 @if (User.Identity.IsAuthenticated)
 {
 
+    @if (Model.ErrorHandeling.MessageBool)
+    {
+        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.SuccessMessage))
+        {
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast-body text-light">
+                        @Model.ErrorHandeling.SuccessMessage
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.ErrorMessage))
+        {
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast-body text-light">
+                        @Model.ErrorHandeling.ErrorMessage
+                    </div>
+                </div>
+            </div>
+        }
+    }
     <div id="vote-wrapper" class="container mt-4 mb-5">
         <div class="vote-header">
             <h3 class="hero-title">Vote for an excursion</h3>
@@ -108,39 +132,26 @@
         }
     </div>
 
+    <script src="js/vote.js"></script>
+
     <script>
-
-        $(document).ready(function () {
-        $('[data-bs-toggle="collapse"]').collapse();
-
-        $(".vote-progress-bar-container").each(function () {
-        var percentage = parseFloat($(this).data("percentage"));
-        var progressBar = $(this).find(".progress-bar");
-
-        // Check if the percentage is a valid number
-        if (!isNaN(percentage)) {
-        progressBar.css("width", percentage + "%");
-        }
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl);
         });
 
-        var changeChevron = function (event) {
-        var container = $(event.target).closest('.vote-item');
-        var chevron = container.find('.chevron.down');
-        chevron.toggleClass('up');
-        }
+        // Optional: Close the toasts after a certain duration
+        setTimeout(function () {
+            toastList.forEach(function (toast) {
+                toast.hide();
+            });
 
-        var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
-
-        // Update progress bars based on the calculated percentages
-        Object.keys(votePercentages).forEach(function (suggestionId) {
-        var percentage = votePercentages[suggestionId];
-        var progressBar = document.getElementById("progress-bar-" + suggestionId);
-        progressBar.style.width = percentage + "%";
-        progressBar.innerHTML = percentage.toFixed(2) + "%";
-        });     
-
-
-
+            // Ensure the toasts are not reappearing by removing them from the DOM
+            toastElList.forEach(function (toastEl) {
+                toastEl.parentNode.removeChild(toastEl);
+            });
+        }, 2000); // 1000 milliseconds = 1 second
+    });
     </script>
 }
