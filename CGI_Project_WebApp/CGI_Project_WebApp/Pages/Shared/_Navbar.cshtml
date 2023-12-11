@@ -24,12 +24,20 @@
                     <li class="nav-item">
                         <a class="nav-link text-black" asp-area="" asp-page="/Leaderboard">@stringLocalizer["LeaderboardNav"]</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/AddPhoto">@stringLocalizer["AddPhotoNav"]</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/ShowPhotos">@stringLocalizer["ShowPhotoNav"]</a>
-                    </li>
+                    @if (@Context.Session.GetString("rName") == "manager")
+                    {
+                        <li class="nav-item">
+                                <a class="nav-link text-black" asp-area=""
+                                   asp-page="/Excursions/Poll">@stringLocalizer["NavPoll"]</a>
+                        </li>
+                    }
+
+                    @*  <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/AddPhoto">@stringLocalizer["AddPhotoNav"]</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/ShowPhotos">@stringLocalizer["ShowPhotoNav"]</a>
+                </li> *@
                 </ul>
             }
 
@@ -43,10 +51,7 @@
                             <a class="nav-link text-dark display-6" asp-area=""
                                asp-page="/Account/Profile">@stringLocalizer["WelcomeManager"] @User.Identity.Name!</a>
                         </p>
-                        <p class="nav-item align-middle">
-                            <a class="nav-link text-dark display-6" asp-area=""
-                               asp-page="/Excursions/Poll">@stringLocalizer["NavPoll"]</a>
-                        </p>
+                       
                     }
                     else
                     {
