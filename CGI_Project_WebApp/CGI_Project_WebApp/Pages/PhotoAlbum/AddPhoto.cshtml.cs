@@ -31,9 +31,9 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
         public async Task OnPostTryAddPhoto()
         {
-            var file = Path.Combine(env.WebRootPath, "PhotoAlbum", Upload.FileName);
+            var path = Path.Combine(env.WebRootPath, "PhotoAlbum");
 
-            await photoAlbumService.TryAddPhoto(photo, file, Upload);
+            await photoAlbumService.TryAddPhoto(photo, path, Upload);
 
             RedirectToPage();
         }
