@@ -18,7 +18,7 @@ namespace CGI_Project_WebApp.Pages
         public void OnGet()
         {
             // Fetch the leaderboard data using the EmployeeService
-            if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts))
+            if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts) && empWinCounts != null)
             {
                 LeaderboardData = empWinCounts
                     .Select(e => (e.Employee.FirstName, e.Count)) 
@@ -40,6 +40,7 @@ namespace CGI_Project_WebApp.Pages
             // Remaining for the table
             PlacesFourToTen = LeaderboardData.Skip(3).Take(7)
                 .Select((x, index) => (x.Name, x.Score)).ToList();
+
         }
     }
 }
