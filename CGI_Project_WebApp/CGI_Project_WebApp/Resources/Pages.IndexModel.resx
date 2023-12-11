@@ -135,6 +135,9 @@
   <data name="FooterContactUs" xml:space="preserve">
     <value>Contact us</value>
   </data>
+  <data name="FooterMore" xml:space="preserve">
+    <value>More</value>
+  </data>
   <data name="HeroButton" xml:space="preserve">
     <value>Get started</value>
   </data>
