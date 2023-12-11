@@ -6,15 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CGI_Project_WebApp.Pages.Excursions
 {
     public class VoteModel : PageModel
     {
 
-        public VoteService VoteService = new VoteService(new VoteRepository(), new DateRepository(), new EmployeeRepository());
-        private PollService pollService = new PollService(new PollRepository());
-        private EmployeeService employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
+        public VoteService VoteService = new();
+        private PollService pollService = new();
+        private EmployeeService employeeService = new();
+        public Error ErrorHandeling = new();
 
         public string EmployeeEmail;
 
@@ -35,6 +37,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             else
             {
                 EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+                
 
                 if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
                 {
@@ -66,11 +69,13 @@ namespace CGI_Project_WebApp.Pages.Excursions
                             }
 
                             RedirectToPage();
+                            ErrorHandeling.ResetErrorHandling();
                         }
                     }
                 }
             }
-            return null;
+            ErrorHandeling.ResetErrorHandling();
+            return Page();
         }
 
         public IActionResult OnPostVote(int suggestionId)
@@ -84,16 +89,15 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                 if (VoteService.TryCreateVote(emp.Id, suggestionId))
                 {
-                    Console.WriteLine("Successfully created vote: " + suggestionId + " Submitted by " + emp.FirstName);
-                    return RedirectToPage();
+                    OnGet();
+                    ErrorHandeling.HandleSuccess("Successfully created vote: " + suggestionId + " Submitted by " + emp.FirstName);
+                    return Page();
                 }
-                Console.WriteLine("Could not add vote");
-
+                ErrorHandeling.HandleError("Could not add vote");
             }
-            Console.WriteLine("Idk bro");
-
-
-            return RedirectToPage();
+            ErrorHandeling.HandleError("E-mail does not exist and/or server error");
+            OnGet();
+            return Page();
         }
 
         public (bool, Vote) PollContainsUserVote(int pollId)

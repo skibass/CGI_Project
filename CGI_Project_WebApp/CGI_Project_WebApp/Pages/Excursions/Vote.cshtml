@@ -16,11 +16,35 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Ze54fzpCFBGZGqoWnOZK2A2w+2l+rWix7N6dqvFvl6lO5Ov4E5l1QqnbFz3I4h4" crossorigin="anonymous"></script>
 
-<div id="vote-wrapper" class="container mt-4 mb-5">
-    <div class="vote-header">
-        <h3 class="hero-title">@stringLocalizer["VoteTitle"]</h3>
-        <h5 class="subtitle">@stringLocalizer["VoteSubtitle"]</h5>
-    </div>
+    @if (Model.ErrorHandeling.MessageBool)
+    {
+        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.SuccessMessage))
+        {
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast-body text-light">
+                        @Model.ErrorHandeling.SuccessMessage
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.ErrorMessage))
+        {
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast-body text-light">
+                        @Model.ErrorHandeling.ErrorMessage
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <div id="vote-wrapper" class="container mt-4 mb-5">
+        <div class="vote-header">
+            <h3 class="hero-title">Vote for an excursion</h3>
+            <h5 class="subtitle">You can vote for one excursion in each period</h5>
+        </div>
 
     @foreach (var poll in Model.Polls)
     {
@@ -106,38 +130,26 @@
     }
 </div>
 
-<script>
+    <script src="js/vote.js"></script>
 
-     $(document).ready(function () {
-        $('[data-bs-toggle="collapse"]').collapse();
-
-        $(".vote-progress-bar-container").each(function () {
-            var percentage = parseFloat($(this).data("percentage"));
-            var progressBar = $(this).find(".progress-bar");
-
-            // Check if the percentage is a valid number
-            if (!isNaN(percentage)) {
-                progressBar.css("width", percentage + "%");
-            }
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl);
         });
+
+        // Optional: Close the toasts after a certain duration
+        setTimeout(function () {
+            toastList.forEach(function (toast) {
+                toast.hide();
+            });
+
+            // Ensure the toasts are not reappearing by removing them from the DOM
+            toastElList.forEach(function (toastEl) {
+                toastEl.parentNode.removeChild(toastEl);
+            });
+        }, 2000); // 1000 milliseconds = 1 second
     });
-
-    var changeChevron = function (event) {
-        var container = $(event.target).closest('.vote-item');
-        var chevron = container.find('.chevron.down');
-        chevron.toggleClass('up');
-    }
-
-    var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
-
-    // Update progress bars based on the calculated percentages
-    Object.keys(votePercentages).forEach(function (suggestionId) {
-        var percentage = votePercentages[suggestionId];
-        var progressBar = document.getElementById("progress-bar-" + suggestionId);
-        progressBar.style.width = percentage + "%";
-        progressBar.innerHTML = percentage.toFixed(2) + "%";
-    });     
-
-
-        
-</script>
+    </script>
+}
