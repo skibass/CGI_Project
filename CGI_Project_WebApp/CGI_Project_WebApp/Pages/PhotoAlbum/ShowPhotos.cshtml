@@ -1,0 +1,13 @@
+﻿@page
+@model CGI_Project_WebApp.Pages.PhotoAlbum.ShowPhotosModel
+@{
+}
+<link rel="stylesheet" href="~/css/photoalbum.css" />
+
+@foreach (var item in Model.photoAlbumService.TryGetPhotos())
+{
+    <div class="gallery">
+        <img src="~/PhotoAlbum/@item.FileName" alt="Cinque Terre" width="600" height="400">
+        <div class="desc">@item.Description</div>
+    </div>
+}

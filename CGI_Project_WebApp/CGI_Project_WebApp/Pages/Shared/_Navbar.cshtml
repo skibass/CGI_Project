@@ -9,19 +9,25 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-             @if (User.Identity.IsAuthenticated)
-             {
-            <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item">
-                    <a class="nav-link text-black" asp-area=""  asp-page="/Excursions/Suggest">Suggest</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black" asp-area=""  asp-page="/Excursions/Vote" >Vote</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black" asp-area="" asp-page="/Leaderboard">Leaderboard</a>
-                </li>
-            </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" asp-area="" asp-page="/Excursions/Suggest">Suggest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" asp-area="" asp-page="/Excursions/Vote">Vote</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" asp-area="" asp-page="/Leaderboard">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/AddPhoto">Add photo's</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/ShowPhotos">Show photo's</a>
+                    </li>
+                </ul>
             }
 
             <div class="mx-5 align-middle">
@@ -46,21 +52,21 @@
                                asp-page="/Account/Profile">Welkom @User.Identity.Name!</a>
                         </p>
 
-                    }                    
+                    }
 
-                   
-                     <p class="nav-item">
+
+                    <p class="nav-item">
                         <a class="nav-link text-dark display-6" asp-area=""
-                       asp-page="/Account/Logout">Logout</a>
+                           asp-page="/Account/Logout">Logout</a>
                     </p>
                 }
                 else
                 {
                     <p class="align-middle">
                         <a class="nav-link text-dark display-6" asp-area=""
-                       asp-page="/Account/Login">Login</a>
+                           asp-page="/Account/Login">Login</a>
                     </p>
-                    
+
                 }
             </div>
 
