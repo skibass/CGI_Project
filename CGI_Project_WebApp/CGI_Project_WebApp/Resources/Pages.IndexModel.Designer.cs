@@ -61,6 +61,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add photo&apos;s.
+        /// </summary>
+        public static string AddPhotoNav {
+            get {
+                return ResourceManager.GetString("AddPhotoNav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excursion description.
         /// </summary>
         public static string ExcursionDescription {
@@ -133,6 +142,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leaderboard.
+        /// </summary>
+        public static string LeaderboardNav {
+            get {
+                return ResourceManager.GetString("LeaderboardNav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Position.
         /// </summary>
         public static string LeaderboardPosition {
@@ -156,6 +174,24 @@ namespace CGI_Project_WebApp.Resources {
         public static string LeaderboardTitle {
             get {
                 return ResourceManager.GetString("LeaderboardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
         
@@ -259,11 +295,29 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show photo&apos;s.
+        /// </summary>
+        public static string ShowPhotoNav {
+            get {
+                return ResourceManager.GetString("ShowPhotoNav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string String1 {
             get {
                 return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggest.
+        /// </summary>
+        public static string SuggestNav {
+            get {
+                return ResourceManager.GetString("SuggestNav", resourceCulture);
             }
         }
         
@@ -295,6 +349,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vote.
+        /// </summary>
+        public static string VoteNav {
+            get {
+                return ResourceManager.GetString("VoteNav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can vote for one excursion in each period.
         /// </summary>
         public static string VoteSubtitle {
@@ -309,6 +372,24 @@ namespace CGI_Project_WebApp.Resources {
         public static string VoteTitle {
             get {
                 return ResourceManager.GetString("VoteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome manager.
+        /// </summary>
+        public static string WelcomeManager {
+            get {
+                return ResourceManager.GetString("WelcomeManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome user.
+        /// </summary>
+        public static string WelcomeUser {
+            get {
+                return ResourceManager.GetString("WelcomeUser", resourceCulture);
             }
         }
     }

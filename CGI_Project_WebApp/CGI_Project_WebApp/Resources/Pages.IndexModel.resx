@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddPhotoNav" xml:space="preserve">
+    <value>Add photos</value>
+  </data>
   <data name="ExcursionDescription" xml:space="preserve">
     <value>Excursion description</value>
   </data>
@@ -141,6 +144,9 @@
   <data name="LeaderboardName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="LeaderboardNav" xml:space="preserve">
+    <value>Leaderboard</value>
+  </data>
   <data name="LeaderboardPosition" xml:space="preserve">
     <value>Position</value>
   </data>
@@ -149,6 +155,12 @@
   </data>
   <data name="LeaderboardTitle" xml:space="preserve">
     <value>Leaderboard</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
   </data>
   <data name="ProfileDescription" xml:space="preserve">
     <value>Description</value>
@@ -183,8 +195,14 @@
   <data name="RecentTitle" xml:space="preserve">
     <value>Recent Excursions</value>
   </data>
+  <data name="ShowPhotoNav" xml:space="preserve">
+    <value>Show photos</value>
+  </data>
   <data name="String1" xml:space="preserve">
     <value />
+  </data>
+  <data name="SuggestNav" xml:space="preserve">
+    <value>Suggest</value>
   </data>
   <data name="SuggestSubmit" xml:space="preserve">
     <value>Submit</value>
@@ -195,10 +213,19 @@
   <data name="SuggestTitle" xml:space="preserve">
     <value>Suggest an excursion</value>
   </data>
+  <data name="VoteNav" xml:space="preserve">
+    <value>Vote</value>
+  </data>
   <data name="VoteSubtitle" xml:space="preserve">
     <value>You can vote for one excursion in each period</value>
   </data>
   <data name="VoteTitle" xml:space="preserve">
     <value>Vote for an excursion</value>
+  </data>
+  <data name="WelcomeManager" xml:space="preserve">
+    <value>Welcome manager</value>
+  </data>
+  <data name="WelcomeUser" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>
