@@ -1,4 +1,9 @@
-﻿<div class="m-0">
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<IndexModel> stringLocalizer;
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer;
+
+<div class="m-0">
     <footer class="row row-cols-1 row-cols-sm-1 row-cols-md-5 mx-auto footer-darkgray fs-6">
 
         <div class="col footer-lightgray">
@@ -12,14 +17,14 @@
         </div>
 
         <div class="col p-5 footer-lightgray fs-6">
-            <h5 class="">Legal</h5>
+            <h5 class="">@stringLocalizer["Legal"]</h5>
             <ul class="nav flex-column">
-                <li class="nav-item "><a href="#" class="nav-link p-0 text-muted fs-6">Privacy Policy</a></li>
+                <li class="nav-item "><a href="#" class="nav-link p-0 text-muted fs-6">@stringLocalizer["PrivacyPolicy"]</a></li>
             </ul>
         </div>
 
         <div class="col p-5 footer-lightgray">
-            <h5>Social</h5>
+            <h5>@stringLocalizer["Social"]</h5>
             <ul class="nav flex-column fs-6">
                 <li class="nav-item"><a href="#" class="nav-link p-0 text-muted fs-6">Facebook</a></li>
                 <li class="nav-item"><a href="#" class="nav-link p-0 text-muted fs-6">Twitter</a></li>
@@ -29,9 +34,9 @@
         </div>
 
         <div class="col p-5 footer-darkgray">
-            <h5>More</h5>
+            <h5>@stringLocalizer["FooterMore"]</h5>
             <ul class="nav flex-column fs-6">
-                <li class="nav-item"><a href="#" class="nav-link p-0 text-muted fs-6">Concact us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link p-0 text-muted fs-6">@stringLocalizer["FooterContactUs"]</a></li>
             </ul>
         </div>
     </footer>
