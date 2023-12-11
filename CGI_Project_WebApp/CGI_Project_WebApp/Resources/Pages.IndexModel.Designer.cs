@@ -61,7 +61,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add photo&apos;s.
+        ///   Looks up a localized string similar to Add photos.
         /// </summary>
         public static string AddPhotoNav {
             get {
@@ -295,7 +295,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show photo&apos;s.
+        ///   Looks up a localized string similar to Show photos.
         /// </summary>
         public static string ShowPhotoNav {
             get {
@@ -385,7 +385,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome user.
+        ///   Looks up a localized string similar to Welcome.
         /// </summary>
         public static string WelcomeUser {
             get {
