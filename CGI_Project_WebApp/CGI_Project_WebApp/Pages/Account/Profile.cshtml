@@ -16,7 +16,7 @@
         <div class="profile-details">
             <h3 class="hero-title">@Model.UserName</h3>
             <p><i class="fas fa-envelope"></i> @Model.UserEmailAddress</p>
-            @if (Model.employee.Email == Model.UserEmailAddress)
+            @if (Model.employee!=null && Model.employee.Email == Model.UserEmailAddress)
             {
                 <h4>Team: @Model.employee.Company?.Name</h4>
             }
@@ -32,17 +32,24 @@
         <div class="col-md-12">
             <h3 class="hero-title ml-3 text-center">Your suggestions:</h3>
             <div id="votesContainer">
-                @foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
+                @if (Model.SuggestionsWithVoteCount != null)
                 {
-                    <div class="vote-info">
-                        <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion.Name</h3>
-                        <p class="subtitle">
-                            Location: @suggestionWithCount.Suggestion.Location<br>
-                            Description: @suggestionWithCount.Suggestion.Description<br>
-                            (optional) Exception: @suggestionWithCount.Suggestion.Exception<br>
-                            Votes: @suggestionWithCount.VoteCount
-                        </p>
-                    </div>
+                    foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
+                    {
+                        <div class="vote-info">
+                            <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion?.Name</h3>
+                            <p class="subtitle">
+                                Location: @suggestionWithCount.Suggestion?.Location<br>
+                                Description: @suggestionWithCount.Suggestion?.Description<br>
+                                Exception: @suggestionWithCount.Suggestion?.Exception<br>
+                                Votes: @suggestionWithCount.VoteCount
+                            </p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No suggestions available.</p>
                 }
             </div>
 

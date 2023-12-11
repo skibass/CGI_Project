@@ -8,13 +8,14 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
-    EmployeeService employeeService = new EmployeeService();
-    public Employee employee = new();
-    SuggestionService suggestionService = new SuggestionService();
+    private EmployeeService employeeService = new EmployeeService();
+    private SuggestionService suggestionService = new SuggestionService();
+    public Employee employee; // Removed 'new' to avoid creating a default empty object
     public List<SuggestionWithVoteCount> SuggestionsWithVoteCount { get; set; } = new List<SuggestionWithVoteCount>();
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
     public string UserProfileImage { get; set; }
+
     public class SuggestionWithVoteCount
     {
         public Suggestion Suggestion { get; set; }
@@ -23,45 +24,40 @@ public class ProfileModel : PageModel
 
     private string FormatName(string name)
     {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            return string.Empty;
-        }
-
-        // Capitalize the first letter of the username and make the rest lowercase
-        return name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
+        return string.IsNullOrWhiteSpace(name) ? string.Empty : char.ToUpper(name[0]) + name.Substring(1).ToLower();
     }
-
 
     public void OnGet()
     {
-        UserName = User.Identity.Name;
+        UserName = FormatName(User.Identity.Name);
         UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
         UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
 
-        UserName=FormatName(UserName);
-
-        if (UserEmailAddress != null)
+        if (!string.IsNullOrWhiteSpace(UserEmailAddress))
         {
-            if (!employeeService.TryGetEmployeeByEmail(UserEmailAddress, out employee))
+            if (employeeService.TryGetEmployeeByEmail(UserEmailAddress, out Employee emp))
             {
-                //mail doesn't exist and/or server error
-            }
-        }
-        else
-        {
-            //er is geen email/ kan de email niet ophalen
-        }
-        foreach (var empSuggestion in employee.Suggestions)
-        {
-            if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id))
-            {
-                SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                employee = emp;
+                if (employee?.Suggestions != null)
                 {
-                    Suggestion = suggestion,
-                    VoteCount = suggestion.Votes.Count
-                });
+                    foreach (var empSuggestion in employee.Suggestions)
+                    {
+                        if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id) && suggestion != null)
+                        {
+                            SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                            {
+                                Suggestion = suggestion,
+                                VoteCount = suggestion.Votes?.Count ?? 0
+                            });
+                        }
+                    }
+                }
+            }
+            else
+            {
+                employee = null; 
             }
         }
+        // Else block for handling cases where the email can't be retrieved 
     }
 }
