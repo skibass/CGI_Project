@@ -1,4 +1,5 @@
 using CGI_Project_WebApp_Core.classes;
+using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -8,17 +9,17 @@ namespace CGI_Project_WebApp.Pages
 {
     public class LeaderboardModel : PageModel
     {
-        public EmployeeService _employeeService = new EmployeeService();
+        public EmployeeService _employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
 
         public List<(string Name, int Score)> LeaderboardData { get; private set; }
         public int MaxScore { get; private set; }
         public List<(string Name, int Score)> TopThree { get; private set; }
-        public List<(string Name, int Score, int Position)> PlacesFourToTen { get; private set; }
+        public List<(string Name, int Score)> PlacesFourToTen { get; private set; }
 
         public void OnGet()
         {
             // Fetch the leaderboard data using the EmployeeService
-            if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts))
+            if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts) && empWinCounts != null)
             {
                 LeaderboardData = empWinCounts
                     .Select(e => (e.Employee.FirstName, e.Count)) 
@@ -39,7 +40,8 @@ namespace CGI_Project_WebApp.Pages
 
             // Remaining for the table
             PlacesFourToTen = LeaderboardData.Skip(3).Take(7)
-                .Select((x, index) => (x.Name, x.Score, Position: index + 4)).ToList();
+                .Select((x, index) => (x.Name, x.Score)).ToList();
+
         }
     }
 }

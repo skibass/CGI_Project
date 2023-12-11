@@ -12,9 +12,9 @@ namespace CGI_Project_WebApp.Pages.Excursions
     public class VoteModel : PageModel
     {
 
-        public VoteService VoteService = new();
-        private PollService pollService = new();
-        private EmployeeService employeeService = new();
+        public VoteService VoteService = new VoteService(new VoteRepository(), new DateRepository(), new EmployeeRepository());
+        private PollService pollService = new PollService(new PollRepository());
+        private EmployeeService employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
 
         public string EmployeeEmail;
 
@@ -26,44 +26,51 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public Dictionary<int, double> VotePercentages = new();
 
         public int Progress { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-        
-            EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-
-            if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
+            if (User.Identity.IsAuthenticated == false)
             {
-                if (pollService.TryGetAllPolls(out List<Poll> polls))
+                return RedirectToPage("../Index");
+            }
+            else
+            {
+                EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+
+                if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
                 {
-                    if (VoteService.TryGetVotedSuggestions(emp.Id, out List<Vote> votes))
+                    if (pollService.TryGetAllPolls(out List<Poll> polls))
                     {
-                        Polls = polls;
-                        Votes = votes;
-
-                        foreach (var poll in Polls)
+                        if (VoteService.TryGetVotedSuggestions(emp.Id, out List<Vote> votes))
                         {
-                            foreach (var suggestion in poll.PollSuggestions)
+                            Polls = polls;
+                            Votes = votes;
+
+                            foreach (var poll in Polls)
                             {
-                                int suggestionId = (int)suggestion.SuggestionId;
-                                int count = Votes.Count(v => v.SuggestionId == suggestionId);
-                                VoteCounts[suggestionId] = count;
+                                foreach (var suggestion in poll.PollSuggestions)
+                                {
+                                    int suggestionId = (int)suggestion.SuggestionId;
+                                    int count = Votes.Count(v => v.SuggestionId == suggestionId);
+                                    VoteCounts[suggestionId] = count;
+                                }
                             }
+
+                            int totalVotes = VoteCounts.Values.Sum();
+
+                            foreach (var suggestionId in VoteCounts.Keys)
+                            {
+                                double percentage = totalVotes == 0 ? 0 : (double)VoteCounts[suggestionId] / totalVotes * 100;
+                                VotePercentages[suggestionId] = percentage;
+
+                                //Console.WriteLine($"Suggestion ID: {suggestionId}, Percentage: {percentage}, Vote Count: {VoteCounts[suggestionId]}");
+                            }
+
+                            RedirectToPage();
                         }
-
-                        int totalVotes = VoteCounts.Values.Sum();
-
-                        foreach (var suggestionId in VoteCounts.Keys)
-                        {
-                            double percentage = totalVotes == 0 ? 0 : (double)VoteCounts[suggestionId] / totalVotes * 100;
-                            VotePercentages[suggestionId] = percentage;
-
-                            //Console.WriteLine($"Suggestion ID: {suggestionId}, Percentage: {percentage}, Vote Count: {VoteCounts[suggestionId]}");
-                        }
-
-                        RedirectToPage();
                     }
                 }
             }
+            return null;
         }
 
         public IActionResult OnPostVote(int suggestionId)
@@ -75,16 +82,17 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                 Console.WriteLine("Found employee: " + emp.FirstName);
 
-                if(VoteService.TryCreateVote(emp.Id, suggestionId)){
+                if (VoteService.TryCreateVote(emp.Id, suggestionId))
+                {
                     Console.WriteLine("Successfully created vote: " + suggestionId + " Submitted by " + emp.FirstName);
                     return RedirectToPage();
                 }
                 Console.WriteLine("Could not add vote");
 
             }
-                Console.WriteLine("Idk bro");
+            Console.WriteLine("Idk bro");
 
-            
+
             return RedirectToPage();
         }
 
@@ -97,20 +105,10 @@ namespace CGI_Project_WebApp.Pages.Excursions
                     return (true, vote);
                 }
             }
-            return (false, null); 
 
-        //         public IActionResult OnGet()
-        //         {
-        //             if (User.Identity.IsAuthenticated == false)
-        //             {
-        //                 return RedirectToPage("../Index");
-        //             }
-        //             return null;
+            return (false, null);
 
-        //         }
 
-       
         }
-
     }
 }

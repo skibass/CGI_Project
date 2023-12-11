@@ -1,4 +1,5 @@
 using CGI_Project_WebApp_Core.classes;
+using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,7 +9,7 @@ namespace CGI_Project_WebApp.Pages.Shared
 {
     public class _NavbarModel : PageModel
     {
-        EmployeeService employeeService = new();
+        EmployeeService employeeService = new(new EmployeeRepository(), new PollRepository());
         public Employee employee = new();
         public void OnGet()
         {

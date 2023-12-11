@@ -1,0 +1,25 @@
+﻿@page
+@model CGI_Project_WebApp.Pages.PhotoAlbum.AddPhotoModel
+@{
+}
+<br />
+<br />
+<br />
+<br />
+<form method="post" asp-page-handler="TryAddPhoto" enctype="multipart/form-data">
+    <div class="form-outline mb-4">
+        <input class="form-control form-control-lg" required type="file" asp-for="Upload">
+        <label class="form-label">Select photo</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input class="form-control form-control-lg" required type="text" asp-for="@Model.photo.Description">
+        <label class="form-label">Add a description</label>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit"
+                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+            Add photo to album
+        </button>
+    </div>
+</form>

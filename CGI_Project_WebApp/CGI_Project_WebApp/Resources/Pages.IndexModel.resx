@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddPhotoNav" xml:space="preserve">
+    <value>Add photos</value>
+  </data>
+  <data name="ExcursionDescription" xml:space="preserve">
+    <value>Excursion description</value>
+  </data>
+  <data name="ExcursionInfo" xml:space="preserve">
+    <value>Important info (e.g. bring sunglasses)</value>
+  </data>
+  <data name="ExcursionLocation" xml:space="preserve">
+    <value>Excursion location</value>
+  </data>
+  <data name="ExcursionName" xml:space="preserve">
+    <value>Excursion name</value>
+  </data>
   <data name="HeroButton" xml:space="preserve">
     <value>Get started</value>
   </data>
@@ -126,8 +141,71 @@
   <data name="HeroTitle" xml:space="preserve">
     <value>Unlock Team Adventures: Building Bonds, One Excursion at a Time. Discover, Bond, and Thrive with Every Corporate Expedition!</value>
   </data>
+  <data name="LeaderboardName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LeaderboardNav" xml:space="preserve">
+    <value>Leaderboard</value>
+  </data>
+  <data name="LeaderboardPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="LeaderboardScore" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="LeaderboardTitle" xml:space="preserve">
+    <value>Leaderboard</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="ProfileDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ProfileException" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ProfileLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="ProfileNoSuggestions" xml:space="preserve">
+    <value>No suggestions available</value>
+  </data>
+  <data name="ProfileNoTeam" xml:space="preserve">
+    <value>No team information available</value>
+  </data>
+  <data name="ProfileTeam" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="ProfileTitle" xml:space="preserve">
+    <value>User Profile</value>
+  </data>
+  <data name="ProfileVotes" xml:space="preserve">
+    <value>Votes</value>
+  </data>
+  <data name="ProfileYourSuggestions" xml:space="preserve">
+    <value>Your Suggestions</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Read more</value>
+  </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recent Excursions</value>
+  </data>
+  <data name="ShowPhotoNav" xml:space="preserve">
+    <value>Show photos</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SuggestNav" xml:space="preserve">
+    <value>Suggest</value>
+  </data>
+  <data name="SuggestSubmit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="SuggestSubtitle" xml:space="preserve">
     <value>Fill out the form below</value>
@@ -135,10 +213,19 @@
   <data name="SuggestTitle" xml:space="preserve">
     <value>Suggest an excursion</value>
   </data>
+  <data name="VoteNav" xml:space="preserve">
+    <value>Vote</value>
+  </data>
   <data name="VoteSubtitle" xml:space="preserve">
     <value>You can vote for one excursion in each period</value>
   </data>
   <data name="VoteTitle" xml:space="preserve">
     <value>Vote for an excursion</value>
+  </data>
+  <data name="WelcomeManager" xml:space="preserve">
+    <value>Welcome manager</value>
+  </data>
+  <data name="WelcomeUser" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

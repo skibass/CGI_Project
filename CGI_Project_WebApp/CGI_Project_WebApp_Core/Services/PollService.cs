@@ -1,4 +1,4 @@
-﻿using CGI_Project_WebApp_DAL.repositories;
+﻿using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,12 @@ namespace CGI_Project_WebApp_Core.Services
 {
     public class PollService
     {
-        private readonly PollRepository _pollRepository = new();
+        private readonly IPollRepository _pollRepository;
+
+        public PollService(IPollRepository pollRepository)
+        {
+            _pollRepository = pollRepository;
+        }
 
         public List<Suggestion> GetRecentExcursions()
         {
@@ -19,7 +24,6 @@ namespace CGI_Project_WebApp_Core.Services
 
             foreach (var poll in polls)
             {
-            
                 var mostVotedSuggestion = poll.PollSuggestions
                     .Select(ps => ps.Suggestion)
                     .OrderByDescending(s => s.Votes.Count)

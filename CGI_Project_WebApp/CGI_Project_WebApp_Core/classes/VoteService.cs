@@ -1,4 +1,5 @@
-﻿using CGI_Project_WebApp_DAL.repositories;
+﻿
+using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,19 @@ using System.Threading.Tasks;
 
 namespace CGI_Project_WebApp_Core.classes
 {
-    public class VoteService { 
-        VoteRepository repository= new();
-        DateRepository dateRepository= new();
-        DateService dateService= new();
-        EmployeeRepository employeeRepository= new();
+    public class VoteService {
+        IVoteRepository repository;
+        IDateRepository dateRepository;
+        IEmployeeRepository employeeRepository;
+        DateService dateService;
 
-        private List<Vote> _votes = new();
-
+        public VoteService(IVoteRepository repository, IDateRepository dateRepository, IEmployeeRepository employeeRepository)
+        {
+            this.repository = repository;
+            this.dateRepository = dateRepository;
+            this.employeeRepository = employeeRepository;
+            this.dateService = new DateService(this.dateRepository);
+        }
         public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates = null)
         {
             Vote vote = new Vote();
@@ -43,16 +49,12 @@ namespace CGI_Project_WebApp_Core.classes
                 }
             }
         }
-
-        
-
+       
         public bool TryGetVotedSuggestions(int employee, out List<Vote> votes)
         {
-            VoteRepository votesRepository = new();
-
             if (employeeRepository.TryGetEmployeeByID(employee, out Employee emp))
             {
-                if (votesRepository.TryGetVotedSuggestions(out votes))
+                if (repository.TryGetVotedSuggestions(out votes))
                 {
                     return true;
                 }

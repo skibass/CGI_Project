@@ -13,7 +13,7 @@ namespace CGI_Project_WebApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        private readonly PollService _pollService = new();
+        private readonly PollService _pollService = new(new PollRepository());
 
         public string CurrentLanguage { get; private set; }
         public string CountryCode { get; private set; }

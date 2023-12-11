@@ -1,7 +1,5 @@
-﻿using CGI_Project_WebApp_DAL.Database_Models;
-using CGI_Project_WebApp_DAL.repositories;
+﻿using CGI_Project_WebApp_Core.Interfaces;
 using CGI_Project_WebApp_Models;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,30 +10,36 @@ namespace CGI_Project_WebApp_Core.classes
 {
     public class EmployeeService
     {
-        EmployeeRepository employeeRepository = new EmployeeRepository();
-        public bool TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> polls, Employee employee)
-        {
+        IEmployeeRepository employeeRepository;
+        IPollRepository pollRepository;
 
+        public EmployeeService(IEmployeeRepository employeeRepository, IPollRepository pollRepository)
+        {
+            this.employeeRepository = employeeRepository;
+            this.pollRepository = pollRepository;
+        }
+
+        public bool TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, Employee employee)
+        {
             List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
             polls = new List<Poll>();
-            foreach (PollSuggestion suggestion in pollSuggestion)
+            try
             {
-                if (suggestion.Poll != null)
+
+                foreach (PollSuggestion suggestion in pollSuggestion)
                 {
-                    if (!polls.Select(p => p.Id).Contains((int)suggestion.PollId))
+                    if (suggestion.Poll != null)
                     {
                         polls.Add(suggestion.Poll);
-                    }
 
+                    }
                 }
+
+                return true;
             }
-            if (polls.IsNullOrEmpty())
+            catch (Exception)
             {
                 return false;
-            }
-            else
-            {
-                return true;
             }
         }
         public bool getEmployeeSuggestions(out List<Suggestion> suggestions, Employee employee)
@@ -95,23 +99,25 @@ namespace CGI_Project_WebApp_Core.classes
         }
         public bool TryGetWinningPolls(out List<Poll> winningPolls, Employee employee)
         {
-            PollService pollService = new PollService();
+            PollService pollService = new PollService(pollRepository);
             winningPolls = new List<Poll>();
 
             try
             {
-                if (TryGetAllPollesWithSuggestionFromEmloyee(out List<Poll> allPolls, employee))
+                if (TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> allPolls, employee))
                 {
                     foreach (Poll poll in allPolls)
                     {
+                        bool winner = false;
                         if (pollService.TryGetMaxVoteCount(out int count, out bool draw, poll.Id))
                         {
 
+
                             if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(s => s.Suggestion.Votes.Count).Contains(count) && count > 0)
                             {
-                                winningPolls.Add(poll);
-
+                                winner = true; 
                             }
+                            if(winner) winningPolls.Add(poll);
                         }
 
                     }

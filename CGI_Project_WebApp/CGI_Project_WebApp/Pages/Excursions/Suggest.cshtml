@@ -6,44 +6,58 @@
 @inject IStringLocalizer<IndexModel> stringLocalizer;
 @inject IHtmlLocalizer<IndexModel> htmlLocalizer;
 @{
-	ViewData["Title"] = "Suggest";
+    ViewData["Title"] = "Suggest";
 }
 @if (User.Identity.IsAuthenticated)
 {
     <div class="backgroundbar"></div>
+
+    <link rel="stylesheet" href="/css/site.css" />
 
     <div class="hero container">
         <div class="container">
             <h3 class="hero-title mt-5">@stringLocalizer["SuggestTitle"]</h3>
             <h5 class="subtitle">@stringLocalizer["SuggestSubtitle"]</h5>
         </div>
-
-        <div class="toast align-items-center bg-dark" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Hello, world! This is a toast message.
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-
     </div>
 
+    @if (Model.ErrorHandeling.MessageBool)
+    {
+        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.SuccessMessage))
+        {
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast-body text-light">
+                        @Model.ErrorHandeling.SuccessMessage
+                    </div>
+                </div>
+            </div>
+        }
 
-
-
+        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.ErrorMessage))
+        {
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast-body text-light">
+                        @Model.ErrorHandeling.ErrorMessage
+                    </div>
+                </div>
+            </div>
+        }
+    }
     <div class="container mb-5">
         <form method="post">
-            <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="Excursion name..." /><br />
-            <textarea asp-for="Suggestion.Description" id="edescription" placeholder="Excursion description..." rows="3"></textarea><br />
-            <input asp-for="Suggestion.Location" type="text" id="elocation" placeholder="Excursion location..." /><br />
-            <input asp-for="Suggestion.Exception" type="text" id="eimportantinfo" placeholder="Important info (e.g bring sunglasses)..." />
+            <input asp-for="Suggestion.Name" type="text" id="ename" placeholder="@stringLocalizer["ExcursionName"]..." /><br />
+            <textarea asp-for="Suggestion.Description" id="edescription" placeholder="@stringLocalizer["ExcursionDescription"]..." rows="3"></textarea><br />
+            <input asp-for="Suggestion.Location" type="text" id="elocation" placeholder="@stringLocalizer["ExcursionLocation"]..." /><br />
+            <input asp-for="Suggestion.Exception" type="text" id="eimportantinfo" placeholder="@stringLocalizer["ExcursionInfo"]..." />
 
             @*<button class="addfieldbtn text-white" onclick="addField()">+</button>
         <button class="removefieldbtn text-white" onclick="removeField()">-</button>*@<br />
 
-            <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">Submit</button>
+            <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SuggestSubmit"]</button>
         </form>
     </div>
-}
 
+    <script src="/js/suggest.js"></script>
+}

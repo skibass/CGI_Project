@@ -1,49 +1,60 @@
 ﻿@page
 @model acme.Pages.ProfileModel
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<IndexModel> stringLocalizer;
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer;
 @{
     ViewData["Title"] = "User Profile";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="~/css/profile.css" />
+<script type="text/javascript" src="~/js/profilePagination.js"></script>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <div class="container">
-        <h3 class="hero-title ml-3 text-center">@ViewData["Title"]</h3>
-        <div class="top-section">
-            <img src="@Model.UserProfileImage" alt="Profile Image" class="profile-image">
-            <div class="profile-details">
-                <h3 class="hero-title">@Model.UserName</h3>
-                <p><i class="fas fa-envelope"></i> @Model.UserEmailAddress</p>
-                @if (Model.employee.Email == Model.UserEmailAddress)
-                {
-                    <h4>Team: @Model.employee.Company?.Name</h4>
-                }
-                else
-                {
-                    <h4>Team</h4>
-                    <p>No Team Information Available</p>
-                }
-            </div>
+
+<div class="container">
+    <h3 class="hero-title ml-3 text-center">@stringLocalizer["ProfileTitle"]</h3>
+    <div class="top-section">
+        <img src="@Model.UserProfileImage" alt="Profile Image" class="profile-image">
+        <div class="profile-details">
+            <h3 class="hero-title">@Model.UserName</h3>
+            <p><i class="fas fa-envelope"></i> @Model.UserEmailAddress</p>
+            @if (Model.employee!=null && Model.employee.Email == Model.UserEmailAddress)
+            {
+                <h4>@stringLocalizer["ProfileTeam"]: @Model.employee.Company?.Name</h4>
+            }
+            else
+            {
+                <h4>@stringLocalizer["ProfileTeam"]</h4>
+                <p>@stringLocalizer["ProfileNoTeam"]</p>
+            }
         </div>
-        <div class="profile-backgroundbar"></div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="hero-title ml-3 text-center">Uw suggesties:</h3>
-                <div id="votesContainer">
-                    @foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
+    </div>
+    <div class="profile-backgroundbar"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="hero-title ml-3 text-center">@stringLocalizer["ProfileYourSuggestions"]:</h3>
+            <div id="votesContainer">
+                @if (Model.SuggestionsWithVoteCount != null)
+                {
+                    foreach (var suggestionWithCount in Model.SuggestionsWithVoteCount)
                     {
                         <div class="vote-info">
-                            <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion.Name</h3>
+                            <h3 class="hero-title ml-3">@suggestionWithCount.Suggestion?.Name</h3>
                             <p class="subtitle">
-                                Locatie: @suggestionWithCount.Suggestion.Location<br>
-                                Beschrijving: @suggestionWithCount.Suggestion.Description<br>
-                                (optioneel) Exceptie: @suggestionWithCount.Suggestion.Exception<br>
-                                Stemmen: @suggestionWithCount.VoteCount
+                                @stringLocalizer["ProfileLocation"]: @suggestionWithCount.Suggestion?.Location<br>
+                                @stringLocalizer["ProfileDescription"]: @suggestionWithCount.Suggestion?.Description<br>
+                                @stringLocalizer["ProfileException"]: @suggestionWithCount.Suggestion?.Exception<br>
+                                @stringLocalizer["ProfileVotes"]: @suggestionWithCount.VoteCount
                             </p>
                         </div>
                     }
-                </div>
+                }
+                else
+                {
+                    <p>@stringLocalizer["ProfileNoSuggestions"]</p>
+                }
+            </div>
 
                 <div class="pagination">
                     <!-- Pagination controls will be dynamically inserted here -->
@@ -51,44 +62,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var currentPage = 1;
-            var itemsPerPage = 5;
-
-            function showPage(pageNumber) {
-                var items = document.querySelectorAll("#votesContainer > .vote-info");
-                var totalPages = Math.ceil(items.length / itemsPerPage);
-
-                for (var i = 0; i < items.length; i++) {
-                    items[i].style.display = "none";
-                }
-
-                for (var i = (pageNumber - 1) * itemsPerPage; i < pageNumber * itemsPerPage && i < items.length; i++) {
-                    items[i].style.display = "block";
-                }
-
-                var pagination = document.querySelector(".pagination");
-                pagination.innerHTML = "";
-
-                for (var i = 1; i <= totalPages; i++) {
-                    var pageLink = document.createElement("a");
-                    pageLink.innerHTML = i;
-                    pageLink.href = "#";
-                    pageLink.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        showPage(parseInt(this.innerHTML));
-                    });
-
-                    pagination.appendChild(pageLink);
-                }
-            }
-
-            showPage(currentPage);
-        });
-    </script>
-}
-
-
 
