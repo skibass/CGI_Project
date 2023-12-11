@@ -14,6 +14,8 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
         public Photos photo {get; set;}
         public IFormFile Upload { get; set; }
 
+        public FileChecker checker { get; set; } = new FileChecker();
+
         public PhotoAlbumService photoAlbumService = new(new PhotoAlbumRepository());
 
         public AddPhotoModel(IWebHostEnvironment web)
@@ -32,6 +34,18 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
         public async Task OnPostTryAddPhoto()
         {
             var path = Path.Combine(env.WebRootPath, "PhotoAlbum");
+
+            FileUploadPreCheckValue preCheckResult = checker.TestFile(Upload);
+
+
+			if (preCheckResult == FileUploadPreCheckValue.TooLarge)
+            {
+                return;
+			}
+            else if(preCheckResult == FileUploadPreCheckValue.NoValidFIleType)
+            {
+                return;
+            }
 
             await photoAlbumService.TryAddPhoto(photo, path, Upload);
 
