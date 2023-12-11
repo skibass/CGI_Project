@@ -33,7 +33,7 @@
             }
           @foreach (var suggestion in sortedSuggestions)
             {
-                            var userVotedForSuggestion = hasVoted && vote.SuggestionId == suggestion.SuggestionId;
+                var userVotedForSuggestion = hasVoted && vote.SuggestionId == suggestion.SuggestionId;
 
                 <div class='vote-card mb-3 @(userVotedForSuggestion ? "voted-div" : "")' data-id="@suggestion.SuggestionId">
                     <form method="post" asp-page-handler="Vote" asp-route-suggestionId="@suggestion.SuggestionId">
@@ -43,12 +43,11 @@
                                     <div class="card-body">
                                         <h5 class="card-title">@suggestion.Suggestion.Name</h5>
                                         <p class="card-text">@suggestion.Suggestion.Description</p>
-                                        <a href="#" class="text-decoration-none">Read More &rarr;</a>
                                     </div>
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-center bg-light">
                                     <div class="card-body text-center">
-                                        <button type="submit" @(userVotedForSuggestion ? "disabled" : "")  class='@(userVotedForSuggestion ? "voted-button" : "") btn hero-button text-white rounded-1 border-0 btn-lg'>Vote</button>
+                                        <button type="submit" @(userVotedForSuggestion ? "disabled" : "")  class='@(hasVoted ? "hidden" : "") btn hero-button text-white rounded-1 border-0 btn-lg'>Vote</button>
                                     </div>
                                 </div>
                             </div>
@@ -63,9 +62,6 @@
                 var suggestionId = (int)suggestion.SuggestionId;
                 var percentage = Model.VotePercentages.GetValueOrDefault(suggestionId, 0);
                 var voteCount = Model.VoteCounts.GetValueOrDefault(suggestionId, 0);
-
-
-
 
                 <div class="container my-4 mt-4">
                     <div class="row">
