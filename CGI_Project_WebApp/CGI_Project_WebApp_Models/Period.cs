@@ -11,5 +11,5 @@ public partial class Period
 
     public DateTime? EndDate { get; set; }
 
-    public virtual ICollection<Poll> Polls { get; set; } = new List<Poll>();
+    public virtual ICollection<Poll>? Polls { get; set; } = new List<Poll>();
 }

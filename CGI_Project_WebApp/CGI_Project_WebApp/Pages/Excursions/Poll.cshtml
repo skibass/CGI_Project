@@ -3,10 +3,13 @@
 @using Microsoft.Extensions.Localization;
 @model CGI_Project_WebApp.Pages.Excursions.PollModel
 @inject IStringLocalizer<IndexModel> stringLocalizer;
-@inject IHtmlLocalizer<IndexModel> htmlLocalizer;
 @{
 	ViewData["Title"] = "Poll";
 }
+
+<!-- Include the Flatpickr library -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.js"></script>
 
 <div class="backgroundbar"></div>
 
@@ -20,19 +23,22 @@
 <div class="container mb-5">
 	<form method="post">
 		<input asp-for="Poll.Poll_name" type="text" id="pname" placeholder="Poll name..."/><br/>
-		<input asp-for="Poll.Period" type="date" id="pdate" placeholder="Select date range..." rows="3"></input><br/>
+		<input type="text" id="dateRange" placeholder="Select possible dates for the excursion" data-mode="range" data-input><br />
 		
+		<input asp-for="Poll.StartTime" type="hidden" id="startDate" />
+		<input asp-for="Poll.EndTime" type="hidden" id="endDate" />
+
 		@if (Model.UnusedSuggestionsList.suggestions != null)
 		{
-			<select asp-for="Poll.PollSuggestions" id="psuggestions" placeholder="Select suggestions..." multiple>
+			<select asp-for="Poll.suggestions" id="psuggestions" placeholder="Select suggestions..." multiple>
 				@foreach (var suggestion in Model.UnusedSuggestionsList.suggestions)
 				{
-					<option value="@suggestion">@suggestion</option>
+					<option value="@suggestion">@suggestion.Name</option>
 				}
 			</select>
 			<br/>
 		}
-		@else
+		else
 		{
 			<span class="">No suggestions have been done, ask your employees to make suggestions</span>
 		}
@@ -40,3 +46,21 @@
 		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SubmitButton"]</button>
 	</form>
 </div>
+
+<script>
+	flatpickr("#dateRange", {
+		mode: "range",
+		dateFormat: "M-d-y",
+		minDate: "today",
+		onClose: function (selectedDates, dateStr, instance) {
+			// Handle date selections
+			if (selectedDates.length === 2) {
+				var startDate = selectedDates[0].toISOString().split('T')[0];
+				var endDate = selectedDates[1].toISOString().split('T')[0];
+
+				// Set the selected dates in hidden input fields
+				document.getElementById("startDate").value = startDate;
+				document.getElementById("endDate").value = endDate;
+			}
+	});
+</script>
