@@ -22,7 +22,7 @@ namespace CGI_Project_WebApp_Core.classes
             this.employeeRepository = employeeRepository;
             this.dateService = new DateService(this.dateRepository);
         }
-        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates)
+        public bool TryCreateVote(int employeeID,int suggestionID, List<DateTime> preferredDates = null)
         {
             Vote vote = new Vote();
             vote.EmployeeId = employeeID;
