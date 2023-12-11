@@ -106,6 +106,24 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact us.
+        /// </summary>
+        public static string FooterContactUs {
+            get {
+                return ResourceManager.GetString("FooterContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        public static string FooterMore {
+            get {
+                return ResourceManager.GetString("FooterMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string HeroButton {
@@ -178,6 +196,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legal.
+        /// </summary>
+        public static string Legal {
+            get {
+                return ResourceManager.GetString("Legal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
@@ -192,6 +219,24 @@ namespace CGI_Project_WebApp.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poll.
+        /// </summary>
+        public static string NavPoll {
+            get {
+                return ResourceManager.GetString("NavPoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy policy.
+        /// </summary>
+        public static string PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
             }
         }
         
@@ -304,11 +349,11 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Social media.
         /// </summary>
-        public static string String1 {
+        public static string Social {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("Social", resourceCulture);
             }
         }
         
