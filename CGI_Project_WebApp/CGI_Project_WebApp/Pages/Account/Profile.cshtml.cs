@@ -9,9 +9,11 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
-    private EmployeeService employeeService = new EmployeeService();
-    private SuggestionService suggestionService = new SuggestionService();
-    public Employee employee; // Removed 'new' to avoid creating a default empty object
+
+    EmployeeService employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
+    public Employee employee;
+    SuggestionService suggestionService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
+
     public List<SuggestionWithVoteCount> SuggestionsWithVoteCount { get; set; } = new List<SuggestionWithVoteCount>();
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
@@ -28,14 +30,7 @@ public class ProfileModel : PageModel
         return string.IsNullOrWhiteSpace(name) ? string.Empty : char.ToUpper(name[0]) + name.Substring(1).ToLower();
     }
 
-    public void OnGet()
-    {
-        UserName = FormatName(User.Identity.Name);
-        UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-        UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
-        // Capitalize the first letter of the username and make the rest lowercase
-        return name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
-    }
+
 
 
     public IActionResult OnGet()
@@ -46,35 +41,37 @@ public class ProfileModel : PageModel
         }
         else
         {
-            UserName = User.Identity.Name;
+            UserName = FormatName(User.Identity.Name);
             UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
             UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
 
-        if (!string.IsNullOrWhiteSpace(UserEmailAddress))
-        {
-            if (employeeService.TryGetEmployeeByEmail(UserEmailAddress, out Employee emp))
+            if (!string.IsNullOrWhiteSpace(UserEmailAddress))
             {
-                employee = emp;
-                if (employee?.Suggestions != null)
+                if (employeeService.TryGetEmployeeByEmail(UserEmailAddress, out Employee emp))
                 {
-                    foreach (var empSuggestion in employee.Suggestions)
+                    employee = emp;
+                    if (employee?.Suggestions != null)
                     {
-                        if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id) && suggestion != null)
+                        foreach (var empSuggestion in employee.Suggestions)
                         {
-                            SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                            if (suggestionService.TryGetSuggestionById(out Suggestion suggestion, empSuggestion.Id) && suggestion != null)
                             {
-                                Suggestion = suggestion,
-                                VoteCount = suggestion.Votes?.Count ?? 0
-                            });
+                                SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
+                                {
+                                    Suggestion = suggestion,
+                                    VoteCount = suggestion.Votes?.Count ?? 0
+                                });
+                            }
                         }
                     }
                 }
+                else
+                {
+                    employee = null;
+                }
             }
-            else
-            {
-                employee = null; 
-            }
+            // Else block for handling cases where the email can't be retrieved 
+            return null;
         }
-        // Else block for handling cases where the email can't be retrieved 
     }
 }
