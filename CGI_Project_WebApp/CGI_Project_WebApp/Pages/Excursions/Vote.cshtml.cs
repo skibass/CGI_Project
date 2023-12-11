@@ -13,9 +13,9 @@ namespace CGI_Project_WebApp.Pages.Excursions
     public class VoteModel : PageModel
     {
 
-        public VoteService VoteService = new();
-        private PollService pollService = new();
-        private EmployeeService employeeService = new();
+        public VoteService VoteService = new(new VoteRepository(), new DateRepository(), new EmployeeRepository());
+        private PollService pollService = new(new PollRepository());
+        private EmployeeService employeeService = new(new EmployeeRepository(), new PollRepository());
         public Error ErrorHandeling = new();
 
         public string EmployeeEmail;
