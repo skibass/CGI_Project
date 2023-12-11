@@ -132,6 +132,9 @@
   <data name="ExcursionName" xml:space="preserve">
     <value>Excursie naam</value>
   </data>
+  <data name="FooterContactUs" xml:space="preserve">
+    <value>Neem contact met ons op</value>
+  </data>
   <data name="HeroButton" xml:space="preserve">
     <value>Begin</value>
   </data>
@@ -156,11 +159,20 @@
   <data name="LeaderboardTitle" xml:space="preserve">
     <value>Ranglijst</value>
   </data>
+  <data name="Legal" xml:space="preserve">
+    <value>Legaal</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Inloggen</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Uitloggen</value>
+  </data>
+  <data name="NavPoll" xml:space="preserve">
+    <value>Peiling</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacybeleid</value>
   </data>
   <data name="ProfileDescription" xml:space="preserve">
     <value>Omschrijving</value>
@@ -197,6 +209,9 @@
   </data>
   <data name="ShowPhotoNav" xml:space="preserve">
     <value>Foto's tonen</value>
+  </data>
+  <data name="Social" xml:space="preserve">
+    <value>Social media</value>
   </data>
   <data name="SuggestNav" xml:space="preserve">
     <value>Suggestie voorstellen</value>
