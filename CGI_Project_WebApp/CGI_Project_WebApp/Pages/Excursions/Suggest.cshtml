@@ -28,7 +28,7 @@
             <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
                 <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
                     <div class="toast-body text-light">
-                        @Model.ErrorHandeling.SuccessMessage
+                        @stringLocalizer[Model.ErrorHandeling.SuccessMessage]
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
                 <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
                     <div class="toast-body text-light">
-                        @Model.ErrorHandeling.ErrorMessage
+                        @stringLocalizer[Model.ErrorHandeling.ErrorMessage]
                     </div>
                 </div>
             </div>

@@ -171,6 +171,18 @@
   <data name="Logout" xml:space="preserve">
     <value>Uitloggen</value>
   </data>
+  <data name="ModelEmailErrorKey" xml:space="preserve">
+    <value>E-mail bestaat niet en/of serverfout</value>
+  </data>
+  <data name="ModelErrorKey" xml:space="preserve">
+    <value>Modelstaat is niet correct</value>
+  </data>
+  <data name="ModelSuggestErrorKey" xml:space="preserve">
+    <value>Kan de suggestie niet toevoegen. Suggestie bestaat mogelijk al</value>
+  </data>
+  <data name="ModelSuggestKey" xml:space="preserve">
+    <value>Suggestie is toegevoegd</value>
+  </data>
   <data name="NavPoll" xml:space="preserve">
     <value>Peiling</value>
   </data>

@@ -4,6 +4,7 @@ using CGI_Project_WebApp_Core.classes;
 using CGI_Project_WebApp_Models;
 using CGI_Project_WebApp_DAL.repositories;
 using System.Security.Claims;
+using Microsoft.Extensions.Localization;
 
 namespace CGI_Project_WebApp.Pages.Excursions
 {
@@ -19,7 +20,14 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public string EmployeeEmail { get; set; }
 
         public Error ErrorHandeling = new();
-        
+
+
+        private readonly IStringLocalizer<SuggestModel> _stringLocalizer;
+
+        public SuggestModel(IStringLocalizer<SuggestModel> stringLocalizer)
+        {
+            _stringLocalizer = stringLocalizer;
+        }
         public IActionResult OnGet()
         {
             if (User.Identity.IsAuthenticated == false)
@@ -37,7 +45,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             if (!ModelState.IsValid)
             {
                 //Model state not valid
-                ErrorHandeling.HandleError("Model state not correct");
+                ErrorHandeling.HandleError("ModelErrorKey");
                 Console.WriteLine("Error");
                 return;
             }
@@ -47,15 +55,15 @@ namespace CGI_Project_WebApp.Pages.Excursions
                         Suggestion.Exception, emp))
                 {
                     //Suggestion added successfully
-                    ErrorHandeling.HandleSuccess("Suggestion added successfully");
+                    ErrorHandeling.HandleSuccess("ModelSuggestKey");
                     return;
                 }
                 //Suggestion not successfully added
-                ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
+                ErrorHandeling.HandleError("ModelSuggestErrorKey");
                 return;
             }
             //E-mail doesn't exist and/or server error
-            ErrorHandeling.HandleError("E-mail does not exist and/or server error");
+            ErrorHandeling.HandleError("ModelEmailErrorKey");
 
             //Wait for half a second before resetting properties
             await Task.Delay(500);

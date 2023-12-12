@@ -223,6 +223,42 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail does not exist and/or server error.
+        /// </summary>
+        public static string ModelEmailErrorKey {
+            get {
+                return ResourceManager.GetString("ModelEmailErrorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model state not correct.
+        /// </summary>
+        public static string ModelErrorKey {
+            get {
+                return ResourceManager.GetString("ModelErrorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to add suggestion. Suggestion might exist already.
+        /// </summary>
+        public static string ModelSuggestErrorKey {
+            get {
+                return ResourceManager.GetString("ModelSuggestErrorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggestion added successfully.
+        /// </summary>
+        public static string ModelSuggestKey {
+            get {
+                return ResourceManager.GetString("ModelSuggestKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poll.
         /// </summary>
         public static string NavPoll {

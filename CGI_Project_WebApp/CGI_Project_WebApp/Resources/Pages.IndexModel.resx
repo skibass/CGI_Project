@@ -171,6 +171,18 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="ModelEmailErrorKey" xml:space="preserve">
+    <value>E-mail does not exist and/or server error</value>
+  </data>
+  <data name="ModelErrorKey" xml:space="preserve">
+    <value>Model state not correct</value>
+  </data>
+  <data name="ModelSuggestErrorKey" xml:space="preserve">
+    <value>Failed to add suggestion. Suggestion might exist already</value>
+  </data>
+  <data name="ModelSuggestKey" xml:space="preserve">
+    <value>Suggestion added successfully</value>
+  </data>
   <data name="NavPoll" xml:space="preserve">
     <value>Poll</value>
   </data>
