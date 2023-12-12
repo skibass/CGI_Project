@@ -14,4 +14,6 @@ public partial class PollSuggestion
     public virtual Poll? Poll { get; set; }
 
     public virtual Suggestion? Suggestion { get; set; }
+
+    public virtual ICollection<Vote> Votes { get; set; } = new List<Vote>();
 }

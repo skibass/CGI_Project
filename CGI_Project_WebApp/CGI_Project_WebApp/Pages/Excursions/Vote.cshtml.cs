@@ -53,7 +53,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
                                 foreach (var suggestion in poll.PollSuggestions)
                                 {
                                     int suggestionId = (int)suggestion.SuggestionId;
-                                    int count = Votes.Count(v => v.SuggestionId == suggestionId);
+                                    int count = Votes.Count(v => v.PollSuggestion.SuggestionId == suggestionId);
                                     VoteCounts[suggestionId] = count;
                                 }
                             }

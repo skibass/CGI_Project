@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YetAnotherTestConsole", "Ye
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGI_Project_WebApp_UnitTests", "CGI_Project_WebApp_UnitTests\CGI_Project_WebApp_UnitTests.csproj", "{E5B072EF-1507-43FE-A3BF-28620B2E5CC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_Testing", "UI_Testing\UI_Testing.csproj", "{67BE7019-C25F-4DF3-BDE0-D825ED9BD470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI_Testing", "UI_Testing\UI_Testing.csproj", "{67BE7019-C25F-4DF3-BDE0-D825ED9BD470}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,7 +47,10 @@ Global
 		{E5B072EF-1507-43FE-A3BF-28620B2E5CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5B072EF-1507-43FE-A3BF-28620B2E5CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5B072EF-1507-43FE-A3BF-28620B2E5CC5}.Release|Any CPU.Build.0 = Release|Any CPU
-
+		{67BE7019-C25F-4DF3-BDE0-D825ED9BD470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67BE7019-C25F-4DF3-BDE0-D825ED9BD470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67BE7019-C25F-4DF3-BDE0-D825ED9BD470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67BE7019-C25F-4DF3-BDE0-D825ED9BD470}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,10 +36,11 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                 {
                                       Name="Efteling",
                                       Id = 1,
-                                      Votes = new List<Vote>
+
+                                },
+                                Votes = new List<Vote>
                                       {
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -47,11 +48,12 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                 {
                                     Name = "Efteling",
                                     Id = 1,
-                                    Votes = new List<Vote>
+
+                                },
+                                Votes = new List<Vote>
                                       {
 
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -59,11 +61,11 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                 {
                                     Name = "Efteling",
                                     Id = 1,
+                                },
                                     Votes = new List<Vote>
                                       {
 
                                       }
-                                }
                             }
                         }
             };
@@ -86,28 +88,28 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                 {
                                       Name="Efteling",
                                       Id = 1,
-                                      Votes = new List<Vote>
+                                     
+                                }, Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                                                                     new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 3,
                                               EmployeeId = 81,
-                                              SuggestionId = 1,
+                                              PollSuggestionId = 1,
                                           }
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -115,28 +117,29 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                 {
                                     Name = "Efteling",
                                     Id = 1,
-                                    Votes = new List<Vote>
+                                    
+                                },
+                                Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 3,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -144,22 +147,22 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                 {
                                     Name = "Efteling",
                                     Id = 1,
-                                    Votes = new List<Vote>
+                                   
+                                }, Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             }
                         }
             };
@@ -183,28 +186,29 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                     EmployeeId = 90,
                                       Name="Efteling",
                                       Id = 1,
-                                      Votes = new List<Vote>
+
+                                },
+                                Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                                                                     new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -213,22 +217,24 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                     EmployeeId = 7,
                                       Name="Efteling",
                                       Id = 1,
-                                      Votes = new List<Vote>
+
+                                },
+                                                                      
+                                Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -237,22 +243,23 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                     EmployeeId = VariableId,
                                       Name="Efteling",
                                       Id = 1,
-                                      Votes = new List<Vote>
+
+                                },                                      
+                                Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = VariableId,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             }
                         }
             };
@@ -277,28 +284,30 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                     EmployeeId= VariableId,
                                       Name="Efteling",
                                       Id = 1,
-                                      Votes = new List<Vote>
+                                      
+                                },
+                                Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 1,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
-                                                                                    new Vote
+                                                                                    
+                                    new Vote
                                           {
                                               Id = 2,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 3,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -307,22 +316,22 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                     EmployeeId=298,
                                       Name="Efteling",
                                       Id = 2,
-                                      Votes = new List<Vote>
+                                      
+                                },Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id = 4,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 5,
                                               EmployeeId = 81,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             },
                             new PollSuggestion
                             {
@@ -331,22 +340,23 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                                      EmployeeId = 89,
                                       Name="Efteling",
                                       Id = 3,
-                                      Votes = new List<Vote>
+
+                                },
+                                Votes = new List<Vote>
                                       {
                                           new Vote
                                           {
                                               Id =6,
                                               EmployeeId = 18,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           },
                                           new Vote
                                           {
                                               Id = 7,
                                               EmployeeId = VariableId,
-                                               SuggestionId= 1,
+                                               PollSuggestionId= 1,
                                           }
                                       }
-                                }
                             }
                         }
             };

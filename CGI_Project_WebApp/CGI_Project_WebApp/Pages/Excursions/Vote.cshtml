@@ -57,14 +57,14 @@
 
         <div id="collapse@(poll.Id)" class="vote-collection collapse">
             @{
-            var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Suggestion.Votes.Count);
+            var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Votes.Count);
             }
           @foreach (var suggestion in sortedSuggestions)
             {
-                var userVotedForSuggestion = hasVoted && vote.SuggestionId == suggestion.SuggestionId;
+                var userVotedForSuggestion = hasVoted && vote.PollSuggestion.Id == suggestion.Id;
 
-                <div class='vote-card mb-3 @(userVotedForSuggestion ? "voted-div" : "")' data-id="@suggestion.SuggestionId">
-                    <form method="post" asp-page-handler="Vote" asp-route-suggestionId="@suggestion.SuggestionId">
+                <div class='vote-card mb-3 @(userVotedForSuggestion ? "voted-div" : "")' data-id="@suggestion.Id">
+                    <form method="post" asp-page-handler="Vote" asp-route-suggestionId="@suggestion.Id">
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-9">

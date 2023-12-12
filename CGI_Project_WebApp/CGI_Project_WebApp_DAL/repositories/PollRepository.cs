@@ -21,14 +21,14 @@ namespace CGI_Project_WebApp_DAL.repositories
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
-            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).ThenInclude(v=>v.Employee).Where(poll => poll.StartTime < DateTime.Now && DateTime.Now < poll.EndTime).ToList();
+            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Include(e => e.PollSuggestions).ThenInclude(s => s.Votes).ThenInclude(v=>v.Employee).Where(poll => poll.StartTime < DateTime.Now && DateTime.Now < poll.EndTime).ToList();
             return result;
         }
         public List<Poll> GetPastPolls()
         {
             List<Poll> result = new List<Poll>();
             Dbi511119Context DBContext = new Dbi511119Context();
-            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).ThenInclude(p=>p.PreferredDates).ThenInclude(d=>d.Date).Where(poll => DateTime.Now > poll.EndTime).ToList();
+            result = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Include(e => e.PollSuggestions).ThenInclude(s => s.Votes).ThenInclude(p=>p.PreferredDates).ThenInclude(d=>d.Date).Where(poll => DateTime.Now > poll.EndTime).ToList();
 
             return result;
         }
@@ -92,7 +92,7 @@ namespace CGI_Project_WebApp_DAL.repositories
         public bool TryGetPoll(out Poll? poll, int pollId)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
-            poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
+            poll = DBContext.Polls.Include(e => e.Manager).Include(e => e.PollSuggestions).ThenInclude(e => e.Suggestion).Include(e => e.PollSuggestions).ThenInclude(s => s.Votes).Where(p => p.Id == pollId).FirstOrDefault();
 
             if (poll == null)
             {

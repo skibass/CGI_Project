@@ -30,6 +30,7 @@ namespace CGI_Project_WebApp_Core.classes
                 {
                     if (suggestion.Poll != null)
                     {
+                        //if(polls.Select(p=>p.Id).ToList().Contains((int)suggestion.PollId))
                         polls.Add(suggestion.Poll);
 
                     }
@@ -113,11 +114,11 @@ namespace CGI_Project_WebApp_Core.classes
                         {
 
 
-                            if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(s => s.Suggestion.Votes.Count).Contains(count) && count > 0)
+                            if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(ps=>ps.Votes.Count).ToList().Contains(count) && count > 0)
                             {
                                 winner = true; 
                             }
-                            if(winner) winningPolls.Add(poll);
+                            if(winner && !winningPolls.Select(p=>p.Id).Contains(poll.Id)) winningPolls.Add(poll);
                         }
 
                     }
