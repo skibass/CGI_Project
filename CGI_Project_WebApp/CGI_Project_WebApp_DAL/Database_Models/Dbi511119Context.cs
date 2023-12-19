@@ -107,7 +107,7 @@ public partial class Dbi511119Context : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("password");
             entity.Property(e => e.ProfileImage)
-                .HasMaxLength(45)
+                .HasMaxLength(255)
                 .HasColumnName("profileImage");
             entity.Property(e => e.RoleId)
                 .HasDefaultValueSql("'1'")

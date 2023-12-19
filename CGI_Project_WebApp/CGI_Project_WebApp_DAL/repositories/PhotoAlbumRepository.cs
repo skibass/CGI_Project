@@ -17,6 +17,12 @@ namespace CGI_Project_WebApp_DAL.repositories
            dbi511119Context.Photos.Add(photo);
             dbi511119Context.SaveChanges();
         }
+        public void AddUserPicture(Employee employee)
+        {
+            Employee employeeSel = dbi511119Context.Employees.Where(e => e.Id == employee.Id).FirstOrDefault();
+            employeeSel.ProfileImage = employee.ProfileImage;
+            dbi511119Context.SaveChanges();
+        }
         public List<Photos> TryGetPhotos()
         {
             List<Photos> photos = dbi511119Context.Photos.ToList();
