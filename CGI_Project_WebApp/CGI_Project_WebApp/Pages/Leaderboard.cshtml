@@ -21,7 +21,7 @@
     {
         while (Model.TopThree.Count < 3)
         {
-            Model.TopThree.Add((Name: "", Score: 0));
+            Model.TopThree.Add((Name: "", Score: 0, ProfileImage: ""));
         }
     }
 
@@ -30,7 +30,7 @@
 }
 @functions {
 
-    private Dictionary<int, int> GetDenseRank(List<(string Name, int Score)> scores)
+    private Dictionary<int, int> GetDenseRank(List<(string Name, int Score, string ProfileImage)> scores)
     {
         var ranks = new Dictionary<int, int>();
         int rank = 1;
@@ -57,9 +57,9 @@
 
 @{
     // Calculate the dense rankings for all scores
-    List<(string Name, int Score)> allScores = (Model.TopThree != null && Model.PlacesFourToTen != null)
-        ? Model.TopThree.Concat(Model.PlacesFourToTen.Select(x => (x.Name, x.Score))).ToList()
-        : new List<(string Name, int Score)>();
+    List<(string Name, int Score, string ProfileImage)> allScores = (Model.TopThree != null && Model.PlacesFourToTen != null)
+        ? Model.TopThree.Concat(Model.PlacesFourToTen.Select(x => (x.Name, x.Score, x.ProfileImage))).ToList()
+        : new List<(string Name, int Score, string ProfileImage)>();
     Dictionary<int, int> denseRanks = GetDenseRank(allScores);
 }
 
@@ -96,11 +96,15 @@
                                         @if (barHeight <= thresholdHeight)
                                         {
                                             <div class="score-above-bar">#@denseRanks[entry.Score] <br>@entry.Score</div>
+                                            <img src="@entry.ProfileImage" alt="Profile Image">
                                         }
                                         else
                                         {
+                                            <div class="score-above-bar">
+                                                <img src="@entry.ProfileImage" alt="Profile Image">
+                                            </div>
                                             <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
-                                                #@denseRanks[entry.Score] <br>@entry.Score
+                                                #@denseRanks[entry.Score] <br>@entry.Score <br>
                                             </div>
                                         }
                                     </div>
@@ -115,6 +119,7 @@
                                 <th>@stringLocalizer["LeaderboardPosition"]</th>
                                 <th>@stringLocalizer["LeaderboardName"]</th>
                                 <th>@stringLocalizer["LeaderboardScore"]</th>
+                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,6 +129,7 @@
                                     <td>#@denseRanks[entry.Score]</td>
                                     <td><div class="displayUserName">@entry.Name</div></td>
                                     <td>@entry.Score</td>
+                                    <td><img src="@entry.ProfileImage" alt="Profile Image"></td>
                                 </tr>
                             }
                         </tbody>

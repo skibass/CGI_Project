@@ -11,10 +11,10 @@ namespace CGI_Project_WebApp.Pages
     {
         public EmployeeService _employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
 
-        public List<(string Name, int Score)> LeaderboardData { get; private set; }
+        public List<(string Name, int Score, string ProfileImage)> LeaderboardData { get; private set; }
         public int MaxScore { get; private set; }
-        public List<(string Name, int Score)> TopThree { get; private set; }
-        public List<(string Name, int Score)> PlacesFourToTen { get; private set; }
+        public List<(string Name, int Score, string ProfileImage)> TopThree { get; private set; }
+        public List<(string Name, int Score, string ProfileImage)> PlacesFourToTen { get; private set; }
 
         public void OnGet()
         {
@@ -22,7 +22,7 @@ namespace CGI_Project_WebApp.Pages
             if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts) && empWinCounts != null)
             {
                 LeaderboardData = empWinCounts
-                    .Select(e => (e.Employee.FirstName, e.Count)) 
+                    .Select(e => (e.Employee.FirstName, e.Count, e.Employee.ProfileImage)) 
                     .ToList();
 
                 
@@ -31,7 +31,7 @@ namespace CGI_Project_WebApp.Pages
             else
             {
                 // Handle the case where data couldn't be fetched
-                LeaderboardData = new List<(string Name, int Score)>();
+                LeaderboardData = new List<(string Name, int Score, string ProfileImage)>();
                 MaxScore = 0;
             }
 
@@ -40,7 +40,7 @@ namespace CGI_Project_WebApp.Pages
 
             // Remaining for the table
             PlacesFourToTen = LeaderboardData.Skip(3).Take(7)
-                .Select((x, index) => (x.Name, x.Score)).ToList();
+                .Select((x, index) => (x.Name, x.Score, x.ProfileImage)).ToList();
 
         }
     }
