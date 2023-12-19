@@ -90,10 +90,12 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 if (VoteService.TryCreateVote(emp.Id, suggestionId))
                 {
                     OnGet();
-                    ErrorHandeling.HandleSuccess("Successfully created vote: " + suggestionId + " Submitted by " + emp.FirstName);
+                    ErrorHandeling.HandleSuccess("Successfully voted" + " Submitted by " + emp.FirstName);
                     return Page();
                 }
-                ErrorHandeling.HandleError("Could not add vote");
+                ErrorHandeling.HandleError("Could not vote");
+                OnGet();
+                return Page();
             }
             ErrorHandeling.HandleError("E-mail does not exist and/or server error");
             OnGet();

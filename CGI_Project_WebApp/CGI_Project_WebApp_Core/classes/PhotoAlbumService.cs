@@ -13,6 +13,7 @@ namespace CGI_Project_WebApp_Core.classes
     public class PhotoAlbumService
     {
 		FileChecker checker = new FileChecker();
+		
         IPhotoAlbumRepository _photoAlbumRepository { get; set; }
         public PhotoAlbumService(IPhotoAlbumRepository photoAlbumRepository)
         {
@@ -26,11 +27,11 @@ namespace CGI_Project_WebApp_Core.classes
 
             // If tthe file doesnt exist, add to both the database and folder
             using (var fileStream = new FileStream(UploadName, FileMode.Create))
-                {
-                    await Upload.CopyToAsync(fileStream);
-                }
-                photo.FileName = Guidstring + Upload.FileName;
-                await AddPhoto(photo);
+            {
+                await Upload.CopyToAsync(fileStream);
+            }
+            photo.FileName = Guidstring + Upload.FileName;
+            await AddPhoto(photo);
 
         }
         private async Task AddPhoto(Photos photo)

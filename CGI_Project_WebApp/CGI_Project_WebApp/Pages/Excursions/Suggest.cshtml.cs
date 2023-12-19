@@ -20,13 +20,19 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public Error ErrorHandeling = new();
         
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
             if (User.Identity.IsAuthenticated == false)
             {
                return RedirectToPage("../Index");
             }
-            ErrorHandeling.ResetErrorHandling();
+
+            if (ErrorHandeling.MessageBool)
+            {
+                //Wait for half a second before resetting properties
+                await Task.Delay(10000);
+                ErrorHandeling.ResetErrorHandling();
+            }
             return null;
         }
 
@@ -38,30 +44,43 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                 //Model state not valid
                 ErrorHandeling.HandleError("Model state not correct");
+                //Wait for half a second before resetting properties
+                await Task.Delay(10000);
                 Console.WriteLine("Error");
-                return;
             }
 
-            if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp)) {
-                if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
-                        Suggestion.Exception, emp))
+            if (!ErrorHandeling.MessageBool)
+            {
+                if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
                 {
-                    //Suggestion added successfully
-                    ErrorHandeling.HandleSuccess("Suggestion added successfully");
-                    return;
+                    if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
+                            Suggestion.Exception, emp))
+                    {
+                        //Suggestion added successfully
+                        ErrorHandeling.HandleSuccess("Suggestion added successfully");
+                    }
+
+                    if (!ErrorHandeling.MessageBool)
+                    {
+                        //Suggestion not successfully added
+                        ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
+                    }
                 }
-                //Suggestion not successfully added
-                ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
-                return;
+
+                if (!ErrorHandeling.MessageBool)
+                {
+                    //E-mail doesn't exist and/or server error
+                    ErrorHandeling.HandleError("E-mail does not exist and/or server error");
+                }
             }
-            //E-mail doesn't exist and/or server error
-            ErrorHandeling.HandleError("E-mail does not exist and/or server error");
 
             //Wait for half a second before resetting properties
             await Task.Delay(500);
-            
+
             //Reset all properties
             ErrorHandeling.ResetErrorHandling();
+
+            RedirectToPage();
         }
     }
 }
