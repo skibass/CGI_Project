@@ -2,12 +2,21 @@
 @model CGI_Project_WebApp.Pages.PhotoAlbum.ShowPhotosModel
 @{
 }
+
 <link rel="stylesheet" href="~/css/photoalbum.css" />
 
-@foreach (var item in Model.photoAlbumService.TryGetPhotos())
-{
-    <div class="gallery">
-        <img src="~/PhotoAlbum/@item.FileName" alt="Cinque Terre" width="600" height="400">
-        <div class="desc">@item.Description</div>
+<div class="container my-5">
+    <div class="row">
+        @foreach (var item in Model.photoAlbumService.TryGetPhotos())
+        {
+            <div class="col-md-4 mb-4">
+                <div class="gallery-item">
+                    <img src="~/PhotoAlbum/@item.FileName" alt="@item.Description" class="img-fluid gallery-image">
+                    <div class="gallery-caption">
+                        <h5>@item.Description</h5>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-}
+</div>
