@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Org.BouncyCastle.Utilities;
 
 namespace CGI_Project_WebApp.Pages.Excursions
 {
@@ -19,6 +20,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public Error ErrorHandeling = new();
 
         public string EmployeeEmail;
+
+        public Poll poll = new();
 
         public List<Poll> Polls = new();
 
@@ -43,9 +46,22 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 {
                     if (pollService.TryGetAllPolls(out List<Poll> polls))
                     {
-                        if (VoteService.TryGetVotedSuggestions(emp.Id, out List<Vote> votes))
+                        DateTime now = DateTime.Now;
+
+                        polls = polls.Where(p => p.StartTime < now && p.EndTime > now).ToList();
+
+                        if(polls.Count > 1) { 
+                        //error more then 1 active poll
+                        }
+                        poll = polls[0];
+                        Votes = poll.PollSuggestions.SelectMany(PS=>PS.Votes).ToList();
+
+
+                        //Polls = polls;
+
+                        /*if (VoteService.TryGetVotedSuggestions(emp.Id, out List<Vote> votes))
                         {
-                            Polls = polls;
+                            
                             Votes = votes;
 
                             foreach (var poll in Polls)
@@ -70,7 +86,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                             RedirectToPage();
                             ErrorHandeling.ResetErrorHandling();
-                        }
+                        }*/
                     }
                 }
             }
