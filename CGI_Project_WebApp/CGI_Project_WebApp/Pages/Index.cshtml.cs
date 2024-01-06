@@ -27,25 +27,14 @@ namespace CGI_Project_WebApp.Pages
 
         public void OnGet()
         {
-           UseCurrentLanguage();
+            CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+            CountryCode = CurrentLanguage;
+            ViewData["CurrentLanguage"] = CurrentLanguage;
+            ViewData["CountryCode"] = CountryCode;
             RecentExcursions = _pollService.GetRecentExcursions();
 
             AddUserToDbIfExist();
         }
-
-		public void UseCurrentLanguage()
-        {
-            CurrentLanguage = Request.Cookies[".AspNetCore.Culture"] ?? "EN";
-            var parts = CurrentLanguage.Split('|');
-            if (parts.Length >= 2)
-            {
-                CountryCode = parts[0].Substring(2);
-            }
-
-            ViewData["CurrentLanguage"] = CurrentLanguage;
-            ViewData["CountryCode"] = CountryCode;
-        }
-
        
 
         public async Task<IActionResult> OnGetSetLanguage(string lang)

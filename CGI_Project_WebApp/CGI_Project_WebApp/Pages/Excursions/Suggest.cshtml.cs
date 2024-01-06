@@ -23,6 +23,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
 
         private readonly IStringLocalizer<SuggestModel> _stringLocalizer;
+        public string CurrentLanguage { get; private set; }
+        public string CountryCode { get; private set; }
 
         public SuggestModel(IStringLocalizer<SuggestModel> stringLocalizer)
         {
@@ -30,6 +32,11 @@ namespace CGI_Project_WebApp.Pages.Excursions
         }
         public IActionResult OnGet()
         {
+            CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+            CountryCode = CurrentLanguage;
+            ViewData["CurrentLanguage"] = CurrentLanguage;
+            ViewData["CountryCode"] = CountryCode;
+
             if (User.Identity.IsAuthenticated == false)
             {
                return RedirectToPage("../Index");

@@ -28,8 +28,16 @@ namespace CGI_Project_WebApp.Pages.Excursions
         public Dictionary<int, double> VotePercentages = new();
 
         public int Progress { get; set; }
+        public string CurrentLanguage { get; private set; }
+        public string CountryCode { get; private set; }
+
         public IActionResult OnGet()
         {
+            CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+            CountryCode = CurrentLanguage;
+            ViewData["CurrentLanguage"] = CurrentLanguage;
+            ViewData["CountryCode"] = CountryCode;
+
             if (User.Identity.IsAuthenticated == false)
             {
                 return RedirectToPage("../Index");

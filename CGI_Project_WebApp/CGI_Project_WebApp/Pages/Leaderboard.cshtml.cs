@@ -15,9 +15,16 @@ namespace CGI_Project_WebApp.Pages
         public int MaxScore { get; private set; }
         public List<(string Name, int Score, string ProfileImage)> TopThree { get; private set; }
         public List<(string Name, int Score, string ProfileImage)> PlacesFourToTen { get; private set; }
+        public string CurrentLanguage { get; private set; }
+        public string CountryCode { get; private set; }
+
 
         public void OnGet()
         {
+            CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+            CountryCode = CurrentLanguage;
+            ViewData["CurrentLanguage"] = CurrentLanguage;
+            ViewData["CountryCode"] = CountryCode;
             // Fetch the leaderboard data using the EmployeeService
             if (_employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinCounts) && empWinCounts != null)
             {

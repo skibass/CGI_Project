@@ -1,3 +1,4 @@
+using CGI_Project_WebApp;
 using CGI_Project_WebApp_Core.classes;
 using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
@@ -19,6 +20,10 @@ public class ProfileModel : PageModel
     public string UserEmailAddress { get; set; }
     public string UserProfileImage { get; set; }
 
+    public string CurrentLanguage { get; private set; }
+    public string CountryCode { get; private set; }
+
+
     public class SuggestionWithVoteCount
     {
         public Suggestion Suggestion { get; set; }
@@ -31,10 +36,13 @@ public class ProfileModel : PageModel
     }
 
 
-
-
     public IActionResult OnGet()
     {
+        CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+        CountryCode = CurrentLanguage;
+        ViewData["CurrentLanguage"] = CurrentLanguage;
+        ViewData["CountryCode"] = CountryCode;
+
         if (User.Identity.IsAuthenticated == false)
         {
             return RedirectToPage("../Index");
