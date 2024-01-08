@@ -96,13 +96,9 @@
                                         @if (barHeight <= thresholdHeight)
                                         {
                                             <div class="score-above-bar">#@denseRanks[entry.Score] <br>@entry.Score</div>
-                                            <img src="@entry.ProfileImage" alt="Profile Image">
                                         }
                                         else
                                         {
-                                            <div class="score-above-bar">
-                                                <img src="@entry.ProfileImage" alt="Profile Image">
-                                            </div>
                                             <div class="score-overlay d-flex align-items-center justify-content-center" style="height: @(barHeight)px;">
                                                 #@denseRanks[entry.Score] <br>@entry.Score <br>
                                             </div>
@@ -119,7 +115,6 @@
                                 <th>@stringLocalizer["LeaderboardPosition"]</th>
                                 <th>@stringLocalizer["LeaderboardName"]</th>
                                 <th>@stringLocalizer["LeaderboardScore"]</th>
-                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,7 +124,6 @@
                                     <td>#@denseRanks[entry.Score]</td>
                                     <td><div class="displayUserName">@entry.Name</div></td>
                                     <td>@entry.Score</td>
-                                    <td><img src="@entry.ProfileImage" alt="Profile Image"></td>
                                 </tr>
                             }
                         </tbody>
