@@ -30,7 +30,6 @@ namespace CGI_Project_WebApp.Pages.Excursions
         {
             _stringLocalizer = stringLocalizer;
         }
-        public IActionResult OnGet()
         
         public async Task<IActionResult> OnGet()
         {
@@ -60,7 +59,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             if (!ModelState.IsValid)
             {
                 //Model state not valid
-                ErrorHandeling.HandleError("Model state not correct");
+                ErrorHandeling.HandleError("ModelErrorKey");
                 //Wait for half a second before resetting properties
                 await Task.Delay(10000);
                 Console.WriteLine("Error");
@@ -74,20 +73,20 @@ namespace CGI_Project_WebApp.Pages.Excursions
                             Suggestion.Exception, emp))
                     {
                         //Suggestion added successfully
-                        ErrorHandeling.HandleSuccess("Suggestion added successfully");
+                        ErrorHandeling.HandleSuccess("ModelSuggestKey");
                     }
 
                     if (!ErrorHandeling.MessageBool)
                     {
                         //Suggestion not successfully added
-                        ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
+                        ErrorHandeling.HandleError("ModelSuggestErrorKey");
                     }
                 }
 
                 if (!ErrorHandeling.MessageBool)
                 {
                     //E-mail doesn't exist and/or server error
-                    ErrorHandeling.HandleError("E-mail does not exist and/or server error");
+                    ErrorHandeling.HandleError("ModelEmailErrorKey");
                 }
             }
 
