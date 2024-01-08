@@ -21,12 +21,13 @@ namespace CGI_Project_WebApp_Core.classes
 
         public bool TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, Employee employee)
         {
-            List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
-            polls = new List<Poll>();
-            try
-            {
+			polls = new List<Poll>();
+			try
+			{
+				List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
+				//polls = new List<Poll>();
 
-                foreach (PollSuggestion suggestion in pollSuggestion)
+				foreach (PollSuggestion suggestion in pollSuggestion)
                 {
                     if (suggestion.Poll != null)
                     {
@@ -120,10 +121,15 @@ namespace CGI_Project_WebApp_Core.classes
                             }
                             if(winner && !winningPolls.Select(p=>p.Id).Contains(poll.Id)) winningPolls.Add(poll);
                         }
+                        else
+                        {
+                            return false;
+                        }
 
                     }
-                }
-                return true;
+					return true;
+				}
+               
             }
             catch (Exception e)
             {
@@ -177,6 +183,10 @@ namespace CGI_Project_WebApp_Core.classes
                             Count = winningPolls.Count
                         };
                         EmpWincounts.Add(employeesWinCount);
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
 

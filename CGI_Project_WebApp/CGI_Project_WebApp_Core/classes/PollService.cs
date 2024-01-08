@@ -39,9 +39,10 @@ namespace CGI_Project_WebApp_Core.classes
                         }
                         if (validToVote) { VotablePolls.Add(poll); }
                     }
-                }
-                return true;
-            }
+					return true;
+				}
+				return false;
+			}
             catch (Exception)
             {
                 return false;
@@ -123,8 +124,9 @@ namespace CGI_Project_WebApp_Core.classes
                         }
                         if (!validToVote) { nonVotablePolls.Add(poll); }
                     }
-                }
-                return true;
+					return true;
+				}
+                return false;
             }
             catch (Exception)
             {
