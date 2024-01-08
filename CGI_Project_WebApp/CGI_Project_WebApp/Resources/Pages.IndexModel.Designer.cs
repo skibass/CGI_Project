@@ -70,6 +70,24 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add profile picture.
+        /// </summary>
+        public static string AddProfilePhoto {
+            get {
+                return ResourceManager.GetString("AddProfilePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vote.
+        /// </summary>
+        public static string BtnVote {
+            get {
+                return ResourceManager.GetString("BtnVote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excursion description.
         /// </summary>
         public static string ExcursionDescription {
@@ -268,6 +286,69 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add photo to album.
+        /// </summary>
+        public static string PhotoFormAdd {
+            get {
+                return ResourceManager.GetString("PhotoFormAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a description.
+        /// </summary>
+        public static string PhotoFormDesc {
+            get {
+                return ResourceManager.GetString("PhotoFormDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select photo or drag and drop.
+        /// </summary>
+        public static string PhotoFormLabel1 {
+            get {
+                return ResourceManager.GetString("PhotoFormLabel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag and drop your file here, or click to select file.
+        /// </summary>
+        public static string PhotoFormLabel2 {
+            get {
+                return ResourceManager.GetString("PhotoFormLabel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photo type is not valid, please select a valid photo.
+        /// </summary>
+        public static string PhotoInvalid {
+            get {
+                return ResourceManager.GetString("PhotoInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photo has been added successfully.
+        /// </summary>
+        public static string PhotoSuccess {
+            get {
+                return ResourceManager.GetString("PhotoSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photo is too large, please select a smaller photo.
+        /// </summary>
+        public static string PhotoTooLarge {
+            get {
+                return ResourceManager.GetString("PhotoTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy policy.
         /// </summary>
         public static string PrivacyPolicy {
@@ -376,6 +457,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select photo.
+        /// </summary>
+        public static string SelectProfilePhoto {
+            get {
+                return ResourceManager.GetString("SelectProfilePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show photos.
         /// </summary>
         public static string ShowPhotoNav {
@@ -430,6 +520,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not vote.
+        /// </summary>
+        public static string VoteError {
+            get {
+                return ResourceManager.GetString("VoteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vote.
         /// </summary>
         public static string VoteNav {
@@ -444,6 +543,15 @@ namespace CGI_Project_WebApp.Resources {
         public static string VoteSubtitle {
             get {
                 return ResourceManager.GetString("VoteSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully voted, submitted by.
+        /// </summary>
+        public static string VoteSuccess {
+            get {
+                return ResourceManager.GetString("VoteSuccess", resourceCulture);
             }
         }
         

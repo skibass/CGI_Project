@@ -120,6 +120,12 @@
   <data name="AddPhotoNav" xml:space="preserve">
     <value>Add photos</value>
   </data>
+  <data name="AddProfilePhoto" xml:space="preserve">
+    <value>Add profile picture</value>
+  </data>
+  <data name="BtnVote" xml:space="preserve">
+    <value>Vote</value>
+  </data>
   <data name="ExcursionDescription" xml:space="preserve">
     <value>Excursion description</value>
   </data>
@@ -186,6 +192,27 @@
   <data name="NavPoll" xml:space="preserve">
     <value>Poll</value>
   </data>
+  <data name="PhotoFormAdd" xml:space="preserve">
+    <value>Add photo to album</value>
+  </data>
+  <data name="PhotoFormDesc" xml:space="preserve">
+    <value>Add a description</value>
+  </data>
+  <data name="PhotoFormLabel1" xml:space="preserve">
+    <value>Select photo or drag and drop</value>
+  </data>
+  <data name="PhotoFormLabel2" xml:space="preserve">
+    <value>Drag and drop your file here, or click to select file</value>
+  </data>
+  <data name="PhotoInvalid" xml:space="preserve">
+    <value>Photo type is not valid, please select a valid photo</value>
+  </data>
+  <data name="PhotoSuccess" xml:space="preserve">
+    <value>Photo has been added successfully</value>
+  </data>
+  <data name="PhotoTooLarge" xml:space="preserve">
+    <value>Photo is too large, please select a smaller photo</value>
+  </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
@@ -222,6 +249,9 @@
   <data name="RecentTitle" xml:space="preserve">
     <value>Recent Excursions</value>
   </data>
+  <data name="SelectProfilePhoto" xml:space="preserve">
+    <value>Select photo</value>
+  </data>
   <data name="ShowPhotoNav" xml:space="preserve">
     <value>Show photos</value>
   </data>
@@ -240,11 +270,17 @@
   <data name="SuggestTitle" xml:space="preserve">
     <value>Suggest an excursion</value>
   </data>
+  <data name="VoteError" xml:space="preserve">
+    <value>Could not vote</value>
+  </data>
   <data name="VoteNav" xml:space="preserve">
     <value>Vote</value>
   </data>
   <data name="VoteSubtitle" xml:space="preserve">
     <value>You can vote for one excursion in each period</value>
+  </data>
+  <data name="VoteSuccess" xml:space="preserve">
+    <value>Successfully voted, submitted by</value>
   </data>
   <data name="VoteTitle" xml:space="preserve">
     <value>Vote for an excursion</value>

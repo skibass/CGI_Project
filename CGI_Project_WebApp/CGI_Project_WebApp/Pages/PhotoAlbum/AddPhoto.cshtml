@@ -2,6 +2,9 @@
 @model CGI_Project_WebApp.Pages.PhotoAlbum.AddPhotoModel
 @{
 }
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<IndexModel> stringLocalizer;
 
 <head>
     <link rel="stylesheet" href="~/css/addphoto.css"/>
@@ -19,21 +22,21 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="uploadLabel" class="form-label">Select photo or drag-and-drop</label>
+                    <label for="uploadLabel" class="form-label">@stringLocalizer["PhotoFormLabel1"]</label>
                     <input class="form-control" type="file" id="upload" asp-for="Upload" onchange="previewImage()" style="display: none;" />
                     <div class="dropzone" id="dropzone" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
-                        <label for="uploadLabel" class="dropzone-label">Drag &amp; drop your file here, or click to select file</label>
+                        <label for="uploadLabel" class="dropzone-label">@stringLocalizer["PhotoFormLabel2"]</label>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">Add a description</label>
+                    <label for="description" class="form-label">@stringLocalizer["PhotoFormDesc"]</label>
                     <input class="form-control m-0" required type="text" id="description" asp-for="@Model.photo.Description">
                 </div>
                 @if (HttpContext.Session.GetInt32("ActivityButton") == null)
                 {
                     <div class="text-center my-5">
                         <button type="submit" class="btn btn-lg btn-add-photo">
-                            Add photo to album
+                            @stringLocalizer["PhotoFormAdd"]
                         </button>
                     </div>
                 }

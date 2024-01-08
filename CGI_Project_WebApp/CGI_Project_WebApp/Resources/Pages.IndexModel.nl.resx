@@ -120,6 +120,12 @@
   <data name="AddPhotoNav" xml:space="preserve">
     <value>Foto's toevoegen</value>
   </data>
+  <data name="AddProfilePhoto" xml:space="preserve">
+    <value>Voeg profielfoto toe</value>
+  </data>
+  <data name="BtnVote" xml:space="preserve">
+    <value>Stem</value>
+  </data>
   <data name="ExcursionDescription" xml:space="preserve">
     <value>Excursie omschrijving</value>
   </data>
@@ -186,6 +192,27 @@
   <data name="NavPoll" xml:space="preserve">
     <value>Peiling</value>
   </data>
+  <data name="PhotoFormAdd" xml:space="preserve">
+    <value>Voeg foto toe aan album</value>
+  </data>
+  <data name="PhotoFormDesc" xml:space="preserve">
+    <value>Voeg een beschrijving toe</value>
+  </data>
+  <data name="PhotoFormLabel1" xml:space="preserve">
+    <value>Selecteer foto of slepen</value>
+  </data>
+  <data name="PhotoFormLabel2" xml:space="preserve">
+    <value>Sleep je bestand hierheen en laat los, of klik om een bestand te selecteren</value>
+  </data>
+  <data name="PhotoInvalid" xml:space="preserve">
+    <value>Foto type is niet geldig, selecteer een geldige foto</value>
+  </data>
+  <data name="PhotoSuccess" xml:space="preserve">
+    <value>Foto is toegevoegd</value>
+  </data>
+  <data name="PhotoTooLarge" xml:space="preserve">
+    <value>Foto is te groot, selecteer een kleinere foto</value>
+  </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacybeleid</value>
   </data>
@@ -222,6 +249,9 @@
   <data name="RecentTitle" xml:space="preserve">
     <value>Recente excursies</value>
   </data>
+  <data name="SelectProfilePhoto" xml:space="preserve">
+    <value>Selecteer foto</value>
+  </data>
   <data name="ShowPhotoNav" xml:space="preserve">
     <value>Foto's tonen</value>
   </data>
@@ -240,11 +270,17 @@
   <data name="SuggestTitle" xml:space="preserve">
     <value>Stel een excursie voor</value>
   </data>
+  <data name="VoteError" xml:space="preserve">
+    <value>Stemmen mislukt</value>
+  </data>
   <data name="VoteNav" xml:space="preserve">
     <value>Stemmen</value>
   </data>
   <data name="VoteSubtitle" xml:space="preserve">
     <value>Per periode kunt u stemmen op één excursie</value>
+  </data>
+  <data name="VoteSuccess" xml:space="preserve">
+    <value>Met succes gestemd, ingediend door</value>
   </data>
   <data name="VoteTitle" xml:space="preserve">
     <value>Stem voor een excursie</value>

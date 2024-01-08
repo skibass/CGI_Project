@@ -3,6 +3,7 @@ using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 
 namespace CGI_Project_WebApp.Pages.PhotoAlbum
 {
@@ -19,13 +20,22 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
         public PhotoAlbumService photoAlbumService = new(new PhotoAlbumRepository());
 
         public Error Error = new();
+        public string CurrentLanguage { get; private set; }
+        public string CountryCode { get; private set; }
+        private readonly IStringLocalizer<AddPhotoModel> _stringLocalizer;
 
-        public AddPhotoModel(IWebHostEnvironment web)
+        public AddPhotoModel(IWebHostEnvironment web, IStringLocalizer<AddPhotoModel> stringLocalizer)
         {
             env = web;
+            _stringLocalizer = stringLocalizer;
         }
         public async Task<IActionResult> OnGet()
         {
+            CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+            CountryCode = CurrentLanguage;
+            ViewData["CurrentLanguage"] = CurrentLanguage;
+            ViewData["CountryCode"] = CountryCode;
+
             if (User.Identity.IsAuthenticated == false)
             {
                 return RedirectToPage("../Index");
@@ -49,18 +59,18 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
 			if (preCheckResult == FileUploadPreCheckValue.TooLarge)
             {
-                Error.HandleError("Photo is to large, please select a smaller photo");
+                Error.HandleError("PhotoTooLarge");
                 return;
 			}
             else if(preCheckResult == FileUploadPreCheckValue.NoValidFIleType)
             {
-                Error.HandleError("Photo type is not valid, please select a valid photo");
+                Error.HandleError("PhotoInvalid");
                 return;
             }
 
             await photoAlbumService.TryAddPhoto(photo, path, Upload);
 
-            Error.HandleSuccess("Photo has been added successfully");
+            Error.HandleSuccess("PhotoSuccess");
 
             RedirectToPage("AddPhoto");
 
