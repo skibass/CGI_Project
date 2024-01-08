@@ -12,9 +12,23 @@ namespace CGI_Project_WebApp_DAL.repositories
     public class PhotoAlbumRepository : IPhotoAlbumRepository
     {
         Dbi511119Context dbi511119Context = new();
-        public void AddPhoto(Photos photo)
+        public async void AddPhoto(Photos photo)
         {
-           dbi511119Context.Photos.Add(photo);
+            try
+            {
+                await dbi511119Context.Photos.AddAsync(photo);
+                await dbi511119Context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public void AddUserPicture(Employee employee)
+        {
+            Employee employeeSel = dbi511119Context.Employees.Where(e => e.Id == employee.Id).FirstOrDefault();
+            employeeSel.ProfileImage = employee.ProfileImage;
             dbi511119Context.SaveChanges();
         }
         public List<Photos> TryGetPhotos()

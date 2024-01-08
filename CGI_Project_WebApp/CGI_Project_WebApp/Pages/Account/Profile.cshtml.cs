@@ -10,11 +10,14 @@ namespace acme.Pages;
 
 public class ProfileModel : PageModel
 {
+    IWebHostEnvironment env;
+
+    public IFormFile Upload { get; set; }
 
     EmployeeService employeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
     public Employee employee;
     SuggestionService suggestionService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
-
+    PhotoAlbumService photoAlbumService = new PhotoAlbumService(new PhotoAlbumRepository());
     public List<SuggestionWithVoteCount> SuggestionsWithVoteCount { get; set; } = new List<SuggestionWithVoteCount>();
     public string UserName { get; set; }
     public string UserEmailAddress { get; set; }
@@ -35,8 +38,7 @@ public class ProfileModel : PageModel
         return string.IsNullOrWhiteSpace(name) ? string.Empty : char.ToUpper(name[0]) + name.Substring(1).ToLower();
     }
 
-
-    public IActionResult OnGet()
+    public void OnGet()
     {
         CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
         CountryCode = CurrentLanguage;
@@ -45,13 +47,11 @@ public class ProfileModel : PageModel
 
         if (User.Identity.IsAuthenticated == false)
         {
-            return RedirectToPage("../Index");
+            RedirectToPage("../Index");
         }
         else
         {
-            UserName = FormatName(User.Identity.Name);
             UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-            UserProfileImage = User.FindFirst(c => c.Type == "picture")?.Value;
 
             if (!string.IsNullOrWhiteSpace(UserEmailAddress))
             {
@@ -78,8 +78,21 @@ public class ProfileModel : PageModel
                     employee = null;
                 }
             }
-            // Else block for handling cases where the email can't be retrieved 
-            return null;
         }
+    }
+    public async Task<IActionResult> OnPostTryAddPhoto()
+    {
+        UserEmailAddress = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+        if (employeeService.TryGetEmployeeByEmail(UserEmailAddress, out Employee emp))
+        {
+            employee = emp;
+
+            var path = Path.Combine(env.WebRootPath, "UserPictures");
+
+            await photoAlbumService.TryAddUserPicture(emp, path, Upload);
+
+            return RedirectToPage();
+        }
+        return Page();
     }
 }

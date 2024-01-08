@@ -2,24 +2,116 @@
 @model CGI_Project_WebApp.Pages.PhotoAlbum.AddPhotoModel
 @{
 }
-<br />
-<br />
-<br />
-<br />
-<form method="post" asp-page-handler="TryAddPhoto" enctype="multipart/form-data">
-    <div class="form-outline mb-4">
-        <input class="form-control form-control-lg" required type="file" asp-for="Upload">
-        <label class="form-label">Select photo</label>
-    </div>
-    <div class="form-outline mb-4">
-        <input class="form-control form-control-lg" required type="text" asp-for="@Model.photo.Description">
-        <label class="form-label">Add a description</label>
-    </div>
 
-    <div class="d-flex justify-content-center">
-        <button type="submit"
-                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-            Add photo to album
-        </button>
+<head>
+    <link rel="stylesheet" href="~/css/addphoto.css"/>
+</head>
+
+<div class="container my-5">
+    <!-- Existing code... -->
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" asp-page-handler="TryAddPhoto" enctype="multipart/form-data">
+                <div class="preview-div mb-3 w-75 mx-auto hidden">
+                    <div id="imagePreviewContainer" class="text-center">
+                        <img id="imagePreview" class="img-thumbnail" alt="Image Preview">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="uploadLabel" class="form-label">Select photo or drag-and-drop</label>
+                    <input class="form-control" type="file" id="upload" asp-for="Upload" onchange="previewImage()" style="display: none;" />
+                    <div class="dropzone" id="dropzone" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                        <label for="uploadLabel" class="dropzone-label">Drag &amp; drop your file here, or click to select file</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Add a description</label>
+                    <input class="form-control m-0" required type="text" id="description" asp-for="@Model.photo.Description">
+                </div>
+                @if (HttpContext.Session.GetInt32("ActivityButton") == null)
+                {
+                    <div class="text-center my-5">
+                        <button type="submit" class="btn btn-lg btn-add-photo">
+                            Add photo to album
+                        </button>
+                    </div>
+                }
+            </form>
+        </div>
     </div>
-</form>
+</div>
+
+<script>
+    
+        document.addEventListener('DOMContentLoaded', function () {
+
+        document.querySelector('.dropzone').addEventListener('click', function () {
+            console.log('hit');
+            document.getElementById('upload').click();
+        });
+
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl);
+        });
+
+        // Optional: Close the toasts after a certain duration
+        setTimeout(function () {
+            toastList.forEach(function (toast) {
+                toast.hide();
+            });
+
+            // Ensure the toasts are not reappearing by removing them from the DOM
+            toastElList.forEach(function (toastEl) {
+                toastEl.parentNode.removeChild(toastEl);
+            });
+        }, 5000);
+
+
+    });
+
+     function previewImage() {
+        var input = document.getElementById('upload');
+        var imagePreview = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            document.getElementById('imagePreviewContainer').style.display = 'block';
+            document.querySelector(".preview-div").classList.remove("hidden");
+        } else {
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+        }
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        var dropzone = document.getElementById('dropzone');
+        dropzone.classList.add('drag-over');
+    }
+
+    function handleDrop(event) {
+        event.preventDefault();
+        var dropzone = document.getElementById('dropzone');
+        dropzone.classList.remove('drag-over');
+
+        var files = event.dataTransfer.files;
+        var input = document.getElementById('upload');
+
+        if (files.length > 0) {
+            input.files = files;
+            previewImage();
+        }
+    }
+
+  
+
+   
+</script>
+

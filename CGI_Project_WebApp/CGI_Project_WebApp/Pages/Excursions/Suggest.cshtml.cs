@@ -31,6 +31,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
             _stringLocalizer = stringLocalizer;
         }
         public IActionResult OnGet()
+        
+        public async Task<IActionResult> OnGet()
         {
             CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
             CountryCode = CurrentLanguage;
@@ -41,7 +43,13 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                return RedirectToPage("../Index");
             }
-            ErrorHandeling.ResetErrorHandling();
+
+            if (ErrorHandeling.MessageBool)
+            {
+                //Wait for half a second before resetting properties
+                await Task.Delay(10000);
+                ErrorHandeling.ResetErrorHandling();
+            }
             return null;
         }
 
@@ -52,31 +60,44 @@ namespace CGI_Project_WebApp.Pages.Excursions
             if (!ModelState.IsValid)
             {
                 //Model state not valid
-                ErrorHandeling.HandleError("ModelErrorKey");
+                ErrorHandeling.HandleError("Model state not correct");
+                //Wait for half a second before resetting properties
+                await Task.Delay(10000);
                 Console.WriteLine("Error");
-                return;
             }
 
-            if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp)) {
-                if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
-                        Suggestion.Exception, emp))
+            if (!ErrorHandeling.MessageBool)
+            {
+                if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
                 {
-                    //Suggestion added successfully
-                    ErrorHandeling.HandleSuccess("ModelSuggestKey");
-                    return;
+                    if (SuggestionService.TryAddSuggestion(Suggestion.Name, Suggestion.Description, Suggestion.Location,
+                            Suggestion.Exception, emp))
+                    {
+                        //Suggestion added successfully
+                        ErrorHandeling.HandleSuccess("Suggestion added successfully");
+                    }
+
+                    if (!ErrorHandeling.MessageBool)
+                    {
+                        //Suggestion not successfully added
+                        ErrorHandeling.HandleError("Failed to add suggestion. Suggestion might exist already");
+                    }
                 }
-                //Suggestion not successfully added
-                ErrorHandeling.HandleError("ModelSuggestErrorKey");
-                return;
+
+                if (!ErrorHandeling.MessageBool)
+                {
+                    //E-mail doesn't exist and/or server error
+                    ErrorHandeling.HandleError("E-mail does not exist and/or server error");
+                }
             }
-            //E-mail doesn't exist and/or server error
-            ErrorHandeling.HandleError("ModelEmailErrorKey");
 
             //Wait for half a second before resetting properties
             await Task.Delay(500);
-            
+
             //Reset all properties
             ErrorHandeling.ResetErrorHandling();
+
+            RedirectToPage();
         }
     }
 }

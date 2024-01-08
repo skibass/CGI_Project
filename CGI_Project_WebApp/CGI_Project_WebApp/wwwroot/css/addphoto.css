@@ -1,0 +1,21 @@
+
+.dropzone {
+    border: 2px dashed var(--primary);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.drag-over {
+    border-color: #28a745;
+}
+
+.hidden{
+    display: none;
+    visibility: hidden;
+}
+
+.btn-add-photo{
+    background-color: var(--primary);
+    color: #fff;
+}

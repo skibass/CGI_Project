@@ -10,6 +10,7 @@ namespace CGI_Project_WebApp_Core.Interfaces
     public interface IPhotoAlbumRepository
     {
         public void AddPhoto(Photos photo);
+        public void AddUserPicture(Employee employee);
         public List<Photos> TryGetPhotos();
     }
 }
