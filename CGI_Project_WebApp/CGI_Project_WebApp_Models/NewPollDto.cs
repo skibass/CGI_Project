@@ -16,10 +16,10 @@ namespace CGI_Project_WebApp_Models
 
         public int? PeriodId { get; set; }
         public string? Poll_name { get; set; }
-        public virtual Employee? Manager { get; set; }
+        public virtual Employee? Employee { get; set; }
 
         public virtual Period? Period { get; set; }
 
-        public List<Suggestion> suggestions { get; set; }
+        public List<Suggestion>? Suggestions { get; set; }
     }
 }
