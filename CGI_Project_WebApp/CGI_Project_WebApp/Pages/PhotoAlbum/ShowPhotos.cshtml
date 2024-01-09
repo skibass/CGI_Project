@@ -1,15 +1,14 @@
 ﻿@page
 @model CGI_Project_WebApp.Pages.PhotoAlbum.ShowPhotosModel
-@{
-}
 
 <link rel="stylesheet" href="~/css/photoalbum.css" />
+<script src="~/js/photoPagination.js" defer></script>
 
 <div class="container my-5">
-    <div class="row">
+    <div class="row" id="photoContainer">
         @foreach (var item in Model.photoAlbumService.TryGetPhotos())
         {
-            <div class="col-md-4 mb-4">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 photo-item">
                 <div class="gallery-item">
                     <img src="~/PhotoAlbum/@item.FileName" alt="@item.Description" class="img-fluid gallery-image">
                     <div class="gallery-caption">
@@ -18,5 +17,9 @@
                 </div>
             </div>
         }
+    </div>
+
+    <div class="pagination">
+        <!-- Pagination controls will be dynamically inserted here -->
     </div>
 </div>

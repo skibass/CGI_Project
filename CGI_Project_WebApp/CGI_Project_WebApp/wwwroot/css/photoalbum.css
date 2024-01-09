@@ -4,13 +4,20 @@
     overflow: hidden;
     border: 1px solid #ddd;
     transition: transform 0.3s ease-in-out;
-    height: 300px; 
 }
 
 .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
+     width: 100%;
+     height: auto; /* Adjust height to auto for a responsive height */
+     object-fit: cover;
+     border-radius: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-item {
+        height: auto; /* Adjust height on smaller screens */
+    }
 }
 
 .gallery-item:hover {
@@ -44,4 +51,22 @@
     background: #eee url('../assets/ph.jpg') center center no-repeat;
     background-size: cover;
     border: 1px solid #ddd;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a,
+.pagination span {
+     margin: 0 5px;
+     padding: 5px 10px;
+     border: 1px solid #ddd;
+     text-decoration: none;
+}
+
+.pagination a:hover {
+      background-color: #e9e9e9;
 }
