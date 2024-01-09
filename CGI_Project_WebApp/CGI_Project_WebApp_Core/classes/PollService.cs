@@ -10,15 +10,19 @@ namespace CGI_Project_WebApp_Core.classes
 {
     public class PollService
     {
-        PollRepository pollRepository = new PollRepository();
-        public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
+		IPollRepository pollsRepository;
+		public PollService(IPollRepository pollsRepository)
+		{
+			this.pollsRepository = pollsRepository;
+		}
+		public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
         {
             VotablePolls = new List<Poll>();
             try
             {
                 List<Poll> polls = new List<Poll>();
                 
-                polls = pollRepository.GetOpenPolls();
+                polls = pollsRepository.GetOpenPolls();
 
                 if (polls != null)
                 {
@@ -102,7 +106,7 @@ namespace CGI_Project_WebApp_Core.classes
             {
                 List<Poll> polls = new List<Poll>();
 
-                polls = pollRepository.GetOpenPolls();
+                polls = pollsRepository.GetOpenPolls();
 
                 if (polls != null)
                 {
@@ -135,7 +139,7 @@ namespace CGI_Project_WebApp_Core.classes
             Draw = false;
             try
             {
-                if (pollRepository.TryGetPoll(out Poll poll, pollId))
+                if (pollsRepository.TryGetPoll(out Poll poll, pollId))
                 {
 
                     List<PollSuggestion>? Suggestions = poll.PollSuggestions.ToList();
@@ -170,7 +174,7 @@ namespace CGI_Project_WebApp_Core.classes
         }
         public bool TryRemovePoll(int pollId)
         {
-            return pollRepository.TryRemovePoll(pollId);
+            return pollsRepository.TryRemovePoll(pollId);
         }
         public bool TryAddPoll(string name, int? managerId, DateTime? starttime, DateTime? endtime, Period period, Employee employee, List<string>? chosenSuggestionsIds, List<Suggestion> suggestions)
         {
@@ -194,7 +198,7 @@ namespace CGI_Project_WebApp_Core.classes
             
 			try
             {
-                pollRepository.TryAddPoll(newPoll, out Poll poll);
+				pollsRepository.TryAddPoll(newPoll, out Poll poll);
                 //add suggestions
                 foreach (Suggestion item in newPoll.Suggestions)
                 { 
@@ -216,9 +220,9 @@ namespace CGI_Project_WebApp_Core.classes
             votes = new List<Vote>();
             try
             {
-                if (pollRepository.TryGetPollByPollID(out Poll poll, pollId))
-                {
-                    List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
+				if (pollsRepository.TryGetPoll(out Poll poll, pollId))
+				{
+					List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
                     votes = new List<Vote>();
                     foreach (PollSuggestion suggestion in Suggestions)
                     {
@@ -244,7 +248,7 @@ namespace CGI_Project_WebApp_Core.classes
         }
         public bool TryAddSuggestionToPoll(int pollId, int suggestionId)
         {
-            return pollRepository.TryAddSuggestionToPoll(pollId, suggestionId);
+            return pollsRepository.TryAddSuggestionToPoll(pollId, suggestionId);
         }
         //public bool 
     }

@@ -1,4 +1,5 @@
 using CGI_Project_WebApp_Core.classes;
+using CGI_Project_WebApp_DAL.repositories;
 using CGI_Project_WebApp_Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,7 +11,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 {
     public class PollModel : PageModel
     {
-		public PollService PollService = new();
+		public PollService PollService = new(new PollRepository());
         
 		[BindProperty]
 		public required NewPollDto Poll { get; set; }
@@ -25,9 +26,9 @@ namespace CGI_Project_WebApp.Pages.Excursions
 			set { unusedSuggestionsList = value; }
 		}
 
-		public EmployeeService EmployeeService = new EmployeeService();
+		public EmployeeService EmployeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
 		
-		public SuggestionService SuggestionsService = new SuggestionService();
+		public SuggestionService SuggestionsService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
 
 		public string EmployeeEmail { get; set; }
 
