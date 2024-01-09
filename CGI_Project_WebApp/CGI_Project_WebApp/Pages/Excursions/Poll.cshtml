@@ -21,7 +21,7 @@
 </div>
 
 <div class="container mb-5">
-	<form method="post">
+	<form method="post" enctype="multipart/form-data">
 		<input asp-for="Poll.Poll_name" type="text" id="pname" placeholder="Poll name..."/><br/>
 		<input type="text" id="dateRange" placeholder="Select the period in which employees can vote" data-mode="range" data-input><br />
 		
@@ -30,12 +30,8 @@
 
 		@if (Model?.UnusedSuggestionsList?.suggestions != null)
 		{
-			<select asp-for="Poll.
-Suggestions" id="psuggestions" placeholder="Select suggestions..." asp-items="@(new SelectList(Model.UnusedSuggestionsList, nameof(suggestions.Name)))" multiple>
-				@foreach (var suggestion in Model.UnusedSuggestionsList.suggestions)
-				{
-					<option value="@suggestion">@suggestion.Name</option>
-				}
+			<select class="form-control form-control-lg" asp-for="chosenSuggestions" asp-items="@(new SelectList(Model.unusedSuggestionsList.suggestions, "Id", "Name"))" required multiple="multiple">
+				<option value="" selected disabled>---Select a suggestion---</option>
 			</select>
 			<br/>
 		}

@@ -123,17 +123,25 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return pollRepository.TryRemovePoll(pollId);
         }
-        public bool TryAddPoll(string name, int? managerId, DateTime? starttime, DateTime? endtime, Period period, Employee employee, List<Suggestion>? pollSuggestions)
+        public bool TryAddPoll(string name, int? managerId, DateTime? starttime, DateTime? endtime, Period period, Employee employee, List<string>? chosenSuggestionsIds, List<Suggestion> suggestions)
         {
 			NewPollDto newPoll = new NewPollDto();
-            
+
+            newPoll.Suggestions = new List<Suggestion>();
 			newPoll.Poll_name = name;
 			newPoll.ManagerId = managerId;
 			newPoll.StartTime = starttime;
 			newPoll.EndTime = endtime;
 			newPoll.Period = period;
 			newPoll.Employee = employee;
-            newPoll.Suggestions = pollSuggestions;
+
+            foreach (Suggestion suggestion in suggestions)
+            {
+				if (chosenSuggestionsIds.Any(mc => int.Parse(mc) == suggestion.Id))
+				{
+					newPoll.Suggestions.Add(suggestion);
+				}
+			}
             
 			try
             {

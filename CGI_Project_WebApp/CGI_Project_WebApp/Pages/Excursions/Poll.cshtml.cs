@@ -16,6 +16,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
 		public required NewPollDto Poll { get; set; }
 
 		public SuggestionList unusedSuggestionsList;
+		[BindProperty]
+		public List<string> chosenSuggestions { get; set; }
 
 		public SuggestionList UnusedSuggestionsList
 		{
@@ -31,11 +33,15 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
 		public void OnGet()
         {
+			chosenSuggestions = new List<string>();
 			SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
 		}
 
 		public IActionResult OnPost()
 		{
+			SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
+
+			var l = chosenSuggestions;
 			EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
 			//TODO: Finish Error
@@ -46,7 +52,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
 			if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
 			{
-				if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, Poll.Suggestions))
+				if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, chosenSuggestions, unusedSuggestionsList.suggestions))
 				{
 					return RedirectToPage("/Index");
 				}
