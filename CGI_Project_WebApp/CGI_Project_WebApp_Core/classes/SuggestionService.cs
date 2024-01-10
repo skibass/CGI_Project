@@ -63,7 +63,7 @@ namespace CGI_Project_WebApp_Core.classes
                 foreach (PollSuggestion item in poll.PollSuggestions)
                 {
 
-                    if (item.Suggestion.Votes.Count == MaxCount && !draw)
+                    if (item.Votes.Count == MaxCount && !draw)
                     {
                         Winningsuggestions.suggestions.Add(item.Suggestion);
                     }

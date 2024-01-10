@@ -59,7 +59,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                 votes = dbContext.Votes
                     .AsNoTracking()
                     .Include(v => v.Employee)
-                    .Include(v => v.Suggestion)
+                    .Include(v => v.PollSuggestion)
                     .ToList();
                 
                 return true;

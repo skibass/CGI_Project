@@ -28,7 +28,9 @@ namespace CGI_Project_WebApp_UnitTests
             employeeService = new EmployeeService(employeeRepository ,pollRepository);
         }
 
-        [Fact]
+		#region happy_flow
+
+		[Fact]
         public void TryGetAllPollesWithSuggestionFromEmployee_3_Polls_With_employee_suggestion()
         {
             Employee emp = new Employee
@@ -199,5 +201,135 @@ namespace CGI_Project_WebApp_UnitTests
             Assert.Equal("Third", empWinList[2].Employee.FirstName);
             Assert.DoesNotContain("Fourth", empWinList.Select(s => s.Employee.FirstName).ToList());
         }
-    }
+		#endregion
+
+		#region bad_flow
+
+		[Fact]
+		public void TryGetAllPollesWithSuggestionFromEmployee_Null_Returns_False()
+		{
+			Employee emp = new Employee
+			{
+				Id = 1
+			};
+			A.CallTo(() => employeeRepository.GetPollSuggestionsByEmployeeId(emp)).Returns(
+				null
+				);
+
+
+			Assert.False(employeeService.TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, emp));
+			//Assert.Equal(3, polls.Count);
+		}
+
+		[Fact]
+		public void getEmployeeSuggestions_No_Suggestions()
+		{
+			Employee emp = new Employee
+			{
+				Id = 1
+			};
+			//GetPollSuggestionsByEmployeeId
+			A.CallTo(() => employeeRepository.GetPollSuggestionsByEmployeeId(emp.Id)).Returns(
+				new List<PollSuggestion>
+				{
+				}
+				);
+
+			Assert.True(employeeService.getEmployeeSuggestions(out List<Suggestion> suggestions, emp));
+			Assert.Empty(suggestions);
+		}
+		[Fact]
+		public void getEmployeeSuggestions_No_Suggestions_Returns_Null()
+		{
+			Employee emp = new Employee
+			{
+				Id = 1
+			};
+			//GetPollSuggestionsByEmployeeId
+			A.CallTo(() => employeeRepository.GetPollSuggestionsByEmployeeId(emp.Id)).Returns(
+				null
+				);
+
+			Assert.False(employeeService.getEmployeeSuggestions(out List<Suggestion> suggestions, emp));
+		}
+
+		[Fact]
+		public void TryGetWinningPolls_0_winningPolls()
+		{
+			Poll poll = new Poll();
+			Employee emp = new Employee
+			{
+				Id = 1
+			};
+			List<PollSuggestion> psList = new List<PollSuggestion>
+				{
+
+				};
+
+			A.CallTo(() => employeeRepository.GetPollSuggestionsByEmployeeId(emp)).Returns(
+				psList
+				);
+
+			Assert.True(employeeService.TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, emp));
+
+			Assert.True(employeeService.TryGetWinningPolls(out List<Poll> winningpolls, emp));
+			Assert.Empty(winningpolls);
+		}
+		[Fact]
+		public void TryGetWinningPolls_null_winningPolls()
+		{
+			Poll poll = new Poll();
+			Employee emp = new Employee
+			{
+				Id = 1
+			};
+			List<PollSuggestion> psList = new List<PollSuggestion>
+			{
+
+			};
+
+			A.CallTo(() => employeeRepository.GetPollSuggestionsByEmployeeId(emp)).Returns(
+				null
+				);
+
+			Assert.False(employeeService.TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, emp));
+
+			Assert.False(employeeService.TryGetWinningPolls(out List<Poll> winningpolls, emp));
+		}
+
+		[Fact]
+		public void TryGetEmployeesWithMostWinningVotes_3_Max_Null_Employee()
+		{
+			Poll poll = new Poll();
+			List<Employee> emps = new List<Employee>
+			{
+				new Employee{
+				Id = 1,
+				FirstName = "First",
+				LastName = "User",
+				},
+				new Employee{
+				Id = 2,
+				FirstName = "Second",
+				LastName = "User",
+				},
+				new Employee{
+				Id = 3,
+				FirstName = "Third",
+				LastName = "User",
+				},
+				new Employee{
+				Id = 4,
+				FirstName = "Fourth",
+				LastName = "User",
+				},
+			};
+
+			A.CallTo(() => employeeRepository.GetEmployees()).Returns(null);
+
+			Assert.False(employeeService.TryGetEmployeesWithMostWinningVotes(out List<EmployeeWinCount> empWinList, 3));
+
+		}
+		#endregion
+	}
 }

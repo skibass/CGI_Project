@@ -67,8 +67,9 @@ public class ProfileModel : PageModel
                                 SuggestionsWithVoteCount.Add(new SuggestionWithVoteCount
                                 {
                                     Suggestion = suggestion,
-                                    VoteCount = suggestion.Votes?.Count ?? 0
-                                });
+                                    VoteCount = 4
+                                    //VoteCount = suggestion.Votes?.Count ?? 0 ----tmp
+                                }) ;
                             }
                         }
                     }

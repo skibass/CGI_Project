@@ -30,7 +30,7 @@ namespace CGI_Project_WebApp_Core.classes
                     {
                         bool validToVote = true;
 
-                        foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
+                        foreach (PollSuggestion suggestion in poll.PollSuggestions.ToList())
                         {
                             if (suggestion.Votes.Select(vote => vote.EmployeeId).ToList().Contains(employeeId))
                             {
@@ -39,9 +39,10 @@ namespace CGI_Project_WebApp_Core.classes
                         }
                         if (validToVote) { VotablePolls.Add(poll); }
                     }
-                }
-                return true;
-            }
+					return true;
+				}
+				return false;
+			}
             catch (Exception)
             {
                 return false;
@@ -60,7 +61,7 @@ namespace CGI_Project_WebApp_Core.classes
             {
                 List<PollSuggestion> suggestions = poll.PollSuggestions.ToList();
                 votes = suggestions
-                    .SelectMany(suggestion => suggestion.Suggestion.Votes)
+                    .SelectMany(suggestion => suggestion.Votes)
                     .Where(v => v.EmployeeId == employeeId)
                     .ToList();
             }
@@ -114,7 +115,7 @@ namespace CGI_Project_WebApp_Core.classes
                     {
                         bool validToVote = true;
 
-                        foreach (Suggestion suggestion in poll.PollSuggestions.Select(ps => ps.Suggestion).ToList())
+                        foreach (PollSuggestion suggestion in poll.PollSuggestions.ToList())
                         {
                             if (suggestion.Votes.Select(vote => vote.EmployeeId).ToList().Contains(employeeId))
                             {
@@ -123,8 +124,9 @@ namespace CGI_Project_WebApp_Core.classes
                         }
                         if (!validToVote) { nonVotablePolls.Add(poll); }
                     }
-                }
-                return true;
+					return true;
+				}
+                return false;
             }
             catch (Exception)
             {
@@ -149,12 +151,12 @@ namespace CGI_Project_WebApp_Core.classes
                     }
                     foreach (PollSuggestion suggestion in Suggestions)
                     {
-                        if (MaxCount < suggestion.Suggestion.Votes.Count)
+                        if (MaxCount < suggestion.Votes.Count)
                         {
-                            MaxCount = suggestion.Suggestion.Votes.Count;
+                            MaxCount = suggestion.Votes.Count;
                             Draw = false;
                         }
-                        else if (MaxCount == suggestion.Suggestion.Votes.Count)
+                        else if (MaxCount == suggestion.Votes.Count)
                         {
                             Draw = true;
                         }
@@ -226,7 +228,7 @@ namespace CGI_Project_WebApp_Core.classes
                     votes = new List<Vote>();
                     foreach (PollSuggestion suggestion in Suggestions)
                     {
-                        votes.AddRange(suggestion.Suggestion.Votes);
+                        votes.AddRange(suggestion.Votes);
                     }
                     return true;
                 }

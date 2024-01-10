@@ -2,11 +2,32 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using CGI_Project_WebApp_Models;
+using ZstdSharp.Unsafe;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace CGI_Project_WebApp_DAL.Database_Models;
 
 public partial class Dbi511119Context : DbContext
 {
+    private const bool Local = false;
+
+    private string localDBString = "SERVER=127.0.0.1;UID=root;PASSWORD=;DATABASE=dbi511119;";
+    private string OnlineDbString = "Server = studmysql01.fhict.local; Uid=dbi511119;Pwd=TeamKever;Database=dbi511119;";
+    public string ConnectionString
+    {
+        get { if (Local)
+            {
+                return localDBString;
+            }
+            else
+            {
+                return OnlineDbString;
+            }
+        }
+
+    }
+
     public Dbi511119Context()
     {
     }
@@ -14,7 +35,7 @@ public partial class Dbi511119Context : DbContext
     public Dbi511119Context(DbContextOptions<Dbi511119Context> options)
         : base(options)
     {
-        
+
     }
 
     public virtual DbSet<Company> Companies { get; set; }
@@ -44,8 +65,10 @@ public partial class Dbi511119Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=studmysql01.fhict.local;Uid=dbi511119;Pwd=TeamKever;Database=dbi511119;");
+        =>optionsBuilder.UseMySQL(ConnectionString);
 
+        
+        //=> optionsBuilder.UseMySQL("SERVER=127.0.0.1;UID=root;PASSWORD=;DATABASE=dbi511119;");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Company>(entity =>
@@ -339,7 +362,7 @@ public partial class Dbi511119Context : DbContext
 
             entity.HasIndex(e => e.EmployeeId, "FK_Vote-Employee_idx");
 
-            entity.HasIndex(e => e.SuggestionId, "FK_Vote-Suggestion_idx");
+            entity.HasIndex(e => e.PollSuggestionId, "FK_Vote-PollSuggestion_idx");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
@@ -347,16 +370,16 @@ public partial class Dbi511119Context : DbContext
             entity.Property(e => e.EmployeeId)
                 .HasColumnType("int(11)")
                 .HasColumnName("employeeId");
-            entity.Property(e => e.SuggestionId)
+            entity.Property(e => e.PollSuggestionId)
                 .HasColumnType("int(11)")
-                .HasColumnName("suggestionId");
+                .HasColumnName("pollsuggestionId");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.Votes)
                 .HasForeignKey(d => d.EmployeeId)
                 .HasConstraintName("FK_Vote-Employee");
 
-            entity.HasOne(d => d.Suggestion).WithMany(p => p.Votes)
-                .HasForeignKey(d => d.SuggestionId)
+            entity.HasOne(d => d.PollSuggestion).WithMany(p => p.Votes)
+                .HasForeignKey(d => d.PollSuggestionId)
                 .HasConstraintName("FK_Vote-Suggestion");
         });
 

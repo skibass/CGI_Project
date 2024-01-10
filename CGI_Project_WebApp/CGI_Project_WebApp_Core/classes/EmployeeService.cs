@@ -21,15 +21,17 @@ namespace CGI_Project_WebApp_Core.classes
 
         public bool TryGetAllPollesWithSuggestionFromEmployee(out List<Poll> polls, Employee employee)
         {
-            List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
-            polls = new List<Poll>();
-            try
-            {
+			polls = new List<Poll>();
+			try
+			{
+				List<PollSuggestion> pollSuggestion = employeeRepository.GetPollSuggestionsByEmployeeId(employee);
+				//polls = new List<Poll>();
 
-                foreach (PollSuggestion suggestion in pollSuggestion)
+				foreach (PollSuggestion suggestion in pollSuggestion)
                 {
                     if (suggestion.Poll != null)
                     {
+                        //if(polls.Select(p=>p.Id).ToList().Contains((int)suggestion.PollId))
                         polls.Add(suggestion.Poll);
 
                     }
@@ -113,16 +115,21 @@ namespace CGI_Project_WebApp_Core.classes
                         {
 
 
-                            if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(s => s.Suggestion.Votes.Count).Contains(count) && count > 0)
+                            if (!draw && poll.PollSuggestions.Where(ps => ps.Suggestion.EmployeeId == employee.Id).Select(ps=>ps.Votes.Count).ToList().Contains(count) && count > 0)
                             {
                                 winner = true; 
                             }
-                            if(winner) winningPolls.Add(poll);
+                            if(winner && !winningPolls.Select(p=>p.Id).Contains(poll.Id)) winningPolls.Add(poll);
+                        }
+                        else
+                        {
+                            return false;
                         }
 
                     }
-                }
-                return true;
+					return true;
+				}
+               
             }
             catch (Exception e)
             {
@@ -176,6 +183,10 @@ namespace CGI_Project_WebApp_Core.classes
                             Count = winningPolls.Count
                         };
                         EmpWincounts.Add(employeesWinCount);
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
 

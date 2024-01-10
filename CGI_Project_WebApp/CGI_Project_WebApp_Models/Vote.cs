@@ -9,11 +9,11 @@ public partial class Vote
 
     public int? EmployeeId { get; set; }
 
-    public int? SuggestionId { get; set; }
+    public int? PollSuggestionId { get; set; }
 
     public virtual Employee? Employee { get; set; }
 
     public virtual ICollection<PreferredDate> PreferredDates { get; set; } = new List<PreferredDate>();
 
-    public virtual Suggestion? Suggestion { get; set; }
+    public virtual PollSuggestion? PollSuggestion { get; set; }
 }
