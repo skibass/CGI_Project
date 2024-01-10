@@ -56,6 +56,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
                         poll = polls[0];
                         Votes = poll.PollSuggestions.SelectMany(PS=>PS.Votes).ToList();
 
+                        int i = 1;
 
                         //Polls = polls;
 

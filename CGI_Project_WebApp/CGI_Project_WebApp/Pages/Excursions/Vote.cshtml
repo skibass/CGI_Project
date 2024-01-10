@@ -83,9 +83,11 @@
             {
                 var optionName = suggestion.Suggestion.Name;
                 var suggestionId = (int)suggestion.SuggestionId;
-                var percentage = Model.VotePercentages.GetValueOrDefault(suggestionId, 0);
-                var voteCount = Model.VoteCounts.GetValueOrDefault(suggestionId, 0);
+                //int tmp = sugg
+                
+                var voteCount = Model.Votes.Where(v => v.PollSuggestion.SuggestionId == suggestion.SuggestionId).Count();
 
+            var percentage =  (int)((float) 100.0f / Model.Votes.Count() * voteCount);
                 <div class="container my-4 mt-4">
                     <div class="row">
                         <div class="col-md-12 p-0 m-0">
