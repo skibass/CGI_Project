@@ -58,8 +58,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                         polls = polls.Where(p => p.StartTime < now && p.EndTime > now).ToList();
 
-                        if(polls.Count > 1) { 
-                        //error more then 1 active poll
+                        if(polls.Count != 1) {
+                            return Page();
                         }
                         poll = polls[0];
                         Votes = poll.PollSuggestions.SelectMany(PS=>PS.Votes).ToList();
