@@ -25,8 +25,8 @@ namespace CGI_Project_WebApp_Core.Services
             foreach (var poll in polls)
             {
                 var mostVotedSuggestion = poll.PollSuggestions
-                    .Select(ps => ps.Suggestion)
                     .OrderByDescending(s => s.Votes.Count)
+                    .Select(ps => ps.Suggestion)
                     .FirstOrDefault();
 
                 suggestions.Add(mostVotedSuggestion);

@@ -19,5 +19,5 @@ public partial class Poll
 
     public virtual Period? Period { get; set; }
 
-    public virtual ICollection<PollSuggestion>? PollSuggestions { get; set; } = new List<PollSuggestion>();
+    public virtual List<PollSuggestion>? PollSuggestions { get; set; } = new List<PollSuggestion>();
 }

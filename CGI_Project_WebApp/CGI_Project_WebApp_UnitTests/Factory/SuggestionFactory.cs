@@ -22,7 +22,7 @@ namespace CGI_Project_WebApp_UnitTests.Factory
                 Name = Name,
                 EmployeeId = VariableUserId,
                 Description = "Test",
-                Votes = votes,
+               // Votes = votes,
                 
                 
             };

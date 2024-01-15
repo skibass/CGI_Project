@@ -23,8 +23,9 @@ namespace CGI_Project_WebApp_UnitTests
 
             pollService = new PollService(pollRepository);
         }
+		#region happy_flow
 
-        [Fact]
+		[Fact]
         public void GetVotablePollsTest_3_Open_polls_two_votable()
         {
 
@@ -130,6 +131,54 @@ namespace CGI_Project_WebApp_UnitTests
 
             Assert.Empty(votes);
         }
+		#endregion
+		#region bad_flow
+		[Fact]
+		public void GetVotablePollsTest_Null()
+		{
+
+			A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
+				null
+				);
+
+			Assert.False(pollService.TryGetValidAndVoteablePolls(out List<Poll> votablePolls, 1));
+		}
+        [Fact]
+        public void GetNonVotablePollsTest_Null ()
+		{
+
+			A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
+				null
+				);
+
+			Assert.False(pollService.TryGetValidButNonVoteablePolls(out List<Poll> NonVotablePolls, 1));
+		}
+        [Fact]
+        public void GetNonVotablePollsTest_0()
+        {
+
+            A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
+                new List<Poll>
+                {
+                }
+                );
+
+            Assert.True(pollService.TryGetValidButNonVoteablePolls(out List<Poll> NonVotablePolls, 1));
+
+            Assert.Equal(0, NonVotablePolls.Count);
+        }
+        [Fact]
+        public void GetNonVotablePollsTest_null()
+        {
+
+            A.CallTo(() => pollRepository.GetOpenPolls()).Returns(
+                null
+                );
+
+            Assert.False(pollService.TryGetValidButNonVoteablePolls(out List<Poll> NonVotablePolls, 1));
+        }
+
+        #endregion
 
 
     }

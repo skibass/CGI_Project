@@ -153,5 +153,49 @@ namespace CGI_Project_WebApp_UnitTests
             Assert.Equal("Efteling", winningSuggestions[1].suggestions[0].Name);
             Assert.Equal("Frankrijk", winningSuggestions[2].suggestions[0].Name);
         }
+
+        //----------------------------------
+        [Fact]
+        public void TryGetWinningSuggestionOutOfPoll_no_winner()
+        {
+            Poll poll = new Poll();
+            List<Poll> polls = new List<Poll>()
+            {
+                pollFactory.BasicPoll(3)
+            };
+            
+
+            Assert.True(suggestionService.TryGetWinningSuggestionOutOfPoll(polls[0], out SuggestionList winningsuggestions));
+            Assert.Empty(winningsuggestions.suggestions);
+        }
+
+        [Fact]
+        public void TryGetLatestWinners_get_3_winners_only_1_winner()
+        {
+            Poll poll = new Poll();
+
+            List<Poll> polls = new List<Poll>()
+            {
+                pollFactory.BasicWinningPollDatedAndNamed(1,new DateTime(2022,7,20), "BBQ"),
+
+            };
+            A.CallTo(() => pollRepository.TryGetPoll(out poll, 1)).Returns(true).AssignsOutAndRefParameters(
+               polls[0]
+                  );
+           
+
+            A.CallTo(() => pollRepository.GetPastPolls()).Returns(
+                polls);
+
+            suggestionService.TryGetLatestWinners(out List<SuggestionList> winningSuggestions, 3);
+
+            foreach (SuggestionList item in winningSuggestions)
+            {
+                Assert.Single(item.suggestions);
+            }
+            Assert.Equal(1, winningSuggestions.Count);
+            Assert.Equal("BBQ", winningSuggestions[0].suggestions[0].Name);
+        }
+
     }
 }

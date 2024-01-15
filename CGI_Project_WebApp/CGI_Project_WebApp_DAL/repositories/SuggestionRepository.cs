@@ -58,7 +58,7 @@ namespace CGI_Project_WebApp_DAL.repositories
 
             try
             {
-                suggestion = DBContext.Suggestions.Include(s => s.Votes).Include(ps=>ps.PollSuggestions).ThenInclude(p=>p.Poll).Where(p => p.Id == id).FirstOrDefault();
+                suggestion = DBContext.Suggestions.Include(ps => ps.PollSuggestions).ThenInclude(s => s.Votes).Include(ps=>ps.PollSuggestions).ThenInclude(p=>p.Poll).Where(p => p.Id == id).FirstOrDefault();
                 return true;
             }
             catch (Exception)
