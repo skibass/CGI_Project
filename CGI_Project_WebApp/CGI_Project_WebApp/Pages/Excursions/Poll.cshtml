@@ -30,7 +30,7 @@
 
 		@if (Model?.UnusedSuggestionsList?.suggestions != null)
 		{
-			<select style="width: 30rem; margin-left: 1rem" class="form-control form-control-lg mt-2" asp-for="chosenSuggestions" asp-items="@(new SelectList(Model.unusedSuggestionsList.suggestions, "Id", "Name"))" required multiple="multiple">
+			<select id="chosenSuggestions" style="width: 30rem; margin-left: 1rem" class="form-control form-control-lg mt-2" asp-for="chosenSuggestions" asp-items="@(new SelectList(Model.unusedSuggestionsList.suggestions, "Id", "Name"))" required multiple="multiple">
 				<option value="" selected disabled>---@stringLocalizer["SelectPollSuggestion"]---</option>
 			</select>
 			<br/>
@@ -44,6 +44,10 @@
 		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SuggestSubmit"]</button>
 	</form>
 </div>
+
+<script type="text/javascript">
+	var maxExcursionsAlert = "@stringLocalizer["PollAlert"]";
+</script>
 
 <script>
 	flatpickr("#dateRange", {
@@ -60,6 +64,16 @@
 				document.getElementById("startDate").value = startDate;
 				document.getElementById("endDate").value = endDate;
 			}
+		}
+	});
+</script>
+
+<script>
+	document.getElementById('chosenSuggestions').addEventListener('change', function () {
+		var selectedOptions = this.selectedOptions;
+		if (selectedOptions.length > 3) {
+			alert(maxExcursionsAlert);
+			selectedOptions[selectedOptions.length - 1].selected = false;
 		}
 	});
 </script>

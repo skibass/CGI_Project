@@ -216,6 +216,9 @@
   <data name="PhotoTooLarge" xml:space="preserve">
     <value>Photo is too large, please select a smaller photo</value>
   </data>
+  <data name="PollAlert" xml:space="preserve">
+    <value>You can only select a maximum of 3 excursions</value>
+  </data>
   <data name="PollName" xml:space="preserve">
     <value>Poll name</value>
   </data>

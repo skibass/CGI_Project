@@ -216,6 +216,9 @@
   <data name="PhotoTooLarge" xml:space="preserve">
     <value>Foto is te groot, selecteer een kleinere foto</value>
   </data>
+  <data name="PollAlert" xml:space="preserve">
+    <value>U kunt maximaal 3 excursies selecteren</value>
+  </data>
   <data name="PollName" xml:space="preserve">
     <value>Naam van de peiling</value>
   </data>

@@ -358,6 +358,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only select a maximum of 3 excursions.
+        /// </summary>
+        public static string PollAlert {
+            get {
+                return ResourceManager.GetString("PollAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poll name.
         /// </summary>
         public static string PollName {
