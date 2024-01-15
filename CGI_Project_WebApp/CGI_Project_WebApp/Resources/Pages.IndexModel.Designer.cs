@@ -169,6 +169,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Homepage.
+        /// </summary>
+        public static string HomePageTitle {
+            get {
+                return ResourceManager.GetString("HomePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string LeaderboardName {
@@ -349,6 +358,51 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only select a maximum of 3 excursions.
+        /// </summary>
+        public static string PollAlert {
+            get {
+                return ResourceManager.GetString("PollAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poll name.
+        /// </summary>
+        public static string PollName {
+            get {
+                return ResourceManager.GetString("PollName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No suggestions have been done, ask your employees to make suggestions.
+        /// </summary>
+        public static string PollNoSuggestions {
+            get {
+                return ResourceManager.GetString("PollNoSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the period in which employees can vote.
+        /// </summary>
+        public static string PollRange {
+            get {
+                return ResourceManager.GetString("PollRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poll.
+        /// </summary>
+        public static string PollTitle {
+            get {
+                return ResourceManager.GetString("PollTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy policy.
         /// </summary>
         public static string PrivacyPolicy {
@@ -453,6 +507,15 @@ namespace CGI_Project_WebApp.Resources {
         public static string RecentTitle {
             get {
                 return ResourceManager.GetString("RecentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a suggestion.
+        /// </summary>
+        public static string SelectPollSuggestion {
+            get {
+                return ResourceManager.GetString("SelectPollSuggestion", resourceCulture);
             }
         }
         

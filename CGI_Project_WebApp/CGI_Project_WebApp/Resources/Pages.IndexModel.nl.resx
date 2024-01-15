@@ -153,6 +153,9 @@
   <data name="HeroTitle" xml:space="preserve">
     <value>Ontgrendel teamavonturen: bouw banden op, één excursie tegelijk. Ontdek, bind en bloei met elke bedrijfsexpeditie!</value>
   </data>
+  <data name="HomePageTitle" xml:space="preserve">
+    <value>Thuispagina</value>
+  </data>
   <data name="LeaderboardName" xml:space="preserve">
     <value>Naam</value>
   </data>
@@ -213,6 +216,21 @@
   <data name="PhotoTooLarge" xml:space="preserve">
     <value>Foto is te groot, selecteer een kleinere foto</value>
   </data>
+  <data name="PollAlert" xml:space="preserve">
+    <value>U kunt maximaal 3 excursies selecteren</value>
+  </data>
+  <data name="PollName" xml:space="preserve">
+    <value>Naam van de peiling</value>
+  </data>
+  <data name="PollNoSuggestions" xml:space="preserve">
+    <value>Er zijn geen suggesties gedaan, vraag uw medewerkers om suggesties te doen</value>
+  </data>
+  <data name="PollRange" xml:space="preserve">
+    <value>Selecteer de periode waarin medewerkers kunnen stemmen</value>
+  </data>
+  <data name="PollTitle" xml:space="preserve">
+    <value>Peiling</value>
+  </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacybeleid</value>
   </data>
@@ -248,6 +266,9 @@
   </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recente excursies</value>
+  </data>
+  <data name="SelectPollSuggestion" xml:space="preserve">
+    <value>Kies een suggestie</value>
   </data>
   <data name="SelectProfilePhoto" xml:space="preserve">
     <value>Selecteer foto</value>

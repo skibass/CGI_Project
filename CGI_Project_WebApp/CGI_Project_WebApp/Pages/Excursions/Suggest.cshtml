@@ -5,7 +5,7 @@
 @model CGI_Project_WebApp.Pages.Excursions.SuggestModel
 @inject IStringLocalizer<IndexModel> stringLocalizer;
 @{
-    ViewData["Title"] = "Suggest";
+    ViewData["Title"] = @stringLocalizer["SuggestNav"];
 }
 @if (User.Identity.IsAuthenticated)
 {

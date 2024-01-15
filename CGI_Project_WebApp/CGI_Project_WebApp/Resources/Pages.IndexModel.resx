@@ -153,6 +153,9 @@
   <data name="HeroTitle" xml:space="preserve">
     <value>Unlock Team Adventures: Building Bonds, One Excursion at a Time. Discover, Bond, and Thrive with Every Corporate Expedition!</value>
   </data>
+  <data name="HomePageTitle" xml:space="preserve">
+    <value>Homepage</value>
+  </data>
   <data name="LeaderboardName" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -213,6 +216,21 @@
   <data name="PhotoTooLarge" xml:space="preserve">
     <value>Photo is too large, please select a smaller photo</value>
   </data>
+  <data name="PollAlert" xml:space="preserve">
+    <value>You can only select a maximum of 3 excursions</value>
+  </data>
+  <data name="PollName" xml:space="preserve">
+    <value>Poll name</value>
+  </data>
+  <data name="PollNoSuggestions" xml:space="preserve">
+    <value>No suggestions have been done, ask your employees to make suggestions</value>
+  </data>
+  <data name="PollRange" xml:space="preserve">
+    <value>Select the period in which employees can vote</value>
+  </data>
+  <data name="PollTitle" xml:space="preserve">
+    <value>Poll</value>
+  </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
@@ -248,6 +266,9 @@
   </data>
   <data name="RecentTitle" xml:space="preserve">
     <value>Recent Excursions</value>
+  </data>
+  <data name="SelectPollSuggestion" xml:space="preserve">
+    <value>Select a suggestion</value>
   </data>
   <data name="SelectProfilePhoto" xml:space="preserve">
     <value>Select photo</value>
