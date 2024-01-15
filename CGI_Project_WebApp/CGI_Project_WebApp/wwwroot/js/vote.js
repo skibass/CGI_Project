@@ -1,29 +1,37 @@
-﻿$(document).ready(function () {
-    $('[data-bs-toggle="collapse"]').collapse();
+﻿console.log("arrived at vote.js");
 
-    $(".vote-progress-bar-container").each(function () {
-        var percentage = parseFloat($(this).data("percentage"));
-        var progressBar = $(this).find(".progress-bar");
+document.addEventListener('DOMContentLoaded', function () {
+    ConfigToast();
+    UpdateProgressBars();
 
-        // Check if the percentage is a valid number
-        if (!isNaN(percentage)) {
-            progressBar.css("width", percentage + "%");
-        }
+});
+
+function ConfigToast(){
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+    var toastList = toastElList.map(function (toastEl) {
+        return new bootstrap.Toast(toastEl);
     });
-});
 
-var changeChevron = function (event) {
-    var container = $(event.target).closest('.vote-item');
-    var chevron = container.find('.chevron.down');
-    chevron.toggleClass('up');
+    // Optional: Close the toasts after a certain duration
+    setTimeout(function () {
+        toastList.forEach(function (toast) {
+            toast.hide();
+        });
+
+        // Ensure the toasts are not reappearing by removing them from the DOM
+        toastElList.forEach(function (toastEl) {
+            toastEl.parentNode.removeChild(toastEl);
+        });
+    }, 5000); // 1000 milliseconds = 1 second
 }
+function UpdateProgressBars(){
+    var progressBars = document.querySelectorAll('.vote-progress-bar-container');
 
-var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
-
-// Update progress bars based on the calculated percentages
-Object.keys(votePercentages).forEach(function (suggestionId) {
-    var percentage = votePercentages[suggestionId];
-    var progressBar = document.getElementById("progress-bar-" + suggestionId);
-    progressBar.style.width = percentage + "%";
-    progressBar.innerHTML = percentage.toFixed(2) + "%";
-});
+    progressBars.forEach(function (bar) {
+        var percentage = parseFloat(bar.getAttribute('data-percentage'));
+        var progressBar = bar.querySelector('.vote-progress-bar');
+        
+        progressBar.style.width = percentage + '%';
+        progressBar.innerHTML = '<p class="vote-progress-percentage m-0">' + percentage.toFixed(1) + '%</p>';
+    });
+}
