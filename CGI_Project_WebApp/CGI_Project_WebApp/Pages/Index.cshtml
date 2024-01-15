@@ -4,7 +4,7 @@
 @model IndexModel
 @inject IStringLocalizer<IndexModel> stringLocalizer;
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = @stringLocalizer["HomePageTitle"];
 }
 
 <div class="hero">

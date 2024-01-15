@@ -1,5 +1,11 @@
 ﻿@page
 @model CGI_Project_WebApp.Pages.PhotoAlbum.ShowPhotosModel
+@{
+    ViewData["Title"] = @stringLocalizer["ShowPhotoNav"];
+}
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<IndexModel> stringLocalizer;
 
 <link rel="stylesheet" href="~/css/photoalbum.css" />
 <script src="~/js/photoPagination.js" defer></script>

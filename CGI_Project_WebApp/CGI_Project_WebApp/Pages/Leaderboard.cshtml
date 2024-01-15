@@ -4,7 +4,7 @@
 @using Microsoft.Extensions.Localization;
 @inject IStringLocalizer<IndexModel> stringLocalizer;
 @{
-    ViewData["Title"] = "Leaderboard";
+    ViewData["Title"] = @stringLocalizer["LeaderboardTitle"];
 
     // Define the maximum height for the bar charts
     var maxHeight = 300;

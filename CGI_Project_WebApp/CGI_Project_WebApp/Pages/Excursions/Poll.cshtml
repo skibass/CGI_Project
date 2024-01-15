@@ -4,7 +4,7 @@
 @model CGI_Project_WebApp.Pages.Excursions.PollModel
 @inject IStringLocalizer<IndexModel> stringLocalizer;
 @{
-	ViewData["Title"] = "Poll";
+	ViewData["Title"] = @stringLocalizer["PollTitle"];
 }
 
 <!-- Include the Flatpickr library -->
@@ -22,26 +22,26 @@
 
 <div class="container mb-5">
 	<form method="post" enctype="multipart/form-data">
-		<input asp-for="Poll.Poll_name" type="text" id="pname" placeholder="Poll name..."/><br/>
-		<input type="text" id="dateRange" placeholder="Select the period in which employees can vote" data-mode="range" data-input><br />
+		<input asp-for="Poll.Poll_name" type="text" id="pname" placeholder="@stringLocalizer["PollName"]..." /><br />
+		<input type="text" id="dateRange" placeholder="@stringLocalizer["PollRange"]..." data-mode="range" data-input><br />
 		
 		<input asp-for="Poll.StartTime" type="hidden" id="startDate" />
 		<input asp-for="Poll.EndTime" type="hidden" id="endDate" />
 
 		@if (Model?.UnusedSuggestionsList?.suggestions != null)
 		{
-			<select class="form-control form-control-lg" asp-for="chosenSuggestions" asp-items="@(new SelectList(Model.unusedSuggestionsList.suggestions, "Id", "Name"))" required multiple="multiple">
-				<option value="" selected disabled>---Select a suggestion---</option>
+			<select style="width: 30rem; margin-left: 1rem" class="form-control form-control-lg mt-2" asp-for="chosenSuggestions" asp-items="@(new SelectList(Model.unusedSuggestionsList.suggestions, "Id", "Name"))" required multiple="multiple">
+				<option value="" selected disabled>---@stringLocalizer["SelectPollSuggestion"]---</option>
 			</select>
 			<br/>
 		}
 		else
 		{
-			<span class="">No suggestions have been done, ask your employees to make suggestions</span>
+			<span class="">@stringLocalizer["PollNoSuggestions"]</span>
 			<br/>
 		}
 
-		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SubmitButton"]</button>
+		<button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SuggestSubmit"]</button>
 	</form>
 </div>
 

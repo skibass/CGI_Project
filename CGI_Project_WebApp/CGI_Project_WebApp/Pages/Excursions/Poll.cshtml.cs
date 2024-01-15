@@ -31,10 +31,16 @@ namespace CGI_Project_WebApp.Pages.Excursions
 		public SuggestionService SuggestionsService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
 
 		public string EmployeeEmail { get; set; }
-
-		public void OnGet()
+        public string CurrentLanguage { get; private set; }
+        public string CountryCode { get; private set; }
+        public void OnGet()
         {
-			chosenSuggestions = new List<string>();
+            CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
+            CountryCode = CurrentLanguage;
+            ViewData["CurrentLanguage"] = CurrentLanguage;
+            ViewData["CountryCode"] = CountryCode;
+
+            chosenSuggestions = new List<string>();
 			SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
 		}
 
