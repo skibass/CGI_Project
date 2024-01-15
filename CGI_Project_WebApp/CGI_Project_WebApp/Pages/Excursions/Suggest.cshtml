@@ -20,29 +20,26 @@
         </div>
     </div>
 
-    @if (Model.ErrorHandeling.MessageBool)
+    @if (TempData["Success"] != null)
     {
-        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.SuccessMessage))
-        {
-            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-                <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
-                    <div class="toast-body text-light">
-                        @stringLocalizer[Model.ErrorHandeling.SuccessMessage]
-                    </div>
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                <div class="toast-body text-light">
+                    @stringLocalizer[@TempData["Success"].ToString()]
                 </div>
             </div>
-        }
+        </div>
+    }
 
-        @if (!string.IsNullOrEmpty(Model.ErrorHandeling.ErrorMessage))
-        {
-            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-                <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
-                    <div class="toast-body text-light">
-                        @stringLocalizer[Model.ErrorHandeling.ErrorMessage]
-                    </div>
+    @if (TempData["Error"] != null)
+    {
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                <div class="toast-body text-light">
+                    @stringLocalizer[@TempData["Error"].ToString()]
                 </div>
             </div>
-        }
+        </div>
     }
     <div class="container mb-5">
         <form method="post">
@@ -50,9 +47,6 @@
             <textarea asp-for="Suggestion.Description" id="edescription" placeholder="@stringLocalizer["ExcursionDescription"]..." rows="3"></textarea><br />
             <input asp-for="Suggestion.Location" type="text" id="elocation" placeholder="@stringLocalizer["ExcursionLocation"]..." /><br />
             <input asp-for="Suggestion.Exception" type="text" id="eimportantinfo" placeholder="@stringLocalizer["ExcursionInfo"]..." />
-
-            @*<button class="addfieldbtn text-white" onclick="addField()">+</button>
-        <button class="removefieldbtn text-white" onclick="removeField()">-</button>*@<br />
 
             <button class="btn btn-primary border-0 text-white fs-6 fw-bold hero-button mt-4 ms-3" type="submit">@stringLocalizer["SuggestSubmit"]</button>
         </form>
