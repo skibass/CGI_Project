@@ -33,6 +33,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
 		public string EmployeeEmail { get; set; }
         public string CurrentLanguage { get; private set; }
         public string CountryCode { get; private set; }
+
+		public string? ErrorMessage { get; private set; }=null;
         public void OnGet()
         {
             CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
@@ -63,7 +65,8 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
 				if(!PollService.TryCheckIsPollDateValid((DateTime)Poll.StartTime, (DateTime)Poll.EndTime, out bool timeAvailable)|| !timeAvailable)
 				{
-                    return Page();
+					ErrorMessage = "the voting period for the poll overlaps with an already existing poll";
+					return Page();
                 }
 
 				if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, chosenSuggestions, unusedSuggestionsList.suggestions))
@@ -72,7 +75,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 				}
 				else
 				{
-					//something went wrong with adding poll and/or server error
+					ErrorMessage = "Failed to upload poll. try again later";
 					return Page();
 				}
 			}
