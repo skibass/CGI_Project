@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Runtime.InteropServices;
 using System.Security.Claims;
-
+using CGI_Project_WebApp;
 
 namespace CGI_Project_WebApp.Pages
 {
@@ -56,9 +56,11 @@ namespace CGI_Project_WebApp.Pages
 
                 if (emp.TryAddEmployee(employee) == false)
                 {
+                    var userPicPath = employee.ProfileImage;
                     HttpContext.Session.SetString("rName", employee.Role.Name);
-                }
-            }
+					HttpContext.Session.SetString("uPicPath", userPicPath);
+				}
+			}
         }
     }
 }

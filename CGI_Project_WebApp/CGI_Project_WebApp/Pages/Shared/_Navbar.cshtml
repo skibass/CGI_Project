@@ -29,6 +29,8 @@
                                 <a class="nav-link text-black" asp-area=""
                                    asp-page="/Excursions/Poll">@stringLocalizer["NavPoll"]</a>
                         </li>
+
+                        <img src="~/UserPictures/@Context.Session.GetString("uPicPath")">
                     }
 
                      <li class="nav-item">
