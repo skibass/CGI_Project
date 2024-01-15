@@ -81,4 +81,12 @@
 			
 		}
 	});
+
+	function message() { 
+		if(@((Model.ErrorMessage != null).ToString().ToLower())){
+		alert("@Model.ErrorMessage");
+		}
+	}
+	message();
+	
 </script>
