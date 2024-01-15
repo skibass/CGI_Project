@@ -73,7 +73,12 @@
 		var selectedOptions = this.selectedOptions;
 		if (selectedOptions.length > 3) {
 			alert(maxExcursionsAlert);
-			selectedOptions[selectedOptions.length - 1].selected = false;
+
+			for (let i = 3; i < selectedOptions.length; i++) {
+				selectedOptions[i].selected = false;
+				i--;
+			}
+			
 		}
 	});
 </script>
