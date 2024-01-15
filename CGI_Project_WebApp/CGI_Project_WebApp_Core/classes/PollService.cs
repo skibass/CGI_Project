@@ -200,6 +200,7 @@ namespace CGI_Project_WebApp_Core.classes
             
 			try
             {
+
 				pollsRepository.TryAddPoll(newPoll, out Poll poll);
                 //add suggestions
                 foreach (Suggestion item in newPoll.Suggestions)
@@ -251,6 +252,32 @@ namespace CGI_Project_WebApp_Core.classes
         public bool TryAddSuggestionToPoll(int pollId, int suggestionId)
         {
             return pollsRepository.TryAddSuggestionToPoll(pollId, suggestionId);
+        }
+
+        public bool TryCheckIsPollDateValid(DateTime start, DateTime end, out bool timeslotAvailable)
+        {
+            timeslotAvailable = true;
+            List<Poll> pollsToCheck = new List<Poll>();
+
+            try
+            {
+                pollsToCheck.AddRange(pollsRepository.GetOpenPolls());
+                pollsToCheck.AddRange(pollsRepository.GetFuturePolls());
+            }
+            catch (Exception)
+            {
+                timeslotAvailable = false;
+                return false;
+            }
+            foreach (Poll poll in pollsToCheck)
+            {
+                bool overlap = start <= poll.EndTime && poll.StartTime <= end;
+                if (overlap)
+                {
+                    timeslotAvailable = false;
+                }
+            }
+            return true;
         }
         //public bool 
     }

@@ -99,14 +99,17 @@ namespace CGI_Project_WebApp_Core.classes
             Signatures.Add(StringToByteArray("FFD8FFE0"));//jpg
             Signatures.Add(StringToByteArray("0000000C6A5020200D0A870A"));//jpg2? wat is jpg2
             Signatures.Add(StringToByteArray("FF4FFF51")); //jpg2? wat is jpg2
-                                                           //Signatures.Add(StringToByteArray("474946383761"));//gif
-                                                           //Signatures.Add(StringToByteArray("474946383961"));//gif
+            Signatures.Add(StringToByteArray("474946383761"));//gif
+            Signatures.Add(StringToByteArray("474946383961"));//gif
 
             //a jpeg file signature dived in 2 parts. only dual part signature i have. if more added in the future program beter solution
             byte[] special1 = StringToByteArray("FFD8FFE1");
             byte[] special2 = StringToByteArray("457869660000");
-
+            //webp
+            byte[] special3 = StringToByteArray("52494646");
+            byte[] special4 = StringToByteArray("57454250");
             if (CheckImageFileSignature(file, special1) == true && CheckImageFileSignature(file, special2, 6) == true) return true;
+            if (CheckImageFileSignature(file, special3) == true && CheckImageFileSignature(file, special4, 8) == true) return true;
 
             foreach (var signature in Signatures)
             {

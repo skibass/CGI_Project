@@ -54,6 +54,12 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
             var path = Path.Combine(env.WebRootPath, "PhotoAlbum");
 
+            if (Upload == null)
+            {
+                Error.HandleError("PhotoInvalid");
+                return;
+            }
+
             FileUploadPreCheckValue preCheckResult = checker.TestFile(Upload);
 
 

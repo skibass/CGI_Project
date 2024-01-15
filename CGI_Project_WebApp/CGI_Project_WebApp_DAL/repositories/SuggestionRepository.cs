@@ -34,14 +34,14 @@ namespace CGI_Project_WebApp_DAL.repositories
             }
        }
 
-        public bool TryGetUnusedSuggestions(out SuggestionList suggestionList)
+        public bool TryGetAllSuggestions(out SuggestionList suggestionList)
         {
             Dbi511119Context DBContext = new Dbi511119Context();
             suggestionList = new SuggestionList();
 
             try
             {
-                suggestionList.suggestions = DBContext.Suggestions.Where(s => DBContext.PollSuggestions.Select(ps => ps.SuggestionId).Contains(s.Id) == false).ToList();
+                suggestionList.suggestions = DBContext.Suggestions.ToList();
                 return true;
             }
             catch (Exception)

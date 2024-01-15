@@ -53,6 +53,13 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
 			if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
 			{
+
+
+				if(!PollService.TryCheckIsPollDateValid((DateTime)Poll.StartTime, (DateTime)Poll.EndTime, out bool timeAvailable)|| !timeAvailable)
+				{
+                    return Page();
+                }
+
 				if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, chosenSuggestions, unusedSuggestionsList.suggestions))
 				{
 					return RedirectToPage("/Index");

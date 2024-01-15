@@ -10,7 +10,7 @@ namespace CGI_Project_WebApp_Core.Interfaces
     public interface ISuggestionRepository
     {
         public bool TryAddSuggestionToDB(Suggestion newSuggestion);
-        public bool TryGetUnusedSuggestions(out SuggestionList suggestionList);
+        public bool TryGetAllSuggestions(out SuggestionList suggestionList);
 
         public bool TryGetSuggestionWithId(out Suggestion suggestion, int id);
     }
