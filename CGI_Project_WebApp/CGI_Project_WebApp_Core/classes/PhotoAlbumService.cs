@@ -70,21 +70,27 @@ namespace CGI_Project_WebApp_Core.classes
         {
             using (var memoryStream = new MemoryStream())
             {
-                Ifile.CopyTo(memoryStream);
-
-                // Upload the file if less than 2 MB
-                if (memoryStream.Length > UploadSizeLimitInMb * 1048576)
+                if (Ifile != null)
                 {
-                    return FileUploadPreCheckValue.TooLarge;
+                    Ifile.CopyTo(memoryStream);
+
+                    // Upload the file if less than 2 MB
+                    if (memoryStream.Length > UploadSizeLimitInMb * 1048576)
+                    {
+                        return FileUploadPreCheckValue.TooLarge;
+                    }
+
+                    byte[] file = memoryStream.ToArray();
+                    if (!CheckImageAllFileSignatures(file))
+                    {
+                        return FileUploadPreCheckValue.NoValidFIleType;
+                    }
+
+                    return FileUploadPreCheckValue.Accepted;
                 }
 
-                byte[] file = memoryStream.ToArray();
-                if (!CheckImageAllFileSignatures(file))
-                {
-                    return FileUploadPreCheckValue.NoValidFIleType;
-                }
+                return FileUploadPreCheckValue.NoValidFIleType;
 
-                return FileUploadPreCheckValue.Accepted;
 
             }
 
