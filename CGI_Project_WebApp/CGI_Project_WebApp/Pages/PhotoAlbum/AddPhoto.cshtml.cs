@@ -45,12 +45,18 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
             //Reset all properties
             Error.ResetErrorHandling();
+            ResetButton();
             return null;
         }
 
-        public async Task OnPostTryAddPhoto()
+        public async Task<IActionResult> OnPostTryAddPhoto()
         {
-            HttpContext.Session.SetInt32("ActivityButton", 1);
+            if (HttpContext.Session.GetInt32("ActivityButton") == 0)
+            {
+                return RedirectToPage("AddPhoto"); // Redirect if the button is already clicked
+            }
+
+            HttpContext.Session.SetInt32("ActivityButton", 0);
 
             var path = Path.Combine(env.WebRootPath, "PhotoAlbum");
 
@@ -62,28 +68,30 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
             FileUploadPreCheckValue preCheckResult = checker.TestFile(Upload);
 
+            if (preCheckResult == FileUploadPreCheckValue.TooLarge)
+            {
+                TempData["Error"] = "Photo is too large";
+                ResetButton();
+                return RedirectToPage();
+            }
 
-			if (preCheckResult == FileUploadPreCheckValue.TooLarge)
+            if (preCheckResult == FileUploadPreCheckValue.NoValidFIleType)
             {
-                Error.HandleError("PhotoTooLarge");
-                return;
-			}
-            else if(preCheckResult == FileUploadPreCheckValue.NoValidFIleType)
-            {
-                Error.HandleError("PhotoInvalid");
-                return;
+                TempData["Error"] = "Photo-type is not valid";
+                ResetButton();
+                return RedirectToPage();
             }
 
             await photoAlbumService.TryAddPhoto(photo, path, Upload);
 
-            Error.HandleSuccess("PhotoSuccess");
+            TempData["Success"] = "Successfully added the photo";
 
-            RedirectToPage("AddPhoto");
+            return RedirectToPage("AddPhoto");
+        }
 
-            if (HttpContext.Session.GetInt32("ActivityButton") == 1)
-            {
-                HttpContext.Session.Clear();
-            }
+        private void ResetButton()
+        {
+            HttpContext.Session.SetInt32("ActivityButton", 1);
         }
     }
 }
