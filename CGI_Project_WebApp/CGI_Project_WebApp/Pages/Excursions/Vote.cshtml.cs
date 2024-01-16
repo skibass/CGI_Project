@@ -71,13 +71,10 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public async Task<IActionResult> OnPostVote(int suggestionId)
         {
-            Console.WriteLine("Arrived at vote function");
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
-                Console.WriteLine("Found employee: " + emp.FirstName);
-
                 if (VoteService.TryCreateVote(emp.Id, suggestionId))
                 {
                     TempData["Success"] = $"You successfully voted {emp.FirstName}";

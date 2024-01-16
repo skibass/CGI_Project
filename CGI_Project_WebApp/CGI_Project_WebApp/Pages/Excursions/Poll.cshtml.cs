@@ -61,9 +61,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
 			if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
 			{
-
-
-				if(Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
+                if(Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
 				{
 					ErrorMessage = "one or more fields is not filled in";
 					return Page();
@@ -87,7 +85,6 @@ namespace CGI_Project_WebApp.Pages.Excursions
 			}
 
 			return RedirectToPage("/Index");
-		
-		}
+        }
 	}
 }
