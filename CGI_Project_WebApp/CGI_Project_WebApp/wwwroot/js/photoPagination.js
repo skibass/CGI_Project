@@ -1,6 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     var currentPage = 1;
-    var itemsPerPage = 3; 
+    var itemsPerPage = 9; 
 
     function showPage(pageNumber) {
         var items = document.querySelectorAll("#photoContainer > .photo-item");

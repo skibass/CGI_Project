@@ -40,19 +40,13 @@
 <div id="vote-wrapper" class="container mt-4 mb-5">
     <div class="vote-header">
         <h3 class="hero-title">@stringLocalizer["VoteTitle"]</h3>
-        <h5 class="subtitle">@stringLocalizer["VoteSubtitle"]</h5>
-    </div>
+        @* <h5 class="subtitle">@stringLocalizer["VoteSubtitle"]</h5> *@
+        </div>
 
     @{
         var poll = Model.poll;
-        @if (poll == null)
-        {
-            <p>geen active polls</p>
-        }
-        else
-        {
-            var (hasVoted, vote) = Model.PollContainsUserVote(poll.Id);
-        
+        var (hasVoted, vote) = Model.PollContainsUserVote(poll.Id);
+
 
 
         var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Votes.Count);
