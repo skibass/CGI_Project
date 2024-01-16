@@ -46,7 +46,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             if (ErrorHandeling.MessageBool)
             {
                 //Wait for half a second before resetting properties
-                await Task.Delay(10000);
+                await Task.Delay(500);
                 ErrorHandeling.ResetErrorHandling();
             }
             return null;
@@ -81,7 +81,6 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 TempData["Error"] = "User not found and/or server error";
                 return RedirectToPage();
             }
-
             return RedirectToPage();
         }
     }

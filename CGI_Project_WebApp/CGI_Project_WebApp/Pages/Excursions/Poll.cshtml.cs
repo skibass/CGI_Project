@@ -84,7 +84,6 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 TempData["Error"] = "User not found and/or server error";
                 return RedirectToPage();
             }
-
             return RedirectToPage("/Index");
         }
     }

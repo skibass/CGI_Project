@@ -40,10 +40,9 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
             {
                 return RedirectToPage("../Index");
             }
-            //Wait for half a second before resetting properties
+            
             await Task.Delay(500);
 
-            //Reset all properties
             Error.ResetErrorHandling();
             ResetButton();
             return null;
@@ -53,7 +52,7 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
         {
             if (HttpContext.Session.GetInt32("ActivityButton") == 0)
             {
-                return RedirectToPage("AddPhoto"); // Redirect if the button is already clicked
+                return RedirectToPage("AddPhoto");
             }
 
             HttpContext.Session.SetInt32("ActivityButton", 0);
