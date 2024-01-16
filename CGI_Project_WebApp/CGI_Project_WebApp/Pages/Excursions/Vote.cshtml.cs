@@ -29,8 +29,6 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public Dictionary<int, int> VoteCounts = new();
         public Dictionary<int, double> VotePercentages = new();
-
-        public int Progress { get; set; }
         public string CurrentLanguage { get; private set; }
         public string CountryCode { get; private set; }
 
@@ -45,25 +43,20 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                 return RedirectToPage("../Index");
             }
-            else
+            EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+
+            if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
-                EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
-                
-
-                if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
+                if (pollService.TryGetAllPolls(out List<Poll> polls) && polls.Count > 0)
                 {
-                    if (pollService.TryGetAllPolls(out List<Poll> polls) && polls.Count > 0)
-                    {
-                        DateTime now = DateTime.Now;
+                    DateTime now = DateTime.Now;
 
-                        polls = polls.Where(p => p.StartTime < now && p.EndTime > now).ToList();
+                    polls = polls.Where(p => p.StartTime < now && p.EndTime > now).ToList();
 
-                        poll = polls[0];
-                        Votes = poll.PollSuggestions.SelectMany(PS=>PS.Votes).ToList();
-                    }
+                    poll = polls[0];
+                    Votes = poll.PollSuggestions.SelectMany(PS => PS.Votes).ToList();
                 }
             }
-            ErrorHandeling.ResetErrorHandling();
             return Page();
         }
 
@@ -94,10 +87,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
                     return (true, vote);
                 }
             }
-
             return (false, null);
-
-
         }
     }
 }
