@@ -11,30 +11,30 @@ namespace CGI_Project_WebApp.Pages.Excursions
 {
     public class PollModel : PageModel
     {
-		public PollService PollService = new(new PollRepository());
-        
-		[BindProperty]
-		public required NewPollDto Poll { get; set; }
+        public PollService PollService = new(new PollRepository());
 
-		public SuggestionList unusedSuggestionsList;
-		[BindProperty]
-		public List<string> chosenSuggestions { get; set; }
+        [BindProperty]
+        public required NewPollDto Poll { get; set; }
 
-		public SuggestionList UnusedSuggestionsList
-		{
-			get { return unusedSuggestionsList; }
-			set { unusedSuggestionsList = value; }
-		}
+        public SuggestionList unusedSuggestionsList;
+        [BindProperty]
+        public List<Suggestion> chosenSuggestions { get; set; }
 
-		public EmployeeService EmployeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
-		
-		public SuggestionService SuggestionsService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
+        public SuggestionList UnusedSuggestionsList
+        {
+            get { return unusedSuggestionsList; }
+            set { unusedSuggestionsList = value; }
+        }
 
-		public string EmployeeEmail { get; set; }
+        public EmployeeService EmployeeService = new EmployeeService(new EmployeeRepository(), new PollRepository());
+
+        public SuggestionService SuggestionsService = new SuggestionService(new SuggestionRepository(), new PollRepository(), new EmployeeRepository());
+
+        public string EmployeeEmail { get; set; }
         public string CurrentLanguage { get; private set; }
         public string CountryCode { get; private set; }
 
-		public string? ErrorMessage { get; private set; }=null;
+        public string? ErrorMessage { get; private set; } = null;
         public void OnGet()
         {
             CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
@@ -42,49 +42,49 @@ namespace CGI_Project_WebApp.Pages.Excursions
             ViewData["CurrentLanguage"] = CurrentLanguage;
             ViewData["CountryCode"] = CountryCode;
 
-            chosenSuggestions = new List<string>();
-			SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
-		}
+            chosenSuggestions = new List<Suggestion>();
+            SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
+        }
 
-		public IActionResult OnPost()
-		{
-			SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
+        public async Task<IActionResult> OnPost()
+        {
+            SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
 
-			var l = chosenSuggestions;
-			EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+            var l = chosenSuggestions;
 
-			//TODO: Finish Error
-			if (!ModelState.IsValid)
-			{
-				return Page();
-			}
+            EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+            
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "ModelState is not valid";
+                return RedirectToPage();
+            }
 
-			if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
-			{
-                if(Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
-				{
-					ErrorMessage = "one or more fields is not filled in";
-					return Page();
-				}
-
-				if(!PollService.TryCheckIsPollDateValid((DateTime)Poll.StartTime, (DateTime)Poll.EndTime, out bool timeAvailable)|| !timeAvailable)
-				{
-					ErrorMessage = "the voting period for the poll overlaps with an already existing poll";
-					return Page();
+            if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
+            {
+                Poll.Suggestions = l;
+                if (Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
+                {
+                    TempData["Error"] = "One or more fields is not filled in";
+                    return RedirectToPage();
                 }
 
-				if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, chosenSuggestions, unusedSuggestionsList.suggestions))
-				{
-					return RedirectToPage("/Index");
-				}
-				else
-				{
-					ErrorMessage = "Failed to upload poll. try again later";
-					return Page();
-				}
-			}
+                if (!PollService.TryCheckIsPollDateValid((DateTime)Poll.StartTime, (DateTime)Poll.EndTime, out bool timeAvailable) || !timeAvailable)
+                {
+                    TempData["Error"] = "The voting period for the poll overlaps with an already existing poll";
+                    return RedirectToPage();
+                }
 
-			return RedirectToPage("/Index");
+                if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, chosenSuggestions, unusedSuggestionsList.suggestions))
+                {
+                    TempData["Success"] = $"Successfully created poll {Poll.Poll_name}";
+                    return RedirectToPage();
+                }
+
+                TempData["Error"] = "User not found and/or server error";
+                return RedirectToPage();
+            }
+            return RedirectToPage("/Index");
         }
-	}
+    }
 }
