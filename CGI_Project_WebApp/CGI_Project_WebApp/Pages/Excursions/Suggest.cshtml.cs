@@ -46,7 +46,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             if (ErrorHandeling.MessageBool)
             {
                 //Wait for half a second before resetting properties
-                await Task.Delay(10000);
+                await Task.Delay(500);
                 ErrorHandeling.ResetErrorHandling();
             }
             return null;
@@ -58,7 +58,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "ModelState not valid";
+                TempData["Error"] = "ModelErrorKey";
                 return RedirectToPage();
             }
 
@@ -70,18 +70,17 @@ namespace CGI_Project_WebApp.Pages.Excursions
                             Suggestion.Exception, emp))
                     {
                         //Suggestion added successfully
-                        TempData["Success"] = "Suggestion added successfully";
+                        TempData["Success"] = "ModelSuggestKey";
                         return RedirectToPage();
                     }
                     //Suggestion not successfully added
-                    TempData["Error"] = "Could not add suggestion";
+                    TempData["Error"] = "ModelSuggestErrorKey";
                     return RedirectToPage();
                 }
                 //E-mail doesn't exist and/or server error
-                TempData["Error"] = "User not found and/or server error";
+                TempData["Error"] = "ModelEmailErrorKey";
                 return RedirectToPage();
             }
-
             return RedirectToPage();
         }
     }

@@ -56,7 +56,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "ModelState is not valid";
+                TempData["Error"] = "ErrorInvalidFormSubmission";
                 return RedirectToPage();
             }
 
@@ -65,26 +65,25 @@ namespace CGI_Project_WebApp.Pages.Excursions
                 Poll.Suggestions = l;
                 if (Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
                 {
-                    TempData["Error"] = "One or more fields is not filled in";
+                    TempData["Error"] = "ErrorAllFieldsRequired";
                     return RedirectToPage();
                 }
 
                 if (!PollService.TryCheckIsPollDateValid((DateTime)Poll.StartTime, (DateTime)Poll.EndTime, out bool timeAvailable) || !timeAvailable)
                 {
-                    TempData["Error"] = "The voting period for the poll overlaps with an already existing poll";
+                    TempData["Error"] = "ErrorPollPeriodConflict";
                     return RedirectToPage();
                 }
 
                 if (PollService.TryAddPoll(Poll.Poll_name, emp.Id, Poll.StartTime, Poll.EndTime, Poll.Period, emp, chosenSuggestions, unusedSuggestionsList.suggestions))
                 {
-                    TempData["Success"] = $"Successfully created poll {Poll.Poll_name}";
+                    TempData["Success"] = "SuccessPollCreated";
                     return RedirectToPage();
                 }
 
-                TempData["Error"] = "User not found and/or server error";
+                TempData["Error"] = "ErrorUserNotFoundOrServerError";
                 return RedirectToPage();
             }
-
             return RedirectToPage("/Index");
         }
     }
