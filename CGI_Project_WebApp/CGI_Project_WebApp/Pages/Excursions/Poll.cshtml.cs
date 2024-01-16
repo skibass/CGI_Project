@@ -63,6 +63,12 @@ namespace CGI_Project_WebApp.Pages.Excursions
 			{
 
 
+				if(Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
+				{
+					ErrorMessage = "one or more fields is not filled in";
+					return Page();
+				}
+
 				if(!PollService.TryCheckIsPollDateValid((DateTime)Poll.StartTime, (DateTime)Poll.EndTime, out bool timeAvailable)|| !timeAvailable)
 				{
 					ErrorMessage = "the voting period for the poll overlaps with an already existing poll";
