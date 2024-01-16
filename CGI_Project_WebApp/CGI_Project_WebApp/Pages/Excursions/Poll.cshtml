@@ -112,7 +112,7 @@
 <script>
     document.getElementById('chosenSuggestions').addEventListener('change', function () {
         var selectedOptions = this.selectedOptions;
-        if (selectedOptions.length > 3 || selectedOptions.length < 2) {
+        if (selectedOptions.length > 3) {
             alert(maxExcursionsAlert);
 
             for (let i = 3; i < selectedOptions.length; i++) {

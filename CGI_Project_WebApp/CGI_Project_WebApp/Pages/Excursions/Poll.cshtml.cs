@@ -62,6 +62,11 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
             if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
+                if (chosenSuggestions.Count < 2)
+                {
+                    TempData["Error"] = "You need at least 2 suggestions";
+                    return RedirectToPage();
+                }
                 if (Poll.StartTime == null || Poll.EndTime == null || chosenSuggestions == null || Poll.Poll_name == null)
                 {
                     TempData["Error"] = "ErrorAllFieldsRequired";
