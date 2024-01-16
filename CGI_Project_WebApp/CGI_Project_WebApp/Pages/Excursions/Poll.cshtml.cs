@@ -18,7 +18,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public SuggestionList unusedSuggestionsList;
         [BindProperty]
-        public List<Suggestion> chosenSuggestions { get; set; }
+        public List<int> chosenSuggestions { get; set; }
 
         public SuggestionList UnusedSuggestionsList
         {
@@ -42,7 +42,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             ViewData["CurrentLanguage"] = CurrentLanguage;
             ViewData["CountryCode"] = CountryCode;
 
-            chosenSuggestions = new List<Suggestion>();
+            chosenSuggestions = new List<int>();
             SuggestionsService.TryGetSuggestions(out unusedSuggestionsList);
         }
 
@@ -62,8 +62,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
             if (EmployeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
             {
-                Poll.Suggestions = l;
-                if (Poll.StartTime == null || Poll.EndTime == null || Poll.Suggestions == null || Poll.Poll_name == null)
+                if (Poll.StartTime == null || Poll.EndTime == null || chosenSuggestions == null || Poll.Poll_name == null)
                 {
                     TempData["Error"] = "One or more fields is not filled in";
                     return RedirectToPage();

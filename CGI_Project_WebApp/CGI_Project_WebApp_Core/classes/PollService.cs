@@ -10,18 +10,18 @@ namespace CGI_Project_WebApp_Core.classes
 {
     public class PollService
     {
-		IPollRepository pollsRepository;
-		public PollService(IPollRepository pollsRepository)
-		{
-			this.pollsRepository = pollsRepository;
-		}
-		public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
+        IPollRepository pollsRepository;
+        public PollService(IPollRepository pollsRepository)
+        {
+            this.pollsRepository = pollsRepository;
+        }
+        public bool TryGetValidAndVoteablePolls(out List<Poll> VotablePolls, int employeeId)
         {
             VotablePolls = new List<Poll>();
             try
             {
                 List<Poll> polls = new List<Poll>();
-                
+
                 polls = pollsRepository.GetOpenPolls();
 
                 if (polls != null)
@@ -39,10 +39,10 @@ namespace CGI_Project_WebApp_Core.classes
                         }
                         if (validToVote) { VotablePolls.Add(poll); }
                     }
-					return true;
-				}
-				return false;
-			}
+                    return true;
+                }
+                return false;
+            }
             catch (Exception)
             {
                 return false;
@@ -124,8 +124,8 @@ namespace CGI_Project_WebApp_Core.classes
                         }
                         if (!validToVote) { nonVotablePolls.Add(poll); }
                     }
-					return true;
-				}
+                    return true;
+                }
                 return false;
             }
             catch (Exception)
@@ -178,39 +178,41 @@ namespace CGI_Project_WebApp_Core.classes
         {
             return pollsRepository.TryRemovePoll(pollId);
         }
-        public bool TryAddPoll(string name, int? managerId, DateTime? starttime, DateTime? endtime, Period period, Employee employee, List<Suggestion>? chosenSuggestionsIds, List<Suggestion> suggestions)
+        public bool TryAddPoll(string name, int? managerId, DateTime? starttime, DateTime? endtime, Period period, Employee employee, List<int>? chosenSuggestionsIds, List<Suggestion> suggestions)
         {
-			NewPollDto newPoll = new NewPollDto();
+            NewPollDto newPoll = new NewPollDto();
 
-            newPoll.Suggestions = new List<Suggestion>();
-			newPoll.Poll_name = name;
-			newPoll.ManagerId = managerId;
-			newPoll.StartTime = starttime;
-			newPoll.EndTime = endtime;
-			newPoll.Period = period;
-			newPoll.Employee = employee;
+            newPoll.Suggestions = suggestions.Where(s=> chosenSuggestionsIds?.Contains(s.Id) ?? false).ToList();
+            newPoll.Poll_name = name;
+            newPoll.ManagerId = managerId;
+            newPoll.StartTime = starttime;
+            newPoll.EndTime = endtime;
+            newPoll.Period = period;
+            newPoll.Employee = employee;
 
-            foreach (Suggestion suggestion in suggestions)
+            //foreach (Suggestion suggestion in suggestions)
+            //{
+            //    if (chosenSuggestionsIds.Any(mc => mc == suggestion.Id))
+            //    {
+            //        newPoll.Suggestions.Add(suggestion);
+            //    }
+            //}
+
+            try
             {
-				if (chosenSuggestionsIds.Any(mc => mc.Id == suggestion.Id))
-				{
-					newPoll.Suggestions.Add(suggestion);
-				}
-			}
-            
-			try
-            {
-
-				pollsRepository.TryAddPoll(newPoll, out Poll poll);
-                //add suggestions
-                foreach (Suggestion item in newPoll.Suggestions)
-                { 
-	                if(!TryAddSuggestionToPoll(poll, item))
+                if (pollsRepository.TryAddPoll(newPoll, out Poll poll))
+                {
+                    //add suggestions
+                    foreach (Suggestion item in newPoll.Suggestions)
                     {
-                        return false;
+                        if (!TryAddSuggestionToPoll(poll, item))
+                        {
+                            return false;
+                        }
                     }
+                    return true;
                 }
-                return true;
+                return false;
             }
             catch (Exception)
             {
@@ -223,9 +225,9 @@ namespace CGI_Project_WebApp_Core.classes
             votes = new List<Vote>();
             try
             {
-				if (pollsRepository.TryGetPoll(out Poll poll, pollId))
-				{
-					List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
+                if (pollsRepository.TryGetPoll(out Poll poll, pollId))
+                {
+                    List<PollSuggestion> Suggestions = poll.PollSuggestions.ToList();
                     votes = new List<Vote>();
                     foreach (PollSuggestion suggestion in Suggestions)
                     {
