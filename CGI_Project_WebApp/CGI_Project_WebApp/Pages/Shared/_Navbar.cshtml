@@ -47,7 +47,7 @@
                     {
                         <div class="d-flex m-0 p-0 align-self">
                             <a class="m-0 p-0" href="/Account/Profile">
-                            <img class="avatar mt-2 p-0" src="~/UserPictures/@Context.Session.GetString("uPicPath")">
+                            <img class="avatar mt-2 p-0" onerror="this.src='/assets/placeholder.png';"  src="~/UserPictures/@Context.Session.GetString("uPicPath")">
                             </a>
                             
 
