@@ -96,6 +96,9 @@ public class ProfileModel : PageModel
 
             await photoAlbumService.TryAddUserPicture(emp, path, Upload);
 
+            HttpContext.Session.SetString("uPicPath", emp.ProfileImage);
+
+
             return RedirectToPage();
         }
         return Page();
