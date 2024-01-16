@@ -29,6 +29,7 @@
                                 <a class="nav-link text-black" asp-area=""
                                    asp-page="/Excursions/Poll">@stringLocalizer["NavPoll"]</a>
                         </li>
+
                     }
 
                      <li class="nav-item">
@@ -37,41 +38,52 @@
                 <li class="nav-item">
                 <a class="nav-link text-black" asp-area="" asp-page="/PhotoAlbum/ShowPhotos">@stringLocalizer["ShowPhotoNav"]</a>
                 </li>
+                
                 </ul>
             }
+            <div class="d-flex mt-1 ms-auto">
+                <div class="avatar-wrapper mx-5">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex m-0 p-0 align-self">
+                            <a class="m-0 p-0" href="/Account/Profile">
+                            <img class="avatar mt-2 p-0" src="~/UserPictures/@Context.Session.GetString("uPicPath")">
+                            </a>
+                            
 
-            <div class="mx-5 align-middle">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p class="nav-item">
-                        <a class="nav-link text-dark display-6" asp-area=""
-                           asp-page="/Account/Logout">@stringLocalizer["Logout"]</a>
-                    </p>
-                }
-                else
-                {
-                    <p class="align-middle">
+                            <p class="nav-item">
+                                <a class="nav-link text-dark display-6" asp-area=""
+                                    asp-page="/Account/Logout">@stringLocalizer["Logout"]</a>
+                            </p>
+                        </div>
 
-                        <a id="login-button" class="nav-link text-dark display-6" asp-area=""
-                           asp-page="/Account/Login">@stringLocalizer["Login"]</a>
+                    }
+                    else
+                    {
+                        <p class="align-middle">
 
-                    </p>
+                            <a id="login-button" class="nav-link text-dark display-6" asp-area=""
+                            asp-page="/Account/Login">@stringLocalizer["Login"]</a>
 
-                }
+                        </p>
+
+                    }
+                </div>
+
+                <div class="btn-group lang-control align-items-center d-flex">
+                    <img src="~/assets/flags/@(ViewData["CountryCode"]?.ToString() ?? "EN").png" class="flag-icon mx-2" id="current-language" />
+                    <button type="button" class="lang-control-button">@ViewData["CountryCode"]</button>
+                    <button type="button" class="dropdown-toggle dropdown-toggle-split lang-control-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu lang-dropdown">
+                        <li class="d-flex mx-2"><img src="~/assets/flags/EN.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">EN</a></li>
+                        <li class="d-flex mx-2"><img src="~/assets/flags/NL.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">NL</a></li>
+                    </ul>
+                </div>
+
             </div>
-
-            <div class="btn-group lang-control">
-                <img src="~/assets/flags/@(ViewData["CountryCode"]?.ToString() ?? "EN").png" class="flag-icon mx-2" id="current-language" />
-                <button type="button" class="lang-control-button">@ViewData["CountryCode"]</button>
-                <button type="button" class="dropdown-toggle dropdown-toggle-split lang-control-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu lang-dropdown">
-                    <li class="d-flex mx-2"><img src="~/assets/flags/EN.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">EN</a></li>
-                    <li class="d-flex mx-2"><img src="~/assets/flags/NL.png" class="flag-icon" /><a class="dropdown-item w-auto" href="#">NL</a></li>
-
-                </ul>
-            </div>
+            
 
 
         </div>

@@ -44,6 +44,7 @@
 
 .lang-control {
     margin-right: 5rem;
+    
 }
 
     .lang-control button {
@@ -62,8 +63,20 @@
 }
 
 .flag-icon {
-    width: 1.5rem;
+    width: auto;
+    height: 1.5rem;
+    vertical-align: middle;
+
 }
+
+.avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(81,54,171,0.3)
+  }
+
 
 /*Hero*/
 

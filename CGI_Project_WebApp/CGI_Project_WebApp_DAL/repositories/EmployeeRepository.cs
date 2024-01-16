@@ -126,6 +126,7 @@ namespace CGI_Project_WebApp_DAL.repositories
                 if (emp.Email == item.Email)
                 {
                     role.Name = item.Role.Name;
+                    emp.ProfileImage = item.ProfileImage;
                     emp.Role = role;
                     canAdd = false;                   
                 }
