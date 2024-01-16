@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="2Suggestions" xml:space="preserve">
+    <value>Minstens 2 suggesties verwacht</value>
+  </data>
   <data name="AddPhotoNav" xml:space="preserve">
     <value>Foto's toevoegen</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="NavPoll" xml:space="preserve">
     <value>Peiling</value>
+  </data>
+  <data name="NoActivePolls" xml:space="preserve">
+    <value>Geen openstaande peilingen gevonden</value>
   </data>
   <data name="PhotoFormAdd" xml:space="preserve">
     <value>Voeg foto toe aan album</value>
@@ -312,11 +318,14 @@
   <data name="VoteNav" xml:space="preserve">
     <value>Stemmen</value>
   </data>
+  <data name="VoteNoEmployee" xml:space="preserve">
+    <value>Medewerker niet gevonden</value>
+  </data>
   <data name="VoteSubtitle" xml:space="preserve">
     <value>Per periode kunt u stemmen op één excursie</value>
   </data>
   <data name="VoteSuccess" xml:space="preserve">
-    <value>Met succes gestemd, ingediend door</value>
+    <value>Met succes gestemd</value>
   </data>
   <data name="VoteTitle" xml:space="preserve">
     <value>Stem voor een excursie</value>

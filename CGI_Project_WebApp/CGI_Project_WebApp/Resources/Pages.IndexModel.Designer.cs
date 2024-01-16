@@ -61,6 +61,15 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least 2 suggestions required.
+        /// </summary>
+        public static string _2Suggestions {
+            get {
+                return ResourceManager.GetString("2Suggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add photos.
         /// </summary>
         public static string AddPhotoNav {
@@ -327,6 +336,15 @@ namespace CGI_Project_WebApp.Resources {
         public static string NavPoll {
             get {
                 return ResourceManager.GetString("NavPoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no active polls for events at the moment.
+        /// </summary>
+        public static string NoActivePolls {
+            get {
+                return ResourceManager.GetString("NoActivePolls", resourceCulture);
             }
         }
         
@@ -655,7 +673,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully voted, submitted by.
+        ///   Looks up a localized string similar to Successfully voted.
         /// </summary>
         public static string VoteSuccess {
             get {

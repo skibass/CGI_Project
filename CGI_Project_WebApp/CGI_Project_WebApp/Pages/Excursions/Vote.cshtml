@@ -46,7 +46,7 @@
 
     @{
         @if(Model.poll == null){
-            <p class="noPollsMessage mt-5 text-center">There are no active polls for events at the moment.</p>
+            <p class="noPollsMessage mt-5 text-center">@stringLocalizer["NoActivePolls"]</p>
         }else{
 
         var poll = Model.poll;

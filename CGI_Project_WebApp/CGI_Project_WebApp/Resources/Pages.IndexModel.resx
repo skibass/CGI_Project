@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="2Suggestions" xml:space="preserve">
+    <value>At least 2 suggestions required</value>
+  </data>
   <data name="AddPhotoNav" xml:space="preserve">
     <value>Add photos</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="NavPoll" xml:space="preserve">
     <value>Poll</value>
+  </data>
+  <data name="NoActivePolls" xml:space="preserve">
+    <value>There are no active polls for events at the moment</value>
   </data>
   <data name="PhotoFormAdd" xml:space="preserve">
     <value>Add photo to album</value>
@@ -316,7 +322,7 @@
     <value>You can vote for one excursion in each period</value>
   </data>
   <data name="VoteSuccess" xml:space="preserve">
-    <value>Successfully voted, submitted by</value>
+    <value>Successfully voted</value>
   </data>
   <data name="VoteTitle" xml:space="preserve">
     <value>Vote for an excursion</value>
