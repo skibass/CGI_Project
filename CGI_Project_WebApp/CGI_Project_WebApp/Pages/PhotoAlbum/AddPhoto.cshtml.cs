@@ -62,8 +62,9 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
             if (Upload == null)
             {
-                Error.HandleError("PhotoInvalid");
-                return;
+                TempData["Error"] = "Photo is not valid";
+                ResetButton();
+                return RedirectToPage();
             }
 
             FileUploadPreCheckValue preCheckResult = checker.TestFile(Upload);
