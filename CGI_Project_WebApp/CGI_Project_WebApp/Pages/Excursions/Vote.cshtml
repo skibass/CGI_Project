@@ -44,6 +44,10 @@
         </div>
 
     @{
+        @if(Model.poll == null){
+            <p>no active poll found</p>
+        }else{
+
         var poll = Model.poll;
         var (hasVoted, vote) = Model.PollContainsUserVote(poll.Id);
 
@@ -128,4 +132,5 @@
 
     }
     }
+    
 
