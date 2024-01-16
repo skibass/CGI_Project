@@ -58,44 +58,10 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                         polls = polls.Where(p => p.StartTime < now && p.EndTime > now).ToList();
 
-                        // if(polls.Count != 1) {
-                        //     return Page();
-                        // }
                         poll = polls[0];
                         Votes = poll.PollSuggestions.SelectMany(PS=>PS.Votes).ToList();
 
                         int i = 1;
-
-                        //Polls = polls;
-
-                        /*if (VoteService.TryGetVotedSuggestions(emp.Id, out List<Vote> votes))
-                        {
-                            
-                            Votes = votes;
-
-                            foreach (var poll in Polls)
-                            {
-                                foreach (var suggestion in poll.PollSuggestions)
-                                {
-                                    int suggestionId = (int)suggestion.SuggestionId;
-                                    int count = Votes.Count(v => v.PollSuggestion.SuggestionId == suggestionId);
-                                    VoteCounts[suggestionId] = count;
-                                }
-                            }
-
-                            int totalVotes = VoteCounts.Values.Sum();
-
-                            foreach (var suggestionId in VoteCounts.Keys)
-                            {
-                                double percentage = totalVotes == 0 ? 0 : (double)VoteCounts[suggestionId] / totalVotes * 100;
-                                VotePercentages[suggestionId] = percentage;
-
-                                //Console.WriteLine($"Suggestion ID: {suggestionId}, Percentage: {percentage}, Vote Count: {VoteCounts[suggestionId]}");
-                            }
-
-                            RedirectToPage();
-                            ErrorHandeling.ResetErrorHandling();
-                        }*/
                     }
                 }
             }
@@ -103,7 +69,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             return Page();
         }
 
-        public IActionResult OnPostVote(int suggestionId)
+        public async Task<IActionResult> OnPostVote(int suggestionId)
         {
             Console.WriteLine("Arrived at vote function");
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
@@ -114,17 +80,14 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                 if (VoteService.TryCreateVote(emp.Id, suggestionId))
                 {
-                    OnGet();
-                    ErrorHandeling.HandleSuccess("VoteSuccess" + " " + emp.FirstName);
-                    return Page();
+                    TempData["Success"] = $"You successfully voted {emp.FirstName}";
+                    return RedirectToPage();
                 }
-                ErrorHandeling.HandleError("VoteError");
-                OnGet();
-                return Page();
+                TempData["Error"] = $"Failed to vote, check employee id {emp.Id}, and suggestion id {suggestionId}";
+                return RedirectToPage();
             }
-            ErrorHandeling.HandleError("ModelEmailErrorKey");
-            OnGet();
-            return Page();
+            TempData["Error"] = $"Employee not found, check employee {emp.Id}";
+            return RedirectToPage();
         }
 
         public (bool, Vote) PollContainsUserVote(int pollId)
