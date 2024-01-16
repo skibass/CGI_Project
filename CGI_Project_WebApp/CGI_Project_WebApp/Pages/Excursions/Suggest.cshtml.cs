@@ -30,7 +30,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
         {
             _stringLocalizer = stringLocalizer;
         }
-        
+
         public async Task<IActionResult> OnGet()
         {
             CurrentLanguage = LanguageHelper.GetCurrentLanguage(HttpContext);
@@ -40,7 +40,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
             if (User.Identity.IsAuthenticated == false)
             {
-               return RedirectToPage("../Index");
+                return RedirectToPage("../Index");
             }
 
             if (ErrorHandeling.MessageBool)
@@ -52,17 +52,14 @@ namespace CGI_Project_WebApp.Pages.Excursions
             return null;
         }
 
-        public async void OnPost()
+        public async Task<IActionResult> OnPost()
         {
             EmployeeEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             if (!ModelState.IsValid)
             {
-                //Model state not valid
-                ErrorHandeling.HandleError("ModelErrorKey");
-                //Wait for half a second before resetting properties
-                await Task.Delay(10000);
-                Console.WriteLine("Error");
+                TempData["Error"] = "ModelState not valid";
+                return RedirectToPage();
             }
 
             if (!ErrorHandeling.MessageBool)
@@ -73,30 +70,19 @@ namespace CGI_Project_WebApp.Pages.Excursions
                             Suggestion.Exception, emp))
                     {
                         //Suggestion added successfully
-                        ErrorHandeling.HandleSuccess("ModelSuggestKey");
+                        TempData["Success"] = "Suggestion added successfully";
+                        return RedirectToPage();
                     }
-
-                    if (!ErrorHandeling.MessageBool)
-                    {
-                        //Suggestion not successfully added
-                        ErrorHandeling.HandleError("ModelSuggestErrorKey");
-                    }
+                    //Suggestion not successfully added
+                    TempData["Error"] = "Could not add suggestion";
+                    return RedirectToPage();
                 }
-
-                if (!ErrorHandeling.MessageBool)
-                {
-                    //E-mail doesn't exist and/or server error
-                    ErrorHandeling.HandleError("ModelEmailErrorKey");
-                }
+                //E-mail doesn't exist and/or server error
+                TempData["Error"] = "User not found and/or server error";
+                return RedirectToPage();
             }
 
-            //Wait for half a second before resetting properties
-            await Task.Delay(500);
-
-            //Reset all properties
-            ErrorHandeling.ResetErrorHandling();
-
-            RedirectToPage();
+            return RedirectToPage();
         }
     }
 }

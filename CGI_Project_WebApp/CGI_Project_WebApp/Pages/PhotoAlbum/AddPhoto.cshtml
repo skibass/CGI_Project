@@ -8,11 +8,32 @@
 @inject IStringLocalizer<IndexModel> stringLocalizer;
 
 <head>
-    <link rel="stylesheet" href="~/css/addphoto.css"/>
+    <link rel="stylesheet" href="~/css/addphoto.css" />
 </head>
 
 <div class="container my-5">
     <!-- Existing code... -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <div id="successToast" class="toast show bg-success d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                <div class="toast-body text-light">
+                    @stringLocalizer[@TempData["Success"].ToString()]
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <div id="errorToast" class="toast show bg-danger d-flex" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                <div class="toast-body text-light">
+                    @stringLocalizer[@TempData["Error"].ToString()]
+                </div>
+            </div>
+        </div>
+    }
 
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -33,7 +54,7 @@
                     <label for="description" class="form-label">@stringLocalizer["PhotoFormDesc"]</label>
                     <input class="form-control m-0" required type="text" id="description" asp-for="@Model.photo.Description">
                 </div>
-                @if (HttpContext.Session.GetInt32("ActivityButton") == null)
+                @if (HttpContext.Session.GetInt32("ActivityButton") != 0)
                 {
                     <div class="text-center my-5">
                         <button type="submit" class="btn btn-lg btn-add-photo">
@@ -47,8 +68,8 @@
 </div>
 
 <script>
-    
-        document.addEventListener('DOMContentLoaded', function () {
+
+    document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelector('.dropzone').addEventListener('click', function () {
             console.log('hit');
@@ -72,10 +93,16 @@
             });
         }, 5000);
 
+        var submitButton = document.getElementById('submitButton');
 
+        if (submitButton) {
+            submitButton.addEventListener('click', function () {
+                this.disabled = true; // Disable the button
+            });
+        }
     });
 
-     function previewImage() {
+    function previewImage() {
         var input = document.getElementById('upload');
         var imagePreview = document.getElementById('imagePreview');
 
@@ -114,8 +141,19 @@
         }
     }
 
-  
+    document.getElementById("suggestionForm").addEventListener("submit", function () {
+        // Reset the form after submission
+        this.reset();
 
-   
+        // Hide the button again after form submission
+        if (submitButtonContainer) {
+            submitButtonContainer.style.display = 'none';
+        }
+
+        // Set a timeout to show the button after a second
+        setTimeout(showButtonAfterDelay, 1000);
+    });
+
+
 </script>
 
