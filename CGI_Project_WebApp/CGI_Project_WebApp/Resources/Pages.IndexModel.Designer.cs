@@ -88,6 +88,42 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please ensure all fields are filled in.
+        /// </summary>
+        public static string ErrorAllFieldsRequired {
+            get {
+                return ResourceManager.GetString("ErrorAllFieldsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The form submission is invalid.
+        /// </summary>
+        public static string ErrorInvalidFormSubmission {
+            get {
+                return ResourceManager.GetString("ErrorInvalidFormSubmission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The voting period for this poll conflicts with an existing poll&apos;s period.
+        /// </summary>
+        public static string ErrorPollPeriodConflict {
+            get {
+                return ResourceManager.GetString("ErrorPollPeriodConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found, or a server error occurred.
+        /// </summary>
+        public static string ErrorUserNotFoundOrServerError {
+            get {
+                return ResourceManager.GetString("ErrorUserNotFoundOrServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excursion description.
         /// </summary>
         public static string ExcursionDescription {
@@ -259,7 +295,7 @@ namespace CGI_Project_WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Model state not correct.
+        ///   Looks up a localized string similar to Suggestion is invalid.
         /// </summary>
         public static string ModelErrorKey {
             get {
@@ -543,6 +579,15 @@ namespace CGI_Project_WebApp.Resources {
         public static string Social {
             get {
                 return ResourceManager.GetString("Social", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poll created successfully.
+        /// </summary>
+        public static string SuccessPollCreated {
+            get {
+                return ResourceManager.GetString("SuccessPollCreated", resourceCulture);
             }
         }
         

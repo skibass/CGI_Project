@@ -126,6 +126,18 @@
   <data name="BtnVote" xml:space="preserve">
     <value>Vote</value>
   </data>
+  <data name="ErrorAllFieldsRequired" xml:space="preserve">
+    <value>Please ensure all fields are filled in</value>
+  </data>
+  <data name="ErrorInvalidFormSubmission" xml:space="preserve">
+    <value>The form submission is invalid</value>
+  </data>
+  <data name="ErrorPollPeriodConflict" xml:space="preserve">
+    <value>The voting period for this poll conflicts with an existing poll's period</value>
+  </data>
+  <data name="ErrorUserNotFoundOrServerError" xml:space="preserve">
+    <value>User not found, or a server error occurred</value>
+  </data>
   <data name="ExcursionDescription" xml:space="preserve">
     <value>Excursion description</value>
   </data>
@@ -184,7 +196,7 @@
     <value>E-mail does not exist and/or server error</value>
   </data>
   <data name="ModelErrorKey" xml:space="preserve">
-    <value>Model state not correct</value>
+    <value>Suggestion is invalid</value>
   </data>
   <data name="ModelSuggestErrorKey" xml:space="preserve">
     <value>Failed to add suggestion. Suggestion might exist already</value>
@@ -278,6 +290,9 @@
   </data>
   <data name="Social" xml:space="preserve">
     <value>Social media</value>
+  </data>
+  <data name="SuccessPollCreated" xml:space="preserve">
+    <value>Poll created successfully</value>
   </data>
   <data name="SuggestNav" xml:space="preserve">
     <value>Suggest</value>

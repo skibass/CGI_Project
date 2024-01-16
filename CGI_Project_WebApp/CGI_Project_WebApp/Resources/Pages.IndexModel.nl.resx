@@ -126,6 +126,18 @@
   <data name="BtnVote" xml:space="preserve">
     <value>Stem</value>
   </data>
+  <data name="ErrorAllFieldsRequired" xml:space="preserve">
+    <value>Zorg ervoor dat alle velden zijn ingevuld</value>
+  </data>
+  <data name="ErrorInvalidFormSubmission" xml:space="preserve">
+    <value>De formulierinzending is ongeldig</value>
+  </data>
+  <data name="ErrorPollPeriodConflict" xml:space="preserve">
+    <value>De stemperiode voor deze peiling conflicteert met de periode van een bestaande peiling</value>
+  </data>
+  <data name="ErrorUserNotFoundOrServerError" xml:space="preserve">
+    <value>Gebruiker niet gevonden of er is een serverfout opgetreden</value>
+  </data>
   <data name="ExcursionDescription" xml:space="preserve">
     <value>Excursie omschrijving</value>
   </data>
@@ -184,7 +196,7 @@
     <value>E-mail bestaat niet en/of serverfout</value>
   </data>
   <data name="ModelErrorKey" xml:space="preserve">
-    <value>Modelstaat is niet correct</value>
+    <value>Suggestie is ongeldig</value>
   </data>
   <data name="ModelSuggestErrorKey" xml:space="preserve">
     <value>Kan de suggestie niet toevoegen. Suggestie bestaat mogelijk al</value>
@@ -278,6 +290,9 @@
   </data>
   <data name="Social" xml:space="preserve">
     <value>Social media</value>
+  </data>
+  <data name="SuccessPollCreated" xml:space="preserve">
+    <value>Peiling is succesvol aangemaakt</value>
   </data>
   <data name="SuggestNav" xml:space="preserve">
     <value>Excursie voorstellen</value>
