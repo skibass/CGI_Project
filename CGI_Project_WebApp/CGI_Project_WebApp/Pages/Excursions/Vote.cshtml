@@ -37,15 +37,16 @@
         </div>
     </div>
 }
+
 <div id="vote-wrapper" class="container mt-4 mb-5">
     <div class="vote-header">
         <h3 class="hero-title">@stringLocalizer["VoteTitle"]</h3>
-        @* <h5 class="subtitle">@stringLocalizer["VoteSubtitle"]</h5> *@
+        <h5 class="subtitle">@stringLocalizer["VoteSubtitle"]</h5> 
         </div>
 
     @{
         @if(Model.poll == null){
-            <p>no active poll found</p>
+            <p class="noPollsMessage mt-5 text-center">There are no active polls for events at the moment.</p>
         }else{
 
         var poll = Model.poll;
@@ -101,10 +102,7 @@
                                     <div class="progress-bar vote-progress-bar" role="progressbar">
                                         <p class="vote-progess-percentage m-0">@percentage.ToString("0.#")%</p>
 
-                                        <script>
-                                            var votePercentages = @Html.Raw(Json.Serialize(Model.VotePercentages));
-                                            //console.log("Vote Percentages:", votePercentages);
-                                        </script>
+                         
                                     </div>
                                 </div>
                             </div>
@@ -133,4 +131,4 @@
     }
     }
     
-
+</div>
