@@ -27,6 +27,10 @@ public class ProfileModel : PageModel
     public string CountryCode { get; private set; }
 
 
+    public ProfileModel(IWebHostEnvironment _env){
+        this.env = _env;
+    }
+
     public class SuggestionWithVoteCount
     {
         public Suggestion Suggestion { get; set; }
