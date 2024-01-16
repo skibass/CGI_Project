@@ -21,7 +21,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
         public string EmployeeEmail;
 
-        public Poll poll = new();
+        public Poll poll;
 
         public List<Poll> Polls = new();
 
@@ -52,7 +52,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                 if (employeeService.TryGetEmployeeByEmail(EmployeeEmail, out Employee emp))
                 {
-                    if (pollService.TryGetAllPolls(out List<Poll> polls))
+                    if (pollService.TryGetAllPolls(out List<Poll> polls) && polls.Count > 0)
                     {
                         DateTime now = DateTime.Now;
 
@@ -60,8 +60,6 @@ namespace CGI_Project_WebApp.Pages.Excursions
 
                         poll = polls[0];
                         Votes = poll.PollSuggestions.SelectMany(PS=>PS.Votes).ToList();
-
-                        int i = 1;
                     }
                 }
             }

@@ -45,8 +45,14 @@
 
     @{
         var poll = Model.poll;
-        var (hasVoted, vote) = Model.PollContainsUserVote(poll.Id);
-
+        @if (poll == null)
+        {
+            <p>geen active polls</p>
+        }
+        else
+        {
+            var (hasVoted, vote) = Model.PollContainsUserVote(poll.Id);
+        
 
 
         var sortedSuggestions = poll.PollSuggestions.OrderByDescending(s => s.Votes.Count);
@@ -126,5 +132,6 @@
         <script src="../js/vote.js"></script>
 
 
+    }
     }
 
