@@ -89,5 +89,14 @@ line-height: baseline;
         
     }
 
+.noPollsMessage {
+    background-color: var(--primary);
+    font-size: 24px;
+    color: white;
+    height: 3rem;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+}
+
 
 
