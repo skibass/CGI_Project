@@ -30,7 +30,8 @@ function UpdateProgressBars(){
     progressBars.forEach(function (bar) {
         var percentage = parseFloat(bar.getAttribute('data-percentage'));
         var progressBar = bar.querySelector('.vote-progress-bar');
-        
+        percentage = Math.max(0, percentage);
+
         progressBar.style.width = percentage + '%';
         progressBar.innerHTML = '<p class="vote-progress-percentage m-0">' + percentage.toFixed(1) + '%</p>';
     });
