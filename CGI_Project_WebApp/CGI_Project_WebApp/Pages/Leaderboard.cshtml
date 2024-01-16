@@ -8,6 +8,7 @@
 
     // Define the maximum height for the bar charts
     var maxHeight = 300;
+    var minHeight = 60;
 
     // Define colors for the top three bars
     string[] barColors = new string[] { "bar-two", "bar-one", "bar-three" };
@@ -83,7 +84,7 @@
                             {
                                 var entry = Model.TopThree.ElementAtOrDefault(index);
                                 var scorePercentage = Model.MaxScore > 0 ? Math.Round(((double)entry.Score / Model.MaxScore) * 100) : 0;
-                                var barHeight = scorePercentage * (maxHeight / 100);
+                                var barHeight = Math.Max(scorePercentage * (maxHeight / 100), minHeight);
                                 var thresholdHeight = 13;
 
                                 <div class="col-md-4 mb-2">
