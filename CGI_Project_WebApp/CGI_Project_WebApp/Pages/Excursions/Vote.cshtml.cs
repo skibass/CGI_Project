@@ -68,13 +68,13 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                 if (VoteService.TryCreateVote(emp.Id, suggestionId))
                 {
-                    TempData["Success"] = $"You successfully voted {emp.FirstName}";
+                    TempData["Success"] = "VoteSuccess";
                     return RedirectToPage();
                 }
-                TempData["Error"] = $"Failed to vote, check employee id {emp.Id}, and suggestion id {suggestionId}";
+                TempData["Error"] = "VoteError";
                 return RedirectToPage();
             }
-            TempData["Error"] = $"Employee not found, check employee {emp.Id}";
+            TempData["Error"] = "VoteNoEmployee";
             return RedirectToPage();
         }
 

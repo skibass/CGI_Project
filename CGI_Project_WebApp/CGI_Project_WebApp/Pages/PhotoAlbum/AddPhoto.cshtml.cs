@@ -61,7 +61,7 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
             if (Upload == null)
             {
-                TempData["Error"] = "Photo is not valid";
+                TempData["Error"] = "PhotoInvalid";
                 ResetButton();
                 return RedirectToPage();
             }
@@ -70,21 +70,21 @@ namespace CGI_Project_WebApp.Pages.PhotoAlbum
 
             if (preCheckResult == FileUploadPreCheckValue.TooLarge)
             {
-                TempData["Error"] = "Photo is too large";
+                TempData["Error"] = "PhotoTooLarge";
                 ResetButton();
                 return RedirectToPage();
             }
 
             if (preCheckResult == FileUploadPreCheckValue.NoValidFIleType)
             {
-                TempData["Error"] = "Photo-type is not valid";
+                TempData["Error"] = "PhotoInvalid";
                 ResetButton();
                 return RedirectToPage();
             }
 
             await photoAlbumService.TryAddPhoto(photo, path, Upload);
 
-            TempData["Success"] = "Successfully added the photo";
+            TempData["Success"] = "PhotoSuccess";
 
             return RedirectToPage("AddPhoto");
         }

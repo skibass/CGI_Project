@@ -64,7 +64,7 @@ namespace CGI_Project_WebApp.Pages.Excursions
             {
                 if (chosenSuggestions.Count < 2)
                 {
-                    TempData["Error"] = "You need at least 2 suggestions";
+                    TempData["Error"] = "2Suggestions";
                     return RedirectToPage();
                 }
                 if (Poll.StartTime == null || Poll.EndTime == null || chosenSuggestions == null || Poll.Poll_name == null)
